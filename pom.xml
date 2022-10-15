@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>fr.kuremento</groupId>
-	<artifactId>gw2</artifactId>
+	<artifactId>gw2-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>gw2-api</name>
 	<description>Projet utilitaire pour gérer les appels REST à GW2</description>
