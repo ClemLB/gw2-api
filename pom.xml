@@ -15,6 +15,19 @@
 	<description>Projet utilitaire pour gérer les appels REST à GW2</description>
 	<properties>
 		<java.version>17</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<project.testresult.directory>${project.build.directory}/test-results</project.testresult.directory>
+		<sonar-maven-plugin.version>3.7.0.1746</sonar-maven-plugin.version>
+		<jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
+		<maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+		<maven-failsafe-plugin.version>3.0.0-M5</maven-failsafe-plugin.version>
+		<jacoco.utReportFolder>${project.build.directory}/jacoco/test</jacoco.utReportFolder>
+		<jacoco.utReportFile>${jacoco.utReportFolder}/test.exec</jacoco.utReportFile>
+		<jacoco.itReportFolder>${project.build.directory}/jacoco/integrationTest</jacoco.itReportFolder>
+		<jacoco.itReportFile>${jacoco.itReportFolder}/integrationTest.exec</jacoco.itReportFile>
+		<junit.utReportFolder>${project.testresult.directory}/test</junit.utReportFolder>
+		<junit.itReportFolder>${project.testresult.directory}/integrationTest</junit.itReportFolder>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -34,13 +47,63 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-logging</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
 		<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>javax.annotation-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.module</groupId>
+			<artifactId>jackson-module-jaxb-annotations</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-hibernate5</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-hppc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jsr310</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>4.8.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.github.tomakehurst</groupId>
+			<artifactId>wiremock-jre8</artifactId>
+			<version>2.33.2</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -51,20 +114,147 @@
 	</dependencies>
 
 	<build>
+		<finalName>gw2-api-client</finalName>
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
+					<source>17</source>
+					<target>17</target>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.3</version>
+				<configuration>
+					<tagNameFormat>v@{project.version}</tagNameFormat>
+					<arguments>-Dmaven.javadoc.skip=true -Dmaven.test.skipTests=true -Dmaven.test.skip=true</arguments>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+			</plugin>
 		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.jacoco</groupId>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<version>${jacoco-maven-plugin.version}</version>
+					<executions>
+						<execution>
+							<id>pre-unit-tests</id>
+							<goals>
+								<goal>prepare-agent</goal>
+							</goals>
+							<configuration>
+								<!-- Sets the path to the file which contains the execution data. -->
+								<destFile>${jacoco.utReportFile}</destFile>
+							</configuration>
+						</execution>
+						<!-- Ensures that the code coverage report for unit tests is created after unit tests have been run -->
+						<execution>
+							<id>post-unit-test</id>
+							<phase>test</phase>
+							<goals>
+								<goal>report</goal>
+							</goals>
+							<configuration>
+								<dataFile>${jacoco.utReportFile}</dataFile>
+								<outputDirectory>${jacoco.utReportFolder}</outputDirectory>
+							</configuration>
+						</execution>
+						<execution>
+							<id>pre-integration-tests</id>
+							<goals>
+								<goal>prepare-agent-integration</goal>
+							</goals>
+							<configuration>
+								<!-- Sets the path to the file which contains the execution data. -->
+								<destFile>${jacoco.itReportFile}</destFile>
+							</configuration>
+						</execution>
+						<!-- Ensures that the code coverage report for integration tests is created after integration tests have been run -->
+						<execution>
+							<id>post-integration-tests</id>
+							<phase>post-integration-test</phase>
+							<goals>
+								<goal>report-integration</goal>
+							</goals>
+							<configuration>
+								<dataFile>${jacoco.itReportFile}</dataFile>
+								<outputDirectory>${jacoco.itReportFolder}</outputDirectory>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${maven-surefire-plugin.version}</version>
+					<configuration>
+						<!-- Force alphabetical order to have a reproducible build -->
+						<runOrder>alphabetical</runOrder>
+						<reportsDirectory>${junit.utReportFolder}</reportsDirectory>
+						<excludes>
+							<exclude>**/*IT*</exclude>
+							<exclude>**/*IntTest*</exclude>
+						</excludes>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-failsafe-plugin</artifactId>
+					<version>${maven-failsafe-plugin.version}</version>
+					<configuration>
+						<!-- Due to spring-boot repackage, without adding this property test classes are not found
+							 See https://github.com/spring-projects/spring-boot/issues/6254 -->
+						<classesDirectory>${project.build.outputDirectory}</classesDirectory>
+						<!-- Force alphabetical order to have a reproducible build -->
+						<runOrder>alphabetical</runOrder>
+						<reportsDirectory>${junit.itReportFolder}</reportsDirectory>
+						<includes>
+							<include>**/*IT*</include>
+							<include>**/*IntTest*</include>
+						</includes>
+					</configuration>
+					<executions>
+						<execution>
+							<id>integration-test</id>
+							<goals>
+								<goal>integration-test</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>verify</id>
+							<goals>
+								<goal>verify</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.sonarsource.scanner.maven</groupId>
+					<artifactId>sonar-maven-plugin</artifactId>
+					<version>${sonar-maven-plugin.version}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 
 </project>

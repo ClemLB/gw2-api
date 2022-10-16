@@ -1,0 +1,12 @@
+application:
+    rest:
+        endpoints:
+            colors: '/v2/colors'
+            quaggans: '/v2/quaggans'
+        config:
+            base-url: https://api.guildwars2.com
+            connection-timeout: 1000
+            enable-wiretap: false
+            page-maximum-size: 200
+            read-timeout: 1000
+            write-timeout: 1000
