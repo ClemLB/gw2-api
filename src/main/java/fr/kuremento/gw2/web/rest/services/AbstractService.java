@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.util.DefaultUriBuilderFactory;
@@ -40,14 +41,29 @@ public abstract class AbstractService {
 
 	protected <T> T get(URI uri, ParameterizedTypeReference<T> paramz) {
 		return this.getWebClient()
-		           .get()
-		           .uri(uri)
-		           .retrieve()
-		           .onStatus(HttpStatus.FORBIDDEN::equals, Gw2Client::getErrorConsumerForError403)
-		           .onStatus(HttpStatus.NOT_FOUND::equals, Gw2Client::getErrorConsumerForError404)
-		           .onStatus(HttpStatus.SERVICE_UNAVAILABLE::equals, Gw2Client::getErrorConsumerForError503)
-		           .bodyToMono(paramz)
-		           .block();
+				.get()
+				.uri(uri)
+				.retrieve()
+				.onStatus(HttpStatus.UNAUTHORIZED::equals, Gw2Client::getErrorConsumerForError401)
+				.onStatus(HttpStatus.FORBIDDEN::equals, Gw2Client::getErrorConsumerForError403)
+				.onStatus(HttpStatus.NOT_FOUND::equals, Gw2Client::getErrorConsumerForError404)
+				.onStatus(HttpStatus.SERVICE_UNAVAILABLE::equals, Gw2Client::getErrorConsumerForError503)
+				.bodyToMono(paramz)
+				.block();
+	}
+
+	protected <T> T getWithAuthentification(URI uri, ParameterizedTypeReference<T> paramz, String apiKey) {
+		return this.getWebClient()
+				.get()
+				.uri(uri)
+				.header(HttpHeaders.AUTHORIZATION, "Bearer " + apiKey)
+				.retrieve()
+				.onStatus(HttpStatus.UNAUTHORIZED::equals, Gw2Client::getErrorConsumerForError401)
+				.onStatus(HttpStatus.FORBIDDEN::equals, Gw2Client::getErrorConsumerForError403)
+				.onStatus(HttpStatus.NOT_FOUND::equals, Gw2Client::getErrorConsumerForError404)
+				.onStatus(HttpStatus.SERVICE_UNAVAILABLE::equals, Gw2Client::getErrorConsumerForError503)
+				.bodyToMono(paramz)
+				.block();
 	}
 
 	protected <T> URI buildURI(String endpoint, T id) {
