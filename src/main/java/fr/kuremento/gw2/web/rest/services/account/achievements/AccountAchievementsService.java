@@ -1,6 +1,6 @@
 package fr.kuremento.gw2.web.rest.services.account.achievements;
 
-import fr.kuremento.gw2.web.rest.models.account.achievements.Achievement;
+import fr.kuremento.gw2.web.rest.models.account.achievements.AccountAchievement;
 import fr.kuremento.gw2.web.rest.services.AbstractService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,14 +9,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service("achievements")
+@Service
 @RequiredArgsConstructor
-public class AchievementsService extends AbstractService {
+public class AccountAchievementsService extends AbstractService {
 
-	@Value("${application.rest.endpoints.achievement}")
+	@Value("${application.rest.endpoints.accountCategory.achievement}")
 	private final String endpoint;
 
-	public List<Achievement> getWithAuthentification(String apiKey) {
+	public List<AccountAchievement> getWithAuthentification(String apiKey) {
 		return super.getWithAuthentification(super.buildURI(endpoint), new ParameterizedTypeReference<>() {
 		}, apiKey);
 	}

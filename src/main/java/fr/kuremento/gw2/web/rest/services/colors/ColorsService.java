@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service("colors")
+@Service
 @RequiredArgsConstructor
 public class ColorsService extends AbstractService {
 
 	@Value("${application.rest.endpoints.colors}")
-	private final String endpoint;
+	private String endpoint;
 
 	public List<Integer> get() {
 		return super.get(super.buildURI(endpoint), new ParameterizedTypeReference<>() {

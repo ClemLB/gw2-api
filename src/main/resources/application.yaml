@@ -1,8 +1,11 @@
 application:
     rest:
         endpoints:
-            account: '/v2/account'
-            achievement: '/v2/account/achievements'
+            accountCategory:
+                account: '/v2/account'
+                achievement: '/v2/account/achievements'
+            achievementsCategory:
+                achievements: '/v2/achievements'
             colors: '/v2/colors'
             quaggans: '/v2/quaggans'
         config:

@@ -1,7 +1,7 @@
-package fr.kuremento.gw2.web.rest.services.quaggans;
+package fr.kuremento.gw2.web.rest.services.achievements;
 
 import fr.kuremento.gw2.exceptions.TooManyArgumentsException;
-import fr.kuremento.gw2.web.rest.models.quaggans.Quaggan;
+import fr.kuremento.gw2.web.rest.models.achievements.Achievements;
 import fr.kuremento.gw2.web.rest.services.AbstractService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,29 +12,23 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class QuaggansService extends AbstractService {
+public class AchievementsService extends AbstractService {
 
-	@Value("${application.rest.endpoints.quaggans}")
+	@Value("${application.rest.endpoints.achievementsCategory.achievements}")
 	private String endpoint;
 
-	public List<String> get() {
+	public List<Integer> get() {
 		return super.get(super.buildURI(endpoint), new ParameterizedTypeReference<>() {
 		});
 	}
 
-	public List<Quaggan> getAll() {
-		return super.get(super.buildURIAllIds(endpoint), new ParameterizedTypeReference<>() {
-		});
-	}
-
-	public List<Quaggan> get(List<String> ids) throws TooManyArgumentsException {
+	public List<Achievements> get(List<Integer> ids) throws TooManyArgumentsException {
 		return super.get(super.buildURI(endpoint, ids), new ParameterizedTypeReference<>() {
 		});
 	}
 
-	public Quaggan get(String id) {
+	public Achievements get(Integer id) {
 		return super.get(super.buildURI(endpoint, id), new ParameterizedTypeReference<>() {
 		});
 	}
-
 }
