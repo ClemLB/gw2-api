@@ -15,5 +15,3 @@ application:
             page-maximum-size: 200
             read-timeout: 1000
             write-timeout: 1000
-test:
-    api-key: '63D4E7FB-F855-5F47-83B5-5B33DC019AB1DBDF0126-24D2-4895-9B6E-D4B950CDF0D4'
