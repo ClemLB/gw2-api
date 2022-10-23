@@ -2,25 +2,23 @@ package fr.kuremento.gw2.web.rest.services.account;
 
 import fr.kuremento.gw2.web.rest.models.account.Account;
 import fr.kuremento.gw2.web.rest.services.AbstractService;
-import fr.kuremento.gw2.web.rest.services.account.achievements.AchievementsService;
+import fr.kuremento.gw2.web.rest.services.account.achievements.AccountAchievementsService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
 
-@Service("account")
+@Service
 @RequiredArgsConstructor
 public class AccountService extends AbstractService {
 
-	@Value("${application.rest.endpoints.account}")
-	private final String endpoint;
+	private final AccountAchievementsService accountAchievementsService;
 
-	@Qualifier("achievements")
-	private final AchievementsService achievementsService;
+	@Value("${application.rest.endpoints.accountCategory.account}")
+	private String endpoint;
 
-	public AchievementsService achievements() {
-		return achievementsService;
+	public AccountAchievementsService achievements() {
+		return accountAchievementsService;
 	}
 
 	public Account getWithAuthentification(String apiKey) {

@@ -2,10 +2,10 @@ package fr.kuremento.gw2.client;
 
 import fr.kuremento.gw2.exceptions.TechnicalException;
 import fr.kuremento.gw2.web.rest.services.account.AccountService;
+import fr.kuremento.gw2.web.rest.services.achievements.AchievementsService;
 import fr.kuremento.gw2.web.rest.services.colors.ColorsService;
 import fr.kuremento.gw2.web.rest.services.quaggans.QuaggansService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.ClientResponse;
 import reactor.core.publisher.Mono;
@@ -14,13 +14,9 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class Gw2Client {
 
-	@Qualifier("account")
 	private final AccountService accountService;
-
-	@Qualifier("quaggans")
+	private final AchievementsService achievementsService;
 	private final QuaggansService quaggansService;
-
-	@Qualifier("colors")
 	private final ColorsService colorsService;
 
 	public static Mono<? extends Throwable> getErrorConsumerForError401(ClientResponse response) {
@@ -43,6 +39,10 @@ public class Gw2Client {
 
 	public AccountService account() {
 		return accountService;
+	}
+
+	public AchievementsService achievements() {
+		return achievementsService;
 	}
 
 	public QuaggansService quaggans() {

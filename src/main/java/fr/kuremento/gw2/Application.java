@@ -18,8 +18,7 @@ public class Application {
 	}
 
 	private static void execute(Gw2Client gw2Client, String apiKey) {
-		var achievements = gw2Client.account().achievements().getWithAuthentification(apiKey);
-		achievements.forEach(achievement -> log.info(achievement.toString()));
+
 	}
 
 }
