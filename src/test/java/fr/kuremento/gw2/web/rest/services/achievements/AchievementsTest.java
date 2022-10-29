@@ -23,14 +23,20 @@ public class AchievementsTest {
 	private Integer maxPageSize;
 
 	@Test
-	@DisplayName("Check number of achievements")
+	@DisplayName("Daily service context")
 	void test1() {
+		assertNotNull(service.daily(), "Service should not null");
+	}
+
+	@Test
+	@DisplayName("Check number of achievements")
+	void test2() {
 		assertFalse(service.get().isEmpty(), "Service should return a list of achievements id");
 	}
 
 	@Test
 	@DisplayName("Check max number of achievements per request excpetion is thrown")
-	void test2() {
+	void test3() {
 		var fakeIdsList = Arrays.stream(IntStream.generate(() -> new Random().nextInt(10000)).limit(maxPageSize + 1).toArray()).boxed().toList();
 		Exception exception = assertThrows(TooManyArgumentsException.class, () -> {
 			service.get(fakeIdsList);
@@ -42,7 +48,7 @@ public class AchievementsTest {
 
 	@Test
 	@DisplayName("Check max number of achievements per request")
-	void test3() throws TooManyArgumentsException {
+	void test4() throws TooManyArgumentsException {
 		var fakeIdsList = Arrays.stream(IntStream.generate(() -> new Random().nextInt(10000)).limit(maxPageSize).toArray()).boxed().toList();
 		assertDoesNotThrow(() -> service.get(fakeIdsList));
 		var achievementsList = service.get(fakeIdsList);
@@ -51,7 +57,7 @@ public class AchievementsTest {
 
 	@Test
 	@DisplayName("Check request one achievement")
-	void test4() {
+	void test5() {
 		assertNotNull(service.get(1), "Requested achievement should not be null");
 	}
 }

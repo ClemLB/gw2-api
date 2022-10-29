@@ -1,6 +1,5 @@
-package fr.kuremento.gw2.web.rest.services.achievements;
+package fr.kuremento.gw2.web.rest.services.achievements.daily;
 
-import fr.kuremento.gw2.web.rest.services.achievements.daily.DailyAchievementsService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +14,14 @@ public class DailyAchievementsTest {
 	private DailyAchievementsService service;
 
 	@Test
-	@DisplayName("Check achievements categories")
+	@DisplayName("Tomorrow service context")
 	void test1() {
+		assertNotNull(service.tomorrow(), "Service should not null");
+	}
+
+	@Test
+	@DisplayName("Check achievements categories")
+	void test2() {
 		assertNotNull(service.get(), "Service should return categories of achievements");
 	}
 }

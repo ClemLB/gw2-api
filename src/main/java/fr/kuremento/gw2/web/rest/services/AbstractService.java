@@ -71,8 +71,9 @@ public abstract class AbstractService {
 	}
 
 	protected <T> URI buildURI(String endpoint, List<T> ids) throws TooManyArgumentsException {
-		if (ids.size() > pageMaximumSize) {
-			String errorMessage = String.format("Maximum number of arguments is %d, you gave %d arguments, use 'getAll' method instead", pageMaximumSize, ids.size());
+		if (ids.size() > this.getPageMaximumSize()) {
+			String errorMessage = String.format("Maximum number of arguments is %d, you gave %d arguments, use 'getAll' method instead", this.getPageMaximumSize(),
+			                                    ids.size());
 			throw new TooManyArgumentsException(errorMessage);
 		}
 		String formattedIds = ids.stream().map(String::valueOf).collect(Collectors.joining(","));
