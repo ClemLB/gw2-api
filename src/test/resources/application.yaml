@@ -1,3 +1,6 @@
+logging:
+    level:
+        ROOT: DEBUG
 application:
     rest:
         endpoints:
@@ -7,6 +10,7 @@ application:
             achievements-category:
                 achievements: '/v2/achievements'
                 daily: '${application.rest.endpoints.achievements-category.achievements}/daily'
+                tomorrow: '${application.rest.endpoints.achievements-category.daily}/tomorrow'
             colors: '/v2/colors'
             quaggans: '/v2/quaggans'
         config:
