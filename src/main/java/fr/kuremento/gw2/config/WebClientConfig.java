@@ -70,22 +70,23 @@ public class WebClientConfig implements WebFluxConfigurer {
 	}
 
 	@Bean("webclient-builder")
-	public WebClient.Builder webClientBuilder() {
+	public WebClient.Builder webClientBuilder(@Value("${application.rest.config.schema-version-date}") String schemaVersionDate) {
 		var httpClient = HttpClient.create()
-				.tcpConfiguration(client -> client.option(ChannelOption.CONNECT_TIMEOUT_MILLIS, connectionTimeOut)
-						.doOnConnected(conn -> conn.addHandlerLast(new ReadTimeoutHandler(readTimeOut))
-								.addHandlerLast(new WriteTimeoutHandler(writeTimeOut))))
-				.wiretap(enableWireTap);
+		                           .tcpConfiguration(client -> client.option(ChannelOption.CONNECT_TIMEOUT_MILLIS, connectionTimeOut)
+		                                                             .doOnConnected(conn -> conn.addHandlerLast(new ReadTimeoutHandler(readTimeOut))
+		                                                                                        .addHandlerLast(new WriteTimeoutHandler(writeTimeOut))))
+		                           .wiretap(enableWireTap);
 		return WebClient.builder()
-				.exchangeStrategies(exchangeStrategies())
-				.filters(exchangeFilterFunctions -> {
-					exchangeFilterFunctions.add(logRequest());
-					exchangeFilterFunctions.add(logResponse());
-				})
-				.baseUrl(baseUrl)
-				.defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-				.defaultHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
-				.clientConnector(new ReactorClientHttpConnector(httpClient));
+		                .exchangeStrategies(exchangeStrategies())
+		                .filters(exchangeFilterFunctions -> {
+			                exchangeFilterFunctions.add(logRequest());
+			                exchangeFilterFunctions.add(logResponse());
+		                })
+		                .baseUrl(baseUrl)
+		                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+		                .defaultHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
+		                .defaultHeader("X-Schema-Version", schemaVersionDate)
+		                .clientConnector(new ReactorClientHttpConnector(httpClient));
 	}
 
 	@Bean("webclient-gw2")

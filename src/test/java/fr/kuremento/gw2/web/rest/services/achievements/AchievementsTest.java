@@ -1,7 +1,6 @@
-package fr.kuremento.gw2.web.rest.services;
+package fr.kuremento.gw2.web.rest.services.achievements;
 
 import fr.kuremento.gw2.exceptions.TooManyArgumentsException;
-import fr.kuremento.gw2.web.rest.services.achievements.AchievementsService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

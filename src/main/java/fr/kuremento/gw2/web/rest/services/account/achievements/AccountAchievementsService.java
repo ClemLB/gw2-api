@@ -13,7 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AccountAchievementsService extends AbstractService {
 
-	@Value("${application.rest.endpoints.accountCategory.achievement}")
+	@Value("${application.rest.endpoints.account-category.achievement}")
 	private final String endpoint;
 
 	public List<AccountAchievement> getWithAuthentification(String apiKey) {

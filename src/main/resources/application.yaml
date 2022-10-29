@@ -1,11 +1,12 @@
 application:
     rest:
         endpoints:
-            accountCategory:
+            account-category:
                 account: '/v2/account'
-                achievement: '/v2/account/achievements'
-            achievementsCategory:
+                achievement: '${application.rest.endpoints.account-category.account}/achievements'
+            achievements-category:
                 achievements: '/v2/achievements'
+                daily: '${application.rest.endpoints.achievements-category.achievements}/daily'
             colors: '/v2/colors'
             quaggans: '/v2/quaggans'
         config:
@@ -14,4 +15,5 @@ application:
             enable-wiretap: false
             page-maximum-size: 200
             read-timeout: 1000
+            schema-version-date: '2019-05-16T00:00:00.000Z'
             write-timeout: 1000
