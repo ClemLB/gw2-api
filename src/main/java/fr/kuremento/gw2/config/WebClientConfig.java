@@ -70,7 +70,8 @@ public class WebClientConfig implements WebFluxConfigurer {
 	}
 
 	@Bean("webclient-builder")
-	public WebClient.Builder webClientBuilder(@Value("${application.rest.config.schema-version-date}") String schemaVersionDate) {
+	public WebClient.Builder webClientBuilder(@Value("${application.rest.config.schema-version-date}") String schemaVersionDate,
+	                                          @Value("${application.rest.config.language:en}") String language) {
 		var httpClient = HttpClient.create()
 		                           .tcpConfiguration(client -> client.option(ChannelOption.CONNECT_TIMEOUT_MILLIS, connectionTimeOut)
 		                                                             .doOnConnected(conn -> conn.addHandlerLast(new ReadTimeoutHandler(readTimeOut))
@@ -86,6 +87,7 @@ public class WebClientConfig implements WebFluxConfigurer {
 		                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
 		                .defaultHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
 		                .defaultHeader("X-Schema-Version", schemaVersionDate)
+		                .defaultHeader(HttpHeaders.ACCEPT_LANGUAGE, language)
 		                .clientConnector(new ReactorClientHttpConnector(httpClient));
 	}
 

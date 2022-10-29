@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class DailyAchievementsService extends AbstractService {
 
-	@Value("${application.rest.endpoints.achievements-category.daily}")
-	private String endpoint;
-
 	private final TomorrowDailyAchievementsService tomorrowDailyAchievementsService;
+
+	@Value("${application.rest.endpoints.achievements-category.daily}")
+	private final String endpoint;
 
 	public TomorrowDailyAchievementsService tomorrow() {
 		return this.tomorrowDailyAchievementsService;

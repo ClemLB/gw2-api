@@ -15,7 +15,7 @@ import java.util.List;
 public class ColorsService extends AbstractService {
 
 	@Value("${application.rest.endpoints.colors}")
-	private String endpoint;
+	private final String endpoint;
 
 	public List<Integer> get() {
 		return super.get(super.buildURI(endpoint), new ParameterizedTypeReference<>() {

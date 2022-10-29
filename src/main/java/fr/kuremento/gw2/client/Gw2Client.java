@@ -38,19 +38,19 @@ public class Gw2Client {
 	}
 
 	public AccountService account() {
-		return accountService;
+		return this.accountService;
 	}
 
 	public AchievementsService achievements() {
-		return achievementsService;
+		return this.achievementsService;
 	}
 
 	public QuaggansService quaggans() {
-		return quaggansService;
+		return this.quaggansService;
 	}
 
 	public ColorsService colors() {
-		return colorsService;
+		return this.colorsService;
 	}
 
 }
