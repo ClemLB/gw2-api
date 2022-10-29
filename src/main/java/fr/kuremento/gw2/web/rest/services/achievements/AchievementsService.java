@@ -3,6 +3,7 @@ package fr.kuremento.gw2.web.rest.services.achievements;
 import fr.kuremento.gw2.exceptions.TooManyArgumentsException;
 import fr.kuremento.gw2.web.rest.models.achievements.Achievements;
 import fr.kuremento.gw2.web.rest.services.AbstractService;
+import fr.kuremento.gw2.web.rest.services.achievements.daily.DailyAchievementsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -14,8 +15,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AchievementsService extends AbstractService {
 
-	@Value("${application.rest.endpoints.achievementsCategory.achievements}")
+	@Value("${application.rest.endpoints.achievements-category.achievements}")
 	private String endpoint;
+
+	private final DailyAchievementsService dailyAchievementsService;
+
+	public DailyAchievementsService daily() {
+		return dailyAchievementsService;
+	}
 
 	public List<Integer> get() {
 		return super.get(super.buildURI(endpoint), new ParameterizedTypeReference<>() {

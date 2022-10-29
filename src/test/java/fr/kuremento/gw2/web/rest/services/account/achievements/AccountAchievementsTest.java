@@ -1,8 +1,7 @@
-package fr.kuremento.gw2.web.rest.services.account;
+package fr.kuremento.gw2.web.rest.services.account.achievements;
 
 import fr.kuremento.gw2.exceptions.TechnicalException;
 import fr.kuremento.gw2.web.rest.models.account.achievements.AccountAchievement;
-import fr.kuremento.gw2.web.rest.services.account.achievements.AccountAchievementsService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
