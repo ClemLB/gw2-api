@@ -6,8 +6,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import java.util.List;
-
 @Slf4j
 @SpringBootApplication
 public class Application {
@@ -20,8 +18,7 @@ public class Application {
 	}
 
 	private static void execute(Gw2Client gw2Client, String apiKey) {
-		var list = gw2Client.achievements().groups().getAll();
-		list.forEach(achievementGroup -> log.info("{}", achievementGroup));
+
 	}
 
 }
