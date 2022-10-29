@@ -1,6 +1,6 @@
 logging:
     level:
-        ROOT: DEBUG
+        fr.kuremento.gw2: DEBUG
 application:
     rest:
         endpoints:
@@ -10,6 +10,7 @@ application:
             achievements-category:
                 achievements: '/v2/achievements'
                 daily: '${application.rest.endpoints.achievements-category.achievements}/daily'
+                groups: '${application.rest.endpoints.achievements-category.achievements}/groups'
                 tomorrow: '${application.rest.endpoints.achievements-category.daily}/tomorrow'
             colors: '/v2/colors'
             quaggans: '/v2/quaggans'
@@ -17,6 +18,7 @@ application:
             base-url: https://api.guildwars2.com
             connection-timeout: 1000
             enable-wiretap: false
+            language: 'fr'
             page-maximum-size: 200
             read-timeout: 1000
             schema-version-date: '2019-05-16T00:00:00.000Z'

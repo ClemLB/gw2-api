@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class TomorrowDailyAchievementsService extends AbstractService {
 
 	@Value("${application.rest.endpoints.achievements-category.tomorrow}")
-	private String endpoint;
+	private final String endpoint;
 
 	public DailyAchievements get() {
 		return super.get(super.buildURI(endpoint), new ParameterizedTypeReference<>() {

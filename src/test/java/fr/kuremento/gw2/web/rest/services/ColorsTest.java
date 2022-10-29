@@ -31,7 +31,7 @@ public class ColorsTest {
 	}
 
 	@Test
-	@DisplayName("Check max number of colors per request excpetion is thrown")
+	@DisplayName("Check max number of colors per request exception is thrown")
 	void test2() {
 		var fakeIdsList = Arrays.stream(IntStream.generate(() -> new Random().nextInt(10000)).limit(maxPageSize + 1).toArray()).boxed().toList();
 		Exception exception = assertThrows(TooManyArgumentsException.class, () -> {

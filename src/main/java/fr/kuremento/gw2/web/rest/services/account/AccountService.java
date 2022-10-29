@@ -15,7 +15,7 @@ public class AccountService extends AbstractService {
 	private final AccountAchievementsService accountAchievementsService;
 
 	@Value("${application.rest.endpoints.account-category.account}")
-	private String endpoint;
+	private final String endpoint;
 
 	public AccountAchievementsService achievements() {
 		return accountAchievementsService;
