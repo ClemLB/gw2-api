@@ -9,10 +9,8 @@
 name: Publish
 
 on:
-    workflow_run:
-        workflows: [ "Version bump" ]
-        types:
-            - completed
+    release:
+        types: [ published ]
 
 jobs:
     build:
