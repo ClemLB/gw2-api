@@ -17,6 +17,7 @@ jobs:
 
         steps:
             -   uses: actions/checkout@v3
+            -   uses: ouzi-dev/commit-status-updater@v2
             -   name: Install Java and Maven
                 uses: actions/setup-java@v3
                 with:
@@ -27,3 +28,8 @@ jobs:
                 run: mvn clean install -DskipTests
             -   name: Coverage per Test Execution
                 run: mvn org.jacoco:jacoco-maven-plugin:prepare-agent install
+            -   if: always()
+                uses: ouzi-dev/commit-status-updater@v2
+                with:
+                    addHoldComment: "true"
+                    status: "${{ job.status }}"
