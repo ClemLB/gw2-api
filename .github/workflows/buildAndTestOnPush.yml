@@ -6,9 +6,9 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Build and Test
+name: Build and Test on Push
 
-on: [ push, pull_request ]
+on: [ push ]
 
 jobs:
     build:
@@ -16,20 +16,15 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            -   uses: actions/checkout@v3
-            -   uses: ouzi-dev/commit-status-updater@v2
+            -   name: Checkout the branch
+                uses: actions/checkout@v3
             -   name: Install Java and Maven
                 uses: actions/setup-java@v3
                 with:
                     java-version: '17'
                     distribution: 'temurin'
                     cache: maven
-            -   name: Build the Project
+            -   name: Build the project
                 run: mvn clean install -DskipTests
-            -   name: Coverage per Test Execution
+            -   name: Test the project
                 run: mvn org.jacoco:jacoco-maven-plugin:prepare-agent install
-            -   if: always()
-                uses: ouzi-dev/commit-status-updater@v2
-                with:
-                    addHoldComment: "true"
-                    status: "${{ job.status }}"
