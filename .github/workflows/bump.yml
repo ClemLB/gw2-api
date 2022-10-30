@@ -6,11 +6,11 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Publish
+name: Version bump
 
 on:
     push:
-        tags: [ "v*" ]
+        branches: [ "main" ]
 
 jobs:
     build:
@@ -18,16 +18,12 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            -   uses: actions/checkout@v3
-            -   name: Install Java and Maven
-                uses: actions/setup-java@v3
+            -   name: Checkout Latest Commit
+                uses: actions/checkout@v3
+            -   name: Bump Version
+                id: bump
+                uses: nnichols/maven-version-bump-action@v3
                 with:
-                    java-version: '17'
-                    distribution: 'temurin'
-                    cache: maven
-            -   name: Build the Project
-                run: mvn clean install -DskipTests
-            -   name: Publish package
-                run: mvn --batch-mode deploy
-                env:
-                    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                    github-token: ${{ secrets.GITHUB_TOKEN }}
+            -   name: Print Version
+                run: "echo 'New Version: ${{steps.bump.outputs.version}}'"

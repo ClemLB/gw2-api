@@ -8,22 +8,22 @@
 
 name: Build and Test
 
-on: [push, pull_request]
+on: [ push, pull_request ]
 
 jobs:
-  build:
+    build:
 
-    runs-on: ubuntu-latest
+        runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v3
-    - name: Install Java and Maven
-      uses: actions/setup-java@v3
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        cache: maven
-    - name: Build the Project
-      run: mvn clean install -DskipTests
-    - name: Coverage per Test Execution
-      run: mvn org.jacoco:jacoco-maven-plugin:prepare-agent install
+        steps:
+            -   uses: actions/checkout@v3
+            -   name: Install Java and Maven
+                uses: actions/setup-java@v3
+                with:
+                    java-version: '17'
+                    distribution: 'temurin'
+                    cache: maven
+            -   name: Build the Project
+                run: mvn clean install -DskipTests
+            -   name: Coverage per Test Execution
+                run: mvn org.jacoco:jacoco-maven-plugin:prepare-agent install
