@@ -10,7 +10,7 @@ name: Version bump
 
 on:
     workflow_run:
-        workflows: [ "Version bump" ]
+        workflows: [ "Build and Test" ]
         branches: [ "main" ]
         types:
             - completed
