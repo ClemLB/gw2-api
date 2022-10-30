@@ -13,6 +13,25 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>gw2-api</name>
 	<description>Projet utilitaire pour gérer les appels REST à GW2</description>
+
+	<!-- =========================== -->
+	<!-- = SCM MANGEMENT = -->
+	<!-- =========================== -->
+	<scm>
+		<connection>scm:git:https://github.com/ClemLB/gw2-api.git</connection>
+		<developerConnection>scm:git:https://github.com/ClemLB/gw2-api.git</developerConnection>
+		<url>https://github.com/ClemLB/gw2-api.git</url>
+		<tag>HEAD</tag>
+	</scm>
+
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>GitHub Packages</name>
+			<url>https://maven.pkg.github.com/ClemLB/gw2-api</url>
+		</repository>
+	</distributionManagement>
+
 	<properties>
 		<java.version>17</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -30,11 +49,6 @@
 		<junit.itReportFolder>${project.testresult.directory}/integrationTest</junit.itReportFolder>
 	</properties>
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-webflux</artifactId>
-		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
