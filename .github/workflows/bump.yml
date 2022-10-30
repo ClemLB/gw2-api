@@ -9,8 +9,11 @@
 name: Version bump
 
 on:
-    push:
+    workflow_run:
+        workflows: [ "Version bump" ]
         branches: [ "main" ]
+        types:
+            - completed
 
 jobs:
     build:
