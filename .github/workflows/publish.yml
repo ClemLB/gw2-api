@@ -10,7 +10,7 @@ name: Publish
 
 on:
     release:
-        types: [ published ]
+        types: [ prereleased, released ]
 
 jobs:
     build:
