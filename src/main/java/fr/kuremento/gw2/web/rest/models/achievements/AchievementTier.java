@@ -8,8 +8,11 @@ import lombok.experimental.FieldDefaults;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class AchievementTier {
+
 	@JsonProperty("count")
 	Integer count;
+
 	@JsonProperty("points")
 	Integer points;
+
 }

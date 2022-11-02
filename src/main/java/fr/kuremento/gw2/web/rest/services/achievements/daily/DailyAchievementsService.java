@@ -1,6 +1,6 @@
 package fr.kuremento.gw2.web.rest.services.achievements.daily;
 
-import fr.kuremento.gw2.web.rest.models.achievements.DailyAchievements;
+import fr.kuremento.gw2.web.rest.models.achievements.daily.DailyAchievements;
 import fr.kuremento.gw2.web.rest.services.AbstractService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;

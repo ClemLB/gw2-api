@@ -1,4 +1,4 @@
-package fr.kuremento.gw2.web.rest.models.achievements.enums;
+package fr.kuremento.gw2.web.rest.models.achievements.daily.enums;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonValue;

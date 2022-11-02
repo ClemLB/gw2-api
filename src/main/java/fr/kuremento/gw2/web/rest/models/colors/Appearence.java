@@ -29,4 +29,5 @@ public class Appearence {
 
 	@JsonProperty("rgb")
 	List<Integer> rgb = new ArrayList<>(3);
+
 }

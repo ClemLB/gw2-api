@@ -1,9 +1,7 @@
 package fr.kuremento.gw2.web.rest.services.achievements.categories;
 
 import fr.kuremento.gw2.exceptions.TooManyArgumentsException;
-import fr.kuremento.gw2.web.rest.models.achievements.AchievementCategory;
-import fr.kuremento.gw2.web.rest.models.achievements.AchievementGroup;
-import fr.kuremento.gw2.web.rest.services.achievements.groups.GroupsAchievementsService;
+import fr.kuremento.gw2.web.rest.models.achievements.categories.AchievementCategory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,9 +35,7 @@ public class CategoriesAchievementsTest {
 	@DisplayName("Check max number of categories per request exception is thrown")
 	void test2() {
 		var fakeIdsList = Arrays.stream(IntStream.generate(() -> new Random().nextInt(10000)).limit(maxPageSize + 1).toArray()).boxed().toList();
-		Exception exception = assertThrows(TooManyArgumentsException.class, () -> {
-			service.get(fakeIdsList);
-		});
+		Exception exception = assertThrows(TooManyArgumentsException.class, () -> service.get(fakeIdsList));
 
 		String actualMessage = exception.getMessage();
 		assertTrue(actualMessage.contains("Maximum number of arguments"));

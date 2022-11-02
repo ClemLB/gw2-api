@@ -1,7 +1,7 @@
 package fr.kuremento.gw2.web.rest.services.achievements.groups;
 
 import fr.kuremento.gw2.exceptions.TooManyArgumentsException;
-import fr.kuremento.gw2.web.rest.models.achievements.AchievementGroup;
+import fr.kuremento.gw2.web.rest.models.achievements.groups.AchievementGroup;
 import fr.kuremento.gw2.web.rest.services.AbstractService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;

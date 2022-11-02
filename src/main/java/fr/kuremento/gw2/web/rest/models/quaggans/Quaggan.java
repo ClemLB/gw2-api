@@ -14,5 +14,6 @@ public class Quaggan {
 
 	@JsonProperty("url")
 	String url;
+
 }
 

@@ -1,4 +1,4 @@
-package fr.kuremento.gw2.web.rest.models.achievements;
+package fr.kuremento.gw2.web.rest.models.achievements.categories;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
@@ -10,16 +10,27 @@ import java.util.List;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class AchievementGroup {
+public class AchievementCategory {
 
 	@JsonProperty("id")
-	String id;
+	Integer id;
+
 	@JsonProperty("name")
 	String name;
+
 	@JsonProperty("description")
 	String description;
+
 	@JsonProperty("order")
 	Integer order;
-	@JsonProperty("categories")
-	List<Integer> categories = new ArrayList<>();
+
+	@JsonProperty("icon")
+	String icon;
+
+	@JsonProperty("achievements")
+	List<AchievementInCategory> achievements = new ArrayList<>();
+
+	@JsonProperty("tomorrow")
+	List<AchievementInCategory> tomorrow = new ArrayList<>();
+
 }

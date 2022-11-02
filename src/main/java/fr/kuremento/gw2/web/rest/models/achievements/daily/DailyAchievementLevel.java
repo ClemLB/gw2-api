@@ -1,4 +1,4 @@
-package fr.kuremento.gw2.web.rest.models.achievements;
+package fr.kuremento.gw2.web.rest.models.achievements.daily;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
@@ -11,6 +11,8 @@ public class DailyAchievementLevel {
 
 	@JsonProperty("min")
 	Integer min;
+
 	@JsonProperty("max")
 	Integer max;
+
 }
