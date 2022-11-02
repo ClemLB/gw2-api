@@ -1,6 +1,7 @@
 package fr.kuremento.gw2.web.rest.models.achievements;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import fr.kuremento.gw2.web.rest.models.achievements.enums.AchievementFlag;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
@@ -26,7 +27,7 @@ public class Achievements {
 	@JsonProperty("type")
 	String type;
 	@JsonProperty("flags")
-	List<Category> flags = new ArrayList<>();
+	List<AchievementFlag> flags = new ArrayList<>();
 	@JsonProperty("tiers")
 	List<AchievementTier> tiers = new ArrayList<>();
 	@JsonProperty("prerequisites")

@@ -3,6 +3,7 @@ package fr.kuremento.gw2.web.rest.services.achievements;
 import fr.kuremento.gw2.exceptions.TooManyArgumentsException;
 import fr.kuremento.gw2.web.rest.models.achievements.Achievements;
 import fr.kuremento.gw2.web.rest.services.AbstractService;
+import fr.kuremento.gw2.web.rest.services.achievements.categories.CategoriesAchievementsService;
 import fr.kuremento.gw2.web.rest.services.achievements.daily.DailyAchievementsService;
 import fr.kuremento.gw2.web.rest.services.achievements.groups.GroupsAchievementsService;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ public class AchievementsService extends AbstractService {
 
 	private final DailyAchievementsService dailyAchievementsService;
 	private final GroupsAchievementsService groupsAchievementsService;
+	private final CategoriesAchievementsService categoriesAchievementsService;
 
 	@Value("${application.rest.endpoints.achievements-category.achievements}")
 	private final String endpoint;
@@ -28,6 +30,10 @@ public class AchievementsService extends AbstractService {
 
 	public GroupsAchievementsService groups() {
 		return this.groupsAchievementsService;
+	}
+
+	public CategoriesAchievementsService categories() {
+		return this.categoriesAchievementsService;
 	}
 
 	public List<Integer> get() {

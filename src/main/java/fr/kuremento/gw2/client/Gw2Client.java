@@ -20,13 +20,11 @@ public class Gw2Client {
 	private final ColorsService colorsService;
 
 	public static Mono<? extends Throwable> getErrorConsumerForError401(ClientResponse response) {
-		return Mono.error(new TechnicalException(
-				"The requested endpoint is authenticated and you did not provide a valid API key, or a valid API key without the necessary permissions"));
+		return Mono.error(new TechnicalException("The requested endpoint is authenticated and you did not provide a valid API key, or a valid API key without the necessary permissions"));
 	}
 
 	public static Mono<? extends Throwable> getErrorConsumerForError403(ClientResponse response) {
-		return Mono.error(new TechnicalException(
-				"The requested endpoint is authenticated and you did not provide a valid API key, or a valid API key without the necessary permissions"));
+		return Mono.error(new TechnicalException("The requested endpoint is authenticated and you did not provide a valid API key, or a valid API key without the necessary permissions"));
 	}
 
 	public static Mono<? extends Throwable> getErrorConsumerForError404(ClientResponse response) {

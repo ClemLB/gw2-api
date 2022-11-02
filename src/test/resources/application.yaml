@@ -9,6 +9,7 @@ application:
                 achievement: '${application.rest.endpoints.account-category.account}/achievements'
             achievements-category:
                 achievements: '/v2/achievements'
+                categories: '${application.rest.endpoints.achievements-category.achievements}/categories'
                 daily: '${application.rest.endpoints.achievements-category.achievements}/daily'
                 groups: '${application.rest.endpoints.achievements-category.achievements}/groups'
                 tomorrow: '${application.rest.endpoints.achievements-category.daily}/tomorrow'
@@ -21,7 +22,7 @@ application:
             language: 'fr'
             page-maximum-size: 200
             read-timeout: 1000
-            schema-version-date: '2019-05-16T00:00:00.000Z'
+            schema-version-date: '2022-03-23T19:00:00.000Z'
             write-timeout: 1000
 test:
     api-key:

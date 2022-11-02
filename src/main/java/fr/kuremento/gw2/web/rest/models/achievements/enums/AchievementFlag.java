@@ -1,4 +1,4 @@
-package fr.kuremento.gw2.web.rest.models.achievements;
+package fr.kuremento.gw2.web.rest.models.achievements.enums;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-public enum Category {
+public enum AchievementFlag {
 	PVP("Pvp"),
 	CATEGORY_DISPLAY("CategoryDisplay"),
 	MOVE_TO_TOP("MoveToTop"),
