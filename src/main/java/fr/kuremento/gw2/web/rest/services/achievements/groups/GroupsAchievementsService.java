@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * @see <a href="https://wiki.guildwars2.com/wiki/API:2/achievements/groups">Wiki</a>
+ */
 @Service
 @RequiredArgsConstructor
 public class GroupsAchievementsService extends AbstractService {

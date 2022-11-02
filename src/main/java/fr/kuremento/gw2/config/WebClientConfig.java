@@ -70,12 +70,10 @@ public class WebClientConfig implements WebFluxConfigurer {
 	}
 
 	@Bean("webclient-builder")
-	public WebClient.Builder webClientBuilder(@Value("${application.rest.config.schema-version-date}") String schemaVersionDate,
-	                                          @Value("${application.rest.config.language:en}") String language) {
+	public WebClient.Builder webClientBuilder(@Value("${application.rest.config.schema-version-date}") String schemaVersionDate, @Value("${application.rest.config.language:en}") String language) {
 		var httpClient = HttpClient.create()
-		                           .tcpConfiguration(client -> client.option(ChannelOption.CONNECT_TIMEOUT_MILLIS, connectionTimeOut)
-		                                                             .doOnConnected(conn -> conn.addHandlerLast(new ReadTimeoutHandler(readTimeOut))
-		                                                                                        .addHandlerLast(new WriteTimeoutHandler(writeTimeOut))))
+		                           .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, connectionTimeOut)
+		                           .doOnConnected(conn -> conn.addHandlerLast(new ReadTimeoutHandler(readTimeOut)).addHandlerLast(new WriteTimeoutHandler(writeTimeOut)))
 		                           .wiretap(enableWireTap);
 		return WebClient.builder()
 		                .exchangeStrategies(exchangeStrategies())

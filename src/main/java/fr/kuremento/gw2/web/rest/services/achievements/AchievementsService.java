@@ -13,6 +13,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * @see <a href="https://wiki.guildwars2.com/wiki/API:2/achievements">Wiki</a>
+ */
 @Service
 @RequiredArgsConstructor
 public class AchievementsService extends AbstractService {
@@ -24,16 +27,16 @@ public class AchievementsService extends AbstractService {
 	@Value("${application.rest.endpoints.achievements-category.achievements}")
 	private final String endpoint;
 
+	public CategoriesAchievementsService categories() {
+		return this.categoriesAchievementsService;
+	}
+
 	public DailyAchievementsService daily() {
 		return this.dailyAchievementsService;
 	}
 
 	public GroupsAchievementsService groups() {
 		return this.groupsAchievementsService;
-	}
-
-	public CategoriesAchievementsService categories() {
-		return this.categoriesAchievementsService;
 	}
 
 	public List<Integer> get() {

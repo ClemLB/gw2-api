@@ -10,6 +10,6 @@ import org.springframework.context.annotation.Configuration;
 public class AutoConfig {
 
 	public AutoConfig() {
-		log.debug("Gw2 API client configuration chargé.");
+		log.debug("Gw2 API client loaded");
 	}
 }
