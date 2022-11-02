@@ -26,7 +26,7 @@ public class Achievements {
 	@JsonProperty("type")
 	String type;
 	@JsonProperty("flags")
-	List<Category> flags = new ArrayList<>();
+	List<AchievementFlag> flags = new ArrayList<>();
 	@JsonProperty("tiers")
 	List<AchievementTier> tiers = new ArrayList<>();
 	@JsonProperty("prerequisites")

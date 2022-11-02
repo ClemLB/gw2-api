@@ -7,7 +7,7 @@ import lombok.experimental.FieldDefaults;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class DailyAchievementAccess {
+public class AchievementAccess {
 
 	@JsonProperty("product")
 	DailyAchievementProduct product;

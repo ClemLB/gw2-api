@@ -5,14 +5,18 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class DailyAchievement {
-
+public class AchievementInCategory {
 	@JsonProperty("id")
 	Integer id;
-	@JsonProperty("level")
-	DailyAchievementLevel level;
 	@JsonProperty("required_access")
 	AchievementAccess requiredAccess;
+	@JsonProperty("flags")
+	List<AchievementInCategoryFlag> flags = new ArrayList<>();
+	@JsonProperty("level")
+	List<Integer> level = new ArrayList<>(2);
 }

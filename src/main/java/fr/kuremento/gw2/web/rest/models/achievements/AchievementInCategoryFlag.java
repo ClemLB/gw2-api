@@ -6,19 +6,8 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-public enum Category {
-	PVP("Pvp"),
-	CATEGORY_DISPLAY("CategoryDisplay"),
-	MOVE_TO_TOP("MoveToTop"),
-	IGNORE_NEARLY_COMPLETE("IgnoreNearlyComplete"),
-	REPEATABLE("Repeatable"),
-	HIDDEN("Hidden"),
-	REQUIRES_UNLOCK("RequiresUnlock"),
-	REPAIR_ON_LOGIN("RepairOnLogin"),
-	DAILY("Daily"),
-	WEEKLY("Weekly"),
-	MONTHLY("Monthly"),
-	PERMANENT("Permanent");
+public enum AchievementInCategoryFlag {
+	PVP("PvP"), PVE("PvE"), WVW("WvW"), SPECIAL_EVENT("SpecialEvent");
 
 	private final String value;
 

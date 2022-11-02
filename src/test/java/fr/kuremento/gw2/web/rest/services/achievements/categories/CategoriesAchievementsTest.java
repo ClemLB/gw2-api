@@ -1,7 +1,9 @@
-package fr.kuremento.gw2.web.rest.services.achievements;
+package fr.kuremento.gw2.web.rest.services.achievements.categories;
 
 import fr.kuremento.gw2.exceptions.TooManyArgumentsException;
-import fr.kuremento.gw2.web.rest.models.achievements.Achievements;
+import fr.kuremento.gw2.web.rest.models.achievements.AchievementCategory;
+import fr.kuremento.gw2.web.rest.models.achievements.AchievementGroup;
+import fr.kuremento.gw2.web.rest.services.achievements.groups.GroupsAchievementsService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,29 +19,23 @@ import java.util.stream.IntStream;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class AchievementsTest {
+public class CategoriesAchievementsTest {
 
 	@Autowired
-	private AchievementsService service;
+	private CategoriesAchievementsService service;
 
 	@Value("${application.rest.config.page-maximum-size}")
 	private Integer maxPageSize;
 
 	@Test
-	@DisplayName("Daily service context")
+	@DisplayName("Check number of categories")
 	void test1() {
-		assertNotNull(service.daily(), "Service should not null");
+		assertFalse(service.get().isEmpty(), "Service should return a list of categories id");
 	}
 
 	@Test
-	@DisplayName("Check number of achievements")
+	@DisplayName("Check max number of categories per request exception is thrown")
 	void test2() {
-		assertFalse(service.get().isEmpty(), "Service should return a list of achievements id");
-	}
-
-	@Test
-	@DisplayName("Check max number of achievements per request exception is thrown")
-	void test3() {
 		var fakeIdsList = Arrays.stream(IntStream.generate(() -> new Random().nextInt(10000)).limit(maxPageSize + 1).toArray()).boxed().toList();
 		Exception exception = assertThrows(TooManyArgumentsException.class, () -> {
 			service.get(fakeIdsList);
@@ -50,29 +46,23 @@ public class AchievementsTest {
 	}
 
 	@Test
-	@DisplayName("Check max number of achievements per request")
-	void test4() {
+	@DisplayName("Check max number of categories per request")
+	void test3() {
 		var fakeIdsList = List.of(1);
-		AtomicReference<List<Achievements>> list = new AtomicReference<>();
+		AtomicReference<List<AchievementCategory>> list = new AtomicReference<>();
 		assertDoesNotThrow(() -> list.set(service.get(fakeIdsList)));
-		assertTrue(list.get().size() <= maxPageSize, String.format("Service should return at most %d achievements", maxPageSize));
+		assertTrue(list.get().size() <= maxPageSize, String.format("Service should return at most %d categories", maxPageSize));
 	}
 
 	@Test
-	@DisplayName("Check request one achievement")
+	@DisplayName("Check request one category")
+	void test4() {
+		assertNotNull(service.get(1), "Requested category should not be null");
+	}
+
+	@Test
+	@DisplayName("Check getAll request")
 	void test5() {
-		assertNotNull(service.get(1), "Requested achievement should not be null");
-	}
-
-	@Test
-	@DisplayName("Categories service context")
-	void test6() {
-		assertNotNull(service.categories(), "Service should not null");
-	}
-
-	@Test
-	@DisplayName("Groups service context")
-	void test7() {
-		assertNotNull(service.groups(), "Service should not null");
+		assertFalse(service.getAll().isEmpty(), "Service should return a list of categories");
 	}
 }
