@@ -27,16 +27,16 @@ public class AchievementsService extends AbstractService {
 	@Value("${application.rest.endpoints.achievements-category.achievements}")
 	private final String endpoint;
 
+	public CategoriesAchievementsService categories() {
+		return this.categoriesAchievementsService;
+	}
+
 	public DailyAchievementsService daily() {
 		return this.dailyAchievementsService;
 	}
 
 	public GroupsAchievementsService groups() {
 		return this.groupsAchievementsService;
-	}
-
-	public CategoriesAchievementsService categories() {
-		return this.categoriesAchievementsService;
 	}
 
 	public List<Integer> get() {
