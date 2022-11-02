@@ -1,4 +1,4 @@
-package fr.kuremento.gw2.web.rest.models.account;
+package fr.kuremento.gw2.web.rest.models.achievements.enums;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -6,8 +6,8 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-public enum Access {
-	F2P("PlayForFree"), BASE_GAME("GuildWars2"), HOT("HeartOfThorns"), POF("PathOfFire"), EOD("EndOfDragons");
+public enum DailyAchievementProduct {
+	HOT("HeartOfThorns"), POF("PathOfFire");
 	private final String value;
 
 	@JsonValue

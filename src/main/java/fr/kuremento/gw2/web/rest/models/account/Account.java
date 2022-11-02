@@ -2,6 +2,7 @@ package fr.kuremento.gw2.web.rest.models.account;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import fr.kuremento.gw2.web.rest.models.account.enums.Access;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
