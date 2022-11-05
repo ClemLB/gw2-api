@@ -11,6 +11,7 @@ application:
                 groups: '${application.rest.endpoints.achievements-category.achievements}/groups'
                 tomorrow: '${application.rest.endpoints.achievements-category.daily}/tomorrow'
             colors: '/v2/colors'
+            minis: '/v2/minis'
             quaggans: '/v2/quaggans'
         config:
             base-url: https://api.guildwars2.com
