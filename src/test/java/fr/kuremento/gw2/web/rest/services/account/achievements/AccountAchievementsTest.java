@@ -1,6 +1,7 @@
 package fr.kuremento.gw2.web.rest.services.account.achievements;
 
 import fr.kuremento.gw2.exceptions.TechnicalException;
+import fr.kuremento.gw2.model.Constants;
 import fr.kuremento.gw2.web.rest.models.account.achievements.AccountAchievement;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -33,8 +34,7 @@ class AccountAchievementsTest {
 		});
 
 		String actualMessage = exception.getMessage();
-		assertEquals("401 UNAUTHORIZED : The requested endpoint is authenticated and you did not provide a valid API key, or a valid API key without the necessary permissions",
-		             actualMessage);
+		assertEquals("401 UNAUTHORIZED" + " : " + Constants.ERROR_401_403_MESSAGE, actualMessage);
 	}
 
 	@Test
@@ -45,8 +45,7 @@ class AccountAchievementsTest {
 		});
 
 		String actualMessage = exception.getMessage();
-		assertEquals("403 FORBIDDEN : The requested endpoint is authenticated and you did not provide a valid API key, or a valid API key without the necessary permissions",
-		             actualMessage);
+		assertEquals("403 FORBIDDEN" + " : " + Constants.ERROR_401_403_MESSAGE, actualMessage);
 	}
 
 	@Test
