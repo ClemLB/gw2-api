@@ -52,7 +52,7 @@
 
 		<mockito-core.version>4.8.0</mockito-core.version>
 		<wiremock-jre8.version>2.33.2</wiremock-jre8.version>
-		<jackson-databind.version>2.14.0-rc1</jackson-databind.version>
+		<jackson.version>2.14.0-rc1</jackson.version>
 		<reactor-netty.version>1.0.24</reactor-netty.version>
 		<snakeyaml.version>1.33</snakeyaml.version>
 		<commons-text.version>1.10.0</commons-text.version>
@@ -78,7 +78,17 @@
 			<dependency>
 				<groupId>com.fasterxml.jackson.core</groupId>
 				<artifactId>jackson-databind</artifactId>
-				<version>${jackson-databind.version}</version>
+				<version>${jackson.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-annotations</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-core</artifactId>
+				<version>${jackson.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>io.projectreactor.netty</groupId>
