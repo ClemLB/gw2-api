@@ -44,7 +44,7 @@ class RaidsTest {
 	@Test
 	@DisplayName("Check max number of raids per request")
 	void test3() throws TooManyArgumentsException {
-		var fakeIdsList = List.of("404");
+		var fakeIdsList = List.of("forsaken_thicket");
 		assertDoesNotThrow(() -> service.get(fakeIdsList));
 		var achievementsList = service.get(fakeIdsList);
 		assertTrue(achievementsList.size() <= maxPageSize, String.format("Service should return at most %d raids", maxPageSize));
@@ -53,7 +53,7 @@ class RaidsTest {
 	@Test
 	@DisplayName("Check request one raid")
 	void test4() {
-		assertNotNull(service.get("404"), "Requested raid should not be null");
+		assertNotNull(service.get("forsaken_thicket"), "Requested raid should not be null");
 	}
 
 	@Test
