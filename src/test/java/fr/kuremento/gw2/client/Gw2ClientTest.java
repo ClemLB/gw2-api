@@ -41,6 +41,6 @@ class Gw2ClientTest {
 	@Test
 	@DisplayName("Minis service context")
 	void test5() {
-		assertNotNull(gw2Client.achievements(), SERVICE_SHOULD_NOT_BE_NULL);
+		assertNotNull(gw2Client.minis(), SERVICE_SHOULD_NOT_BE_NULL);
 	}
 }
