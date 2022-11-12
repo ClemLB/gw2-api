@@ -14,7 +14,7 @@ application:
             minis: '/v2/minis'
             quaggans: '/v2/quaggans'
         config:
-            base-url: https://api.guildwars2.com
+            base-url: 'https://api.guildwars2.com'
             connection-timeout: 1000
             enable-wiretap: false
             language: 'fr'
