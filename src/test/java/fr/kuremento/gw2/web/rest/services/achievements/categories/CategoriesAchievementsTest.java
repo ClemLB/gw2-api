@@ -17,7 +17,7 @@ import java.util.stream.IntStream;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class CategoriesAchievementsTest {
+class CategoriesAchievementsTest {
 
 	@Autowired
 	private CategoriesAchievementsService service;

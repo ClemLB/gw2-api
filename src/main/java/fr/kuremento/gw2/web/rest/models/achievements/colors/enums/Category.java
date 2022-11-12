@@ -1,4 +1,4 @@
-package fr.kuremento.gw2.web.rest.models.colors.enums;
+package fr.kuremento.gw2.web.rest.models.achievements.colors.enums;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonValue;

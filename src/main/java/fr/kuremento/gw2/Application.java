@@ -18,6 +18,7 @@ public class Application {
 		}
 	}
 
+	@SuppressWarnings("all")
 	private static void execute(Gw2Client gw2Client, String apiKey) throws TooManyArgumentsException {
 	}
 

@@ -1,6 +1,7 @@
 package fr.kuremento.gw2.web.rest.services.account;
 
 import fr.kuremento.gw2.exceptions.TechnicalException;
+import fr.kuremento.gw2.model.Constants;
 import fr.kuremento.gw2.web.rest.models.account.Account;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,7 +14,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class AccountTest {
+class AccountTest {
 
 	@Autowired
 	private AccountService service;
@@ -36,7 +37,7 @@ public class AccountTest {
 		});
 
 		String actualMessage = exception.getMessage();
-		assertEquals(actualMessage, "The requested endpoint is authenticated and you did not provide a valid API key, or a valid API key without the necessary permissions");
+		assertEquals("401 UNAUTHORIZED" + " : " + Constants.ERROR_401_403_MESSAGE, actualMessage);
 	}
 
 	@Test

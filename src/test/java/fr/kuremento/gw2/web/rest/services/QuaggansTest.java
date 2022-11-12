@@ -16,7 +16,7 @@ import java.util.stream.IntStream;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class QuaggansTest {
+class QuaggansTest {
 
 	@Autowired
 	private QuaggansService service;

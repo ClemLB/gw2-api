@@ -16,7 +16,7 @@ import java.util.stream.IntStream;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class ColorsTest {
+class ColorsTest {
 
 	@Autowired
 	private ColorsService service;

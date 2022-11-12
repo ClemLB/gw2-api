@@ -80,11 +80,11 @@ public abstract class AbstractService {
 		return new DefaultUriBuilderFactory(this.getBaseUrl()).builder().path(endpoint).queryParam("ids", formattedIds).build();
 	}
 
-	protected <T> URI buildURIAllIds(String endpoint) {
+	protected URI buildURIAllIds(String endpoint) {
 		return new DefaultUriBuilderFactory(this.getBaseUrl()).builder().path(endpoint).queryParam("ids", "all").build();
 	}
 
-	protected <T> URI buildURI(String endpoint) {
+	protected URI buildURI(String endpoint) {
 		return new DefaultUriBuilderFactory(this.getBaseUrl()).builder().path(endpoint).build();
 	}
 }
