@@ -16,6 +16,7 @@ application:
             colors: '/v2/colors'
             minis: '/v2/minis'
             quaggans: '/v2/quaggans'
+            raids: '/v2/raids'
         config:
             base-url: https://api.guildwars2.com
             connection-timeout: 1000
