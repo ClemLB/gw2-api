@@ -33,7 +33,7 @@ class AccountAchievementsTest {
 		});
 
 		String actualMessage = exception.getMessage();
-		assertEquals("The requested endpoint is authenticated and you did not provide a valid API key, or a valid API key without the necessary permissions",
+		assertEquals("401 UNAUTHORIZED : The requested endpoint is authenticated and you did not provide a valid API key, or a valid API key without the necessary permissions",
 		             actualMessage);
 	}
 
@@ -45,7 +45,7 @@ class AccountAchievementsTest {
 		});
 
 		String actualMessage = exception.getMessage();
-		assertEquals("The requested endpoint is authenticated and you did not provide a valid API key, or a valid API key without the necessary permissions",
+		assertEquals("403 FORBIDDEN : The requested endpoint is authenticated and you did not provide a valid API key, or a valid API key without the necessary permissions",
 		             actualMessage);
 	}
 
