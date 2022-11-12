@@ -16,7 +16,7 @@ import java.util.stream.IntStream;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class MinisTest {
+class MinisTest {
 
 	@Autowired
 	private MinisService service;

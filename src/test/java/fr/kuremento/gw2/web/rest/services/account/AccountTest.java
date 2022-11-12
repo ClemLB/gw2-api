@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class AccountTest {
+class AccountTest {
 
 	@Autowired
 	private AccountService service;
@@ -36,7 +36,8 @@ public class AccountTest {
 		});
 
 		String actualMessage = exception.getMessage();
-		assertEquals(actualMessage, "The requested endpoint is authenticated and you did not provide a valid API key, or a valid API key without the necessary permissions");
+		assertEquals("The requested endpoint is authenticated and you did not provide a valid API key, or a valid API key without the necessary permissions",
+		             actualMessage);
 	}
 
 	@Test

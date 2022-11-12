@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
-public class Gw2ClientTest {
+class Gw2ClientTest {
 
 	@Autowired
 	private Gw2Client gw2Client;
