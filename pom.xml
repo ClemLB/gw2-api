@@ -56,6 +56,7 @@
 		<reactor-netty.version>1.0.24</reactor-netty.version>
 		<snakeyaml.version>1.33</snakeyaml.version>
 		<commons-text.version>1.10.0</commons-text.version>
+		<commons-collections4.version>4.4</commons-collections4.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -74,6 +75,12 @@
 				<artifactId>commons-text</artifactId>
 				<version>${commons-text.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-collections4</artifactId>
+				<version>${commons-collections4.version}</version>
+			</dependency>
+
 			<!-- Fix vulnerabilities -->
 			<dependency>
 				<groupId>com.fasterxml.jackson.core</groupId>
@@ -164,6 +171,12 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-text</artifactId>
 			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-collections4</artifactId>
+			<optional>true</optional>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

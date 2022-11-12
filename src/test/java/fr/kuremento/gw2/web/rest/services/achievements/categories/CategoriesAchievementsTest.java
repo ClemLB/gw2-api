@@ -1,7 +1,6 @@
 package fr.kuremento.gw2.web.rest.services.achievements.categories;
 
 import fr.kuremento.gw2.exceptions.TooManyArgumentsException;
-import fr.kuremento.gw2.web.rest.models.achievements.categories.AchievementCategory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -45,9 +43,8 @@ class CategoriesAchievementsTest {
 	@DisplayName("Check max number of categories per request")
 	void test3() {
 		var fakeIdsList = List.of(1);
-		AtomicReference<List<AchievementCategory>> list = new AtomicReference<>();
-		assertDoesNotThrow(() -> list.set(service.get(fakeIdsList)));
-		assertTrue(list.get().size() <= maxPageSize, String.format("Service should return at most %d categories", maxPageSize));
+		var list = assertDoesNotThrow(() -> service.get(fakeIdsList));
+		assertTrue(list.size() <= maxPageSize, String.format("Service should return at most %d categories", maxPageSize));
 	}
 
 	@Test
