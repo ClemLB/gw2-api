@@ -20,8 +20,6 @@ public class Application {
 
 	@SuppressWarnings("all")
 	private static void execute(Gw2Client gw2Client, String apiKey) throws TooManyArgumentsException {
-		var raids = gw2Client.raids().getAll();
-		raids.forEach(raid -> log.info("{} : {}", raid.getId(), raid.getWings()));
 	}
 
 }
