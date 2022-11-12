@@ -1,4 +1,4 @@
-package fr.kuremento.gw2.web.rest.models.achievements.colors;
+package fr.kuremento.gw2.web.rest.models.colors;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
