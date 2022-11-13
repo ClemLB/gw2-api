@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 /**
- * @see <a href="https://wiki.guildwars2.com/wiki/API:2/raids">Wiki</a>
+ * @see <a href="https://wiki.guildwars2.com/wiki/API:2/traits">Wiki</a>
  */
 @Service
 @RequiredArgsConstructor
