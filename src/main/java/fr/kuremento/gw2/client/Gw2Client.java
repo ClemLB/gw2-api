@@ -9,6 +9,7 @@ import fr.kuremento.gw2.web.rest.services.items.ItemsService;
 import fr.kuremento.gw2.web.rest.services.minis.MinisService;
 import fr.kuremento.gw2.web.rest.services.quaggans.QuaggansService;
 import fr.kuremento.gw2.web.rest.services.raids.RaidsService;
+import fr.kuremento.gw2.web.rest.services.traits.TraitsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.ClientResponse;
@@ -25,6 +26,7 @@ public class Gw2Client {
 	private final MinisService minisService;
 	private final RaidsService raidsService;
 	private final ItemsService itemsService;
+	private final TraitsService traitsService;
 
 	public static Mono<Throwable> getErrorConsumerForError401(ClientResponse response) {
 		return Mono.error(new TechnicalException(response.statusCode() + " : " + Constants.ERROR_401_403_MESSAGE));
@@ -68,6 +70,10 @@ public class Gw2Client {
 
 	public ItemsService items() {
 		return this.itemsService;
+	}
+
+	public TraitsService traits() {
+		return this.traitsService;
 	}
 
 }
