@@ -12,8 +12,16 @@ import java.util.stream.Collectors;
 public class EnumUtil {
 
 	private static final String STRING_TO_TRANSFORM = """
-			Test
-			Test2
+			AgonyResistance – Agony Resistance
+			BoonDuration – Concentration
+			ConditionDamage – Condition Damage
+			ConditionDuration – Expertise
+			CritDamage – Ferocity
+			Healing – Healing Power
+			Power – Power
+			Precision – Precision
+			Toughness – Toughness
+			Vitality – Vitality
 			""";
 
 	public static void main(String[] args) {

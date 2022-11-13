@@ -1,7 +1,7 @@
 package fr.kuremento.gw2.client;
 
 import fr.kuremento.gw2.exceptions.TechnicalException;
-import fr.kuremento.gw2.model.Constants;
+import fr.kuremento.gw2.models.Constants;
 import fr.kuremento.gw2.web.rest.services.account.AccountService;
 import fr.kuremento.gw2.web.rest.services.achievements.AchievementsService;
 import fr.kuremento.gw2.web.rest.services.colors.ColorsService;
