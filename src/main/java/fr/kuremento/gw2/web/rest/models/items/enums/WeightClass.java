@@ -1,4 +1,4 @@
-package fr.kuremento.gw2.web.rest.models.items.details.enums;
+package fr.kuremento.gw2.web.rest.models.items.enums;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -6,9 +6,9 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-public enum ArmorType {
+public enum WeightClass {
 
-	BOOTS("Boots"), COAT("Coat"), GLOVES("Gloves"), HELM("Helm"), HELM_AQUATIC("HelmAquatic"), LEGGINGS("Leggings"), SHOULDERS("Shoulders");
+	HEAVY("Heavy"), MEDIUM("Medium"), LIGHT("Light"), CLOTHING("Clothing");
 
 	private final String value;
 

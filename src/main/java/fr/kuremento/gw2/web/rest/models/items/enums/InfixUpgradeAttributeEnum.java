@@ -1,4 +1,4 @@
-package fr.kuremento.gw2.web.rest.models.items.details.enums;
+package fr.kuremento.gw2.web.rest.models.items.enums;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-public enum InfixUpgradeAttribute {
+public enum InfixUpgradeAttributeEnum {
 
 	AGONY_RESISTANCE("AgonyResistance"),
 	BOON_DURATION("BoonDuration"),

@@ -1,4 +1,4 @@
-package fr.kuremento.gw2.web.rest.models.items.details.enums;
+package fr.kuremento.gw2.web.rest.models.items.enums;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-public enum WeaponType {
+public enum UpgradeComponentFlags {
 
 	AXE("Axe"),
 	DAGGER("Dagger"),
@@ -27,10 +27,10 @@ public enum WeaponType {
 	TORCH("Torch"),
 	TRIDENT("Trident"),
 	WARHORN("Warhorn"),
-	LARGE_BUNDLE("LargeBundle"),
-	SMALL_BUNDLE("SmallBundle"),
-	TOY("Toy"),
-	TOY_TWO_HANDED("ToyTwoHanded");
+	HEAVY_ARMOR("HeavyArmor"),
+	MEDIUM_ARMOR("MediumArmor"),
+	LIGHT_ARMOR("LightArmor"),
+	TRINKET("Trinket");
 
 	private final String value;
 

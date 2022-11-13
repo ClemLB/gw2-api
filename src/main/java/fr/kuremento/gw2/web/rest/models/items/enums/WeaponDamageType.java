@@ -1,4 +1,4 @@
-package fr.kuremento.gw2.web.rest.models.items.details.enums;
+package fr.kuremento.gw2.web.rest.models.items.enums;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -6,9 +6,9 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-public enum TrinketType {
+public enum WeaponDamageType {
 
-	ACCESSORY("Accessory"), AMULET("Amulet"), RING("Ring");
+	FIRE("Fire"), ICE("Ice"), LIGHTNING("Lightning"), PHYSICAL("Physical"), CHOKING("Choking");
 
 	private final String value;
 
