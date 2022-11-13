@@ -1,4 +1,4 @@
-package fr.kuremento.gw2.model;
+package fr.kuremento.gw2.models;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

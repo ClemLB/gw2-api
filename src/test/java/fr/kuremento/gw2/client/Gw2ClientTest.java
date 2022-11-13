@@ -49,4 +49,10 @@ class Gw2ClientTest {
 	void test6() {
 		assertNotNull(gw2Client.raids(), SERVICE_SHOULD_NOT_BE_NULL);
 	}
+
+	@Test
+	@DisplayName("Items service context")
+	void test7() {
+		assertNotNull(gw2Client.items(), SERVICE_SHOULD_NOT_BE_NULL);
+	}
 }

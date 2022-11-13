@@ -14,6 +14,7 @@ application:
                 groups: '${application.rest.endpoints.achievements-category.achievements}/groups'
                 tomorrow: '${application.rest.endpoints.achievements-category.daily}/tomorrow'
             colors: '/v2/colors'
+            items: '/v2/items'
             minis: '/v2/minis'
             quaggans: '/v2/quaggans'
             raids: '/v2/raids'

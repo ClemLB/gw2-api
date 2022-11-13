@@ -1,7 +1,6 @@
 package fr.kuremento.gw2.web.rest.services.minis;
 
 import fr.kuremento.gw2.exceptions.TooManyArgumentsException;
-import fr.kuremento.gw2.web.rest.services.colors.ColorsService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +33,7 @@ class MinisTest {
 	@DisplayName("Check max number of minis per request exception is thrown")
 	void test2() {
 		var fakeIdsList = Arrays.stream(IntStream.generate(() -> new Random().nextInt(10000)).limit(maxPageSize + 1).toArray()).boxed().toList();
-		Exception exception = assertThrows(TooManyArgumentsException.class, () -> {
-			service.get(fakeIdsList);
-		});
+		Exception exception = assertThrows(TooManyArgumentsException.class, () -> service.get(fakeIdsList));
 
 		String actualMessage = exception.getMessage();
 		assertTrue(actualMessage.contains("Maximum number of arguments"));
@@ -44,11 +41,10 @@ class MinisTest {
 
 	@Test
 	@DisplayName("Check max number of minis per request")
-	void test3() throws TooManyArgumentsException {
+	void test3() {
 		var fakeIdsList = List.of(1);
-		assertDoesNotThrow(() -> service.get(fakeIdsList));
-		var achievementsList = service.get(fakeIdsList);
-		assertTrue(achievementsList.size() <= maxPageSize, String.format("Service should return at most %d minis", maxPageSize));
+		var list = assertDoesNotThrow(() -> service.get(fakeIdsList));
+		assertTrue(list.size() <= maxPageSize, String.format("Service should return at most %d minis", maxPageSize));
 	}
 
 	@Test
@@ -62,4 +58,5 @@ class MinisTest {
 	void test5() {
 		assertFalse(service.getAll().isEmpty(), "Service should return a list of minis");
 	}
+
 }

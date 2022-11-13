@@ -33,9 +33,7 @@ class QuaggansTest {
 	@DisplayName("Check max number of quaggans per request exception is thrown")
 	void test2() {
 		var fakeIdsList = Arrays.stream(IntStream.generate(() -> new Random().nextInt(10000)).limit(maxPageSize + 1).toArray()).boxed().map(String::valueOf).toList();
-		Exception exception = assertThrows(TooManyArgumentsException.class, () -> {
-			service.get(fakeIdsList);
-		});
+		Exception exception = assertThrows(TooManyArgumentsException.class, () -> service.get(fakeIdsList));
 
 		String actualMessage = exception.getMessage();
 		assertTrue(actualMessage.contains("Maximum number of arguments"));
@@ -43,11 +41,10 @@ class QuaggansTest {
 
 	@Test
 	@DisplayName("Check max number of quaggans per request")
-	void test3() throws TooManyArgumentsException {
+	void test3() {
 		var fakeIdsList = List.of("404");
-		assertDoesNotThrow(() -> service.get(fakeIdsList));
-		var achievementsList = service.get(fakeIdsList);
-		assertTrue(achievementsList.size() <= maxPageSize, String.format("Service should return at most %d quaggans", maxPageSize));
+		var list = assertDoesNotThrow(() -> service.get(fakeIdsList));
+		assertTrue(list.size() <= maxPageSize, String.format("Service should return at most %d quaggans", maxPageSize));
 	}
 
 	@Test
@@ -61,4 +58,5 @@ class QuaggansTest {
 	void test5() {
 		assertFalse(service.getAll().isEmpty(), "Service should return a list of quaggans");
 	}
+
 }

@@ -1,4 +1,4 @@
-package fr.kuremento.gw2.web.rest.services.achievements;
+package fr.kuremento.gw2.web.rest.services.items;
 
 import fr.kuremento.gw2.exceptions.TooManyArgumentsException;
 import org.apache.commons.collections4.ListUtils;
@@ -17,29 +17,23 @@ import java.util.stream.IntStream;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-class AchievementsTest {
+class ItemsTest {
 
 	@Autowired
-	private AchievementsService service;
+	private ItemsService service;
 
 	@Value("${application.rest.config.page-maximum-size}")
 	private Integer maxPageSize;
 
 	@Test
-	@DisplayName("Daily service context")
+	@DisplayName("Check number of items")
 	void test1() {
-		assertNotNull(service.daily(), "Service should not null");
+		assertFalse(service.get().isEmpty(), "Service should return a list of items id");
 	}
 
 	@Test
-	@DisplayName("Check number of achievements")
+	@DisplayName("Check max number of items per request exception is thrown")
 	void test2() {
-		assertFalse(service.get().isEmpty(), "Service should return a list of achievements id");
-	}
-
-	@Test
-	@DisplayName("Check max number of achievements per request exception is thrown")
-	void test3() {
 		var fakeIdsList = Arrays.stream(IntStream.generate(() -> new Random().nextInt(10000)).limit(maxPageSize + 1).toArray()).boxed().toList();
 		Exception exception = assertThrows(TooManyArgumentsException.class, () -> service.get(fakeIdsList));
 
@@ -48,38 +42,27 @@ class AchievementsTest {
 	}
 
 	@Test
-	@DisplayName("Check max number of achievements per request")
-	void test4() {
-		var fakeIdsList = List.of(1);
+	@DisplayName("Check max number of items per request")
+	void test3() {
+		var fakeIdsList = List.of(62);
 		var list = assertDoesNotThrow(() -> service.get(fakeIdsList));
-		assertTrue(list.size() <= maxPageSize, String.format("Service should return at most %d achievements", maxPageSize));
+		assertTrue(list.size() <= maxPageSize, String.format("Service should return at most %d items", maxPageSize));
 	}
 
 	@Test
-	@DisplayName("Check request one achievement")
+	@DisplayName("Check request one item")
+	void test4() {
+		assertNotNull(service.get(62), "Requested item should not be null");
+	}
+
+	@Test
+	@DisplayName("Check all items by chunk")
 	void test5() {
-		assertNotNull(service.get(1), "Requested achievement should not be null");
-	}
-
-	@Test
-	@DisplayName("Categories service context")
-	void test6() {
-		assertNotNull(service.categories(), "Service should not null");
-	}
-
-	@Test
-	@DisplayName("Groups service context")
-	void test7() {
-		assertNotNull(service.groups(), "Service should not null");
-	}
-
-	@Test
-	@DisplayName("Check all by chunk")
-	void test8() {
 		var idsList = service.get();
 		Collections.shuffle(idsList);
 		var limitedIdsList = idsList.stream().limit(maxPageSize * 4).toList();
 		var allIds = ListUtils.partition(limitedIdsList, maxPageSize);
-		allIds.forEach(chunkIds -> assertDoesNotThrow(() -> service.get(chunkIds)));
+		allIds.forEach(chunkIds -> assertDoesNotThrow(() -> service.get(chunkIds), "All items should be deserialized"));
 	}
+
 }

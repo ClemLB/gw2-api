@@ -1,7 +1,7 @@
 package fr.kuremento.gw2.web.rest.services.account.achievements;
 
 import fr.kuremento.gw2.exceptions.TechnicalException;
-import fr.kuremento.gw2.model.Constants;
+import fr.kuremento.gw2.models.Constants;
 import fr.kuremento.gw2.web.rest.models.account.achievements.AccountAchievement;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -2,6 +2,7 @@ package fr.kuremento.gw2;
 
 import fr.kuremento.gw2.client.Gw2Client;
 import fr.kuremento.gw2.exceptions.TooManyArgumentsException;
+import fr.kuremento.gw2.web.rest.models.items.Item;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,6 +21,8 @@ public class Application {
 
 	@SuppressWarnings("all")
 	private static void execute(Gw2Client gw2Client, String apiKey) throws TooManyArgumentsException {
+		Item item = gw2Client.items().get(62);
+		log.info(item.toString());
 	}
 
 }
