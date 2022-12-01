@@ -24,13 +24,13 @@ class TraitsTest {
 	private Integer maxPageSize;
 
 	@Test
-	@DisplayName("Check number of raids")
+	@DisplayName("Check number of traits")
 	void test1() {
-		assertFalse(service.get().isEmpty(), "Service should return a list of raids id");
+		assertFalse(service.get().isEmpty(), "Service should return a list of traits id");
 	}
 
 	@Test
-	@DisplayName("Check max number of raids per request exception is thrown")
+	@DisplayName("Check max number of traits per request exception is thrown")
 	void test2() {
 		var fakeIdsList = Arrays.stream(IntStream.generate(() -> new Random().nextInt(10000)).limit(maxPageSize + 1).toArray()).boxed().toList();
 		Exception exception = assertThrows(TooManyArgumentsException.class, () -> service.get(fakeIdsList));
@@ -40,22 +40,22 @@ class TraitsTest {
 	}
 
 	@Test
-	@DisplayName("Check max number of raids per request")
+	@DisplayName("Check max number of traits per request")
 	void test3() {
 		var fakeIdsList = List.of(265);
 		var list = assertDoesNotThrow(() -> service.get(fakeIdsList));
-		assertTrue(list.size() <= maxPageSize, String.format("Service should return at most %d raids", maxPageSize));
+		assertTrue(list.size() <= maxPageSize, String.format("Service should return at most %d traits", maxPageSize));
 	}
 
 	@Test
-	@DisplayName("Check request one raid")
+	@DisplayName("Check request one trait")
 	void test4() {
-		assertNotNull(service.get(265), "Requested raid should not be null");
+		assertNotNull(service.get(265), "Requested trait should not be null");
 	}
 
 	@Test
 	@DisplayName("Check getAll request")
 	void test5() {
-		assertFalse(service.getAll().isEmpty(), "Service should return a list of raids");
+		assertFalse(service.getAll().isEmpty(), "Service should return a list of traits");
 	}
 }

@@ -59,5 +59,4 @@ public class Fact {
 
 	@JsonProperty("prefix")
 	FactPrefix prefix;
-
 }
