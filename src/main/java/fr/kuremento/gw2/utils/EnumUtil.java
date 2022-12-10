@@ -12,8 +12,8 @@ import java.util.stream.Collectors;
 public class EnumUtil {
 
 	private static final String STRING_TO_TRANSFORM = """
-			Test
-			Test2
+			Account
+			Character
 			""";
 
 	public static void main(String[] args) {

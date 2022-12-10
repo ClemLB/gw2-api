@@ -28,7 +28,6 @@ class AccountTest {
 		assertNotNull(service.achievements(), "Service should not null");
 	}
 
-
 	@Test
 	@DisplayName("Check no authentification exception")
 	void test2() {
@@ -46,6 +45,12 @@ class AccountTest {
 		AtomicReference<Account> account = new AtomicReference<>();
 		assertDoesNotThrow(() -> account.set(service.getWithAuthentification(apiKey)));
 		assertNotNull(account.get(), "Service should return informations on account");
+	}
+
+	@Test
+	@DisplayName("Bank service context")
+	void test4() {
+		assertNotNull(service.bank(), "Service should not null");
 	}
 
 }
