@@ -2,6 +2,7 @@ package fr.kuremento.gw2.web.rest.services.account.bank;
 
 import fr.kuremento.gw2.exceptions.TechnicalException;
 import fr.kuremento.gw2.models.Constants;
+import fr.kuremento.gw2.web.rest.models.account.bank.ItemSlot;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +51,7 @@ class AccountBankTest {
 	@Test
 	@DisplayName("Check authentification ok")
 	void test3() {
-		AtomicReference<List<Object>> account = new AtomicReference<>();
+		AtomicReference<List<ItemSlot>> account = new AtomicReference<>();
 		assertDoesNotThrow(() -> account.set(service.getWithAuthentification(fullApiKey)));
 		assertNotNull(account.get(), "Service should return informations on bank");
 		assertFalse(account.get().isEmpty(), "Service should return informations on bank");

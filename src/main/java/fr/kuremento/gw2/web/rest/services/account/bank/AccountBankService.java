@@ -1,5 +1,6 @@
 package fr.kuremento.gw2.web.rest.services.account.bank;
 
+import fr.kuremento.gw2.web.rest.models.account.bank.ItemSlot;
 import fr.kuremento.gw2.web.rest.services.AbstractService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,7 +19,7 @@ public class AccountBankService extends AbstractService {
 	@Value("${application.rest.endpoints.account-category.bank}")
 	private final String endpoint;
 
-	public List<Object> getWithAuthentification(String apiKey) {
+	public List<ItemSlot> getWithAuthentification(String apiKey) {
 		return super.getWithAuthentification(super.buildURI(endpoint), new ParameterizedTypeReference<>() {
 		}, apiKey);
 	}
