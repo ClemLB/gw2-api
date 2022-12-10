@@ -3,6 +3,7 @@ package fr.kuremento.gw2.web.rest.services.account;
 import fr.kuremento.gw2.web.rest.models.account.Account;
 import fr.kuremento.gw2.web.rest.services.AbstractService;
 import fr.kuremento.gw2.web.rest.services.account.achievements.AccountAchievementsService;
+import fr.kuremento.gw2.web.rest.services.account.bank.AccountBankService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -16,12 +17,17 @@ import org.springframework.stereotype.Service;
 public class AccountService extends AbstractService {
 
 	private final AccountAchievementsService accountAchievementsService;
+	private final AccountBankService accountBankService;
 
 	@Value("${application.rest.endpoints.account-category.account}")
 	private final String endpoint;
 
 	public AccountAchievementsService achievements() {
 		return accountAchievementsService;
+	}
+
+	public AccountBankService bank() {
+		return accountBankService;
 	}
 
 	public Account getWithAuthentification(String apiKey) {

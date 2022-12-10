@@ -4,6 +4,7 @@ application:
             account-category:
                 account: '/v2/account'
                 achievement: '${application.rest.endpoints.account-category.account}/achievements'
+                bank: '${application.rest.endpoints.account-category.account}/bank'
             achievements-category:
                 achievements: '/v2/achievements'
                 categories: '${application.rest.endpoints.achievements-category.achievements}/categories'
