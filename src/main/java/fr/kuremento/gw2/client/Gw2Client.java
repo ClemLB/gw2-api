@@ -5,6 +5,7 @@ import fr.kuremento.gw2.models.Constants;
 import fr.kuremento.gw2.web.rest.services.account.AccountService;
 import fr.kuremento.gw2.web.rest.services.achievements.AchievementsService;
 import fr.kuremento.gw2.web.rest.services.colors.ColorsService;
+import fr.kuremento.gw2.web.rest.services.home.HomeService;
 import fr.kuremento.gw2.web.rest.services.items.ItemsService;
 import fr.kuremento.gw2.web.rest.services.minis.MinisService;
 import fr.kuremento.gw2.web.rest.services.quaggans.QuaggansService;
@@ -23,6 +24,7 @@ public class Gw2Client {
 	private final AchievementsService achievementsService;
 	private final QuaggansService quaggansService;
 	private final ColorsService colorsService;
+	private final HomeService homeService;
 	private final MinisService minisService;
 	private final RaidsService raidsService;
 	private final ItemsService itemsService;
@@ -58,6 +60,10 @@ public class Gw2Client {
 
 	public ColorsService colors() {
 		return this.colorsService;
+	}
+
+	public HomeService home() {
+		return this.homeService;
 	}
 
 	public MinisService minis() {
