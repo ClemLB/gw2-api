@@ -61,4 +61,10 @@ class Gw2ClientTest {
 	void test8() {
 		assertNotNull(gw2Client.traits(), SERVICE_SHOULD_NOT_BE_NULL);
 	}
+
+	@Test
+	@DisplayName("Home service context")
+	void test9() {
+		assertNotNull(gw2Client.home(), SERVICE_SHOULD_NOT_BE_NULL);
+	}
 }

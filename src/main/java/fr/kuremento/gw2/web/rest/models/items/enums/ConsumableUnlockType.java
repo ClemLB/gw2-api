@@ -20,7 +20,8 @@ public enum ConsumableUnlockType {
 	MS("Ms"),
 	OUTFIT("Outfit"),
 	RANDOM_ULOCK("RandomUlock"),
-	SHARED_SLOT("SharedSlot");
+	SHARED_SLOT("SharedSlot"),
+	JADE_BOT_SKIN("JadeBotSkin");
 
 	private final String value;
 
