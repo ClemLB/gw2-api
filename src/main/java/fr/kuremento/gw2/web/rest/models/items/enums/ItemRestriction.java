@@ -21,7 +21,8 @@ public enum ItemRestriction {
 	NECROMANCER("Necromancer"),
 	RANGER("Ranger"),
 	THIEF("Thief"),
-	WARRIOR("Warrior");
+	WARRIOR("Warrior"),
+	REVENANT("Revenant");
 
 	private final String value;
 

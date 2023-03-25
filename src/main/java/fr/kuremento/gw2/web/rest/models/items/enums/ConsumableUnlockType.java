@@ -21,7 +21,10 @@ public enum ConsumableUnlockType {
 	OUTFIT("Outfit"),
 	RANDOM_ULOCK("RandomUlock"),
 	SHARED_SLOT("SharedSlot"),
-	JADE_BOT_SKIN("JadeBotSkin");
+	JADE_BOT_SKIN("JadeBotSkin"),
+	BUILD_LIBRARY_SLOT("BuildLibrarySlot"),
+	GEAR_LOADOUT_TAB("GearLoadoutTab"),
+	BUILD_LOADOUT_TAB("BuildLoadoutTab");
 
 	private final String value;
 

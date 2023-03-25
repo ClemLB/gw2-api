@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
@@ -59,10 +58,8 @@ class ItemsTest {
 	@DisplayName("Check all items by chunk")
 	void test5() {
 		var idsList = service.get();
-		Collections.shuffle(idsList);
-		var limitedIdsList = idsList.stream().limit(maxPageSize * 4).toList();
-		var allIds = ListUtils.partition(limitedIdsList, maxPageSize);
-		allIds.forEach(chunkIds -> assertDoesNotThrow(() -> service.get(chunkIds), "All items should be deserialized"));
+		var allIds = ListUtils.partition(idsList, maxPageSize);
+		allIds.parallelStream().forEach(chunkIds -> assertDoesNotThrow(() -> service.get(chunkIds), "All items should be deserialized"));
 	}
 
 }
