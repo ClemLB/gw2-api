@@ -134,7 +134,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
-            <optional>true</optional>
+            <optional>false</optional>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
