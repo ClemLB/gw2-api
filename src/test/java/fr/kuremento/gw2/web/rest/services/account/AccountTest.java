@@ -36,7 +36,7 @@ class AccountTest {
         });
 
         String actualMessage = exception.getMessage();
-        assertEquals("401 UNAUTHORIZED" + " : " + Constants.ERROR_401_403_MESSAGE, actualMessage);
+        assertEquals("401 UNAUTHORIZED" + " : " + Constants.ERROR_401_403_MESSAGE.getValue(), actualMessage);
     }
 
     @Test
