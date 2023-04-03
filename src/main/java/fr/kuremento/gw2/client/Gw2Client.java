@@ -31,19 +31,19 @@ public class Gw2Client {
 	private final TraitsService traitsService;
 
 	public static Mono<Throwable> getErrorConsumerForError401(ClientResponse response) {
-		return Mono.error(new TechnicalException(response.statusCode() + " : " + Constants.ERROR_401_403_MESSAGE));
+		return Mono.error(new TechnicalException(response.statusCode() + " : " + Constants.ERROR_401_403_MESSAGE.getValue()));
 	}
 
 	public static Mono<Throwable> getErrorConsumerForError403(ClientResponse response) {
-		return Mono.error(new TechnicalException(response.statusCode() + " : " + Constants.ERROR_401_403_MESSAGE));
+		return Mono.error(new TechnicalException(response.statusCode() + " : " + Constants.ERROR_401_403_MESSAGE.getValue()));
 	}
 
 	public static Mono<Throwable> getErrorConsumerForError404(ClientResponse response) {
-		return Mono.error(new TechnicalException(response.statusCode() + " : " + Constants.ERROR_404_MESSAGE));
+		return Mono.error(new TechnicalException(response.statusCode() + " : " + Constants.ERROR_404_MESSAGE.getValue()));
 	}
 
 	public static Mono<Throwable> getErrorConsumerForError503(ClientResponse response) {
-		return Mono.error(new TechnicalException(response.statusCode() + " : " + Constants.ERROR_503_MESSAGE));
+		return Mono.error(new TechnicalException(response.statusCode() + " : " + Constants.ERROR_503_MESSAGE.getValue()));
 	}
 
 	public AccountService account() {
