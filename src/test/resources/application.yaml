@@ -22,6 +22,7 @@ application:
             minis: '/v2/minis'
             quaggans: '/v2/quaggans'
             raids: '/v2/raids'
+            token-info: '/v2/tokeninfo'
             traits: '/v2/traits'
         config:
             base-url: https://api.guildwars2.com
