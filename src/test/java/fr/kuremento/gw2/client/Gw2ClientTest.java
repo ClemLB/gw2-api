@@ -74,4 +74,10 @@ class Gw2ClientTest {
     void test10() {
         assertNotNull(gw2Client.tokeninfo(), SERVICE_SHOULD_NOT_BE_NULL);
     }
+
+    @Test
+    @DisplayName("Guild service context")
+    void test11() {
+        assertNotNull(gw2Client.guild(), SERVICE_SHOULD_NOT_BE_NULL);
+    }
 }

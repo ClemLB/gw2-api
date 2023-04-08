@@ -5,13 +5,14 @@ import fr.kuremento.gw2.models.Constants;
 import fr.kuremento.gw2.web.rest.services.account.AccountService;
 import fr.kuremento.gw2.web.rest.services.achievements.AchievementsService;
 import fr.kuremento.gw2.web.rest.services.colors.ColorsService;
+import fr.kuremento.gw2.web.rest.services.guild.GuildService;
 import fr.kuremento.gw2.web.rest.services.home.HomeService;
 import fr.kuremento.gw2.web.rest.services.items.ItemsService;
 import fr.kuremento.gw2.web.rest.services.minis.MinisService;
 import fr.kuremento.gw2.web.rest.services.quaggans.QuaggansService;
 import fr.kuremento.gw2.web.rest.services.raids.RaidsService;
+import fr.kuremento.gw2.web.rest.services.tokeninfo.TokenInfoService;
 import fr.kuremento.gw2.web.rest.services.traits.TraitsService;
-import fr.kuremento.gw2.web.rest.tokeninfo.TokenInfoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.ClientResponse;
@@ -31,6 +32,7 @@ public class Gw2Client {
     private final ItemsService itemsService;
     private final TraitsService traitsService;
     private final TokenInfoService tokenInfoService;
+    private final GuildService guildService;
 
     public static Mono<Throwable> getErrorConsumerForError401(ClientResponse response) {
         return Mono.error(new TechnicalException(response.statusCode() + " : " + Constants.ERROR_401_403_MESSAGE.getValue()));
@@ -86,6 +88,10 @@ public class Gw2Client {
 
     public TokenInfoService tokeninfo() {
         return this.tokenInfoService;
+    }
+
+    public GuildService guild() {
+        return this.guildService;
     }
 
 }

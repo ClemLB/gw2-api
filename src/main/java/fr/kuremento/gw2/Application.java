@@ -20,11 +20,8 @@ public class Application {
 
 	@SuppressWarnings("all")
 	private static void execute(Gw2Client gw2Client, String apiKey) throws TooManyArgumentsException {
-		var itemSlots = gw2Client.account().bank().getWithAuthentification(apiKey);
-		itemSlots.stream().filter(itemSlot -> itemSlot != null).forEach(itemSlot -> {
-			var item = gw2Client.items().get(itemSlot.getId());
-			log.info("{}x {}", itemSlot.getCount(), item.getName());
-		});
+		var account = gw2Client.account().getWithAuthentification(apiKey);
+		log.info("Guildes : {} | leader : {}", account.getGuilds(), account.getGuildLeader());
 	}
 
 }
