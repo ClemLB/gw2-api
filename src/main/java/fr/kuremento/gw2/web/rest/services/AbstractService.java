@@ -41,29 +41,29 @@ public abstract class AbstractService {
 
 	protected <T> T get(URI uri, ParameterizedTypeReference<T> paramz) {
 		return this.getWebClient()
-				.get()
-				.uri(uri)
-				.retrieve()
-				.onStatus(HttpStatus.UNAUTHORIZED::equals, Gw2Client::getErrorConsumerForError401)
-				.onStatus(HttpStatus.FORBIDDEN::equals, Gw2Client::getErrorConsumerForError403)
-				.onStatus(HttpStatus.NOT_FOUND::equals, Gw2Client::getErrorConsumerForError404)
-				.onStatus(HttpStatus.SERVICE_UNAVAILABLE::equals, Gw2Client::getErrorConsumerForError503)
-				.bodyToMono(paramz)
-				.block();
+				   .get()
+				   .uri(uri)
+				   .retrieve()
+				   .onStatus(HttpStatus.UNAUTHORIZED::equals, Gw2Client::getErrorConsumerForError401)
+				   .onStatus(HttpStatus.FORBIDDEN::equals, Gw2Client::getErrorConsumerForError403)
+				   .onStatus(HttpStatus.NOT_FOUND::equals, Gw2Client::getErrorConsumerForError404)
+				   .onStatus(HttpStatus.SERVICE_UNAVAILABLE::equals, Gw2Client::getErrorConsumerForError503)
+				   .bodyToMono(paramz)
+				   .block();
 	}
 
 	protected <T> T getWithAuthentification(URI uri, ParameterizedTypeReference<T> paramz, String apiKey) {
 		return this.getWebClient()
-				.get()
-				.uri(uri)
-				.header(HttpHeaders.AUTHORIZATION, "Bearer " + apiKey)
-				.retrieve()
-				.onStatus(HttpStatus.UNAUTHORIZED::equals, Gw2Client::getErrorConsumerForError401)
-				.onStatus(HttpStatus.FORBIDDEN::equals, Gw2Client::getErrorConsumerForError403)
-				.onStatus(HttpStatus.NOT_FOUND::equals, Gw2Client::getErrorConsumerForError404)
-				.onStatus(HttpStatus.SERVICE_UNAVAILABLE::equals, Gw2Client::getErrorConsumerForError503)
-				.bodyToMono(paramz)
-				.block();
+				   .get()
+				   .uri(uri)
+				   .header(HttpHeaders.AUTHORIZATION, "Bearer " + apiKey)
+				   .retrieve()
+				   .onStatus(HttpStatus.UNAUTHORIZED::equals, Gw2Client::getErrorConsumerForError401)
+				   .onStatus(HttpStatus.FORBIDDEN::equals, Gw2Client::getErrorConsumerForError403)
+				   .onStatus(HttpStatus.NOT_FOUND::equals, Gw2Client::getErrorConsumerForError404)
+				   .onStatus(HttpStatus.SERVICE_UNAVAILABLE::equals, Gw2Client::getErrorConsumerForError503)
+				   .bodyToMono(paramz)
+				   .block();
 	}
 
 	protected <T> URI buildURI(String endpoint, T id) {
@@ -72,8 +72,9 @@ public abstract class AbstractService {
 
 	protected <T> URI buildURI(String endpoint, List<T> ids) throws TooManyArgumentsException {
 		if (ids.size() > this.getPageMaximumSize()) {
-			String errorMessage = String.format("Maximum number of arguments is %d, you gave %d arguments, use 'getAll' method instead", this.getPageMaximumSize(),
-			                                    ids.size());
+			String errorMessage = String.format("Maximum number of arguments is %d, you gave %d arguments, use 'getAll' method instead",
+												this.getPageMaximumSize(),
+												ids.size());
 			throw new TooManyArgumentsException(errorMessage);
 		}
 		String formattedIds = ids.stream().map(String::valueOf).collect(Collectors.joining(","));
@@ -86,5 +87,9 @@ public abstract class AbstractService {
 
 	protected URI buildURI(String endpoint) {
 		return new DefaultUriBuilderFactory(this.getBaseUrl()).builder().path(endpoint).build();
+	}
+
+	protected URI buildURIWithParams(String endpoint, String... params) {
+		return new DefaultUriBuilderFactory(this.getBaseUrl()).builder().path(endpoint).build(params);
 	}
 }

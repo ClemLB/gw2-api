@@ -21,7 +21,7 @@ public class Application {
 	@SuppressWarnings("all")
 	private static void execute(Gw2Client gw2Client, String apiKey) throws TooManyArgumentsException {
 		var account = gw2Client.account().getWithAuthentification(apiKey);
-		log.info("Guildes : {} | leader : {}", account.getGuilds(), account.getGuildLeader());
+		account.getGuilds().forEach(guild -> log.info("{}", gw2Client.guild().getWithAuthentification(guild, apiKey)));
 	}
 
 }
