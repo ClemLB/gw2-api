@@ -8,6 +8,9 @@ application:
                 account: '/v2/account'
                 achievement: '${application.rest.endpoints.account-category.account}/achievements'
                 bank: '${application.rest.endpoints.account-category.account}/bank'
+                home-category:
+                    home: '${application.rest.endpoints.account-category.account}/home'
+                    nodes: '${application.rest.endpoints.account-category.home-category.home}/nodes'
                 legendary-armory: '${application.rest.endpoints.account-category.account}/legendaryarmory'
             achievements-category:
                 achievements: '/v2/achievements'

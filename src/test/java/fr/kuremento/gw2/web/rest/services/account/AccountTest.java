@@ -59,4 +59,10 @@ class AccountTest {
         assertNotNull(service.legendaryArmory(), "Service should not null");
     }
 
+    @Test
+    @DisplayName("Home service context")
+    void test6() {
+        assertNotNull(service.home(), "Service should not null");
+    }
+
 }
