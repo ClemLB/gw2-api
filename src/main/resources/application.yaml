@@ -9,6 +9,7 @@ application:
                 achievement: '${application.rest.endpoints.account-category.account}/achievements'
                 bank: '${application.rest.endpoints.account-category.account}/bank'
                 home-category:
+                    cats: '${application.rest.endpoints.account-category.home-category.home}/cats'
                     home: '${application.rest.endpoints.account-category.account}/home'
                     nodes: '${application.rest.endpoints.account-category.home-category.home}/nodes'
                 legendary-armory: '${application.rest.endpoints.account-category.account}/legendaryarmory'

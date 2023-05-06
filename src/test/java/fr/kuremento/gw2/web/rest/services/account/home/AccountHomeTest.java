@@ -21,8 +21,14 @@ class AccountHomeTest {
 	}
 
 	@Test
-	@DisplayName("Check get endpoints")
+	@DisplayName("Cats service context")
 	void test2() {
+		assertNotNull(service.cats(), "Service should not null");
+	}
+
+	@Test
+	@DisplayName("Check get endpoints")
+	void test3() {
 		var endpoints = service.get();
 		assertThat(endpoints).hasSize(2);
 		assertThat(endpoints.get(0)).as("Le premier endpoint devrait être 'nodes'").isEqualTo("nodes");

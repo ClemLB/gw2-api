@@ -1,6 +1,7 @@
 package fr.kuremento.gw2.web.rest.services.account.home;
 
 import fr.kuremento.gw2.web.rest.services.AbstractService;
+import fr.kuremento.gw2.web.rest.services.account.home.cats.AccountCatsService;
 import fr.kuremento.gw2.web.rest.services.account.home.nodes.AccountNodesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,9 +18,14 @@ public class AccountHomeService extends AbstractService {
 	private final String endpoint;
 
 	private final AccountNodesService accountNodesService;
+	private final AccountCatsService accountCatsService;
 
 	public AccountNodesService nodes() {
 		return this.accountNodesService;
+	}
+
+	public AccountCatsService cats() {
+		return this.accountCatsService;
 	}
 
 	public List<String> get() {
