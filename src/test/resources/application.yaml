@@ -24,6 +24,7 @@ application:
                 guild: '/v2/guild'
                 guild-id: '${application.rest.endpoints.guild-category.guild}/{id}'
             home-category:
+                cats: '/v2/home/cats'
                 nodes: '/v2/home/nodes'
             items: '/v2/items'
             minis: '/v2/minis'
