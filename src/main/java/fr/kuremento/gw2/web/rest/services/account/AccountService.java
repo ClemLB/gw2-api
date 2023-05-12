@@ -6,6 +6,7 @@ import fr.kuremento.gw2.web.rest.services.account.achievements.AccountAchievemen
 import fr.kuremento.gw2.web.rest.services.account.bank.AccountBankService;
 import fr.kuremento.gw2.web.rest.services.account.home.AccountHomeService;
 import fr.kuremento.gw2.web.rest.services.account.legendaryarmory.AccountLegendaryArmoryService;
+import fr.kuremento.gw2.web.rest.services.account.raids.AccountRaidsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -22,6 +23,7 @@ public class AccountService extends AbstractService {
 	private final AccountBankService accountBankService;
 	private final AccountLegendaryArmoryService accountLegendaryArmoryService;
 	private final AccountHomeService accountHomeService;
+	private final AccountRaidsService accountRaidsService;
 
 	@Value("${application.rest.endpoints.account-category.account}")
 	private final String endpoint;
@@ -40,6 +42,10 @@ public class AccountService extends AbstractService {
 
 	public AccountHomeService home() {
 		return accountHomeService;
+	}
+
+	public AccountRaidsService raids() {
+		return accountRaidsService;
 	}
 
 	public Account getWithAuthentification(String apiKey) {

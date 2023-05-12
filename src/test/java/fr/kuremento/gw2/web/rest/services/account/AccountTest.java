@@ -65,4 +65,10 @@ class AccountTest {
 		assertNotNull(service.home(), "Service should not null");
 	}
 
+	@Test
+	@DisplayName("Raids service context")
+	void test7() {
+		assertNotNull(service.raids(), "Service should not null");
+	}
+
 }
