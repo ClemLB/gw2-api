@@ -2,10 +2,15 @@ package fr.kuremento.gw2;
 
 import fr.kuremento.gw2.client.Gw2Client;
 import fr.kuremento.gw2.exceptions.TooManyArgumentsException;
+import fr.kuremento.gw2.web.rest.models.raids.Raid;
+import fr.kuremento.gw2.web.rest.models.raids.Wing;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+
+import java.util.Collection;
+import java.util.List;
 
 @Slf4j
 @SpringBootApplication
@@ -20,8 +25,16 @@ public class Application {
 
 	@SuppressWarnings("all")
 	private static void execute(Gw2Client gw2Client, String apiKey) throws TooManyArgumentsException {
-		var account = gw2Client.account().getWithAuthentification(apiKey);
-		account.getGuilds().forEach(guild -> log.info("{}", gw2Client.guild().getWithAuthentification(guild, apiKey)));
+		var raids = gw2Client.account().raids().getWithAuthentification(apiKey);
+		List<Raid> bosses = gw2Client.raids().getAll();
+		raids.forEach(boss -> log.info("{}",
+									   bosses.stream()
+											 .map(Raid::getWings)
+											 .flatMap(Collection::stream)
+											 .map(Wing::getEvents)
+											 .flatMap(Collection::stream)
+											 .filter(raid -> raid.getId().equals(boss))
+											 .findAny()
+											 .orElse(null)));
 	}
-
 }

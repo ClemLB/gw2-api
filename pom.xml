@@ -58,6 +58,7 @@
         <snakeyaml.version>1.33</snakeyaml.version>
         <commons-text.version>1.10.0</commons-text.version>
         <commons-collections4.version>4.4</commons-collections4.version>
+        <netty-resolver-dns-native-macos.version>4.1.91.Final</netty-resolver-dns-native-macos.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -102,6 +103,11 @@
                 <groupId>io.projectreactor.netty</groupId>
                 <artifactId>reactor-netty-core</artifactId>
                 <version>${reactor-netty.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-resolver-dns-native-macos</artifactId>
+                <version>${netty-resolver-dns-native-macos.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.projectreactor.netty</groupId>
@@ -171,6 +177,12 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-text</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-resolver-dns-native-macos</artifactId>
+            <classifier>osx-aarch_64</classifier>
             <optional>true</optional>
         </dependency>
         <dependency>
