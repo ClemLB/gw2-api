@@ -7,17 +7,17 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum TokenType {
-    API_KEY("APIKey"), SUBTOKEN("Subtoken");
+	API_KEY("APIKey"), SUBTOKEN("Subtoken");
 
-    private final String value;
+	private final String value;
 
-    @JsonValue
-    public String getValue() {
-        return this.value;
-    }
+	@JsonValue
+	public String getValue() {
+		return this.value;
+	}
 
-    @Override
-    public String toString() {
-        return this.getValue();
-    }
+	@Override
+	public String toString() {
+		return this.getValue();
+	}
 }

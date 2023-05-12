@@ -12,10 +12,10 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class GuildEmblemLayer {
 
-    @JsonProperty("id")
-    Integer id;
+	@JsonProperty("id")
+	Integer id;
 
-    @JsonProperty("colors")
-    List<Integer> colors = new ArrayList<>();
+	@JsonProperty("colors")
+	List<Integer> colors = new ArrayList<>();
 
 }

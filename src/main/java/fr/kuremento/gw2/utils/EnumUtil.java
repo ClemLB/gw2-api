@@ -22,9 +22,9 @@ public class EnumUtil {
 
 	private static void stringToEnum(String stringToTransform) {
 		String result = Arrays.stream(stringToTransform.split("\n"))
-		                      .map(EnumUtil::deleteWikiDescription)
-		                      .map(s -> camelToSnake(s).concat("(\"").concat(s).concat("\")"))
-		                      .collect(Collectors.joining(",\n", "", ";"));
+							  .map(EnumUtil::deleteWikiDescription)
+							  .map(s -> camelToSnake(s).concat("(\"").concat(s).concat("\")"))
+							  .collect(Collectors.joining(",\n", "", ";"));
 		setAsText(result);
 		log.info("Enum stocked in clipboard : \n{}", result);
 	}

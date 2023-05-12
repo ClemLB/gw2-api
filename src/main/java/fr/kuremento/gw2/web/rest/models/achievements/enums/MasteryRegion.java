@@ -7,11 +7,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum MasteryRegion {
-	TYRIA("Tyria"),
-	MAGUUMA("Maguuma"),
-	DESERT("Desert"),
-	TUNDRA("Tundra"),
-	UNKNOWN("Unknown");
+	TYRIA("Tyria"), MAGUUMA("Maguuma"), DESERT("Desert"), TUNDRA("Tundra"), UNKNOWN("Unknown");
 
 	private final String value;
 

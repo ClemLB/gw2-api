@@ -70,23 +70,24 @@ public class WebClientConfig implements WebFluxConfigurer {
 	}
 
 	@Bean("webclient-builder")
-	public WebClient.Builder webClientBuilder(@Value("${application.rest.config.schema-version-date}") String schemaVersionDate, @Value("${application.rest.config.language:en}") String language) {
+	public WebClient.Builder webClientBuilder(@Value("${application.rest.config.schema-version-date:2022-11-12T00:00:00.000Z}") String schemaVersionDate,
+											  @Value("${application.rest.config.language:en}") String language) {
 		var httpClient = HttpClient.create()
-		                           .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, connectionTimeOut)
-		                           .doOnConnected(conn -> conn.addHandlerLast(new ReadTimeoutHandler(readTimeOut)).addHandlerLast(new WriteTimeoutHandler(writeTimeOut)))
-		                           .wiretap(enableWireTap);
+								   .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, connectionTimeOut)
+								   .doOnConnected(conn -> conn.addHandlerLast(new ReadTimeoutHandler(readTimeOut)).addHandlerLast(new WriteTimeoutHandler(writeTimeOut)))
+								   .wiretap(enableWireTap);
 		return WebClient.builder()
-		                .exchangeStrategies(exchangeStrategies())
-		                .filters(exchangeFilterFunctions -> {
-			                exchangeFilterFunctions.add(logRequest());
-			                exchangeFilterFunctions.add(logResponse());
-		                })
-		                .baseUrl(baseUrl)
-		                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-		                .defaultHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
-		                .defaultHeader("X-Schema-Version", schemaVersionDate)
-		                .defaultHeader(HttpHeaders.ACCEPT_LANGUAGE, language)
-		                .clientConnector(new ReactorClientHttpConnector(httpClient));
+						.exchangeStrategies(exchangeStrategies())
+						.filters(exchangeFilterFunctions -> {
+							exchangeFilterFunctions.add(logRequest());
+							exchangeFilterFunctions.add(logResponse());
+						})
+						.baseUrl(baseUrl)
+						.defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+						.defaultHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
+						.defaultHeader("X-Schema-Version", schemaVersionDate)
+						.defaultHeader(HttpHeaders.ACCEPT_LANGUAGE, language)
+						.clientConnector(new ReactorClientHttpConnector(httpClient));
 	}
 
 	@Bean("webclient-gw2")

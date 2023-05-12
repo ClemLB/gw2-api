@@ -8,24 +8,10 @@ import lombok.RequiredArgsConstructor;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum TypeOfItem {
 
-	ARMOR("Armor"),
-	BACK("Back"),
-	BAG("Bag"),
-	CONSUMABLE("Consumable"),
-	CONTAINER("Container"),
-	CRAFTING_MATERIAL("CraftingMaterial"),
-	GATHERING("Gathering"),
-	GIZMO("Gizmo"),
-	JADE_TECH_MODULE("JadeTechModule"),
-	KEY("Key"),
-	MINI_PET("MiniPet"),
-	POWER_CORE("PowerCore"),
-	TOOL("Tool"),
-	TRAIT("Trait"),
-	TRINKET("Trinket"),
-	TROPHY("Trophy"),
-	UPGRADE_COMPONENT("UpgradeComponent"),
-	WEAPON("Weapon");
+	ARMOR("Armor"), BACK("Back"), BAG("Bag"), CONSUMABLE("Consumable"), CONTAINER("Container"), CRAFTING_MATERIAL("CraftingMaterial"), GATHERING("Gathering"), GIZMO("Gizmo"),
+	JADE_TECH_MODULE(
+			"JadeTechModule"), KEY("Key"), MINI_PET("MiniPet"), POWER_CORE("PowerCore"), TOOL("Tool"), TRAIT("Trait"), TRINKET("Trinket"), TROPHY("Trophy"), UPGRADE_COMPONENT(
+			"UpgradeComponent"), WEAPON("Weapon");
 
 	private final String value;
 

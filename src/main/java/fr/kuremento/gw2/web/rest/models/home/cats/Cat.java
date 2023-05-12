@@ -9,9 +9,9 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Cat {
 
-    @JsonProperty("id")
-    Integer id;
+	@JsonProperty("id")
+	Integer id;
 
-    @JsonProperty("hint")
-    String hint;
+	@JsonProperty("hint")
+	String hint;
 }

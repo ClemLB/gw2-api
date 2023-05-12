@@ -20,7 +20,6 @@ public class AccountBankService extends AbstractService {
 	private final String endpoint;
 
 	public List<ItemSlot> getWithAuthentification(String apiKey) {
-		return super.getWithAuthentification(super.buildURI(endpoint), new ParameterizedTypeReference<>() {
-		}, apiKey);
+		return super.getWithAuthentification(super.buildURI(endpoint), new ParameterizedTypeReference<>() {}, apiKey);
 	}
 }

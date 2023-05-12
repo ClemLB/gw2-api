@@ -11,27 +11,27 @@ name: Build and Test on Pull Request
 on: [ pull_request ]
 
 jobs:
-    build:
+  build:
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        steps:
-            -   name: Checkout the branch
-                uses: actions/checkout@v3
-            -   name: Update commit status to PENDING
-                uses: ouzi-dev/commit-status-updater@v2
-            -   name: Install Java and Maven
-                uses: actions/setup-java@v3
-                with:
-                    java-version: '17'
-                    distribution: 'temurin'
-                    cache: maven
-            -   name: Build the project
-                run: mvn clean install -DskipTests
-            -   name: Test the project
-                run: mvn org.jacoco:jacoco-maven-plugin:prepare-agent install
-            -   if: always()
-                name: Update commit status to SUCCESS
-                uses: ouzi-dev/commit-status-updater@v2
-                with:
-                    status: "${{ job.status }}"
+    steps:
+      - name: Checkout the branch
+        uses: actions/checkout@v3
+      - name: Update commit status to PENDING
+        uses: ouzi-dev/commit-status-updater@v2
+      - name: Install Java and Maven
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+      - name: Build the project
+        run: mvn clean install -DskipTests
+      - name: Test the project
+        run: mvn org.jacoco:jacoco-maven-plugin:prepare-agent install
+      - if: always()
+        name: Update commit status to SUCCESS
+        uses: ouzi-dev/commit-status-updater@v2
+        with:
+          status: "${{ job.status }}"

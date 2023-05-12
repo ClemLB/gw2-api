@@ -8,23 +8,9 @@ import lombok.RequiredArgsConstructor;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum ItemFlag {
 
-	ACCOUNT_BIND_ON_USE("AccountBindOnUse"),
-	ACCOUNT_BOUND("AccountBound"),
-	ATTUNED("Attuned"),
-	BULK_CONSUME("BulkConsume"),
-	DELETE_WARNING("DeleteWarning"),
-	HIDE_SUFFIX("HideSuffix"),
-	INFUSED("Infused"),
-	MONSTER_ONLY("MonsterOnly"),
-	NO_MYSTIC_FORGE("NoMysticForge"),
-	NO_SALVAGE("NoSalvage"),
-	NO_SELL("NoSell"),
-	NOT_UPGRADEABLE("NotUpgradeable"),
-	NO_UNDERWATER("NoUnderwater"),
-	SOULBIND_ON_ACQUIRE("SoulbindOnAcquire"),
-	SOUL_BIND_ON_USE("SoulBindOnUse"),
-	TONIC("Tonic"),
-	UNIQUE("Unique");
+	ACCOUNT_BIND_ON_USE("AccountBindOnUse"), ACCOUNT_BOUND("AccountBound"), ATTUNED("Attuned"), BULK_CONSUME("BulkConsume"), DELETE_WARNING("DeleteWarning"), HIDE_SUFFIX(
+			"HideSuffix"), INFUSED("Infused"), MONSTER_ONLY("MonsterOnly"), NO_MYSTIC_FORGE("NoMysticForge"), NO_SALVAGE("NoSalvage"), NO_SELL("NoSell"), NOT_UPGRADEABLE(
+			"NotUpgradeable"), NO_UNDERWATER("NoUnderwater"), SOULBIND_ON_ACQUIRE("SoulbindOnAcquire"), SOUL_BIND_ON_USE("SoulBindOnUse"), TONIC("Tonic"), UNIQUE("Unique");
 
 	private final String value;
 

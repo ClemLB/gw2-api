@@ -11,7 +11,7 @@ public class Miniature {
 
 	@JsonProperty("id")
 	Integer id;
-	
+
 	@JsonProperty("name")
 	String name;
 

@@ -14,24 +14,24 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class TokenInfo {
 
-    @JsonProperty("id")
-    String id;
+	@JsonProperty("id")
+	String id;
 
-    @JsonProperty("name")
-    String name;
+	@JsonProperty("name")
+	String name;
 
-    @JsonProperty("permissions")
-    List<TokenPermission> permissions = new ArrayList<>();
+	@JsonProperty("permissions")
+	List<TokenPermission> permissions = new ArrayList<>();
 
-    @JsonProperty("type")
-    TokenType type;
+	@JsonProperty("type")
+	TokenType type;
 
-    @JsonProperty("expires_at")
-    String expiresAt;
+	@JsonProperty("expires_at")
+	String expiresAt;
 
-    @JsonProperty("issued_at")
-    String issuedAt;
+	@JsonProperty("issued_at")
+	String issuedAt;
 
-    @JsonProperty("urls")
-    List<String> urls = new ArrayList<>();
+	@JsonProperty("urls")
+	List<String> urls = new ArrayList<>();
 }

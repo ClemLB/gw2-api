@@ -8,16 +8,9 @@ import lombok.RequiredArgsConstructor;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum InfixUpgradeAttributeEnum {
 
-	AGONY_RESISTANCE("AgonyResistance"),
-	BOON_DURATION("BoonDuration"),
-	CONDITION_DAMAGE("ConditionDamage"),
-	CONDITION_DURATION("ConditionDuration"),
-	CRIT_DAMAGE("CritDamage"),
-	HEALING("Healing"),
-	POWER("Power"),
-	PRECISION("Precision"),
-	TOUGHNESS("Toughness"),
-	VITALITY("Vitality");
+	AGONY_RESISTANCE("AgonyResistance"), BOON_DURATION("BoonDuration"), CONDITION_DAMAGE("ConditionDamage"), CONDITION_DURATION("ConditionDuration"), CRIT_DAMAGE("CritDamage"),
+	HEALING(
+			"Healing"), POWER("Power"), PRECISION("Precision"), TOUGHNESS("Toughness"), VITALITY("Vitality");
 
 	private final String value;
 

@@ -21,22 +21,18 @@ public class RaidsService extends AbstractService {
 	private final String endpoint;
 
 	public List<String> get() {
-		return super.get(super.buildURI(endpoint), new ParameterizedTypeReference<>() {
-		});
+		return super.get(super.buildURI(endpoint), new ParameterizedTypeReference<>() {});
 	}
 
 	public List<Raid> getAll() {
-		return super.get(super.buildURIAllIds(endpoint), new ParameterizedTypeReference<>() {
-		});
+		return super.get(super.buildURIAllIds(endpoint), new ParameterizedTypeReference<>() {});
 	}
 
 	public List<Raid> get(List<String> ids) throws TooManyArgumentsException {
-		return super.get(super.buildURI(endpoint, ids), new ParameterizedTypeReference<>() {
-		});
+		return super.get(super.buildURI(endpoint, ids), new ParameterizedTypeReference<>() {});
 	}
 
 	public Raid get(String id) {
-		return super.get(super.buildURI(endpoint, id), new ParameterizedTypeReference<>() {
-		});
+		return super.get(super.buildURI(endpoint, id), new ParameterizedTypeReference<>() {});
 	}
 }

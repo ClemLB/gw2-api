@@ -9,36 +9,36 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Guild {
 
-    @JsonProperty("id")
-    String id;
+	@JsonProperty("id")
+	String id;
 
-    @JsonProperty("name")
-    String name;
+	@JsonProperty("name")
+	String name;
 
-    @JsonProperty("tag")
-    String tag;
+	@JsonProperty("tag")
+	String tag;
 
-    @JsonProperty("emblem")
-    GuildEmblem emblem;
+	@JsonProperty("emblem")
+	GuildEmblem emblem;
 
-    @JsonProperty("level")
-    Integer level;
+	@JsonProperty("level")
+	Integer level;
 
-    @JsonProperty("motd")
-    String motd;
+	@JsonProperty("motd")
+	String motd;
 
-    @JsonProperty("influence")
-    Integer influence;
+	@JsonProperty("influence")
+	Integer influence;
 
-    @JsonProperty("aetherium")
-    Integer aetherium;
+	@JsonProperty("aetherium")
+	Integer aetherium;
 
-    @JsonProperty("favor")
-    Integer favor;
+	@JsonProperty("favor")
+	Integer favor;
 
-    @JsonProperty("member_count")
-    Integer memberCount;
+	@JsonProperty("member_count")
+	Integer memberCount;
 
-    @JsonProperty("member_capacity")
-    Integer memberCapacity;
+	@JsonProperty("member_capacity")
+	Integer memberCapacity;
 }

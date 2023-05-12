@@ -8,21 +8,9 @@ import lombok.RequiredArgsConstructor;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum ItemRestriction {
 
-	ASURA("Asura"),
-	CHARR("Charr"),
-	FEMALE("Female"),
-	HUMAN("Human"),
-	NORN("Norn"),
-	SYLVARI("Sylvari"),
-	ELEMENTALIST("Elementalist"),
-	ENGINEER("Engineer"),
-	GUARDIAN("Guardian"),
-	MESMER("Mesmer"),
-	NECROMANCER("Necromancer"),
-	RANGER("Ranger"),
-	THIEF("Thief"),
-	WARRIOR("Warrior"),
-	REVENANT("Revenant");
+	ASURA("Asura"), CHARR("Charr"), FEMALE("Female"), HUMAN("Human"), NORN("Norn"), SYLVARI("Sylvari"), ELEMENTALIST("Elementalist"), ENGINEER("Engineer"), GUARDIAN("Guardian"),
+	MESMER(
+			"Mesmer"), NECROMANCER("Necromancer"), RANGER("Ranger"), THIEF("Thief"), WARRIOR("Warrior"), REVENANT("Revenant");
 
 	private final String value;
 

@@ -20,7 +20,6 @@ public class AccountAchievementsService extends AbstractService {
 	private final String endpoint;
 
 	public List<AccountAchievement> getWithAuthentification(String apiKey) {
-		return super.getWithAuthentification(super.buildURI(endpoint), new ParameterizedTypeReference<>() {
-		}, apiKey);
+		return super.getWithAuthentification(super.buildURI(endpoint), new ParameterizedTypeReference<>() {}, apiKey);
 	}
 }

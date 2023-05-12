@@ -7,26 +7,19 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum TokenPermission {
-    ACCOUNT("account"),
-    BUILDS("builds"),
-    CHARACTERS("characters"),
-    GUILDS("guilds"),
-    INVENTORIES("inventories"),
-    PROGRESSION("progression"),
-    PVP("pvp"),
-    TRADINGPOST("tradingpost"),
-    UNLOCKS("unlocks"),
-    WALLET("wallet");
+	ACCOUNT("account"), BUILDS("builds"), CHARACTERS("characters"), GUILDS("guilds"), INVENTORIES("inventories"), PROGRESSION("progression"), PVP("pvp"), TRADINGPOST("tradingpost"
+	), UNLOCKS(
+			"unlocks"), WALLET("wallet");
 
-    private final String value;
+	private final String value;
 
-    @JsonValue
-    public String getValue() {
-        return this.value;
-    }
+	@JsonValue
+	public String getValue() {
+		return this.value;
+	}
 
-    @Override
-    public String toString() {
-        return this.getValue();
-    }
+	@Override
+	public String toString() {
+		return this.getValue();
+	}
 }

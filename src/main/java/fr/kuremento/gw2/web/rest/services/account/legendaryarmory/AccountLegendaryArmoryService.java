@@ -20,7 +20,6 @@ public class AccountLegendaryArmoryService extends AbstractService {
 	private final String endpoint;
 
 	public List<LegendaryItem> getWithAuthentification(String apiKey) {
-		return super.getWithAuthentification(super.buildURI(endpoint), new ParameterizedTypeReference<>() {
-		}, apiKey);
+		return super.getWithAuthentification(super.buildURI(endpoint), new ParameterizedTypeReference<>() {}, apiKey);
 	}
 }

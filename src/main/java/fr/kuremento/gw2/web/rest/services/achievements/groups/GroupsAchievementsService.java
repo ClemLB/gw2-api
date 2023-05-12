@@ -21,22 +21,18 @@ public class GroupsAchievementsService extends AbstractService {
 	private final String endpoint;
 
 	public List<String> get() {
-		return super.get(super.buildURI(endpoint), new ParameterizedTypeReference<>() {
-		});
+		return super.get(super.buildURI(endpoint), new ParameterizedTypeReference<>() {});
 	}
 
 	public List<AchievementGroup> get(List<String> ids) throws TooManyArgumentsException {
-		return super.get(super.buildURI(endpoint, ids), new ParameterizedTypeReference<>() {
-		});
+		return super.get(super.buildURI(endpoint, ids), new ParameterizedTypeReference<>() {});
 	}
 
 	public AchievementGroup get(String id) {
-		return super.get(super.buildURI(endpoint, id), new ParameterizedTypeReference<>() {
-		});
+		return super.get(super.buildURI(endpoint, id), new ParameterizedTypeReference<>() {});
 	}
 
 	public List<AchievementGroup> getAll() {
-		return super.get(super.buildURIAllIds(endpoint), new ParameterizedTypeReference<>() {
-		});
+		return super.get(super.buildURIAllIds(endpoint), new ParameterizedTypeReference<>() {});
 	}
 }

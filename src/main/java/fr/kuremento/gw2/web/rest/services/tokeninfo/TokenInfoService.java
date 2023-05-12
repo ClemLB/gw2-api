@@ -14,11 +14,10 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class TokenInfoService extends AbstractService {
 
-    @Value("${application.rest.endpoints.token-info}")
-    private final String endpoint;
+	@Value("${application.rest.endpoints.token-info}")
+	private final String endpoint;
 
-    public TokenInfo getWithAuthentification(String apiKey) {
-        return super.getWithAuthentification(super.buildURI(endpoint), new ParameterizedTypeReference<>() {
-        }, apiKey);
-    }
+	public TokenInfo getWithAuthentification(String apiKey) {
+		return super.getWithAuthentification(super.buildURI(endpoint), new ParameterizedTypeReference<>() {}, apiKey);
+	}
 }

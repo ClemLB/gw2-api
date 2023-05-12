@@ -1,47 +1,47 @@
 logging:
-    level:
-        fr.kuremento.gw2: DEBUG
+  level:
+    fr.kuremento.gw2: DEBUG
 application:
-    rest:
-        endpoints:
-            account-category:
-                account: '/v2/account'
-                achievement: '${application.rest.endpoints.account-category.account}/achievements'
-                bank: '${application.rest.endpoints.account-category.account}/bank'
-                home-category:
-                    cats: '${application.rest.endpoints.account-category.home-category.home}/cats'
-                    home: '${application.rest.endpoints.account-category.account}/home'
-                    nodes: '${application.rest.endpoints.account-category.home-category.home}/nodes'
-                legendary-armory: '${application.rest.endpoints.account-category.account}/legendaryarmory'
-            achievements-category:
-                achievements: '/v2/achievements'
-                categories: '${application.rest.endpoints.achievements-category.achievements}/categories'
-                daily: '${application.rest.endpoints.achievements-category.achievements}/daily'
-                groups: '${application.rest.endpoints.achievements-category.achievements}/groups'
-                tomorrow: '${application.rest.endpoints.achievements-category.daily}/tomorrow'
-            colors: '/v2/colors'
-            guild-category:
-                guild: '/v2/guild'
-                guild-id: '${application.rest.endpoints.guild-category.guild}/{id}'
-            home-category:
-                cats: '/v2/home/cats'
-                nodes: '/v2/home/nodes'
-            items: '/v2/items'
-            minis: '/v2/minis'
-            quaggans: '/v2/quaggans'
-            raids: '/v2/raids'
-            token-info: '/v2/tokeninfo'
-            traits: '/v2/traits'
-        config:
-            base-url: https://api.guildwars2.com
-            connection-timeout: 1000
-            enable-wiretap: false
-            language: 'fr'
-            page-maximum-size: 200
-            read-timeout: 1000
-            schema-version-date: '2022-03-23T19:00:00.000Z'
-            write-timeout: 1000
+  rest:
+    endpoints:
+      account-category:
+        account: '/v2/account'
+        achievement: '${application.rest.endpoints.account-category.account}/achievements'
+        bank: '${application.rest.endpoints.account-category.account}/bank'
+        home-category:
+          cats: '${application.rest.endpoints.account-category.home-category.home}/cats'
+          home: '${application.rest.endpoints.account-category.account}/home'
+          nodes: '${application.rest.endpoints.account-category.home-category.home}/nodes'
+        legendary-armory: '${application.rest.endpoints.account-category.account}/legendaryarmory'
+      achievements-category:
+        achievements: '/v2/achievements'
+        categories: '${application.rest.endpoints.achievements-category.achievements}/categories'
+        daily: '${application.rest.endpoints.achievements-category.achievements}/daily'
+        groups: '${application.rest.endpoints.achievements-category.achievements}/groups'
+        tomorrow: '${application.rest.endpoints.achievements-category.daily}/tomorrow'
+      colors: '/v2/colors'
+      guild-category:
+        guild: '/v2/guild'
+        guild-id: '${application.rest.endpoints.guild-category.guild}/{id}'
+      home-category:
+        cats: '/v2/home/cats'
+        nodes: '/v2/home/nodes'
+      items: '/v2/items'
+      minis: '/v2/minis'
+      quaggans: '/v2/quaggans'
+      raids: '/v2/raids'
+      token-info: '/v2/tokeninfo'
+      traits: '/v2/traits'
+    config:
+      base-url: https://api.guildwars2.com
+      connection-timeout: 1000
+      enable-wiretap: false
+      language: 'fr'
+      page-maximum-size: 200
+      read-timeout: 1000
+      schema-version-date: '2022-03-23T19:00:00.000Z'
+      write-timeout: 1000
 test:
-    api-key:
-        account: '01DB7315-06CE-6448-BF32-C40CF306DFD2EEB21EFB-4D62-40C3-9F11-78AE2EB40926'
-        full: '63D4E7FB-F855-5F47-83B5-5B33DC019AB1DBDF0126-24D2-4895-9B6E-D4B950CDF0D4'
+  api-key:
+    account: '01DB7315-06CE-6448-BF32-C40CF306DFD2EEB21EFB-4D62-40C3-9F11-78AE2EB40926'
+    full: '63D4E7FB-F855-5F47-83B5-5B33DC019AB1DBDF0126-24D2-4895-9B6E-D4B950CDF0D4'

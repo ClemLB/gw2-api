@@ -1,8 +1,8 @@
 package fr.kuremento.gw2.web.rest.models.achievements.categories;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import fr.kuremento.gw2.web.rest.models.achievements.daily.AchievementAccess;
 import fr.kuremento.gw2.web.rest.models.achievements.categories.enums.AchievementInCategoryFlag;
+import fr.kuremento.gw2.web.rest.models.achievements.daily.AchievementAccess;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;

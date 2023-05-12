@@ -9,9 +9,9 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class LegendaryItem {
 
-    @JsonProperty("id")
-    String id;
+	@JsonProperty("id")
+	String id;
 
-    @JsonProperty("count")
-    Integer count;
+	@JsonProperty("count")
+	Integer count;
 }

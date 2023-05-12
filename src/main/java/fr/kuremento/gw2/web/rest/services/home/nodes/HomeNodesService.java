@@ -21,17 +21,14 @@ public class HomeNodesService extends AbstractService {
 	private final String endpoint;
 
 	public List<String> get() {
-		return super.get(super.buildURI(endpoint), new ParameterizedTypeReference<>() {
-		});
+		return super.get(super.buildURI(endpoint), new ParameterizedTypeReference<>() {});
 	}
 
 	public List<Node> get(List<String> ids) throws TooManyArgumentsException {
-		return super.get(super.buildURI(endpoint, ids), new ParameterizedTypeReference<>() {
-		});
+		return super.get(super.buildURI(endpoint, ids), new ParameterizedTypeReference<>() {});
 	}
 
 	public Node get(String id) {
-		return super.get(super.buildURI(endpoint, id), new ParameterizedTypeReference<>() {
-		});
+		return super.get(super.buildURI(endpoint, id), new ParameterizedTypeReference<>() {});
 	}
 }

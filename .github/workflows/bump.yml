@@ -9,24 +9,24 @@
 name: Version bump
 
 on:
-    workflow_run:
-        workflows: [ "Build and Test on Push" ]
-        branches: [ "main" ]
-        types:
-            - completed
+  workflow_run:
+    workflows: [ "Build and Test on Push" ]
+    branches: [ "main" ]
+    types:
+      - completed
 
 jobs:
-    build:
+  build:
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        steps:
-            -   name: Checkout Latest Commit
-                uses: actions/checkout@v3
-            -   name: Bump Version
-                id: bump
-                uses: nnichols/maven-version-bump-action@v3
-                with:
-                    github-token: ${{ secrets.GITHUB_TOKEN }}
-            -   name: Print Version
-                run: "echo 'New Version: ${{steps.bump.outputs.version}}'"
+    steps:
+      - name: Checkout Latest Commit
+        uses: actions/checkout@v3
+      - name: Bump Version
+        id: bump
+        uses: nnichols/maven-version-bump-action@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Print Version
+        run: "echo 'New Version: ${{steps.bump.outputs.version}}'"

@@ -14,16 +14,14 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class GuildService extends AbstractService {
 
-    @Value("${application.rest.endpoints.guild-category.guild-id}")
-    private final String endpoint;
+	@Value("${application.rest.endpoints.guild-category.guild-id}")
+	private final String endpoint;
 
-    public Guild get(String id) {
-        return super.get(super.buildURIWithParams(endpoint, id), new ParameterizedTypeReference<>() {
-        });
-    }
+	public Guild get(String id) {
+		return super.get(super.buildURIWithParams(endpoint, id), new ParameterizedTypeReference<>() {});
+	}
 
-    public Guild getWithAuthentification(String id, String apiKey) {
-        return super.getWithAuthentification(super.buildURIWithParams(endpoint, id), new ParameterizedTypeReference<>() {
-        }, apiKey);
-    }
+	public Guild getWithAuthentification(String id, String apiKey) {
+		return super.getWithAuthentification(super.buildURIWithParams(endpoint, id), new ParameterizedTypeReference<>() {}, apiKey);
+	}
 }

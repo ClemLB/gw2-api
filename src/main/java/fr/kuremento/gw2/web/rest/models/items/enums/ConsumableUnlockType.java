@@ -8,23 +8,11 @@ import lombok.RequiredArgsConstructor;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum ConsumableUnlockType {
 
-	BAG_SLOT("BagSlot"),
-	BANK_TAB("BankTab"),
-	CHAMPION("Champion"),
-	COLLECTIBLE_CAPACITY("CollectibleCapacity"),
-	CONTENT("Content"),
-	CRAFTING_RECIPE("CraftingRecipe"),
-	DYE("Dye"),
-	GLIDER_SKIN("GliderSkin"),
-	MINIPET("Minipet"),
-	MS("Ms"),
-	OUTFIT("Outfit"),
-	RANDOM_ULOCK("RandomUlock"),
-	SHARED_SLOT("SharedSlot"),
-	JADE_BOT_SKIN("JadeBotSkin"),
-	BUILD_LIBRARY_SLOT("BuildLibrarySlot"),
-	GEAR_LOADOUT_TAB("GearLoadoutTab"),
-	BUILD_LOADOUT_TAB("BuildLoadoutTab");
+	BAG_SLOT("BagSlot"), BANK_TAB("BankTab"), CHAMPION("Champion"), COLLECTIBLE_CAPACITY("CollectibleCapacity"), CONTENT("Content"), CRAFTING_RECIPE("CraftingRecipe"), DYE("Dye")
+	, GLIDER_SKIN(
+			"GliderSkin"), MINIPET("Minipet"), MS("Ms"), OUTFIT("Outfit"), RANDOM_ULOCK("RandomUlock"), SHARED_SLOT("SharedSlot"), JADE_BOT_SKIN("JadeBotSkin"),
+	BUILD_LIBRARY_SLOT(
+			"BuildLibrarySlot"), GEAR_LOADOUT_TAB("GearLoadoutTab"), BUILD_LOADOUT_TAB("BuildLoadoutTab");
 
 	private final String value;
 

@@ -9,25 +9,25 @@
 name: Build and Test on Push
 
 on:
-    push:
-        branches:
-            - main
+  push:
+    branches:
+      - main
 
 jobs:
-    build:
+  build:
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        steps:
-            -   name: Checkout the branch
-                uses: actions/checkout@v3
-            -   name: Install Java and Maven
-                uses: actions/setup-java@v3
-                with:
-                    java-version: '17'
-                    distribution: 'temurin'
-                    cache: maven
-            -   name: Build the project
-                run: mvn clean install -DskipTests
-            -   name: Test the project
-                run: mvn org.jacoco:jacoco-maven-plugin:prepare-agent install
+    steps:
+      - name: Checkout the branch
+        uses: actions/checkout@v3
+      - name: Install Java and Maven
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+      - name: Build the project
+        run: mvn clean install -DskipTests
+      - name: Test the project
+        run: mvn org.jacoco:jacoco-maven-plugin:prepare-agent install

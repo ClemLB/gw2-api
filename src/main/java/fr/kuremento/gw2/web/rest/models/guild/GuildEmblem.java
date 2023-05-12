@@ -13,12 +13,12 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class GuildEmblem {
 
-    @JsonProperty("background")
-    GuildEmblemLayer background;
+	@JsonProperty("background")
+	GuildEmblemLayer background;
 
-    @JsonProperty("foreground")
-    GuildEmblemLayer foreground;
+	@JsonProperty("foreground")
+	GuildEmblemLayer foreground;
 
-    @JsonProperty("flags")
-    List<EmblemFlag> flags = new ArrayList<>();
+	@JsonProperty("flags")
+	List<EmblemFlag> flags = new ArrayList<>();
 }

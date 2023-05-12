@@ -9,25 +9,25 @@
 name: Publish
 
 on:
-    release:
-        types: [ prereleased, released ]
+  release:
+    types: [ prereleased, released ]
 
 jobs:
-    build:
+  build:
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        steps:
-            -   uses: actions/checkout@v3
-            -   name: Install Java and Maven
-                uses: actions/setup-java@v3
-                with:
-                    java-version: '17'
-                    distribution: 'temurin'
-                    cache: maven
-            -   name: Build the Project
-                run: mvn clean install -DskipTests
-            -   name: Publish package
-                run: mvn --batch-mode deploy
-                env:
-                    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Java and Maven
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+      - name: Build the Project
+        run: mvn clean install -DskipTests
+      - name: Publish package
+        run: mvn --batch-mode deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

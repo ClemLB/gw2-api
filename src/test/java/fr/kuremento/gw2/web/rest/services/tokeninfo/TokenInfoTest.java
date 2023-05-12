@@ -16,28 +16,28 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class TokenInfoTest {
 
-    @Autowired
-    private TokenInfoService service;
+	@Autowired
+	private TokenInfoService service;
 
-    @Value("${test.api-key.account}")
-    private String apiKey;
+	@Value("${test.api-key.account}")
+	private String apiKey;
 
-    @Test
-    @DisplayName("Check no authentification exception")
-    void test1() {
-        Exception exception = assertThrows(TechnicalException.class, () -> {
-            service.getWithAuthentification("");
-        });
+	@Test
+	@DisplayName("Check no authentification exception")
+	void test1() {
+		Exception exception = assertThrows(TechnicalException.class, () -> {
+			service.getWithAuthentification("");
+		});
 
-        String actualMessage = exception.getMessage();
-        assertEquals("401 UNAUTHORIZED" + " : " + Constants.ERROR_401_403_MESSAGE.getValue(), actualMessage);
-    }
+		String actualMessage = exception.getMessage();
+		assertEquals("401 UNAUTHORIZED" + " : " + Constants.ERROR_401_403_MESSAGE.getValue(), actualMessage);
+	}
 
-    @Test
-    @DisplayName("Check authentification ok")
-    void test2() {
-        AtomicReference<TokenInfo> tokenInfo = new AtomicReference<>();
-        assertDoesNotThrow(() -> tokenInfo.set(service.getWithAuthentification(apiKey)));
-        assertNotNull(tokenInfo.get(), "Service should return informations on token");
-    }
+	@Test
+	@DisplayName("Check authentification ok")
+	void test2() {
+		AtomicReference<TokenInfo> tokenInfo = new AtomicReference<>();
+		assertDoesNotThrow(() -> tokenInfo.set(service.getWithAuthentification(apiKey)));
+		assertNotNull(tokenInfo.get(), "Service should return informations on token");
+	}
 }

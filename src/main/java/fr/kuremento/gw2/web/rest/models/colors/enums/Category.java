@@ -7,22 +7,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Category {
-	GRAY("Gray"),
-	BROWN("Brown"),
-	RED("Red"),
-	ORANGE("Orange"),
-	YELLOW("Yellow"),
-	GREEN("Green"),
-	BLUE("Blue"),
-	PURPLE("Purple"),
-	VIBRANT("Vibrant"),
-	LEATHER("Leather"),
-	METAL("Metal"),
-	STARTER("Starter"),
-	COMMON("Common"),
-	UNCOMMON("Uncommon"),
-	RARE("Rare"),
-	EXCLUSIVE("Exclusive");
+	GRAY("Gray"), BROWN("Brown"), RED("Red"), ORANGE("Orange"), YELLOW("Yellow"), GREEN("Green"), BLUE("Blue"), PURPLE("Purple"), VIBRANT("Vibrant"), LEATHER("Leather"), METAL(
+			"Metal"), STARTER("Starter"), COMMON("Common"), UNCOMMON("Uncommon"), RARE("Rare"), EXCLUSIVE("Exclusive");
 	private final String value;
 
 	@JsonValue

@@ -40,17 +40,14 @@ public class AchievementsService extends AbstractService {
 	}
 
 	public List<Integer> get() {
-		return super.get(super.buildURI(endpoint), new ParameterizedTypeReference<>() {
-		});
+		return super.get(super.buildURI(endpoint), new ParameterizedTypeReference<>() {});
 	}
 
 	public List<Achievements> get(List<Integer> ids) throws TooManyArgumentsException {
-		return super.get(super.buildURI(endpoint, ids), new ParameterizedTypeReference<>() {
-		});
+		return super.get(super.buildURI(endpoint, ids), new ParameterizedTypeReference<>() {});
 	}
 
 	public Achievements get(Integer id) {
-		return super.get(super.buildURI(endpoint, id), new ParameterizedTypeReference<>() {
-		});
+		return super.get(super.buildURI(endpoint, id), new ParameterizedTypeReference<>() {});
 	}
 }

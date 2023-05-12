@@ -21,22 +21,18 @@ public class ColorsService extends AbstractService {
 	private final String endpoint;
 
 	public List<Integer> get() {
-		return super.get(super.buildURI(endpoint), new ParameterizedTypeReference<>() {
-		});
+		return super.get(super.buildURI(endpoint), new ParameterizedTypeReference<>() {});
 	}
 
 	public List<Color> getAll() {
-		return super.get(super.buildURIAllIds(endpoint), new ParameterizedTypeReference<>() {
-		});
+		return super.get(super.buildURIAllIds(endpoint), new ParameterizedTypeReference<>() {});
 	}
 
 	public List<Color> get(List<Integer> ids) throws TooManyArgumentsException {
-		return super.get(super.buildURI(endpoint, ids), new ParameterizedTypeReference<>() {
-		});
+		return super.get(super.buildURI(endpoint, ids), new ParameterizedTypeReference<>() {});
 	}
 
 	public Color get(Integer id) {
-		return super.get(super.buildURI(endpoint, id), new ParameterizedTypeReference<>() {
-		});
+		return super.get(super.buildURI(endpoint, id), new ParameterizedTypeReference<>() {});
 	}
 }

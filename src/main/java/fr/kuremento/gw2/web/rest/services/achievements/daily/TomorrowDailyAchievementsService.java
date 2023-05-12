@@ -18,8 +18,7 @@ public class TomorrowDailyAchievementsService extends AbstractService {
 	private final String endpoint;
 
 	public DailyAchievements get() {
-		return super.get(super.buildURI(endpoint), new ParameterizedTypeReference<>() {
-		});
+		return super.get(super.buildURI(endpoint), new ParameterizedTypeReference<>() {});
 	}
 
 }

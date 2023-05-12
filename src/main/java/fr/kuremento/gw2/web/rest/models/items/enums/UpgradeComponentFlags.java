@@ -8,29 +8,11 @@ import lombok.RequiredArgsConstructor;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum UpgradeComponentFlags {
 
-	AXE("Axe"),
-	DAGGER("Dagger"),
-	FOCUS("Focus"),
-	GREATSWORD("Greatsword"),
-	HAMMER("Hammer"),
-	HARPOON("Harpoon"),
-	LONG_BOW("LongBow"),
-	MACE("Mace"),
-	PISTOL("Pistol"),
-	RIFLE("Rifle"),
-	SCEPTER("Scepter"),
-	SHIELD("Shield"),
-	SHORT_BOW("ShortBow"),
-	SPEARGUN("Speargun"),
-	STAFF("Staff"),
-	SWORD("Sword"),
-	TORCH("Torch"),
-	TRIDENT("Trident"),
-	WARHORN("Warhorn"),
-	HEAVY_ARMOR("HeavyArmor"),
-	MEDIUM_ARMOR("MediumArmor"),
-	LIGHT_ARMOR("LightArmor"),
-	TRINKET("Trinket");
+	AXE("Axe"), DAGGER("Dagger"), FOCUS("Focus"), GREATSWORD("Greatsword"), HAMMER("Hammer"), HARPOON("Harpoon"), LONG_BOW("LongBow"), MACE("Mace"), PISTOL("Pistol"), RIFLE(
+			"Rifle"), SCEPTER(
+			"Scepter"), SHIELD("Shield"), SHORT_BOW("ShortBow"), SPEARGUN("Speargun"), STAFF("Staff"), SWORD("Sword"), TORCH("Torch"), TRIDENT("Trident"), WARHORN("Warhorn"),
+	HEAVY_ARMOR(
+			"HeavyArmor"), MEDIUM_ARMOR("MediumArmor"), LIGHT_ARMOR("LightArmor"), TRINKET("Trinket");
 
 	private final String value;
 
