@@ -1,43 +1,44 @@
 logging:
-  level:
-    ROOT: INFO
+    level:
+        ROOT: INFO
 application:
-  rest:
-    endpoints:
-      account-category:
-        account: '/v2/account'
-        achievement: '${application.rest.endpoints.account-category.account}/achievements'
-        bank: '${application.rest.endpoints.account-category.account}/bank'
-        home-category:
-          cats: '${application.rest.endpoints.account-category.home-category.home}/cats'
-          home: '${application.rest.endpoints.account-category.account}/home'
-          nodes: '${application.rest.endpoints.account-category.home-category.home}/nodes'
-        legendary-armory: '${application.rest.endpoints.account-category.account}/legendaryarmory'
-      achievements-category:
-        achievements: '/v2/achievements'
-        categories: '${application.rest.endpoints.achievements-category.achievements}/categories'
-        daily: '${application.rest.endpoints.achievements-category.achievements}/daily'
-        groups: '${application.rest.endpoints.achievements-category.achievements}/groups'
-        tomorrow: '${application.rest.endpoints.achievements-category.daily}/tomorrow'
-      colors: '/v2/colors'
-      guild-category:
-        guild: '/v2/guild'
-        guild-id: '${application.rest.endpoints.guild-category.guild}/{id}'
-      home-category:
-        cats: '/v2/home/cats'
-        nodes: '/v2/home/nodes'
-      items: '/v2/items'
-      minis: '/v2/minis'
-      quaggans: '/v2/quaggans'
-      raids: '/v2/raids'
-      token-info: '/v2/tokeninfo'
-      traits: '/v2/traits'
-    config:
-      base-url: 'https://api.guildwars2.com'
-      connection-timeout: 1000
-      enable-wiretap: false
-      language: 'fr'
-      page-maximum-size: 200
-      read-timeout: 1000
-      schema-version-date: '2022-11-12T00:00:00.000Z'
-      write-timeout: 1000
+    rest:
+        endpoints:
+            account-category:
+                account: '/v2/account'
+                achievement: '${application.rest.endpoints.account-category.account}/achievements'
+                bank: '${application.rest.endpoints.account-category.account}/bank'
+                home-category:
+                    cats: '${application.rest.endpoints.account-category.home-category.home}/cats'
+                    home: '${application.rest.endpoints.account-category.account}/home'
+                    nodes: '${application.rest.endpoints.account-category.home-category.home}/nodes'
+                legendary-armory: '${application.rest.endpoints.account-category.account}/legendaryarmory'
+                raids: '${application.rest.endpoints.account-category.account}/raids'
+            achievements-category:
+                achievements: '/v2/achievements'
+                categories: '${application.rest.endpoints.achievements-category.achievements}/categories'
+                daily: '${application.rest.endpoints.achievements-category.achievements}/daily'
+                groups: '${application.rest.endpoints.achievements-category.achievements}/groups'
+                tomorrow: '${application.rest.endpoints.achievements-category.daily}/tomorrow'
+            colors: '/v2/colors'
+            guild-category:
+                guild: '/v2/guild'
+                guild-id: '${application.rest.endpoints.guild-category.guild}/{id}'
+            home-category:
+                cats: '/v2/home/cats'
+                nodes: '/v2/home/nodes'
+            items: '/v2/items'
+            minis: '/v2/minis'
+            quaggans: '/v2/quaggans'
+            raids: '/v2/raids'
+            token-info: '/v2/tokeninfo'
+            traits: '/v2/traits'
+        config:
+            base-url: 'https://api.guildwars2.com'
+            connection-timeout: 1000
+            enable-wiretap: false
+            language: 'fr'
+            page-maximum-size: 200
+            read-timeout: 1000
+            schema-version-date: '2022-11-12T00:00:00.000Z'
+            write-timeout: 1000
