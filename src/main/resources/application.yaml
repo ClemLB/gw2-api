@@ -25,6 +25,7 @@ application:
                 guild: '/v2/guild'
                 guild-id: '${application.rest.endpoints.guild-category.guild}/{id}'
                 upgrades: '${application.rest.endpoints.guild-category.guild}/upgrades'
+                upgrades-id: '${application.rest.endpoints.guild-category.guild-id}/upgrades'
             home-category:
                 cats: '/v2/home/cats'
                 nodes: '/v2/home/nodes'

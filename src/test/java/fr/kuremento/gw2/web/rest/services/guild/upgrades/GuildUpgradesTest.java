@@ -1,6 +1,8 @@
 package fr.kuremento.gw2.web.rest.services.guild.upgrades;
 
+import fr.kuremento.gw2.exceptions.TechnicalException;
 import fr.kuremento.gw2.exceptions.TooManyArgumentsException;
+import fr.kuremento.gw2.models.Constants;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,6 +25,9 @@ class GuildUpgradesTest {
 
 	@Value("${application.rest.config.page-maximum-size}")
 	private Integer maxPageSize;
+
+	@Value("${test.api-key.full}")
+	private String apiKey;
 
 	@Test
 	@DisplayName("Check number of upgrades")
@@ -59,6 +65,25 @@ class GuildUpgradesTest {
 	@DisplayName("Check getAll request")
 	void test5() {
 		assertFalse(service.getAll().isEmpty(), "Service should return a list of colors");
+	}
+
+	@Test
+	@DisplayName("Check no authentification")
+	void test6() {
+		Exception exception = assertThrows(TechnicalException.class, () -> {
+			service.getWithAuthentification("116E0C0E-0035-44A9-BB22-4AE3E23127E5", "");
+		});
+
+		String actualMessage = exception.getMessage();
+		assertEquals("401 UNAUTHORIZED" + " : " + Constants.ERROR_401_403_MESSAGE.getValue(), actualMessage);
+	}
+
+	@Test
+	@DisplayName("Check authentification ok")
+	void test7() {
+		AtomicReference<List<Integer>> idsList = new AtomicReference<>();
+		assertDoesNotThrow(() -> idsList.set(service.getWithAuthentification("64682C99-4D9A-EB11-81A8-E944283D67C1", apiKey)));
+		assertNotNull(idsList.get(), "Service should return informations on upgrades for a guild");
 	}
 
 }

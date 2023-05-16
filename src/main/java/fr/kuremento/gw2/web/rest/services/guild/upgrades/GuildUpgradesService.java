@@ -20,6 +20,9 @@ public class GuildUpgradesService extends AbstractService {
 	@Value("${application.rest.endpoints.guild-category.upgrades}")
 	private final String endpoint;
 
+	@Value("${application.rest.endpoints.guild-category.upgrades-id}")
+	private final String endpointWithId;
+
 	public List<Integer> get() {
 		return super.get(super.buildURI(endpoint), new ParameterizedTypeReference<>() {});
 	}
@@ -34,5 +37,9 @@ public class GuildUpgradesService extends AbstractService {
 
 	public List<GuildUpgrade> getAll() {
 		return super.get(super.buildURIAllIds(endpoint), new ParameterizedTypeReference<>() {});
+	}
+
+	public List<Integer> getWithAuthentification(String id, String apiKey) {
+		return super.getWithAuthentification(super.buildURIWithParams(endpointWithId, id), new ParameterizedTypeReference<>() {}, apiKey);
 	}
 }
