@@ -12,6 +12,7 @@ import java.util.List;
 
 /**
  * @see <a href="https://wiki.guildwars2.com/wiki/API:2/guild/upgrades">Wiki</a>
+ * @see <a href="https://wiki.guildwars2.com/wiki/API:2/guild/:id/upgrades">Wiki</a>
  */
 @Service
 @RequiredArgsConstructor
@@ -19,6 +20,9 @@ public class GuildUpgradesService extends AbstractService {
 
 	@Value("${application.rest.endpoints.guild-category.upgrades}")
 	private final String endpoint;
+
+	@Value("${application.rest.endpoints.guild-category.upgrades-id}")
+	private final String endpointWithId;
 
 	public List<Integer> get() {
 		return super.get(super.buildURI(endpoint), new ParameterizedTypeReference<>() {});
@@ -34,5 +38,9 @@ public class GuildUpgradesService extends AbstractService {
 
 	public List<GuildUpgrade> getAll() {
 		return super.get(super.buildURIAllIds(endpoint), new ParameterizedTypeReference<>() {});
+	}
+
+	public List<Integer> getWithAuthentification(String id, String apiKey) {
+		return super.getWithAuthentification(super.buildURIWithParams(endpointWithId, id), new ParameterizedTypeReference<>() {}, apiKey);
 	}
 }
