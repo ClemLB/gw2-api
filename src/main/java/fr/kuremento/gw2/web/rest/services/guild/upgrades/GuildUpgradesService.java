@@ -12,6 +12,7 @@ import java.util.List;
 
 /**
  * @see <a href="https://wiki.guildwars2.com/wiki/API:2/guild/upgrades">Wiki</a>
+ * @see <a href="https://wiki.guildwars2.com/wiki/API:2/guild/:id/upgrades">Wiki</a>
  */
 @Service
 @RequiredArgsConstructor
