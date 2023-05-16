@@ -44,4 +44,10 @@ class GuildTest {
 		assertNotNull(guild.getId(), "Un ID de guilde devrait être retourné");
 		assertNull(guild.getInfluence(), "L'influence ne devrait pas être remontée sans authentification");
 	}
+
+	@Test
+	@DisplayName("Check upgrades service")
+	void test4() {
+		assertNotNull(service.upgrades(), "Service should not null");
+	}
 }
