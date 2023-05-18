@@ -31,9 +31,7 @@ class AccountTest {
 	@Test
 	@DisplayName("Check no authentification exception")
 	void test2() {
-		Exception exception = assertThrows(TechnicalException.class, () -> {
-			service.getWithAuthentification("");
-		});
+		Exception exception = assertThrows(TechnicalException.class, () -> service.getWithAuthentification(""));
 
 		String actualMessage = exception.getMessage();
 		assertEquals("401 UNAUTHORIZED" + " : " + Constants.ERROR_401_403_MESSAGE.getValue(), actualMessage);
