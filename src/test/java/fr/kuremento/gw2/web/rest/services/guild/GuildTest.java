@@ -50,4 +50,10 @@ class GuildTest {
 	void test4() {
 		assertNotNull(service.upgrades(), "Service should not null");
 	}
+
+	@Test
+	@DisplayName("Check treasury service")
+	void test5() {
+		assertNotNull(service.treasury(), "Service should not null");
+	}
 }
