@@ -2,6 +2,7 @@ package fr.kuremento.gw2.web.rest.services.guild;
 
 import fr.kuremento.gw2.web.rest.models.guild.Guild;
 import fr.kuremento.gw2.web.rest.services.AbstractService;
+import fr.kuremento.gw2.web.rest.services.guild.treasury.GuildTreasuryService;
 import fr.kuremento.gw2.web.rest.services.guild.upgrades.GuildUpgradesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,9 +20,14 @@ public class GuildService extends AbstractService {
 	private final String endpoint;
 
 	private final GuildUpgradesService guildUpgradesService;
+	private final GuildTreasuryService guildTreasuryService;
 
 	public GuildUpgradesService upgrades() {
 		return this.guildUpgradesService;
+	}
+
+	public GuildTreasuryService treasury() {
+		return this.guildTreasuryService;
 	}
 
 	public Guild get(String id) {
