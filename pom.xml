@@ -64,6 +64,7 @@
         <openapi-generator-maven-plugin.version>6.6.0</openapi-generator-maven-plugin.version>
         <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
         <spring-web.version>6.0.11</spring-web.version>
+        <commons-fileupload.version>1.5</commons-fileupload.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -155,6 +156,11 @@
                 <artifactId>spring-webmvc</artifactId>
                 <version>${spring-web.version}</version>
             </dependency>
+            <dependency>
+                <groupId>commons-fileupload</groupId>
+                <artifactId>commons-fileupload</artifactId>
+                <version>${commons-fileupload.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <dependencies>
@@ -178,12 +184,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
             <optional>false</optional>
-            <exclusions>
-                <exclusion>
-                    <groupId>commons-fileupload</groupId>
-                    <artifactId>commons-fileupload</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
