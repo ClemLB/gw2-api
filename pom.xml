@@ -63,7 +63,6 @@
         <jackson-databind-nullable.version>0.2.6</jackson-databind-nullable.version>
         <openapi-generator-maven-plugin.version>6.6.0</openapi-generator-maven-plugin.version>
         <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
-        <spring-web.version>6.0.11</spring-web.version>
         <commons-fileupload.version>1.5</commons-fileupload.version>
     </properties>
     <dependencyManagement>
@@ -145,16 +144,6 @@
                 <groupId>org.yaml</groupId>
                 <artifactId>snakeyaml</artifactId>
                 <version>${snakeyaml.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-web</artifactId>
-                <version>${spring-web.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-webmvc</artifactId>
-                <version>${spring-web.version}</version>
             </dependency>
             <dependency>
                 <groupId>commons-fileupload</groupId>
