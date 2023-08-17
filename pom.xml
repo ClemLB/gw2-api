@@ -55,12 +55,15 @@
         <wiremock-jre8.version>2.33.2</wiremock-jre8.version>
         <jackson.version>2.14.0-rc1</jackson.version>
         <reactor-netty.version>1.0.24</reactor-netty.version>
-        <snakeyaml.version>1.33</snakeyaml.version>
+        <snakeyaml.version>2.1</snakeyaml.version>
         <commons-text.version>1.10.0</commons-text.version>
         <commons-collections4.version>4.4</commons-collections4.version>
         <netty-resolver-dns-native-macos.version>4.1.91.Final</netty-resolver-dns-native-macos.version>
         <springdoc-openapi.version>1.7.0</springdoc-openapi.version>
         <jackson-databind-nullable.version>0.2.6</jackson-databind-nullable.version>
+        <openapi-generator-maven-plugin.version>6.6.0</openapi-generator-maven-plugin.version>
+        <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
+        <spring-web.version>6.0.11</spring-web.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -99,6 +102,12 @@
                 <artifactId>jackson-databind-nullable</artifactId>
                 <version>${jackson-databind-nullable.version}</version>
             </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${javax.servlet-api.version}</version>
+                <scope>provided</scope>
+            </dependency>
 
             <!-- Fix vulnerabilities -->
             <dependency>
@@ -136,6 +145,16 @@
                 <artifactId>snakeyaml</artifactId>
                 <version>${snakeyaml.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>${spring-web.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${spring-web.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <dependencies>
@@ -159,6 +178,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
             <optional>false</optional>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-fileupload</groupId>
+                    <artifactId>commons-fileupload</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -285,6 +310,10 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+            </plugin>
         </plugins>
         <pluginManagement>
             <plugins>
@@ -330,6 +359,32 @@
                             <goals>
                                 <goal>verify</goal>
                             </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.openapitools</groupId>
+                    <artifactId>openapi-generator-maven-plugin</artifactId>
+                    <version>${openapi-generator-maven-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>1</id>
+                            <goals>
+                                <goal>generate</goal>
+                            </goals>
+                            <configuration>
+                                <inputSpec>${project.basedir}/src/main/resources/swagger/api-gw2.yaml</inputSpec>
+                                <generatorName>spring</generatorName>
+                                <apiPackage>fr.kuremento.gw2.web.rest</apiPackage>
+                                <modelPackage>fr.kuremento.gw2.web.rest.models</modelPackage>
+                                <skipValidateSpec>true</skipValidateSpec>
+                                <configOptions>
+                                    <useTags>true</useTags>
+                                    <delegatePattern>false</delegatePattern>
+                                    <title>api-gw2</title>
+                                    <interfaceOnly>true</interfaceOnly>
+                                </configOptions>
+                            </configuration>
                         </execution>
                     </executions>
                 </plugin>
