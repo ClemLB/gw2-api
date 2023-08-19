@@ -13,8 +13,9 @@ servers:
   - url: 'https://api.guildwars2.com'
 tags:
   - name: Colors
-    description: This resource returns all dye colors in the game, including localized names and their color component information.
-
+    description: This resource returns all dye colors in the game, including localized names and their color component information
+  - name: Minis
+    description: This resource returns all minis in the game
 paths:
   /v2/colors:
     get:
@@ -22,6 +23,7 @@ paths:
         - Colors
       summary: Return all dye colors id
       description: Return all dye colors id
+      operationId: getColors
       responses:
         '200':
           description: OK
@@ -37,6 +39,7 @@ paths:
         - Colors
       summary: Return a dye color
       description: Return a dye color
+      operationId: getOneColor
       parameters:
         - name: id
           in: path
@@ -50,9 +53,44 @@ paths:
           content:
             application/json:
               schema:
+                $ref: '#/components/schemas/Color'
+  /v2/minis:
+    get:
+      tags:
+        - Minis
+      summary: Return all minis id
+      description: Return all minis id
+      operationId: getMinis
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Color'
+                  $ref: '#/components/schemas/IdInt'
+  /v2/minis/{id}:
+    get:
+      tags:
+        - Minis
+      summary: Return a mini
+      description: Return a mini
+      operationId: getOneMini
+      parameters:
+        - name: id
+          in: path
+          description: Id of requested mini
+          required: true
+          schema:
+            $ref: '#/components/schemas/IdInt'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mini'
 components:
   schemas:
 
@@ -139,3 +177,34 @@ components:
           items:
             type: string
             enum: [ Gray, Brown, Red, Orange, Yellow, Green, Blue, Purple, Vibrant, Leather, Metal, Starter, Common, Uncommon, Rare, Exclusive ]
+
+    Mini:
+      type: object
+      required:
+        - id
+        - name
+        - icon
+        - order
+        - item_id
+      properties:
+        id:
+          $ref: '#/components/schemas/IdInt'
+        name:
+          type: string
+          description: The mini name
+          example: "Mini-Rytlock"
+        unlock:
+          type: string
+          description: A description of how to unlock the mini (only present on a few entries)
+        icon:
+          type: string
+          description: The mini icon
+          example: "https://render.guildwars2.com/file/795ED1B945A29EC3E3066797DF57FFB25ABAA631/340551.png"
+        order:
+          type: integer
+          description: The sort order that is used for displaying the mini in-game
+          example: 1
+        item_id:
+          type: integer
+          description: The item which unlocks the mini and can be resolved against /v2/items
+          example: 20370
