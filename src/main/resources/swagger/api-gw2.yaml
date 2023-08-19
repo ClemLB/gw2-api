@@ -15,8 +15,44 @@ tags:
   - name: Colors
     description: This resource returns all dye colors in the game, including localized names and their color component information.
 
-paths: { }
-
+paths:
+  /v2/colors:
+    get:
+      tags:
+        - Colors
+      summary: Return all dye colors id
+      description: Return all dye colors id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IdInt'
+  /v2/colors/{id}:
+    get:
+      tags:
+        - Colors
+      summary: Return a dye color
+      description: Return a dye color
+      parameters:
+        - name: id
+          in: path
+          description: Id of requested dye color
+          required: true
+          schema:
+            $ref: '#/components/schemas/IdInt'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Color'
 components:
   schemas:
 
