@@ -366,8 +366,9 @@
                                 <generatorName>spring</generatorName>
                                 <apiPackage>fr.kuremento.gw2.web.rest</apiPackage>
                                 <modelPackage>fr.kuremento.gw2.web.rest.models</modelPackage>
-                                <skipValidateSpec>true</skipValidateSpec>
+                                <skipValidateSpec>false</skipValidateSpec>
                                 <configOptions>
+                                    <serializableModel>true</serializableModel>
                                     <useTags>true</useTags>
                                     <delegatePattern>false</delegatePattern>
                                     <title>api-gw2</title>

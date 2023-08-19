@@ -16,6 +16,8 @@ tags:
     description: This resource returns all dye colors in the game, including localized names and their color component information
   - name: Minis
     description: This resource returns all minis in the game
+  - name: Traits
+    description: This resource returns information about specific traits which are contained within specializations
 paths:
   /v2/colors:
     get:
@@ -91,6 +93,44 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Mini'
+  /v2/traits:
+    get:
+      tags:
+        - Traits
+      summary: Return all traits id
+      description: Return all traits id
+      operationId: getTraits
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IdInt'
+  /v2/traits/{id}:
+    get:
+      tags:
+        - Traits
+      summary: Return a trait
+      description: Return a trait
+      operationId: getOneTrait
+      parameters:
+        - name: id
+          in: path
+          description: Id of requested trait
+          required: true
+          schema:
+            $ref: '#/components/schemas/IdInt'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trait'
+
 components:
   schemas:
 
@@ -208,3 +248,332 @@ components:
           type: integer
           description: The item which unlocks the mini and can be resolved against /v2/items
           example: 20370
+
+    Trait:
+      type: object
+      required:
+        - id
+        - name
+        - icon
+        - description
+        - specialization
+        - tier
+        - slot
+      properties:
+        id:
+          $ref: '#/components/schemas/IdInt'
+        name:
+          type: string
+          description: The trait name
+          example: "Raging Storm"
+        description:
+          type: string
+          description: The trait description
+          example: "Critically striking a foe grants fury. Gain ferocity while under the effects of fury."
+        icon:
+          type: string
+          description: The trait's icon URL
+          example: "https://render.guildwars2.com/file/74A414B378B54431EF183A37DA37CCFFFC0E04BD/2175040.png"
+        specialization:
+          type: integer
+          description: The id of the specialization this trait belongs to
+          example: 41
+        tier:
+          type: integer
+          description: The trait's tier (Adept, Master, Grandmaster) as a value from 1-3. Elite specializations also contain a tier 0 minor trait, describing which weapon the elite specialization gains access to
+          example: 2
+          minimum: 0
+          maximum: 3
+        slot:
+          type: string
+          description: Either Major or Minor depending on the trait's slot. Minor traits are the ones given immediately when choosing a specialization
+          example: "Minor"
+          enum: [ Minor, Major ]
+        facts:
+          type: array
+          description: A list of tooltip facts associated with the trait itself
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/AttributeAdjust'
+              - $ref: '#/components/schemas/Buff'
+              - $ref: '#/components/schemas/BuffConversion'
+              - $ref: '#/components/schemas/ComboField'
+        traited_facts:
+          type: array
+          description: A list of additions or changes to tooltip facts where there is interplay between traits
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/TraitedAttributeAdjust'
+              - $ref: '#/components/schemas/TraitedBuff'
+              - $ref: '#/components/schemas/TraitedBuffConversion'
+              - $ref: '#/components/schemas/TraitedComboField'
+
+    AttributeAdjust:
+      type: object
+      required:
+        - value
+        - target
+        - type
+      properties:
+        text:
+          type: string
+          description: An arbitrary localized string describing the fact. Not included with all facts
+          example: "AttributeAdjust"
+        icon:
+          type: string
+          description: A URL to the icon shown with the fact. Not included with all facts
+          example: "https://render.guildwars2.com/file/D767B963D120F077C3B163A05DC05A7317D7DB70/156651.png"
+        type:
+          type: string
+          enum: [ AttributeAdjust, Buff, BuffConversion, ComboField, ComboFinisher, Damage, Distance, NoData, Number, Percent, PrefixedBuff, Radius, Range, Recharge, Time, Unblockable ]
+          example: "AttributeAdjust"
+        value:
+          type: integer
+          description: The amount target gets adjusted, based on a level 80 character at base stats
+          example: 150
+        target:
+          type: string
+          description: The attribute this fact adjusts. Note that a value of Healing indicates the fact is a heal, and Ferocity is encoded at CritDamage
+          example: "CritDamage"
+
+    TraitedAttributeAdjust:
+      type: object
+      required:
+        - value
+        - target
+        - type
+        - required_trait
+      properties:
+        text:
+          type: string
+          description: An arbitrary localized string describing the fact. Not included with all facts
+          example: "AttributeAdjust"
+        icon:
+          type: string
+          description: A URL to the icon shown with the fact. Not included with all facts
+          example: "https://render.guildwars2.com/file/D767B963D120F077C3B163A05DC05A7317D7DB70/156651.png"
+        type:
+          type: string
+          enum: [ AttributeAdjust, Buff, BuffConversion, ComboField, ComboFinisher, Damage, Distance, NoData, Number, Percent, PrefixedBuff, Radius, Range, Recharge, Time, Unblockable ]
+          example: "AttributeAdjust"
+        required_trait:
+          type: integer
+          description: Specifies which trait has to be selected in order for this fact to take effect
+          example: 340
+        overrides:
+          type: integer
+          description: This specifies the array index of the facts object it will override, if the trait specified in requires_trait is selected. If this field is omitted, then the fact contained within this object is to be appended to the existing facts array
+          example: 1
+        value:
+          type: integer
+          description: The amount target gets adjusted, based on a level 80 character at base stats
+          example: 150
+        target:
+          type: string
+          description: The attribute this fact adjusts. Note that a value of Healing indicates the fact is a heal, and Ferocity is encoded at CritDamage
+          example: "CritDamage"
+
+    Buff:
+      type: object
+      required:
+        - status
+        - type
+      properties:
+        text:
+          type: string
+          description: An arbitrary localized string describing the fact. Not included with all facts
+          example: "Buff"
+        icon:
+          type: string
+          description: A URL to the icon shown with the fact. Not included with all facts
+          example: "https://render.guildwars2.com/file/D767B963D120F077C3B163A05DC05A7317D7DB70/156651.png"
+        type:
+          type: string
+          enum: [ AttributeAdjust, Buff, BuffConversion, ComboField, ComboFinisher, Damage, Distance, NoData, Number, Percent, PrefixedBuff, Radius, Range, Recharge, Time, Unblockable ]
+          example: "Buff"
+        status:
+          type: string
+          description: The boon, condition, or effect referred to by the fact
+          example: "Vulnerability"
+        description:
+          type: string
+          description: The description of the status effect
+          example: "Damage and condition damage taken are increased; stacks intensity."
+        apply_count:
+          type: integer
+          description: The number of stacks applied
+          example: 1
+        duration:
+          type: integer
+          description: The duration of the effect in seconds. Note that some facts of this type are just used to display the buff icon with text; in this case, duration is usually 0, or omitted entirely
+          example: 5
+
+    TraitedBuff:
+      type: object
+      required:
+        - status
+        - type
+        - required_trait
+      properties:
+        text:
+          type: string
+          description: An arbitrary localized string describing the fact. Not included with all facts
+          example: "Buff"
+        icon:
+          type: string
+          description: A URL to the icon shown with the fact. Not included with all facts
+          example: "https://render.guildwars2.com/file/D767B963D120F077C3B163A05DC05A7317D7DB70/156651.png"
+        type:
+          type: string
+          enum: [ AttributeAdjust, Buff, BuffConversion, ComboField, ComboFinisher, Damage, Distance, NoData, Number, Percent, PrefixedBuff, Radius, Range, Recharge, Time, Unblockable ]
+          example: "Buff"
+        required_trait:
+          type: integer
+          description: Specifies which trait has to be selected in order for this fact to take effect
+          example: 340
+        overrides:
+          type: integer
+          description: This specifies the array index of the facts object it will override, if the trait specified in requires_trait is selected. If this field is omitted, then the fact contained within this object is to be appended to the existing facts array
+          example: 1
+        status:
+          type: string
+          description: The boon, condition, or effect referred to by the fact
+          example: "Vulnerability"
+        description:
+          type: string
+          description: The description of the status effect
+          example: "Damage and condition damage taken are increased; stacks intensity."
+        apply_count:
+          type: integer
+          description: The number of stacks applied
+          example: 1
+        duration:
+          type: integer
+          description: The duration of the effect in seconds. Note that some facts of this type are just used to display the buff icon with text; in this case, duration is usually 0, or omitted entirely
+          example: 5
+
+    BuffConversion:
+      type: object
+      required:
+        - status
+        - type
+      properties:
+        text:
+          type: string
+          description: An arbitrary localized string describing the fact. Not included with all facts
+          example: "BuffConversion"
+        icon:
+          type: string
+          description: A URL to the icon shown with the fact. Not included with all facts
+          example: "https://render.guildwars2.com/file/D767B963D120F077C3B163A05DC05A7317D7DB70/156651.png"
+        type:
+          type: string
+          enum: [ AttributeAdjust, Buff, BuffConversion, ComboField, ComboFinisher, Damage, Distance, NoData, Number, Percent, PrefixedBuff, Radius, Range, Recharge, Time, Unblockable ]
+          example: "BuffConversion"
+        source:
+          type: string
+          description: The attribute that is used to calculate the attribute gain
+          example: "Toughness"
+        percent:
+          type: string
+          description: How much of the source attribute is added to target
+          example: "10"
+        target:
+          type: string
+          description: The attribute that gets added to
+          example: "ConditionDamage"
+
+    TraitedBuffConversion:
+      type: object
+      required:
+        - status
+        - type
+        - required_trait
+      properties:
+        text:
+          type: string
+          description: An arbitrary localized string describing the fact. Not included with all facts
+          example: "BuffConversion"
+        icon:
+          type: string
+          description: A URL to the icon shown with the fact. Not included with all facts
+          example: "https://render.guildwars2.com/file/D767B963D120F077C3B163A05DC05A7317D7DB70/156651.png"
+        type:
+          type: string
+          enum: [ AttributeAdjust, Buff, BuffConversion, ComboField, ComboFinisher, Damage, Distance, NoData, Number, Percent, PrefixedBuff, Radius, Range, Recharge, Time, Unblockable ]
+          example: "BuffConversion"
+        required_trait:
+          type: integer
+          description: Specifies which trait has to be selected in order for this fact to take effect
+          example: 340
+        overrides:
+          type: integer
+          description: This specifies the array index of the facts object it will override, if the trait specified in requires_trait is selected. If this field is omitted, then the fact contained within this object is to be appended to the existing facts array
+          example: 1
+        source:
+          type: string
+          description: The attribute that is used to calculate the attribute gain
+          example: "Toughness"
+        percent:
+          type: string
+          description: How much of the source attribute is added to target
+          example: "10"
+        target:
+          type: string
+          description: The attribute that gets added to
+          example: "ConditionDamage"
+
+    ComboField:
+      type: object
+      required:
+        - type
+      properties:
+        text:
+          type: string
+          description: An arbitrary localized string describing the fact. Not included with all facts
+          example: "ComboField"
+        icon:
+          type: string
+          description: A URL to the icon shown with the fact. Not included with all facts
+          example: "https://render.guildwars2.com/file/D767B963D120F077C3B163A05DC05A7317D7DB70/156651.png"
+        type:
+          type: string
+          enum: [ AttributeAdjust, Buff, BuffConversion, ComboField, ComboFinisher, Damage, Distance, NoData, Number, Percent, PrefixedBuff, Radius, Range, Recharge, Time, Unblockable ]
+          example: "ComboField"
+        field_type:
+          type: string
+          description: The type of field
+          enum: [Air, Dark, Fire, Ice, Light, Lightning, Poison, Smoke, Ethereal, Water]
+          example: "Air"
+
+    TraitedComboField:
+      type: object
+      required:
+        - type
+        - required_trait
+      properties:
+        text:
+          type: string
+          description: An arbitrary localized string describing the fact. Not included with all facts
+          example: "ComboField"
+        icon:
+          type: string
+          description: A URL to the icon shown with the fact. Not included with all facts
+          example: "https://render.guildwars2.com/file/D767B963D120F077C3B163A05DC05A7317D7DB70/156651.png"
+        type:
+          type: string
+          enum: [ AttributeAdjust, Buff, BuffConversion, ComboField, ComboFinisher, Damage, Distance, NoData, Number, Percent, PrefixedBuff, Radius, Range, Recharge, Time, Unblockable ]
+          example: "ComboField"
+        required_trait:
+          type: integer
+          description: Specifies which trait has to be selected in order for this fact to take effect
+          example: 340
+        overrides:
+          type: integer
+          description: This specifies the array index of the facts object it will override, if the trait specified in requires_trait is selected. If this field is omitted, then the fact contained within this object is to be appended to the existing facts array
+          example: 1
+        field_type:
+          type: string
+          description: The type of field
+          enum: [ Air, Dark, Fire, Ice, Light, Lightning, Poison, Smoke, Ethereal, Water ]
+          example: "Air"
