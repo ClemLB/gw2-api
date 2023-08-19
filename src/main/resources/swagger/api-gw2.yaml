@@ -326,6 +326,7 @@ components:
         type:
           type: string
           enum: [ AttributeAdjust, Buff, BuffConversion, ComboField, ComboFinisher, Damage, Distance, NoData, Number, Percent, PrefixedBuff, Radius, Range, Recharge, Time, Unblockable ]
+          description: Defines what additional fields the object will contain, and what type of fact it is
           example: "AttributeAdjust"
         value:
           type: integer
@@ -355,6 +356,7 @@ components:
         type:
           type: string
           enum: [ AttributeAdjust, Buff, BuffConversion, ComboField, ComboFinisher, Damage, Distance, NoData, Number, Percent, PrefixedBuff, Radius, Range, Recharge, Time, Unblockable ]
+          description: Defines what additional fields the object will contain, and what type of fact it is
           example: "AttributeAdjust"
         required_trait:
           type: integer
@@ -390,6 +392,7 @@ components:
         type:
           type: string
           enum: [ AttributeAdjust, Buff, BuffConversion, ComboField, ComboFinisher, Damage, Distance, NoData, Number, Percent, PrefixedBuff, Radius, Range, Recharge, Time, Unblockable ]
+          description: Defines what additional fields the object will contain, and what type of fact it is
           example: "Buff"
         status:
           type: string
@@ -426,6 +429,7 @@ components:
         type:
           type: string
           enum: [ AttributeAdjust, Buff, BuffConversion, ComboField, ComboFinisher, Damage, Distance, NoData, Number, Percent, PrefixedBuff, Radius, Range, Recharge, Time, Unblockable ]
+          description: Defines what additional fields the object will contain, and what type of fact it is
           example: "Buff"
         required_trait:
           type: integer
@@ -469,6 +473,7 @@ components:
         type:
           type: string
           enum: [ AttributeAdjust, Buff, BuffConversion, ComboField, ComboFinisher, Damage, Distance, NoData, Number, Percent, PrefixedBuff, Radius, Range, Recharge, Time, Unblockable ]
+          description: Defines what additional fields the object will contain, and what type of fact it is
           example: "BuffConversion"
         source:
           type: string
@@ -501,6 +506,7 @@ components:
         type:
           type: string
           enum: [ AttributeAdjust, Buff, BuffConversion, ComboField, ComboFinisher, Damage, Distance, NoData, Number, Percent, PrefixedBuff, Radius, Range, Recharge, Time, Unblockable ]
+          description: Defines what additional fields the object will contain, and what type of fact it is
           example: "BuffConversion"
         required_trait:
           type: integer
@@ -527,6 +533,7 @@ components:
       type: object
       required:
         - type
+        - field_type
       properties:
         text:
           type: string
@@ -539,6 +546,7 @@ components:
         type:
           type: string
           enum: [ AttributeAdjust, Buff, BuffConversion, ComboField, ComboFinisher, Damage, Distance, NoData, Number, Percent, PrefixedBuff, Radius, Range, Recharge, Time, Unblockable ]
+          description: Defines what additional fields the object will contain, and what type of fact it is
           example: "ComboField"
         field_type:
           type: string
@@ -551,6 +559,7 @@ components:
       required:
         - type
         - required_trait
+        - field_type
       properties:
         text:
           type: string
@@ -563,6 +572,7 @@ components:
         type:
           type: string
           enum: [ AttributeAdjust, Buff, BuffConversion, ComboField, ComboFinisher, Damage, Distance, NoData, Number, Percent, PrefixedBuff, Radius, Range, Recharge, Time, Unblockable ]
+          description: Defines what additional fields the object will contain, and what type of fact it is
           example: "ComboField"
         required_trait:
           type: integer
@@ -577,3 +587,68 @@ components:
           description: The type of field
           enum: [ Air, Dark, Fire, Ice, Light, Lightning, Poison, Smoke, Ethereal, Water ]
           example: "Air"
+
+    ComboFinisher:
+      type: object
+      required:
+        - type
+      properties:
+        text:
+          type: string
+          description: An arbitrary localized string describing the fact. Not included with all facts
+          example: "ComboFinisher"
+        icon:
+          type: string
+          description: A URL to the icon shown with the fact. Not included with all facts
+          example: "https://render.guildwars2.com/file/D767B963D120F077C3B163A05DC05A7317D7DB70/156651.png"
+        type:
+          type: string
+          enum: [ AttributeAdjust, Buff, BuffConversion, ComboField, ComboFinisher, Damage, Distance, NoData, Number, Percent, PrefixedBuff, Radius, Range, Recharge, Time, Unblockable ]
+          description: Defines what additional fields the object will contain, and what type of fact it is
+          example: "ComboFinisher"
+        finisher_type:
+          type: string
+          enum: [Blast, Leap, Projectile, Whirl]
+          description: The type of finisher
+          example: "Blast"
+        percent:
+          type: integer
+          description: The percent chance that the finisher will trigger
+          example: 100
+
+    TraitedComboFinisher:
+      type: object
+      required:
+        - type
+        - required_trait
+      properties:
+        text:
+          type: string
+          description: An arbitrary localized string describing the fact. Not included with all facts
+          example: "ComboFinisher"
+        icon:
+          type: string
+          description: A URL to the icon shown with the fact. Not included with all facts
+          example: "https://render.guildwars2.com/file/D767B963D120F077C3B163A05DC05A7317D7DB70/156651.png"
+        type:
+          type: string
+          enum: [ AttributeAdjust, Buff, BuffConversion, ComboField, ComboFinisher, Damage, Distance, NoData, Number, Percent, PrefixedBuff, Radius, Range, Recharge, Time, Unblockable ]
+          description: Defines what additional fields the object will contain, and what type of fact it is
+          example: "ComboFinisher"
+        required_trait:
+          type: integer
+          description: Specifies which trait has to be selected in order for this fact to take effect
+          example: 340
+        overrides:
+          type: integer
+          description: This specifies the array index of the facts object it will override, if the trait specified in requires_trait is selected. If this field is omitted, then the fact contained within this object is to be appended to the existing facts array
+          example: 1
+        finisher_type:
+          type: string
+          enum: [ Blast, Leap, Projectile, Whirl ]
+          description: The type of finisher
+          example: "Blast"
+        percent:
+          type: integer
+          description: The percent chance that the finisher will trigger
+          example: 100
