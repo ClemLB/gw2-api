@@ -74,4 +74,4 @@ components:
           description: If the given subtoken is restricted to a list of URLs, contains an array of strings describing what endpoints are available to this token
           items:
             type: string
-            example:
+            example: "url"
