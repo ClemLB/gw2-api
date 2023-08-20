@@ -63,12 +63,12 @@ components:
           type: string
           description: If a subtoken is given, ISO8601 timestamp indicating when the given subtoken expires
           format: date-time
-          example:
+          example: "2022-07-10 15:00:00.000"
         issued_at:
           type: string
           description: If a subtoken is given, ISO8601 timestamp indicating when the given subtoken was created
           format: date-time
-          example:
+          example: "2020-07-10 15:00:00.000"
         urls:
           type: array
           description: If the given subtoken is restricted to a list of URLs, contains an array of strings describing what endpoints are available to this token
