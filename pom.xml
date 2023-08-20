@@ -436,6 +436,26 @@
                                 </configOptions>
                             </configuration>
                         </execution>
+                        <execution>
+                            <id>token</id>
+                            <goals>
+                                <goal>generate</goal>
+                            </goals>
+                            <configuration>
+                                <inputSpec>${project.basedir}/src/main/resources/swagger/token.yaml</inputSpec>
+                                <generatorName>spring</generatorName>
+                                <apiPackage>fr.kuremento.gw2.web.rest</apiPackage>
+                                <modelPackage>fr.kuremento.gw2.web.rest.models.token</modelPackage>
+                                <skipValidateSpec>false</skipValidateSpec>
+                                <configOptions>
+                                    <serializableModel>true</serializableModel>
+                                    <useTags>true</useTags>
+                                    <delegatePattern>false</delegatePattern>
+                                    <title>api-gw2</title>
+                                    <interfaceOnly>true</interfaceOnly>
+                                </configOptions>
+                            </configuration>
+                        </execution>
                     </executions>
                 </plugin>
             </plugins>
