@@ -1,0 +1,136 @@
+openapi: 3.0.3
+info:
+  title: Guild Wars 2 API
+  description: >-
+    The Guild Wars 2 API enables third-party applications to access data
+    directly from the Guild Wars 2 servers.
+  termsOfService: 'https://www.guildwars2.com/en/legal/guild-wars-2-content-terms-of-use/'
+  version: '2'
+externalDocs:
+  description: Wiki Documentation
+  url: 'https://wiki.guildwars2.com/wiki/API:Main'
+servers:
+  - url: 'https://api.guildwars2.com'
+tags:
+  - name: Colors
+    description: This resource returns all dye colors in the game, including localized names and their color component information
+paths:
+  /v2/colors:
+    get:
+      tags:
+        - Colors
+      summary: Return all dye colors id
+      description: Return all dye colors id
+      operationId: getColors
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'commons.yaml#/components/schemas/IdInt'
+  /v2/colors/{id}:
+    get:
+      tags:
+        - Colors
+      summary: Return a dye color
+      description: Return a dye color
+      operationId: getOneColor
+      parameters:
+        - name: id
+          in: path
+          description: Id of requested dye color
+          required: true
+          schema:
+            $ref: 'commons.yaml#/components/schemas/IdInt'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Color'
+
+components:
+  schemas:
+
+    BaseRgb:
+      type: array
+      description: A list containing RGB values
+      minItems: 3
+      maxItems: 3
+      example: [ 128, 26, 26 ]
+      items:
+        type: integer
+        minimum: 0
+        maximum: 255
+
+    Appearence:
+      type: object
+      description: Detailed information of on appearance
+      properties:
+        brightness:
+          type: integer
+          description: The brightness
+          example: 22
+        contrast:
+          type: number
+          format: float
+          description: The contrast
+          example: 1.25
+        hue:
+          type: integer
+          description: The hue in the HSL colorspace
+          example: 196
+        saturation:
+          type: number
+          format: float
+          description: The saturation in the HSL colorspace
+          example: 0.742188
+        lightness:
+          type: number
+          format: float
+          description: The lightness in the HSL colorspace
+          example: 1.32812
+        rgb:
+          $ref: '#/components/schemas/BaseRgb'
+
+    Color:
+      type: object
+      required:
+        - id
+        - name
+        - baseRgb
+        - cloth
+        - leather
+        - metal
+        - categories
+      properties:
+        id:
+          $ref: 'commons.yaml#/components/schemas/IdInt'
+        name:
+          type: string
+          description: The color name
+          example: "Sky"
+        base_rgb:
+          $ref: '#/components/schemas/BaseRgb'
+        cloth:
+          $ref: '#/components/schemas/Appearence'
+        leather:
+          $ref: '#/components/schemas/Appearence'
+        metal:
+          $ref: '#/components/schemas/Appearence'
+        fur:
+          $ref: '#/components/schemas/Appearence'
+        item:
+          type: integer
+          description: ID of the dye item
+          example: 20370
+        categories:
+          type: array
+          example: [ "Blue", "Vibrant", "Rare" ]
+          items:
+            type: string
+            enum: [ Gray, Brown, Red, Orange, Yellow, Green, Blue, Purple, Vibrant, Leather, Metal, Starter, Common, Uncommon, Rare, Exclusive ]

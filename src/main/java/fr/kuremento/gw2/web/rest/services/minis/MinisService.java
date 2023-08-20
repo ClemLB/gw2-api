@@ -1,7 +1,7 @@
 package fr.kuremento.gw2.web.rest.services.minis;
 
 import fr.kuremento.gw2.exceptions.TooManyArgumentsException;
-import fr.kuremento.gw2.web.rest.models.Mini;
+import fr.kuremento.gw2.web.rest.models.minis.Mini;
 import fr.kuremento.gw2.web.rest.services.AbstractService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;

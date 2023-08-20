@@ -357,15 +357,75 @@
                     <version>${openapi-generator-maven-plugin.version}</version>
                     <executions>
                         <execution>
-                            <id>1</id>
+                            <id>commons</id>
                             <goals>
                                 <goal>generate</goal>
                             </goals>
                             <configuration>
-                                <inputSpec>${project.basedir}/src/main/resources/swagger/api-gw2.yaml</inputSpec>
+                                <inputSpec>${project.basedir}/src/main/resources/swagger/commons.yaml</inputSpec>
                                 <generatorName>spring</generatorName>
                                 <apiPackage>fr.kuremento.gw2.web.rest</apiPackage>
                                 <modelPackage>fr.kuremento.gw2.web.rest.models</modelPackage>
+                                <skipValidateSpec>false</skipValidateSpec>
+                                <configOptions>
+                                    <serializableModel>true</serializableModel>
+                                    <useTags>true</useTags>
+                                    <delegatePattern>false</delegatePattern>
+                                    <title>api-gw2</title>
+                                    <interfaceOnly>true</interfaceOnly>
+                                </configOptions>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>colors</id>
+                            <goals>
+                                <goal>generate</goal>
+                            </goals>
+                            <configuration>
+                                <inputSpec>${project.basedir}/src/main/resources/swagger/colors.yaml</inputSpec>
+                                <generatorName>spring</generatorName>
+                                <apiPackage>fr.kuremento.gw2.web.rest</apiPackage>
+                                <modelPackage>fr.kuremento.gw2.web.rest.models.colors</modelPackage>
+                                <skipValidateSpec>false</skipValidateSpec>
+                                <configOptions>
+                                    <serializableModel>true</serializableModel>
+                                    <useTags>true</useTags>
+                                    <delegatePattern>false</delegatePattern>
+                                    <title>api-gw2</title>
+                                    <interfaceOnly>true</interfaceOnly>
+                                </configOptions>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>minis</id>
+                            <goals>
+                                <goal>generate</goal>
+                            </goals>
+                            <configuration>
+                                <inputSpec>${project.basedir}/src/main/resources/swagger/minis.yaml</inputSpec>
+                                <generatorName>spring</generatorName>
+                                <apiPackage>fr.kuremento.gw2.web.rest</apiPackage>
+                                <modelPackage>fr.kuremento.gw2.web.rest.models.minis</modelPackage>
+                                <skipValidateSpec>false</skipValidateSpec>
+                                <configOptions>
+                                    <serializableModel>true</serializableModel>
+                                    <useTags>true</useTags>
+                                    <delegatePattern>false</delegatePattern>
+                                    <title>api-gw2</title>
+                                    <interfaceOnly>true</interfaceOnly>
+                                </configOptions>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>traits</id>
+                            <goals>
+                                <goal>generate</goal>
+                            </goals>
+                            <configuration>
+                                <inputSpec>${project.basedir}/src/main/resources/swagger/traits.yaml</inputSpec>
+                                <generatorName>spring</generatorName>
+                                <apiPackage>fr.kuremento.gw2.web.rest</apiPackage>
+                                <modelPackage>fr.kuremento.gw2.web.rest.models.traits</modelPackage>
                                 <skipValidateSpec>false</skipValidateSpec>
                                 <configOptions>
                                     <serializableModel>true</serializableModel>

@@ -1,0 +1,88 @@
+openapi: 3.0.3
+info:
+  title: Guild Wars 2 API
+  description: >-
+    The Guild Wars 2 API enables third-party applications to access data
+    directly from the Guild Wars 2 servers.
+  termsOfService: 'https://www.guildwars2.com/en/legal/guild-wars-2-content-terms-of-use/'
+  version: '2'
+externalDocs:
+  description: Wiki Documentation
+  url: 'https://wiki.guildwars2.com/wiki/API:Main'
+servers:
+  - url: 'https://api.guildwars2.com'
+tags:
+  - name: Minis
+    description: This resource returns all minis in the game
+paths:
+  /v2/minis:
+    get:
+      tags:
+        - Minis
+      summary: Return all minis id
+      description: Return all minis id
+      operationId: getMinis
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'commons.yaml#/components/schemas/IdInt'
+  /v2/minis/{id}:
+    get:
+      tags:
+        - Minis
+      summary: Return a mini
+      description: Return a mini
+      operationId: getOneMini
+      parameters:
+        - name: id
+          in: path
+          description: Id of requested mini
+          required: true
+          schema:
+            $ref: 'commons.yaml#/components/schemas/IdInt'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mini'
+
+components:
+  schemas:
+
+    Mini:
+      type: object
+      required:
+        - id
+        - name
+        - icon
+        - order
+        - item_id
+      properties:
+        id:
+          $ref: 'commons.yaml#/components/schemas/IdInt'
+        name:
+          type: string
+          description: The mini name
+          example: "Mini-Rytlock"
+        unlock:
+          type: string
+          description: A description of how to unlock the mini (only present on a few entries)
+        icon:
+          type: string
+          description: The mini icon
+          example: "https://render.guildwars2.com/file/795ED1B945A29EC3E3066797DF57FFB25ABAA631/340551.png"
+        order:
+          type: integer
+          description: The sort order that is used for displaying the mini in-game
+          example: 1
+        item_id:
+          type: integer
+          description: The item which unlocks the mini and can be resolved against /v2/items
+          example: 20370
