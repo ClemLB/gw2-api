@@ -1,0 +1,57 @@
+openapi: 3.0.3
+info:
+  title: Guild Wars 2 API
+  description: >-
+    The Guild Wars 2 API enables third-party applications to access data
+    directly from the Guild Wars 2 servers.
+  termsOfService: 'https://www.guildwars2.com/en/legal/guild-wars-2-content-terms-of-use/'
+  version: '2'
+externalDocs:
+  description: Wiki Documentation
+  url: 'https://wiki.guildwars2.com/wiki/API:Main'
+servers:
+  - url: 'https://api.guildwars2.com'
+tags:
+  - name: Template
+    description: Description template
+paths:
+  /v2/template:
+    get:
+      tags:
+        - Colors
+      summary: Return all dye colors id
+      description: Return all dye colors id
+      operationId: getColors
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'commons.yaml#/components/schemas/IdInt'
+  /v2/template/{id}:
+    get:
+      tags:
+        - Colors
+      summary: Return a dye color
+      description: Return a dye color
+      operationId: getOneColor
+      parameters:
+        - name: id
+          in: path
+          description: Description template
+          required: true
+          schema:
+            $ref: 'commons.yaml#/components/schemas/IdInt'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Template'
+
+components:
+  schemas:

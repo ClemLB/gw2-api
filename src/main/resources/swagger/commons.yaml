@@ -14,8 +14,29 @@ servers:
 paths: { }
 
 components:
+  securitySchemes:
+    token:
+      type: http
+      scheme: bearer
+      description: API key to authorize requests
+      in: header
+
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+      required:
+        - code
+        - message
     IdInt:
       type: integer
       description: Integer id of the resource
       example: 123
+    IdString:
+      type: string
+      description: String id of the resource
+      example: "ABCDE02B-8888-FEBA-1234-DE98765C7DEF"
