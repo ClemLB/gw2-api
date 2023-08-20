@@ -37,7 +37,7 @@ paths:
 components:
   securitySchemes:
     token:
-      $ref: '/commons.yaml#/components/securitySchemes/token'
+      $ref: 'commons.yaml#/components/securitySchemes/token'
   schemas:
     TokenInfo:
       type: object
@@ -62,12 +62,12 @@ components:
         expires_at:
           type: string
           description: If a subtoken is given, ISO8601 timestamp indicating when the given subtoken expires
-          format: date
+          format: date-time
           example:
         issued_at:
           type: string
           description: If a subtoken is given, ISO8601 timestamp indicating when the given subtoken was created
-          format: date
+          format: date-time
           example:
         urls:
           type: array
