@@ -1,5 +1,6 @@
 package fr.kuremento.gw2.web.rest.services.achievements.daily;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+@Disabled("Wizard's vault endpoint not available yet")
 @SpringBootTest
 class TomorrowDailyAchievementsTest {
 
