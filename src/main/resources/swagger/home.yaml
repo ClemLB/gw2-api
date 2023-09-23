@@ -34,7 +34,7 @@ paths:
   /v2/home/cats/{id}:
     get:
       tags:
-        - Colors
+        - Home
       summary: Return a cat
       description: Return a cat
       operationId: getOneCat
@@ -52,6 +52,43 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Cat'
+  /v2/home/nodes:
+    get:
+      tags:
+        - Home
+      summary: Return all nodes id
+      description: Return all nodes id
+      operationId: getNodes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'commons.yaml#/components/schemas/IdString'
+  /v2/home/nodes/{id}:
+    get:
+      tags:
+        - Home
+      summary: Return a node
+      description: Return a node
+      operationId: getOneNode
+      parameters:
+        - name: id
+          in: path
+          description: The id for the node
+          required: true
+          schema:
+            $ref: 'commons.yaml#/components/schemas/IdString'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Node'
 
 components:
   schemas:
@@ -66,3 +103,10 @@ components:
           type: string
           description: A hint to identify what is needed for each cat
           example: "sab"
+    Node:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          $ref: 'commons.yaml#/components/schemas/IdString'
