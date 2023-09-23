@@ -1,0 +1,82 @@
+openapi: 3.0.3
+info:
+  title: Guild Wars 2 API
+  description: >-
+    The Guild Wars 2 API enables third-party applications to access data
+    directly from the Guild Wars 2 servers.
+  termsOfService: 'https://www.guildwars2.com/en/legal/guild-wars-2-content-terms-of-use/'
+  version: '2'
+externalDocs:
+  description: Wiki Documentation
+  url: 'https://wiki.guildwars2.com/wiki/API:Main'
+servers:
+  - url: 'https://api.guildwars2.com'
+tags:
+  - name: Items
+    description: This resource returns information about items that were discovered by players in the game
+paths:
+  /v2/items:
+    get:
+      tags:
+        - Colors
+      summary: Return all items id
+      description: Return all items id
+      operationId: getItems
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'commons.yaml#/components/schemas/IdInt'
+  /v2/template/{id}:
+    get:
+      tags:
+        - Colors
+      summary: Return an item
+      description: Return a item
+      operationId: getOneItem
+      parameters:
+        - name: id
+          in: path
+          description: Description template
+          required: true
+          schema:
+            $ref: 'commons.yaml#/components/schemas/IdInt'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+
+components:
+  schemas:
+    Item:
+      type: object
+      required:
+        - id
+        - chat_link
+        - name
+      properties:
+        id:
+          $ref: 'commons.yaml#/components/schemas/IdInt'
+        chat_link:
+          type: string
+          description: The chat link
+          example: "[&AgEdbwAA]"
+        name:
+          type: string
+          description: The item name
+          example: "Strong Soft Wood Longbow of Fire"
+        icon:
+          type: string
+          description: The full icon URL
+          example: "https://render.guildwars2.com/file/C6110F52DF5AFE0F00A56F9E143E9732176DDDE9/65015.png"
+        description:
+          type: string
+          description: The item description
+          example: ""

@@ -12,7 +12,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.12</version>
+        <version>2.7.15</version>
         <relativePath/>
     </parent>
 
@@ -64,6 +64,7 @@
         <openapi-generator-maven-plugin.version>6.6.0</openapi-generator-maven-plugin.version>
         <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
         <commons-fileupload.version>1.5</commons-fileupload.version>
+        <spring-web.version>6.0.12</spring-web.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -149,6 +150,11 @@
                 <groupId>commons-fileupload</groupId>
                 <artifactId>commons-fileupload</artifactId>
                 <version>${commons-fileupload.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>${spring-web.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -357,25 +363,198 @@
                     <version>${openapi-generator-maven-plugin.version}</version>
                     <executions>
                         <execution>
-                            <id>1</id>
+                            <id>commons</id>
                             <goals>
                                 <goal>generate</goal>
                             </goals>
                             <configuration>
-                                <inputSpec>${project.basedir}/src/main/resources/swagger/api-gw2.yaml</inputSpec>
+                                <inputSpec>${project.basedir}/src/main/resources/swagger/commons.yaml</inputSpec>
                                 <generatorName>spring</generatorName>
                                 <apiPackage>fr.kuremento.gw2.web.rest</apiPackage>
                                 <modelPackage>fr.kuremento.gw2.web.rest.models</modelPackage>
-                                <skipValidateSpec>true</skipValidateSpec>
+                                <generateModelDocumentation>true</generateModelDocumentation>
+                                <skipValidateSpec>false</skipValidateSpec>
+                                <additionalProperties>
+                                    <skipDefaultInterface>true</skipDefaultInterface>
+                                    <useLombok>true</useLombok>
+                                </additionalProperties>
                                 <configOptions>
+                                    <serializableModel>true</serializableModel>
                                     <useTags>true</useTags>
                                     <delegatePattern>false</delegatePattern>
                                     <title>api-gw2</title>
                                     <interfaceOnly>true</interfaceOnly>
+                                    <skipDefaultInterface>true</skipDefaultInterface>
+                                    <useOneOfInterfaces>false</useOneOfInterfaces>
+                                </configOptions>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>colors</id>
+                            <goals>
+                                <goal>generate</goal>
+                            </goals>
+                            <configuration>
+                                <inputSpec>${project.basedir}/src/main/resources/swagger/colors.yaml</inputSpec>
+                                <generatorName>spring</generatorName>
+                                <apiPackage>fr.kuremento.gw2.web.rest</apiPackage>
+                                <modelPackage>fr.kuremento.gw2.web.rest.models.colors</modelPackage>
+                                <generateModelDocumentation>true</generateModelDocumentation>
+                                <skipValidateSpec>false</skipValidateSpec>
+                                <additionalProperties>
+                                    <skipDefaultInterface>true</skipDefaultInterface>
+                                    <useLombok>true</useLombok>
+                                </additionalProperties>
+                                <configOptions>
+                                    <serializableModel>true</serializableModel>
+                                    <useTags>true</useTags>
+                                    <delegatePattern>false</delegatePattern>
+                                    <title>api-gw2</title>
+                                    <interfaceOnly>true</interfaceOnly>
+                                    <skipDefaultInterface>true</skipDefaultInterface>
+                                    <useOneOfInterfaces>false</useOneOfInterfaces>
+                                </configOptions>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>minis</id>
+                            <goals>
+                                <goal>generate</goal>
+                            </goals>
+                            <configuration>
+                                <inputSpec>${project.basedir}/src/main/resources/swagger/minis.yaml</inputSpec>
+                                <generatorName>spring</generatorName>
+                                <apiPackage>fr.kuremento.gw2.web.rest</apiPackage>
+                                <modelPackage>fr.kuremento.gw2.web.rest.models.minis</modelPackage>
+                                <generateModelDocumentation>true</generateModelDocumentation>
+                                <skipValidateSpec>false</skipValidateSpec>
+                                <additionalProperties>
+                                    <skipDefaultInterface>true</skipDefaultInterface>
+                                    <useLombok>true</useLombok>
+                                </additionalProperties>
+                                <configOptions>
+                                    <serializableModel>true</serializableModel>
+                                    <useTags>true</useTags>
+                                    <delegatePattern>false</delegatePattern>
+                                    <title>api-gw2</title>
+                                    <interfaceOnly>true</interfaceOnly>
+                                    <skipDefaultInterface>true</skipDefaultInterface>
+                                    <useOneOfInterfaces>false</useOneOfInterfaces>
+                                </configOptions>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>traits</id>
+                            <goals>
+                                <goal>generate</goal>
+                            </goals>
+                            <configuration>
+                                <inputSpec>${project.basedir}/src/main/resources/swagger/traits.yaml</inputSpec>
+                                <generatorName>spring</generatorName>
+                                <apiPackage>fr.kuremento.gw2.web.rest</apiPackage>
+                                <modelPackage>fr.kuremento.gw2.web.rest.models.traits</modelPackage>
+                                <generateModelDocumentation>true</generateModelDocumentation>
+                                <skipValidateSpec>false</skipValidateSpec>
+                                <configOptions>
+                                    <serializableModel>true</serializableModel>
+                                    <useTags>true</useTags>
+                                    <delegatePattern>false</delegatePattern>
+                                    <title>api-gw2</title>
+                                    <interfaceOnly>true</interfaceOnly>
+                                    <skipDefaultInterface>true</skipDefaultInterface>
+                                    <useOneOfInterfaces>false</useOneOfInterfaces>
+                                </configOptions>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>token</id>
+                            <goals>
+                                <goal>generate</goal>
+                            </goals>
+                            <configuration>
+                                <inputSpec>${project.basedir}/src/main/resources/swagger/token.yaml</inputSpec>
+                                <generatorName>spring</generatorName>
+                                <apiPackage>fr.kuremento.gw2.web.rest</apiPackage>
+                                <modelPackage>fr.kuremento.gw2.web.rest.models.token</modelPackage>
+                                <generateModelDocumentation>true</generateModelDocumentation>
+                                <skipValidateSpec>false</skipValidateSpec>
+                                <additionalProperties>
+                                    <skipDefaultInterface>true</skipDefaultInterface>
+                                    <useLombok>true</useLombok>
+                                </additionalProperties>
+                                <configOptions>
+                                    <serializableModel>true</serializableModel>
+                                    <useTags>true</useTags>
+                                    <delegatePattern>false</delegatePattern>
+                                    <title>api-gw2</title>
+                                    <interfaceOnly>true</interfaceOnly>
+                                    <skipDefaultInterface>true</skipDefaultInterface>
+                                    <useOneOfInterfaces>false</useOneOfInterfaces>
+                                </configOptions>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>items</id>
+                            <goals>
+                                <goal>generate</goal>
+                            </goals>
+                            <configuration>
+                                <inputSpec>${project.basedir}/src/main/resources/swagger/items.yaml</inputSpec>
+                                <generatorName>spring</generatorName>
+                                <apiPackage>fr.kuremento.gw2.web.rest</apiPackage>
+                                <modelPackage>fr.kuremento.gw2.web.rest.models.items</modelPackage>
+                                <generateModelDocumentation>true</generateModelDocumentation>
+                                <skipValidateSpec>false</skipValidateSpec>
+                                <additionalProperties>
+                                    <skipDefaultInterface>true</skipDefaultInterface>
+                                    <useLombok>true</useLombok>
+                                </additionalProperties>
+                                <configOptions>
+                                    <serializableModel>true</serializableModel>
+                                    <useTags>true</useTags>
+                                    <delegatePattern>false</delegatePattern>
+                                    <title>api-gw2</title>
+                                    <interfaceOnly>true</interfaceOnly>
+                                    <skipDefaultInterface>true</skipDefaultInterface>
+                                    <useOneOfInterfaces>false</useOneOfInterfaces>
+                                </configOptions>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>home</id>
+                            <goals>
+                                <goal>generate</goal>
+                            </goals>
+                            <configuration>
+                                <inputSpec>${project.basedir}/src/main/resources/swagger/home.yaml</inputSpec>
+                                <generatorName>spring</generatorName>
+                                <apiPackage>fr.kuremento.gw2.web.rest</apiPackage>
+                                <modelPackage>fr.kuremento.gw2.web.rest.models.home</modelPackage>
+                                <generateModelDocumentation>true</generateModelDocumentation>
+                                <skipValidateSpec>false</skipValidateSpec>
+                                <additionalProperties>
+                                    <skipDefaultInterface>true</skipDefaultInterface>
+                                    <useLombok>true</useLombok>
+                                </additionalProperties>
+                                <configOptions>
+                                    <serializableModel>true</serializableModel>
+                                    <useTags>true</useTags>
+                                    <delegatePattern>false</delegatePattern>
+                                    <title>api-gw2</title>
+                                    <interfaceOnly>true</interfaceOnly>
+                                    <skipDefaultInterface>true</skipDefaultInterface>
+                                    <useOneOfInterfaces>false</useOneOfInterfaces>
                                 </configOptions>
                             </configuration>
                         </execution>
                     </executions>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </dependency>
+                    </dependencies>
                 </plugin>
             </plugins>
         </pluginManagement>

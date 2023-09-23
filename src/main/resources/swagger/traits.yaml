@@ -1,0 +1,640 @@
+openapi: 3.0.3
+info:
+  title: Guild Wars 2 API
+  description: >-
+    The Guild Wars 2 API enables third-party applications to access data
+    directly from the Guild Wars 2 servers.
+  termsOfService: 'https://www.guildwars2.com/en/legal/guild-wars-2-content-terms-of-use/'
+  version: '2'
+externalDocs:
+  description: Wiki Documentation
+  url: 'https://wiki.guildwars2.com/wiki/API:Main'
+servers:
+  - url: 'https://api.guildwars2.com'
+tags:
+  - name: Traits
+    description: This resource returns information about specific traits which are contained within specializations
+paths:
+  /v2/traits:
+    get:
+      tags:
+        - Traits
+      summary: Return all traits id
+      description: Return all traits id
+      operationId: getTraits
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'commons.yaml#/components/schemas/IdInt'
+  /v2/traits/{id}:
+    get:
+      tags:
+        - Traits
+      summary: Return a trait
+      description: Return a trait
+      operationId: getOneTrait
+      parameters:
+        - name: id
+          in: path
+          description: Id of requested trait
+          required: true
+          schema:
+            $ref: 'commons.yaml#/components/schemas/IdInt'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trait'
+
+components:
+  schemas:
+
+    Trait:
+      type: object
+      required:
+        - id
+        - name
+        - icon
+        - description
+        - specialization
+        - tier
+        - slot
+      properties:
+        id:
+          $ref: 'commons.yaml#/components/schemas/IdInt'
+        name:
+          type: string
+          description: The trait name
+          example: "Raging Storm"
+        description:
+          type: string
+          description: The trait description
+          example: "Critically striking a foe grants fury. Gain ferocity while under the effects of fury."
+        icon:
+          type: string
+          description: The trait's icon URL
+          example: "https://render.guildwars2.com/file/74A414B378B54431EF183A37DA37CCFFFC0E04BD/2175040.png"
+        specialization:
+          type: integer
+          description: The id of the specialization this trait belongs to
+          example: 41
+        tier:
+          type: integer
+          description: The trait's tier (Adept, Master, Grandmaster) as a value from 1-3. Elite specializations also contain a tier 0 minor trait, describing which weapon the elite specialization gains access to
+          example: 2
+          minimum: 0
+          maximum: 3
+        slot:
+          type: string
+          description: Either Major or Minor depending on the trait's slot. Minor traits are the ones given immediately when choosing a specialization
+          example: "Minor"
+          enum: [ Minor, Major ]
+        facts:
+          type: array
+          description: A list of tooltip facts associated with the trait itself
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/AttributeAdjust'
+              - $ref: '#/components/schemas/Buff'
+              - $ref: '#/components/schemas/BuffConversion'
+              - $ref: '#/components/schemas/ComboField'
+              - $ref: '#/components/schemas/ComboFinisher'
+              - $ref: '#/components/schemas/Damage'
+              - $ref: '#/components/schemas/Distance'
+              - $ref: '#/components/schemas/NoData'
+              - $ref: '#/components/schemas/Number'
+              - $ref: '#/components/schemas/Percent'
+              - $ref: '#/components/schemas/PrefixedBuff'
+              - $ref: '#/components/schemas/Radius'
+              - $ref: '#/components/schemas/Range'
+              - $ref: '#/components/schemas/Recharge'
+              - $ref: '#/components/schemas/Time'
+              - $ref: '#/components/schemas/Unblockable'
+        traited_facts:
+          type: array
+          description: A list of additions or changes to tooltip facts where there is interplay between traits
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/TraitedAttributeAdjust'
+              - $ref: '#/components/schemas/TraitedBuff'
+              - $ref: '#/components/schemas/TraitedBuffConversion'
+              - $ref: '#/components/schemas/TraitedComboField'
+              - $ref: '#/components/schemas/TraitedComboFinisher'
+              - $ref: '#/components/schemas/TraitedDamage'
+              - $ref: '#/components/schemas/TraitedDistance'
+              - $ref: '#/components/schemas/TraitedNoData'
+              - $ref: '#/components/schemas/TraitedNumber'
+              - $ref: '#/components/schemas/TraitedPercent'
+              - $ref: '#/components/schemas/TraitedPrefixedBuff'
+              - $ref: '#/components/schemas/TraitedRadius'
+              - $ref: '#/components/schemas/TraitedRange'
+              - $ref: '#/components/schemas/TraitedRecharge'
+              - $ref: '#/components/schemas/TraitedTime'
+              - $ref: '#/components/schemas/TraitedUnblockable'
+
+    FactsType:
+      type: string
+      enum: [ AttributeAdjust, Buff, BuffConversion, ComboField, ComboFinisher, Damage, Distance, NoData, Number, Percent, PrefixedBuff, Radius, Range, Recharge, Time, Unblockable ]
+      description: Defines what additional fields the object will contain, and what type of fact it is
+      example: "AttributeAdjust"
+
+    Facts:
+      type: object
+      required:
+        - type
+      properties:
+        text:
+          type: string
+          description: An arbitrary localized string describing the fact. Not included with all facts
+          example: "AttributeAdjust"
+        icon:
+          type: string
+          description: A URL to the icon shown with the fact. Not included with all facts
+          example: "https://render.guildwars2.com/file/D767B963D120F077C3B163A05DC05A7317D7DB70/156651.png"
+        type:
+          $ref: '#/components/schemas/FactsType'
+
+    TraitedFacts:
+      type: object
+      required:
+        - type
+        - required_trait
+      properties:
+        text:
+          type: string
+          description: An arbitrary localized string describing the fact. Not included with all facts
+          example: "AttributeAdjust"
+        icon:
+          type: string
+          description: A URL to the icon shown with the fact. Not included with all facts
+          example: "https://render.guildwars2.com/file/D767B963D120F077C3B163A05DC05A7317D7DB70/156651.png"
+        type:
+          $ref: '#/components/schemas/FactsType'
+        required_trait:
+          type: integer
+          description: Specifies which trait has to be selected in order for this fact to take effect
+          example: 340
+        overrides:
+          type: integer
+          description: This specifies the array index of the facts object it will override, if the trait specified in requires_trait is selected. If this field is omitted, then the fact contained within this object is to be appended to the existing facts array
+          example: 1
+
+    AttributeAdjust:
+      allOf:
+        - $ref: '#/components/schemas/Facts'
+      type: object
+      required:
+        - value
+        - target
+      properties:
+        value:
+          type: integer
+          description: The amount target gets adjusted, based on a level 80 character at base stats
+          example: 150
+        target:
+          type: string
+          description: The attribute this fact adjusts. Note that a value of Healing indicates the fact is a heal, and Ferocity is encoded at CritDamage
+          example: "CritDamage"
+
+    TraitedAttributeAdjust:
+      allOf:
+        - $ref: '#/components/schemas/TraitedFacts'
+      type: object
+      required:
+        - value
+        - target
+      properties:
+        value:
+          type: integer
+          description: The amount target gets adjusted, based on a level 80 character at base stats
+          example: 150
+        target:
+          type: string
+          description: The attribute this fact adjusts. Note that a value of Healing indicates the fact is a heal, and Ferocity is encoded at CritDamage
+          example: "CritDamage"
+
+    Buff:
+      allOf:
+        - $ref: '#/components/schemas/Facts'
+      type: object
+      required:
+        - status
+      properties:
+        status:
+          type: string
+          description: The boon, condition, or effect referred to by the fact
+          example: "Vulnerability"
+        description:
+          type: string
+          description: The description of the status effect
+          example: "Damage and condition damage taken are increased; stacks intensity."
+        apply_count:
+          type: integer
+          description: The number of stacks applied
+          example: 1
+        duration:
+          type: integer
+          description: The duration of the effect in seconds. Note that some facts of this type are just used to display the buff icon with text; in this case, duration is usually 0, or omitted entirely
+          example: 5
+
+    TraitedBuff:
+      allOf:
+        - $ref: '#/components/schemas/TraitedFacts'
+      type: object
+      required:
+        - status
+      properties:
+        status:
+          type: string
+          description: The boon, condition, or effect referred to by the fact
+          example: "Vulnerability"
+        description:
+          type: string
+          description: The description of the status effect
+          example: "Damage and condition damage taken are increased; stacks intensity."
+        apply_count:
+          type: integer
+          description: The number of stacks applied
+          example: 1
+        duration:
+          type: integer
+          description: The duration of the effect in seconds. Note that some facts of this type are just used to display the buff icon with text; in this case, duration is usually 0, or omitted entirely
+          example: 5
+
+    BuffConversion:
+      allOf:
+        - $ref: '#/components/schemas/Facts'
+      type: object
+      required:
+        - status
+      properties:
+        source:
+          type: string
+          description: The attribute that is used to calculate the attribute gain
+          example: "Toughness"
+        percent:
+          type: string
+          description: How much of the source attribute is added to target
+          example: "10"
+        target:
+          type: string
+          description: The attribute that gets added to
+          example: "ConditionDamage"
+
+    TraitedBuffConversion:
+      allOf:
+        - $ref: '#/components/schemas/TraitedFacts'
+      type: object
+      required:
+        - status
+      properties:
+        source:
+          type: string
+          description: The attribute that is used to calculate the attribute gain
+          example: "Toughness"
+        percent:
+          type: string
+          description: How much of the source attribute is added to target
+          example: "10"
+        target:
+          type: string
+          description: The attribute that gets added to
+          example: "ConditionDamage"
+
+    ComboField:
+      allOf:
+        - $ref: '#/components/schemas/Facts'
+      type: object
+      required:
+        - field_type
+      properties:
+        field_type:
+          type: string
+          description: The type of field
+          enum: [ Air, Dark, Fire, Ice, Light, Lightning, Poison, Smoke, Ethereal, Water ]
+          example: "Air"
+
+    TraitedComboField:
+      allOf:
+        - $ref: '#/components/schemas/TraitedFacts'
+      type: object
+      required:
+        - field_type
+      properties:
+        field_type:
+          type: string
+          description: The type of field
+          enum: [ Air, Dark, Fire, Ice, Light, Lightning, Poison, Smoke, Ethereal, Water ]
+          example: "Air"
+
+    ComboFinisher:
+      allOf:
+        - $ref: '#/components/schemas/Facts'
+      type: object
+      required:
+        - finisher_type
+        - percent
+      properties:
+        finisher_type:
+          type: string
+          enum: [ Blast, Leap, Projectile, Whirl ]
+          description: The type of finisher
+          example: "Blast"
+        percent:
+          type: integer
+          description: The percent chance that the finisher will trigger
+          example: 100
+
+    TraitedComboFinisher:
+      allOf:
+        - $ref: '#/components/schemas/TraitedFacts'
+      type: object
+      required:
+        - finisher_type
+        - percent
+      properties:
+        finisher_type:
+          type: string
+          enum: [ Blast, Leap, Projectile, Whirl ]
+          description: The type of finisher
+          example: "Blast"
+        percent:
+          type: integer
+          description: The percent chance that the finisher will trigger
+          example: 100
+
+    Damage:
+      allOf:
+        - $ref: '#/components/schemas/Facts'
+      type: object
+      required:
+        - hit_count
+      properties:
+        hit_count:
+          type: integer
+          description: The amount of times the damage hits
+          example: 1
+
+    TraitedDamage:
+      allOf:
+        - $ref: '#/components/schemas/TraitedFacts'
+      type: object
+      required:
+        - hit_count
+      properties:
+        hit_count:
+          type: integer
+          description: The amount of times the damage hits
+          example: 1
+
+    Distance:
+      allOf:
+        - $ref: '#/components/schemas/Facts'
+      type: object
+      required:
+        - distance
+      properties:
+        distance:
+          type: integer
+          description: The distance value
+          example: 180
+
+    TraitedDistance:
+      allOf:
+        - $ref: '#/components/schemas/TraitedFacts'
+      type: object
+      required:
+        - distance
+      properties:
+        distance:
+          type: integer
+          description: The distance value
+          example: 180
+
+    NoData:
+      allOf:
+        - $ref: '#/components/schemas/Facts'
+      type: object
+      description: This fact is usually used to display the Combat Only fact, but it can be used elsewhere
+
+    TraitedNoData:
+      allOf:
+        - $ref: '#/components/schemas/TraitedFacts'
+      type: object
+      description: This fact is usually used to display the Combat Only fact, but it can be used elsewhere
+
+    Number:
+      allOf:
+        - $ref: '#/components/schemas/Facts'
+      type: object
+      required:
+        - value
+      properties:
+        value:
+          type: integer
+          description: The number value as referenced by text
+          example: 3
+
+    TraitedNumber:
+      allOf:
+        - $ref: '#/components/schemas/TraitedFacts'
+      type: object
+      required:
+        - value
+      properties:
+        value:
+          type: integer
+          description: The number value as referenced by text
+          example: 3
+
+    Percent:
+      allOf:
+        - $ref: '#/components/schemas/Facts'
+      type: object
+      required:
+        - percent
+      properties:
+        percent:
+          type: integer
+          description: The percentage value as referenced by text
+          example: 25
+
+    TraitedPercent:
+      allOf:
+        - $ref: '#/components/schemas/TraitedFacts'
+      type: object
+      required:
+        - percent
+      properties:
+        percent:
+          type: integer
+          description: The percentage value as referenced by text
+          example: 25
+
+    Prefix:
+      type: object
+      required:
+        - text
+        - icon
+        - status
+        - description
+      properties:
+        text:
+          type: string
+          example: "Apply Buff/Condition"
+        icon:
+          type: string
+          example: "url"
+        status:
+          type: string
+          example: "Fire Attunement"
+        description:
+          type: string
+          example: "Cast fire spells"
+
+    PrefixedBuff:
+      allOf:
+        - $ref: '#/components/schemas/Buff'
+      type: object
+      required:
+        - prefix
+      properties:
+        prefix:
+          $ref: '#/components/schemas/Prefix'
+
+    TraitedPrefixedBuff:
+      allOf:
+        - $ref: '#/components/schemas/TraitedBuff'
+      type: object
+      required:
+        - prefix
+      properties:
+        prefix:
+          $ref: '#/components/schemas/Prefix'
+
+    Radius:
+      allOf:
+        - $ref: '#/components/schemas/Facts'
+      type: object
+      required:
+        - distance
+      properties:
+        distance:
+          type: integer
+          description: The radius value
+          example: 180
+
+    TraitedRadius:
+      allOf:
+        - $ref: '#/components/schemas/TraitedFacts'
+      type: object
+      required:
+        - distance
+      properties:
+        distance:
+          type: integer
+          description: The radius value
+          example: 180
+
+    Range:
+      allOf:
+        - $ref: '#/components/schemas/Facts'
+      type: object
+      required:
+        - value
+      properties:
+        value:
+          type: integer
+          description: The range of the trait/skill
+          example: 180
+
+    TraitedRange:
+      allOf:
+        - $ref: '#/components/schemas/TraitedFacts'
+      type: object
+      required:
+        - value
+      properties:
+        value:
+          type: integer
+          description: The range of the trait/skill
+          example: 180
+
+    Recharge:
+      allOf:
+        - $ref: '#/components/schemas/Facts'
+      type: object
+      required:
+        - value
+      properties:
+        value:
+          type: integer
+          description: The recharge time in seconds
+          example: 150
+
+    TraitedRecharge:
+      allOf:
+        - $ref: '#/components/schemas/TraitedFacts'
+      type: object
+      required:
+        - value
+      properties:
+        value:
+          type: integer
+          description: The recharge time in seconds
+          example: 150
+
+    Time:
+      allOf:
+        - $ref: '#/components/schemas/Facts'
+      type: object
+      required:
+        - duration
+      properties:
+        duration:
+          type: integer
+          description: The time value in seconds
+          example: 2
+
+    TraitedTime:
+      allOf:
+        - $ref: '#/components/schemas/TraitedFacts'
+      type: object
+      required:
+        - duration
+      properties:
+        duration:
+          type: integer
+          description: The time value in seconds
+          example: 2
+
+    Unblockable:
+      allOf:
+        - $ref: '#/components/schemas/Facts'
+      type: object
+      required:
+        - value
+      properties:
+        value:
+          type: boolean
+          description: Always true
+          example: true
+
+    TraitedUnblockable:
+      allOf:
+        - $ref: '#/components/schemas/TraitedFacts'
+      type: object
+      required:
+        - value
+      properties:
+        value:
+          type: boolean
+          description: Always true
+          example: true

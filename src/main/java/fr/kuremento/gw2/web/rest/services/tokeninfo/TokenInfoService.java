@@ -1,6 +1,6 @@
 package fr.kuremento.gw2.web.rest.services.tokeninfo;
 
-import fr.kuremento.gw2.web.rest.models.tokeninfo.TokenInfo;
+import fr.kuremento.gw2.web.rest.models.token.TokenInfo;
 import fr.kuremento.gw2.web.rest.services.AbstractService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;

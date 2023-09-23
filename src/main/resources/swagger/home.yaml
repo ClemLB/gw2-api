@@ -1,0 +1,112 @@
+openapi: 3.0.3
+info:
+  title: Guild Wars 2 API
+  description: >-
+    The Guild Wars 2 API enables third-party applications to access data
+    directly from the Guild Wars 2 servers.
+  termsOfService: 'https://www.guildwars2.com/en/legal/guild-wars-2-content-terms-of-use/'
+  version: '2'
+externalDocs:
+  description: Wiki Documentation
+  url: 'https://wiki.guildwars2.com/wiki/API:Main'
+servers:
+  - url: 'https://api.guildwars2.com'
+tags:
+  - name: Home
+    description: This resource returns information about home instance
+paths:
+  /v2/home/cats:
+    get:
+      tags:
+        - Home
+      summary: Return all cats id
+      description: Return all cats id
+      operationId: getCats
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'commons.yaml#/components/schemas/IdInt'
+  /v2/home/cats/{id}:
+    get:
+      tags:
+        - Home
+      summary: Return a cat
+      description: Return a cat
+      operationId: getOneCat
+      parameters:
+        - name: id
+          in: path
+          description: The id for the cat
+          required: true
+          schema:
+            $ref: 'commons.yaml#/components/schemas/IdInt'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cat'
+  /v2/home/nodes:
+    get:
+      tags:
+        - Home
+      summary: Return all nodes id
+      description: Return all nodes id
+      operationId: getNodes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'commons.yaml#/components/schemas/IdString'
+  /v2/home/nodes/{id}:
+    get:
+      tags:
+        - Home
+      summary: Return a node
+      description: Return a node
+      operationId: getOneNode
+      parameters:
+        - name: id
+          in: path
+          description: The id for the node
+          required: true
+          schema:
+            $ref: 'commons.yaml#/components/schemas/IdString'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Node'
+
+components:
+  schemas:
+    Cat:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          $ref: 'commons.yaml#/components/schemas/IdInt'
+        hint:
+          type: string
+          description: A hint to identify what is needed for each cat
+          example: "sab"
+    Node:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          $ref: 'commons.yaml#/components/schemas/IdString'

@@ -1,0 +1,77 @@
+openapi: 3.0.3
+info:
+  title: Guild Wars 2 API
+  description: >-
+    The Guild Wars 2 API enables third-party applications to access data
+    directly from the Guild Wars 2 servers.
+  termsOfService: 'https://www.guildwars2.com/en/legal/guild-wars-2-content-terms-of-use/'
+  version: '2'
+externalDocs:
+  description: Wiki Documentation
+  url: 'https://wiki.guildwars2.com/wiki/API:Main'
+servers:
+  - url: 'https://api.guildwars2.com'
+tags:
+  - name: Token
+    description: This resource returns information about the supplied API key
+security:
+  - token: []
+paths:
+  /v2/tokeninfo:
+    get:
+      tags:
+        - Token
+      summary: This resource returns information about the supplied API key
+      description: This resource returns information about the supplied API key
+      operationId: getTokenInfo
+      security:
+        - token: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenInfo'
+
+components:
+  securitySchemes:
+    token:
+      $ref: 'commons.yaml#/components/securitySchemes/token'
+  schemas:
+    TokenInfo:
+      type: object
+      properties:
+        id:
+          $ref: 'commons.yaml#/components/schemas/IdString'
+        name:
+          type: string
+          description: "The name given to the API key by the account owner. Warning: The value of this field is not escaped and may contain valid HTML, JavaScript, other code. Handle with care."
+          example: "My API Key"
+        permissions:
+          type: array
+          description: Array of strings describing which permissions the API key has
+          items:
+            type: string
+            enum: [ account, builds, characters, guilds, inventories, progression, pvp, tradingpost, unlocks, wallet ]
+        type:
+          type: string
+          description: The type of the access token given. Either APIKey or Subtoken
+          enum: [ APIKey, Subtoken ]
+          example: "APIKey"
+        expires_at:
+          type: string
+          description: If a subtoken is given, ISO8601 timestamp indicating when the given subtoken expires
+          format: date-time
+          example: "2022-07-10 15:00:00.000"
+        issued_at:
+          type: string
+          description: If a subtoken is given, ISO8601 timestamp indicating when the given subtoken was created
+          format: date-time
+          example: "2020-07-10 15:00:00.000"
+        urls:
+          type: array
+          description: If the given subtoken is restricted to a list of URLs, contains an array of strings describing what endpoints are available to this token
+          items:
+            type: string
+            example: "url"
