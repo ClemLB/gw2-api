@@ -19,7 +19,7 @@ public class Application {
 
 	public static void main(String[] args) throws TooManyArgumentsException {
 		try (ConfigurableApplicationContext context = SpringApplication.run(Application.class, args)) {
-			execute(context.getBean(Gw2Client.class), "63D4E7FB-F855-5F47-83B5-5B33DC019AB1DBDF0126-24D2-4895-9B6E-D4B950CDF0D4");
+			execute(context.getBean(Gw2Client.class), "");
 			System.exit(0);
 		}
 	}
