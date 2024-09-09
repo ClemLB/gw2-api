@@ -11,7 +11,7 @@ public enum TypeOfItem {
 	ARMOR("Armor"), BACK("Back"), BAG("Bag"), CONSUMABLE("Consumable"), CONTAINER("Container"), CRAFTING_MATERIAL("CraftingMaterial"), GATHERING("Gathering"), GIZMO("Gizmo"),
 	JADE_TECH_MODULE(
 			"JadeTechModule"), KEY("Key"), MINI_PET("MiniPet"), POWER_CORE("PowerCore"), TOOL("Tool"), TRAIT("Trait"), TRINKET("Trinket"), TROPHY("Trophy"), UPGRADE_COMPONENT(
-			"UpgradeComponent"), WEAPON("Weapon");
+			"UpgradeComponent"), WEAPON("Weapon"), RELIC("Relic");
 
 	private final String value;
 

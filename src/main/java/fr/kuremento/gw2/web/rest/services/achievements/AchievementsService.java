@@ -4,7 +4,6 @@ import fr.kuremento.gw2.exceptions.TooManyArgumentsException;
 import fr.kuremento.gw2.web.rest.models.achievements.Achievements;
 import fr.kuremento.gw2.web.rest.services.AbstractService;
 import fr.kuremento.gw2.web.rest.services.achievements.categories.CategoriesAchievementsService;
-import fr.kuremento.gw2.web.rest.services.achievements.daily.DailyAchievementsService;
 import fr.kuremento.gw2.web.rest.services.achievements.groups.GroupsAchievementsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,7 +19,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AchievementsService extends AbstractService {
 
-	private final DailyAchievementsService dailyAchievementsService;
 	private final GroupsAchievementsService groupsAchievementsService;
 	private final CategoriesAchievementsService categoriesAchievementsService;
 
@@ -29,10 +27,6 @@ public class AchievementsService extends AbstractService {
 
 	public CategoriesAchievementsService categories() {
 		return this.categoriesAchievementsService;
-	}
-
-	public DailyAchievementsService daily() {
-		return this.dailyAchievementsService;
 	}
 
 	public GroupsAchievementsService groups() {

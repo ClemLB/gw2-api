@@ -17,9 +17,8 @@ application:
             achievements-category:
                 achievements: '/v2/achievements'
                 categories: '${application.rest.endpoints.achievements-category.achievements}/categories'
-                daily: '${application.rest.endpoints.achievements-category.achievements}/daily'
                 groups: '${application.rest.endpoints.achievements-category.achievements}/groups'
-                tomorrow: '${application.rest.endpoints.achievements-category.daily}/tomorrow'
+
             colors: '/v2/colors'
             guild-category:
                 guild: '/v2/guild'
@@ -45,3 +44,6 @@ application:
             read-timeout: 1000
             schema-version-date: '2022-11-12T00:00:00.000Z'
             write-timeout: 1000
+spring:
+    main:
+        web-application-type: none

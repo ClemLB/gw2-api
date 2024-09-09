@@ -26,12 +26,6 @@ class AchievementsTest {
 	private Integer maxPageSize;
 
 	@Test
-	@DisplayName("Daily service context")
-	void test1() {
-		assertNotNull(service.daily(), "Service should not null");
-	}
-
-	@Test
 	@DisplayName("Check number of achievements")
 	void test2() {
 		assertFalse(service.get().isEmpty(), "Service should return a list of achievements id");
