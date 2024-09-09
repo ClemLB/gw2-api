@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum EmblemFlag {
-	FLIP_BACKGROUND_HORIZONTAL("FlipBackgroundHorizontal"), FLIP_BACKGROUND_VERTICAL("FlipBackgroundVertical");
+	FLIP_BACKGROUND_HORIZONTAL("FlipBackgroundHorizontal"), FLIP_BACKGROUND_VERTICAL("FlipBackgroundVertical"), FLIP_FOREGROUND_HORIZONTAL("FlipForegroundHorizontal"), FLIP_FOREGROUND_VERTICAL("FlipForegroundVertical");
 
 	private final String value;
 

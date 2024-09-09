@@ -2,16 +2,10 @@ package fr.kuremento.gw2;
 
 import fr.kuremento.gw2.client.Gw2Client;
 import fr.kuremento.gw2.exceptions.TooManyArgumentsException;
-import fr.kuremento.gw2.web.rest.models.raids.Raid;
-import fr.kuremento.gw2.web.rest.models.raids.Wing;
-import fr.kuremento.gw2.web.rest.models.tokeninfo.TokenInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-
-import java.util.Collection;
-import java.util.List;
 
 @Slf4j
 @SpringBootApplication
