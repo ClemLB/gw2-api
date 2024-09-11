@@ -1,0 +1,125 @@
+openapi: 3.0.3
+info:
+  title: Guild Wars 2 API
+  description: >-
+    The Guild Wars 2 API enables third-party applications to access data
+    directly from the Guild Wars 2 servers.
+  termsOfService: 'https://www.guildwars2.com/en/legal/guild-wars-2-content-terms-of-use/'
+  version: '2'
+externalDocs:
+  description: Wiki Documentation
+  url: 'https://wiki.guildwars2.com/wiki/API:Main'
+servers:
+  - url: 'https://api.guildwars2.com'
+tags:
+  - name: Account
+    description: This resource returns information about player accounts. This endpoint is only accessible with a valid API key.
+paths:
+  /v2/account:
+    get:
+      tags:
+        - Account
+      summary: Returns information about player account
+      description: Returns information about player account
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Account'
+
+components:
+  schemas:
+    Account:
+      type: object
+      required:
+        - id
+        - age
+        - name
+        - world
+        - guilds
+        - guild_leader
+        - created
+        - access
+        - commander
+      properties:
+        id:
+          $ref: 'commons.yaml#/components/schemas/IdString'
+        age:
+          type: number
+          description: The age of the account in seconds.
+          example: 21022320
+        world:
+          type: integer
+          description: The id of the home world the account is assigned to. Can be resolved against /v2/worlds.
+          example: 2101
+        guilds:
+          type: array
+          example: [ "64682C99-4D9A-EB11-81A8-E944283D67C1", "90180E21-9068-4A99-93E3-1331912670E6" ]
+          items:
+            $ref: 'commons.yaml#/components/schemas/IdString'
+        guild_leader:
+          type: array
+          example: [ "64682C99-4D9A-EB11-81A8-E944283D67C1", "90180E21-9068-4A99-93E3-1331912670E6" ]
+          items:
+            $ref: 'commons.yaml#/components/schemas/IdString'
+        created:
+          type: string
+          format: date-time
+          description: An ISO-8601 standard timestamp of when the account was created.
+          example: "2022-07-10 15:00:00.000"
+        access:
+          type: array
+          description: A list of what content this account has access to.
+          example: [ "GuildWars2", "HeartOfThorns", "PlayForFree", "PathOfFire", "EndOfDragons", "SecretsOfTheObscure", "JanthirWilds" ]
+          items:
+            type: string
+            enum: [ "None", "GuildWars2", "HeartOfThorns", "PlayForFree", "PathOfFire", "EndOfDragons", "SecretsOfTheObscure", "JanthirWilds" ]
+        commander:
+          type: boolean
+          description: True if the player has bought a Commander's Compendium. A player buying a Catmander's Compendium does not affect this flag.
+        fractal_level:
+          type: integer
+          description: The account's personal fractal reward level. Requires the additional progression scope.
+          example: 100
+        daily_ap:
+          type: integer
+          description: The daily AP the account has. Requires the additional progression scope.
+          example: 4710
+        monthly_ap:
+          type: integer
+          description: The monthly AP the account has. Requires the additional progression scope.
+          example: 0
+        wvw_rank:
+          type: integer
+          description: The account's personal wvw rank. Requires the additional progression scope. This field is only present when a Schema version earlier than 2024-07-20T01:00:00.000Z is requested.
+          example: 114
+        wvw:
+          $ref: '#/components/schemas/WvW'
+        last_modified:
+          type: string
+          format: date-time
+          description: An ISO-8601 standard timestamp of when the account information last changed as perceived by the API. This field is only present when a Schema version of 2019-02-21T00:00:00Z or later is requested.
+          example: "2022-07-10 15:00:00.000"
+        build_storage_slots:
+          type: integer
+          description: The amount of build storage slot an account has unlocked. Requires the additional builds scope. This field is only present when a Schema version of 2019-12-19T00:00:00.000Z or later is requested.
+          example: 15
+
+    WvW:
+      type: object
+      description: This field is only present when a Schema version of 2019-02-21T00:00:00Z or later is requested.
+      required:
+        - team_id
+      properties:
+        team_id:
+          type: integer
+          description: The currently allocated wvw world restructuring team id.
+          example: 12014
+        rank:
+          type: integer
+          description: The account's personal wvw rank. Requires the additional progression scope.
+          example: 114

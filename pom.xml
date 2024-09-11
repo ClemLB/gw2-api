@@ -390,6 +390,33 @@
                             </configuration>
                         </execution>
                         <execution>
+                            <id>account</id>
+                            <goals>
+                                <goal>generate</goal>
+                            </goals>
+                            <configuration>
+                                <inputSpec>${project.basedir}/src/main/resources/swagger/account.yaml</inputSpec>
+                                <generatorName>spring</generatorName>
+                                <apiPackage>fr.kuremento.gw2.web.rest</apiPackage>
+                                <modelPackage>fr.kuremento.gw2.web.rest.models.account</modelPackage>
+                                <generateModelDocumentation>true</generateModelDocumentation>
+                                <skipValidateSpec>false</skipValidateSpec>
+                                <additionalProperties>
+                                    <skipDefaultInterface>true</skipDefaultInterface>
+                                    <useLombok>true</useLombok>
+                                </additionalProperties>
+                                <configOptions>
+                                    <serializableModel>true</serializableModel>
+                                    <useTags>true</useTags>
+                                    <delegatePattern>false</delegatePattern>
+                                    <title>api-gw2</title>
+                                    <interfaceOnly>true</interfaceOnly>
+                                    <skipDefaultInterface>true</skipDefaultInterface>
+                                    <useOneOfInterfaces>false</useOneOfInterfaces>
+                                </configOptions>
+                            </configuration>
+                        </execution>
+                        <execution>
                             <id>colors</id>
                             <goals>
                                 <goal>generate</goal>

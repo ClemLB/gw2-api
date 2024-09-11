@@ -2,7 +2,6 @@ package fr.kuremento.gw2.web.rest.services.account;
 
 import fr.kuremento.gw2.exceptions.TechnicalException;
 import fr.kuremento.gw2.models.Constants;
-import fr.kuremento.gw2.web.rest.models.account.Account;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
