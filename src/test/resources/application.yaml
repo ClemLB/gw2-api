@@ -29,6 +29,7 @@ application:
                 cats: '/v2/home/cats'
                 nodes: '/v2/home/nodes'
             items: '/v2/items'
+            legendary-armory: '/v2/legendaryarmory'
             minis: '/v2/minis'
             quaggans: '/v2/quaggans'
             raids: '/v2/raids'
