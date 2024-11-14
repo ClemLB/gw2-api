@@ -80,4 +80,10 @@ class Gw2ClientTest {
 	void test11() {
 		assertNotNull(gw2Client.guild(), SERVICE_SHOULD_NOT_BE_NULL);
 	}
+
+	@Test
+	@DisplayName("Legendary Armory service context")
+	void test12() {
+		assertNotNull(gw2Client.legendaryArmory(), SERVICE_SHOULD_NOT_BE_NULL);
+	}
 }

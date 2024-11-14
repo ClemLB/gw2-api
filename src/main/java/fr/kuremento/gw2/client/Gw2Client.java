@@ -8,6 +8,7 @@ import fr.kuremento.gw2.web.rest.services.colors.ColorsService;
 import fr.kuremento.gw2.web.rest.services.guild.GuildService;
 import fr.kuremento.gw2.web.rest.services.home.HomeService;
 import fr.kuremento.gw2.web.rest.services.items.ItemsService;
+import fr.kuremento.gw2.web.rest.services.legendaryarmory.LegendaryArmoryService;
 import fr.kuremento.gw2.web.rest.services.minis.MinisService;
 import fr.kuremento.gw2.web.rest.services.quaggans.QuaggansService;
 import fr.kuremento.gw2.web.rest.services.raids.RaidsService;
@@ -27,6 +28,7 @@ public class Gw2Client {
 	private final QuaggansService quaggansService;
 	private final ColorsService colorsService;
 	private final HomeService homeService;
+	private final LegendaryArmoryService legendaryArmoryService;
 	private final MinisService minisService;
 	private final RaidsService raidsService;
 	private final ItemsService itemsService;
@@ -68,6 +70,10 @@ public class Gw2Client {
 
 	public HomeService home() {
 		return this.homeService;
+	}
+
+	public LegendaryArmoryService legendaryArmory() {
+		return this.legendaryArmoryService;
 	}
 
 	public MinisService minis() {
