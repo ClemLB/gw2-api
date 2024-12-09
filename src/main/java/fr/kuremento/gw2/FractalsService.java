@@ -1,5 +1,6 @@
 package fr.kuremento.gw2;
 
+import fr.kuremento.gw2.exceptions.TechnicalException;
 import fr.kuremento.gw2.exceptions.TooManyArgumentsException;
 import fr.kuremento.gw2.models.fractals.*;
 import fr.kuremento.gw2.web.rest.models.achievements.Achievements;
@@ -8,7 +9,6 @@ import fr.kuremento.gw2.web.rest.services.achievements.AchievementsService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -24,12 +24,10 @@ public class FractalsService {
     private final JsonFractal jsonFractal;
     private final AchievementsService achievementsService;
 
-    @Cacheable("dailies")
     public List<DailyFractal> dailies() {
         return this.getFractals(jsonFractal.rotation()[this.getRotation()]);
     }
 
-    @Cacheable("cms")
     public List<DailyFractal> cms() {
         int[] cmIds = {8, 9, 20, 21, 22};
         return this.getFractals(cmIds);
@@ -46,7 +44,6 @@ public class FractalsService {
         return fractals.stream().sorted(Comparator.comparingInt(DailyFractal::level)).toList();
     }
 
-    @Cacheable("recs")
     public List<DailyFractal> recs() {
         List<Integer> fractalsAchievement = achievementsService.categories().get(88).getAchievements().stream().map(AchievementInCategory::getId).toList();
         try {
@@ -63,7 +60,7 @@ public class FractalsService {
                                .sorted(Comparator.comparingInt(DailyFractal::level))
                                .toList();
         } catch (TooManyArgumentsException e) {
-            throw new RuntimeException(e);
+            throw new TechnicalException(e);
         }
     }
 
