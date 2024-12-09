@@ -37,13 +37,13 @@ public class JsonFractalsConfig {
 
     @Bean
     public JsonFractal getFractalData(@Value("classpath:data/mappings.json") Resource fractalData) throws IOException {
-        return new ObjectMapper().readValue(fractalData.getFile(), new TypeReference<>() {
+        return new ObjectMapper().readValue(fractalData.getInputStream(), new TypeReference<>() {
         });
     }
 
     @Bean
     public JsonInstabilities getInstaData(@Value("classpath:data/instabilities.json") Resource instabilities) throws IOException {
-        return new ObjectMapper().readValue(instabilities.getFile(), new TypeReference<>() {
+        return new ObjectMapper().readValue(instabilities.getInputStream(), new TypeReference<>() {
         });
     }
 }
