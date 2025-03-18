@@ -2,6 +2,7 @@ package fr.kuremento.gw2;
 
 import fr.kuremento.gw2.client.Gw2Client;
 import fr.kuremento.gw2.exceptions.TooManyArgumentsException;
+import fr.kuremento.gw2.services.FractalsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

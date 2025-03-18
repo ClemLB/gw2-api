@@ -1,4 +1,4 @@
-package fr.kuremento.gw2;
+package fr.kuremento.gw2.services;
 
 import fr.kuremento.gw2.exceptions.TechnicalException;
 import fr.kuremento.gw2.exceptions.TooManyArgumentsException;
@@ -66,6 +66,6 @@ public class FractalsService {
 
     private int getRotation() {
         LocalDate currentRotation = LocalDate.of(LocalDate.now().getYear(), 1, 1);
-        return Math.toIntExact(ChronoUnit.DAYS.between(currentRotation, LocalDate.now())) % 15;
+        return Math.toIntExact(ChronoUnit.DAYS.between(currentRotation, LocalDate.now()) + 1) % 15;
     }
 }
