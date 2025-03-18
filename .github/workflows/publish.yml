@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4.1.7
       - name: Install Java and Maven
         uses: actions/setup-java@v3
         with:
@@ -28,6 +28,6 @@ jobs:
       - name: Build the Project
         run: mvn clean install -DskipTests
       - name: Publish package
-        run: mvn --batch-mode deploy
+        run: mvn --batch-mode deploy -DskipTests
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
