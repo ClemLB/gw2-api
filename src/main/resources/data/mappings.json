@@ -2,7 +2,7 @@
     "fractals":[
         { "name": "Aetherblade", "id": 2948, "level": 93 },
         { "name": "Aquatic Ruins", "id": 2956, "level": 76 }, 
-        { "name": "Captain Mai Trin", "id": 2932, "level": 95 }, 
+        { "name": "Captain Mai Trin", "id": 2932, "level": 91 },
         { "name": "Chaos Isles", "id": 3038, "level": 88 }, 
         { "name": "Cliffside", "id": 2930, "level": 94 }, 
         { "name": "Deepstone", "id": 4224, "level": 84 }, 
@@ -16,7 +16,7 @@
         { "name": "Swampland", "id": 2892, "level": 89 }, 
         { "name": "Thaumanova Reactor", "id": 2967, "level": 82 }, 
         { "name": "Twilight Oasis", "id": 3973, "level": 87 }, 
-        { "name": "Uncategorized", "id": 2939, "level": 91 }, 
+        { "name": "Uncategorized", "id": 2939, "level": 79 },
         { "name": "Underground Facility", "id": 2947, "level": 81 }, 
         { "name": "Urban Battleground", "id": 2941, "level": 85 }, 
         { "name": "Volcanic", "id": 2989, "level": 92 }, 
