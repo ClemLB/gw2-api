@@ -12,14 +12,14 @@ import java.util.Map;
 @RequiredArgsConstructor
 public enum FractalEnum {
 
-    AETHERBLADE("Étherlame", List.of(14, 45, 65, 70, 93)),
+    AETHERBLADE("Étherlame", List.of(14, 45, 65, 93)),
     AQUATIC_RUINS("Ruines aquatiques", List.of(7, 26, 61, 76)),
-    CAPTAIN_MAI_TRIN("Boss capitaine Mai Trin", List.of(18, 42, 71, 95)),
-    CHAOS_ISLES("Chaos", List.of(13, 30, 38, 63, 88)),
+    CAPTAIN_MAI_TRIN("Boss capitaine Mai Trin", List.of(18, 42, 71, 91)),
+    CHAOS_ISLES("Chaos", List.of(13, 30, 63, 88)),
     CLIFFSIDE("Flanc de falaise", List.of(6, 46, 68, 94)),
     DEEPSTONE("Roche des abysses", List.of(11, 33, 67, 84)),
     MOLTEN_BOSS("Boss de la Fusion", List.of(10, 40, 69, 90)),
-    MOLTEN_FURNACE("Fournaise de la Fusion", List.of(9, 17, 39, 58, 83)),
+    MOLTEN_FURNACE("Fournaise de la Fusion", List.of(9, 39, 58, 83)),
     NIGHTMARE("Cauchemars", List.of(22, 47, 72, 96)),
     OBSERVATORY("Observatoire détruit", List.of(23, 48, 73, 97)),
     SIRENS_REEF("Récif de la sirène", List.of(12, 37, 54, 78)),
@@ -28,13 +28,14 @@ public enum FractalEnum {
     SWAMPLAND("Marais", List.of(5, 32, 56, 77, 89)),
     THAUMANOVA_REACTOR("Réacteur de Thaumanova", List.of(15, 34, 55, 64, 82)),
     TWILIGHT_OASIS("Oasis du crépuscule", List.of(16, 41, 59, 87)),
-    UNCATEGORIZED("Non classé", List.of(2, 36, 62, 79, 91)),
+    UNCATEGORIZED("Non classé", List.of(2, 36, 62, 79)),
     UNDERGROUND_FACILITY("Complexe souterrain", List.of(8, 29, 53, 81)),
     URBAN_BATTLEGROUND("Champ de bataille urbain", List.of(4, 31, 57, 85)),
     VOLCANIC("Volcanique", List.of(1, 19, 28, 52, 92)),
     SUNQUA_PEAK("Pic de Sunqua", List.of(24, 49, 74, 98)),
     SILENT_SURF("Ressac silencieux", List.of(21, 43, 66, 99)),
-    LONELY_TOWER("Tour solitaire", List.of(25, 50, 75, 100));
+    LONELY_TOWER("Tour solitaire", List.of(25, 50, 75, 100)),
+    KINFALL("Deuil du foyer", List.of(17, 38, 70, 95));
 
     private final String name;
     private final List<Integer> levels;
