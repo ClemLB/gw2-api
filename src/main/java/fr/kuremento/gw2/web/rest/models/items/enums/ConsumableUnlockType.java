@@ -12,7 +12,7 @@ public enum ConsumableUnlockType {
 	, GLIDER_SKIN(
 			"GliderSkin"), MINIPET("Minipet"), MS("Ms"), OUTFIT("Outfit"), RANDOM_ULOCK("RandomUlock"), SHARED_SLOT("SharedSlot"), JADE_BOT_SKIN("JadeBotSkin"),
 	BUILD_LIBRARY_SLOT(
-			"BuildLibrarySlot"), GEAR_LOADOUT_TAB("GearLoadoutTab"), BUILD_LOADOUT_TAB("BuildLoadoutTab");
+			"BuildLibrarySlot"), GEAR_LOADOUT_TAB("GearLoadoutTab"), BUILD_LOADOUT_TAB("BuildLoadoutTab"), MAGIC_DOOR_SKIN("MagicDoorSkin");
 
 	private final String value;
 
