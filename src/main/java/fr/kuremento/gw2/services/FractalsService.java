@@ -37,7 +37,7 @@ public class FractalsService {
         List<DailyFractal> fractals = new ArrayList<>(3);
         for (int numFractal : fractalsNumber) {
             Fractal fractal = jsonFractal.fractals()[numFractal];
-            int[] instaNumbers = jsonInstabilities.instabilities().get(String.valueOf(fractal.level()))[LocalDate.now().getDayOfYear()];
+            int[] instaNumbers = jsonInstabilities.instabilities().get(String.valueOf(fractal.level()))[LocalDate.now().getDayOfYear()-1];
             List<String> instabilities = Arrays.stream(instaNumbers).mapToObj(i -> jsonInstabilities.instability_names()[i]).toList();
             fractals.add(new DailyFractal(fractal.level(), FractalEnum.getFractalFromLevel(fractal.level()).getName(), instabilities));
         }
