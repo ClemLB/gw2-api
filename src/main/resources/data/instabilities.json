@@ -9202,7 +9202,7 @@
     ]
   },
   "instability_details": [
-    { "icon_id": 841731, "name": { "de": "Adrenalinschub", "en": "Adrenaline Rush", "es": "Descarga de adrenalina", "fr": "Poussée d’adrénaline" }},
+    { "icon_id": 841731, "name": { "de": "Adrenalinschub", "en": "Adrenaline Rush", "es": "Descarga de adrenalina", "fr": "Poussée d'adrénaline" }},
     { "icon_id": 1948134, "name": { "de": "Befallen", "en": "Afflicted", "es": "Aflicción", "fr": "Affliction" }},
     { "icon_id": 2084733, "name": { "de": "Segensüberladung", "en": "Boon Overload", "es": "Sobrecarga de bendiciones", "fr": "Surcharge d'avantages" }},
     { "icon_id": 1948135, "name": { "de": "Fluxbombe", "en": "Flux Bomb", "es": "Bomba de flujo", "fr": "Bombe à flux" }},
