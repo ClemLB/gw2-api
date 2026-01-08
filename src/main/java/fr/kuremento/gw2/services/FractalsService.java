@@ -38,7 +38,7 @@ public class FractalsService {
         for (int numFractal : fractalsNumber) {
             Fractal fractal = jsonFractal.fractals()[numFractal];
             int[] instaNumbers = jsonInstabilities.instabilities().get(String.valueOf(fractal.level()))[this.getRotation()];
-            List<String> instabilities = Arrays.stream(instaNumbers).mapToObj(i -> jsonInstabilities.instability_names()[i]).toList();
+            List<String> instabilities = Arrays.stream(instaNumbers).mapToObj(i -> jsonInstabilities.instability_details()[i].name().get("fr")).toList();
             fractals.add(new DailyFractal(fractal.level(), FractalEnum.getFractalFromLevel(fractal.level()).getName(), instabilities));
         }
         return fractals.stream().sorted(Comparator.comparingInt(DailyFractal::level)).toList();
