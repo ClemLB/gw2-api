@@ -10,7 +10,7 @@ public enum FactType {
 	ATTRIBUTE_ADJUST("AttributeAdjust"), BUFF("Buff"), BUFF_CONVERSION("BuffConversion"), COMBO_FIELD("ComboField"), COMBO_FINISHER("ComboFinisher"), DAMAGE("Damage"), DISTANCE(
 			"Distance"), NO_DATA("NoData"), NUMBER("Number"), PERCENT("Percent"), PREFIXED_BUFF("PrefixedBuff"), RADIUS("Radius"), RANGE("Range"), RECHARGE("Recharge"), TIME(
 					"Time"), UNBLOCKABLE(
-			"Unblockable"), STUN_BREAK("StunBreak");
+			"Unblockable"), STUN_BREAK("StunBreak"), HEALING_ADJUST("HealingAdjust");
 
 	private final String value;
 

@@ -25,7 +25,8 @@ public enum ConsumableUnlockType {
     BUILD_LIBRARY_SLOT("BuildLibrarySlot"),
     GEAR_LOADOUT_TAB("GearLoadoutTab"),
     BUILD_LOADOUT_TAB("BuildLoadoutTab"),
-    MAGIC_DOOR_SKIN("MagicDoorSkin");
+    MAGIC_DOOR_SKIN("MagicDoorSkin"),
+    WARDROBE_TEMPLATE_TAB("WardrobeTemplateTab");
 
     private final String value;
 
