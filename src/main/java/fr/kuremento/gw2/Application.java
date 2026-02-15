@@ -8,8 +8,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import javax.imageio.ImageIO;
-import java.io.File;
 import java.io.IOException;
 
 @Slf4j
@@ -25,10 +23,7 @@ public class Application {
 
     @SuppressWarnings("all")
     private static void execute(Gw2Client gw2Client, DailyRaidBountiesService service, String apiKey) throws TooManyArgumentsException, IOException {
-        var image = gw2Client.builds().generateBuildImage("[&DQcBHRgdQjsjDwAAZQEAAIMBAAC2AQAA5RoAAAAAAAAAAAAAAAAAAAAAAAA=]");
-        File output = new File("build-output.png");
-        ImageIO.write(image, "png", output);
-        log.info("Image générée : {}", output.getAbsolutePath());
+
     }
 
 }
