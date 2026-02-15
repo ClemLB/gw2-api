@@ -1,6 +1,7 @@
 logging:
     level:
         ROOT: INFO
+        fr.kuremento.gw2: DEBUG
 application:
     rest:
         endpoints:
@@ -36,15 +37,18 @@ application:
             raids: '/v2/raids'
             token-info: '/v2/tokeninfo'
             traits: '/v2/traits'
+            specializations: '/v2/specializations'
+            skills: '/v2/skills'
+            professions: '/v2/professions'
         config:
             base-url: 'https://api.guildwars2.com'
-            connection-timeout: 1000
+            connection-timeout: 10000
             enable-wiretap: false
             language: 'fr'
             page-maximum-size: 200
-            read-timeout: 1000
-            schema-version-date: '2022-11-12T00:00:00.000Z'
-            write-timeout: 1000
+            read-timeout: 15000
+            schema-version-date: '2026-01-01T00:00:00.000Z'
+            write-timeout: 10000
 spring:
     main:
         web-application-type: none

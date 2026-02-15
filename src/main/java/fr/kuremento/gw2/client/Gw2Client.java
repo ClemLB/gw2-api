@@ -13,7 +13,11 @@ import fr.kuremento.gw2.web.rest.services.minis.MinisService;
 import fr.kuremento.gw2.web.rest.services.quaggans.QuaggansService;
 import fr.kuremento.gw2.web.rest.services.raids.RaidsService;
 import fr.kuremento.gw2.web.rest.services.tokeninfo.TokenInfoService;
+import fr.kuremento.gw2.web.rest.services.professions.ProfessionsService;
+import fr.kuremento.gw2.web.rest.services.skills.SkillsService;
+import fr.kuremento.gw2.web.rest.services.specializations.SpecializationsService;
 import fr.kuremento.gw2.web.rest.services.traits.TraitsService;
+import fr.kuremento.gw2.services.builds.BuildTemplateService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.ClientResponse;
@@ -35,6 +39,10 @@ public class Gw2Client {
 	private final TraitsService traitsService;
 	private final TokenInfoService tokenInfoService;
 	private final GuildService guildService;
+	private final SpecializationsService specializationsService;
+	private final SkillsService skillsService;
+	private final ProfessionsService professionsService;
+	private final BuildTemplateService buildTemplateService;
 
 	public static Mono<Throwable> getErrorConsumerForError401(ClientResponse response) {
 		return Mono.error(new TechnicalException(response.statusCode() + " : " + Constants.ERROR_401_403_MESSAGE.getValue()));
@@ -98,6 +106,22 @@ public class Gw2Client {
 
 	public GuildService guild() {
 		return this.guildService;
+	}
+
+	public SpecializationsService specializations() {
+		return this.specializationsService;
+	}
+
+	public SkillsService skills() {
+		return this.skillsService;
+	}
+
+	public ProfessionsService professions() {
+		return this.professionsService;
+	}
+
+	public BuildTemplateService builds() {
+		return this.buildTemplateService;
 	}
 
 }

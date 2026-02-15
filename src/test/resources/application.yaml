@@ -35,14 +35,17 @@ application:
             raids: '/v2/raids'
             token-info: '/v2/tokeninfo'
             traits: '/v2/traits'
+            specializations: '/v2/specializations'
+            skills: '/v2/skills'
+            professions: '/v2/professions'
         config:
             base-url: https://api.guildwars2.com
             connection-timeout: 1000
             enable-wiretap: false
             language: 'fr'
             page-maximum-size: 200
-            read-timeout: 1000
-            schema-version-date: '2022-03-23T19:00:00.000Z'
+            read-timeout: 10000
+            schema-version-date: '2024-01-01T00:00:00.000Z'
             write-timeout: 1000
 test:
     api-key:

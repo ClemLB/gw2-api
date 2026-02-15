@@ -4,6 +4,7 @@ import fr.kuremento.gw2.client.Gw2Client;
 import fr.kuremento.gw2.exceptions.TooManyArgumentsException;
 import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,14 +12,21 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 import org.springframework.web.util.DefaultUriBuilderFactory;
+import reactor.util.retry.Retry;
 
 import java.net.URI;
+import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Getter(AccessLevel.PROTECTED)
 public abstract class AbstractService {
+
+	private static final int MAX_RETRY_ATTEMPTS = 3;
+	private static final Duration RETRY_DELAY = Duration.ofSeconds(30);
 
 	private WebClient webClient;
 	private Integer pageMaximumSize;
@@ -49,6 +57,7 @@ public abstract class AbstractService {
 				   .onStatus(HttpStatus.NOT_FOUND::equals, Gw2Client::getErrorConsumerForError404)
 				   .onStatus(HttpStatus.SERVICE_UNAVAILABLE::equals, Gw2Client::getErrorConsumerForError503)
 				   .bodyToMono(paramz)
+				   .retryWhen(gatewayTimeoutRetry())
 				   .block();
 	}
 
@@ -63,7 +72,16 @@ public abstract class AbstractService {
 				   .onStatus(HttpStatus.NOT_FOUND::equals, Gw2Client::getErrorConsumerForError404)
 				   .onStatus(HttpStatus.SERVICE_UNAVAILABLE::equals, Gw2Client::getErrorConsumerForError503)
 				   .bodyToMono(paramz)
+				   .retryWhen(gatewayTimeoutRetry())
 				   .block();
+	}
+
+	private Retry gatewayTimeoutRetry() {
+		return Retry.fixedDelay(MAX_RETRY_ATTEMPTS, RETRY_DELAY)
+					.filter(throwable -> throwable instanceof WebClientResponseException ex
+							&& (ex.getStatusCode() == HttpStatus.GATEWAY_TIMEOUT || ex.getStatusCode() == HttpStatus.BAD_GATEWAY))
+					.doBeforeRetry(signal -> log.warn("Gateway timeout, retry {}/{} dans {} ...",
+							signal.totalRetries() + 1, MAX_RETRY_ATTEMPTS, RETRY_DELAY));
 	}
 
 	protected <T> URI buildURI(String endpoint, T id) {
