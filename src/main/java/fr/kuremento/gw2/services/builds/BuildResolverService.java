@@ -1,16 +1,11 @@
 package fr.kuremento.gw2.services.builds;
 
 import fr.kuremento.gw2.exceptions.TechnicalException;
-import fr.kuremento.gw2.exceptions.TooManyArgumentsException;
 import fr.kuremento.gw2.models.builds.*;
 import fr.kuremento.gw2.web.rest.models.professions.Profession;
 import fr.kuremento.gw2.web.rest.models.skills.Skill;
 import fr.kuremento.gw2.web.rest.models.specializations.Specialization;
 import fr.kuremento.gw2.web.rest.models.traits.Trait;
-import fr.kuremento.gw2.web.rest.services.professions.ProfessionsService;
-import fr.kuremento.gw2.web.rest.services.skills.SkillsService;
-import fr.kuremento.gw2.web.rest.services.specializations.SpecializationsService;
-import fr.kuremento.gw2.web.rest.services.traits.TraitsService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -18,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -25,14 +21,17 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class BuildResolverService {
 
-	private final ProfessionsService professionsService;
-	private final SkillsService skillsService;
-	private final SpecializationsService specializationsService;
-	private final TraitsService traitsService;
+	private final Map<String, Profession> professionsReferential;
+	private final Map<Integer, Skill> skillsReferential;
+	private final Map<Integer, Specialization> specializationsReferential;
+	private final Map<Integer, Trait> traitsReferential;
 
 	public ResolvedBuild resolve(DecodedBuild decoded) {
 		try {
-			Profession profession = professionsService.get(decoded.profession().getApiName());
+			Profession profession = professionsReferential.get(decoded.profession().getApiName());
+			if (profession == null) {
+				throw new TechnicalException("Profession inconnue : " + decoded.profession().getApiName());
+			}
 
 			Map<Integer, Integer> paletteToSkill = profession.getSkillsByPalette().stream()
 					.filter(pair -> pair.size() == 2)
@@ -44,7 +43,10 @@ public class BuildResolverService {
 					.filter(skillId -> skillId != 0)
 					.toList();
 
-			List<Skill> skills = skillIds.isEmpty() ? List.of() : skillsService.get(skillIds);
+			List<Skill> skills = skillIds.stream()
+					.map(skillsReferential::get)
+					.filter(Objects::nonNull)
+					.toList();
 
 			List<ResolvedSpecLine> resolvedSpecLines = new ArrayList<>();
 			for (SpecLine specLine : decoded.specLines()) {
@@ -52,10 +54,19 @@ public class BuildResolverService {
 					continue;
 				}
 
-				Specialization spec = specializationsService.get(specLine.specializationId());
+				Specialization spec = specializationsReferential.get(specLine.specializationId());
+				if (spec == null) {
+					continue;
+				}
 
-				List<Trait> minorTraits = traitsService.get(spec.getMinorTraits());
-				List<Trait> majorTraits = traitsService.get(spec.getMajorTraits());
+				List<Trait> minorTraits = spec.getMinorTraits().stream()
+						.map(traitsReferential::get)
+						.filter(Objects::nonNull)
+						.toList();
+				List<Trait> majorTraits = spec.getMajorTraits().stream()
+						.map(traitsReferential::get)
+						.filter(Objects::nonNull)
+						.toList();
 
 				int[] selectedMajorIndices = new int[]{
 						specLine.traitChoice1(),
@@ -67,7 +78,9 @@ public class BuildResolverService {
 			}
 
 			return new ResolvedBuild(decoded.profession(), resolvedSpecLines, skills);
-		} catch (TooManyArgumentsException e) {
+		} catch (TechnicalException e) {
+			throw e;
+		} catch (Exception e) {
 			throw new TechnicalException("Erreur lors de la résolution du build : " + e.getMessage());
 		}
 	}
