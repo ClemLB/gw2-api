@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import javax.swing.*;
+import java.awt.image.BufferedImage;
 
 @Slf4j
 @SpringBootApplication
@@ -21,8 +22,11 @@ public class Application {
 
     private static void execute(Gw2Client gw2Client) {
         var image = gw2Client.builds().generateBuildImage("[&DQcBHRgdQjsjDwAAZQEAAIMBAAC2AQAA5RoAAAAAAAAAAAAAAAAAAAAAAAA=]");
+        showImage(image);
+    }
 
-        JFrame frame = new JFrame("Build Preview");
+    private static void showImage(BufferedImage image) {
+        var frame = new JFrame("Build Preview");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.add(new JLabel(new ImageIcon(image)));
         frame.pack();
