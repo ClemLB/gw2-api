@@ -34,18 +34,14 @@ public class DailyRaidBountiesService {
 	 * Retourne les primes de raid pour une date donnée.
 	 * <p>
 	 * Le calcul utilise le jour de l'année (indexé à 0) pour déterminer la position dans le cycle
-	 * de rotation de chaque slot. Pour les années non bissextiles, un décalage est appliqué à partir
-	 * du 1er mars (jour 59) afin de maintenir l'alignement avec le cycle de référence.
+	 * de rotation de chaque slot. La rotation avance d'un cran par jour calendaire sans ajustement
+	 * lié aux années bissextiles.
 	 *
 	 * @param date la date pour laquelle calculer les primes
 	 * @return les quatre boss de raid correspondant à la date
 	 */
 	public DailyRaidBounties getDailyBounties(LocalDate date) {
 		int dayOfYear = date.getDayOfYear() - 1;
-
-		if (!date.isLeapYear() && dayOfYear >= 59) {
-			dayOfYear++;
-		}
 
 		String boss1 = RaidBountySlot.BOSS_1.getEncounters().get(dayOfYear % RaidBountySlot.BOSS_1.getCycleLength());
 		String boss2 = RaidBountySlot.BOSS_2.getEncounters().get(dayOfYear % RaidBountySlot.BOSS_2.getCycleLength());

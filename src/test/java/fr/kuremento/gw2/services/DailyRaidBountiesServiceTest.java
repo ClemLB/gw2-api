@@ -41,18 +41,15 @@ class DailyRaidBountiesServiceTest {
 	}
 
 	@Test
-	@DisplayName("Check leap year and non-leap year consistency after February 28")
+	@DisplayName("Check cycle repeats every 12 calendar days across February/March boundary in non-leap year")
 	void test3() {
-		// March 1st leap year (2024): dayOfYear = 60 (0-based), no adjustment
-		DailyRaidBounties leapYear = service.getDailyBounties(LocalDate.of(2024, 3, 1));
+		// Feb 17 2026 (non-leap): dayIndex 47, 47%12=11 → Kela
+		DailyRaidBounties feb17 = service.getDailyBounties(LocalDate.of(2026, 2, 17));
+		assertEquals("Kela, sénéchal des vagues", feb17.boss2());
 
-		// March 1st non-leap year (2025): dayOfYear = 59 (0-based), adjusted to 60
-		DailyRaidBounties nonLeapYear = service.getDailyBounties(LocalDate.of(2025, 3, 1));
-
-		assertEquals(leapYear.boss1(), nonLeapYear.boss1());
-		assertEquals(leapYear.boss2(), nonLeapYear.boss2());
-		assertEquals(leapYear.boss3(), nonLeapYear.boss3());
-		assertEquals(leapYear.boss4(), nonLeapYear.boss4());
+		// March 1 2026 (non-leap): dayIndex 59, 59%12=11 → Kela (12 calendar days later)
+		DailyRaidBounties mar1 = service.getDailyBounties(LocalDate.of(2026, 3, 1));
+		assertEquals("Kela, sénéchal des vagues", mar1.boss2());
 	}
 
 	@Test
@@ -78,29 +75,35 @@ class DailyRaidBountiesServiceTest {
 	}
 
 	@Test
-	@DisplayName("Check February 28 to March 1 transition in non-leap year")
+	@DisplayName("Check February 28 to March 1 transition in non-leap year advances by one step")
 	void test6() {
-		// Feb 28 non-leap (2025): dayOfYear = 58 (0-based), < 59, no adjustment → index 58
-		// Mar 1 non-leap (2025): dayOfYear = 59 (0-based), >= 59, adjusted to 60
-		// This means index 59 (Feb 29 equivalent) is skipped in non-leap years
+		// Feb 28 non-leap (2025): dayIndex 58
 		DailyRaidBounties feb28 = service.getDailyBounties(LocalDate.of(2025, 2, 28));
+		// Mar 1 non-leap (2025): dayIndex 59 (pas de saut, avance d'un cran)
 		DailyRaidBounties mar1 = service.getDailyBounties(LocalDate.of(2025, 3, 1));
 
-		// Feb 28 leap (2024): dayOfYear = 58 (0-based)
-		DailyRaidBounties feb28Leap = service.getDailyBounties(LocalDate.of(2024, 2, 28));
+		// Les boss doivent être différents (indices consécutifs)
+		assertNotEquals(feb28.boss2(), mar1.boss2());
+		assertNotEquals(feb28.boss3(), mar1.boss3());
+	}
 
-		assertEquals(feb28Leap.boss1(), feb28.boss1());
-		assertEquals(feb28Leap.boss2(), feb28.boss2());
-		assertEquals(feb28Leap.boss3(), feb28.boss3());
-		assertEquals(feb28Leap.boss4(), feb28.boss4());
+	@Test
+	@DisplayName("Check February 28 to March 1 transition in leap year advances by one step per day")
+	void test7() {
+		// En année bissextile, Feb 28 → Feb 29 → Mar 1 avancent chacun d'un cran
+		DailyRaidBounties feb28 = service.getDailyBounties(LocalDate.of(2024, 2, 28));
+		DailyRaidBounties feb29 = service.getDailyBounties(LocalDate.of(2024, 2, 29));
+		DailyRaidBounties mar1 = service.getDailyBounties(LocalDate.of(2024, 3, 1));
 
-		// Mar 1 leap (2024): dayOfYear = 60 (0-based)
-		DailyRaidBounties mar1Leap = service.getDailyBounties(LocalDate.of(2024, 3, 1));
+		// Trois jours consécutifs → trois boss différents pour les slots à cycle 12
+		assertNotEquals(feb28.boss2(), feb29.boss2());
+		assertNotEquals(feb29.boss2(), mar1.boss2());
+		assertNotEquals(feb28.boss2(), mar1.boss2());
 
-		assertEquals(mar1Leap.boss1(), mar1.boss1());
-		assertEquals(mar1Leap.boss2(), mar1.boss2());
-		assertEquals(mar1Leap.boss3(), mar1.boss3());
-		assertEquals(mar1Leap.boss4(), mar1.boss4());
+		// Le cycle de 12 jours fonctionne aussi à travers cette transition
+		DailyRaidBounties mar11 = service.getDailyBounties(LocalDate.of(2024, 3, 11));
+		assertEquals(feb28.boss2(), mar11.boss2());
+		assertEquals(feb28.boss3(), mar11.boss3());
 	}
 
 }
