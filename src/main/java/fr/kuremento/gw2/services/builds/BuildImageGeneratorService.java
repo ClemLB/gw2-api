@@ -2,7 +2,7 @@ package fr.kuremento.gw2.services.builds;
 
 import fr.kuremento.gw2.models.builds.*;
 import fr.kuremento.gw2.web.rest.models.items.Item;
-import fr.kuremento.gw2.web.rest.models.itemstats.ItemStatAttribute;
+import fr.kuremento.gw2.web.rest.models.items.enums.TypeOfItem;
 import fr.kuremento.gw2.web.rest.models.skills.Skill;
 import fr.kuremento.gw2.web.rest.models.traits.Trait;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +14,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +22,8 @@ import java.util.Map;
 @Service
 @RequiredArgsConstructor
 public class BuildImageGeneratorService {
+
+	private static final int SCALE = 2;
 
 	private static final int BUILD_WIDTH = 500;
 
@@ -38,22 +41,47 @@ public class BuildImageGeneratorService {
 	private static final int EQUIP_ATTR_LINE_HEIGHT = 10;
 
 	// Partie fixe (sans texte) de chaque section
-	private static final int ARME_FIXED = EQUIP_PADDING + EQUIP_ICON_SIZE + EQUIP_ROW_GAP + SIGIL_SLOT_SIZE + 2 + SIGIL_SLOT_SIZE + 6 + EQUIP_PADDING; // 110
 	private static final int ITEM_FIXED = EQUIP_PADDING + EQUIP_ICON_SIZE + 6 + EQUIP_PADDING; // 60
+	private static final int MAX_TEXT_WIDTH = 100;
 
-	private static final Map<String, String> ATTR_FR = Map.ofEntries(
-			Map.entry("Power", "Puissance"),
-			Map.entry("Precision", "Précision"),
-			Map.entry("CritDamage", "Férocité"),
-			Map.entry("ConditionDamage", "Dégâts par altération"),
-			Map.entry("Toughness", "Robustesse"),
-			Map.entry("Vitality", "Vitalité"),
-			Map.entry("Healing", "Guérison"),
-			Map.entry("HealingPower", "Guérison"),
-			Map.entry("BoonDuration", "Concentration"),
-			Map.entry("ConditionDuration", "Expertise"),
-			Map.entry("AgonyResistance", "Rés. à l'agonie")
+	private static final Map<String, String> WEAPON_TYPE_FR = Map.ofEntries(
+			Map.entry("Axe", "Hache"),
+			Map.entry("Dagger", "Dague"),
+			Map.entry("Focus", "Focus"),
+			Map.entry("Greatsword", "Espadon"),
+			Map.entry("Hammer", "Marteau"),
+			Map.entry("LongBow", "Arc long"),
+			Map.entry("Mace", "Masse"),
+			Map.entry("Pistol", "Pistolet"),
+			Map.entry("Rifle", "Fusil"),
+			Map.entry("Scepter", "Sceptre"),
+			Map.entry("Shield", "Bouclier"),
+			Map.entry("ShortBow", "Arc court"),
+			Map.entry("Staff", "Bâton"),
+			Map.entry("Sword", "Épée"),
+			Map.entry("Torch", "Torche"),
+			Map.entry("Trident", "Trident"),
+			Map.entry("Warhorn", "Cor de guerre"),
+			Map.entry("Spear", "Lance"),
+			Map.entry("HarpoonGun", "Harpon")
 	);
+
+	private static final Map<EquipmentSlot, String> SLOT_FR = Map.ofEntries(
+			Map.entry(EquipmentSlot.HELM, "Casque"),
+			Map.entry(EquipmentSlot.SHOULDERS, "Épaules"),
+			Map.entry(EquipmentSlot.CHEST, "Plastron"),
+			Map.entry(EquipmentSlot.GLOVES, "Gantelets"),
+			Map.entry(EquipmentSlot.LEGGINGS, "Jambières"),
+			Map.entry(EquipmentSlot.BOOTS, "Bottes"),
+			Map.entry(EquipmentSlot.AMULET, "Amulette"),
+			Map.entry(EquipmentSlot.RING_1, "Anneau"),
+			Map.entry(EquipmentSlot.RING_2, "Anneau"),
+			Map.entry(EquipmentSlot.ACCESSORY_1, "Accessoire"),
+			Map.entry(EquipmentSlot.ACCESSORY_2, "Accessoire"),
+			Map.entry(EquipmentSlot.BACK, "Dos"),
+			Map.entry(EquipmentSlot.RELIC, "Relique")
+	);
+
 	private static final int VERTICAL_PADDING = 7;
 	private static final int TRAIT_VERTICAL_GAP = 4;
 	private static final int SPEC_ROW_HEIGHT = 3 * MAJOR_TRAIT_SIZE + 2 * TRAIT_VERTICAL_GAP + 2 * VERTICAL_PADDING;
@@ -79,10 +107,11 @@ public class BuildImageGeneratorService {
 		int specCount = build.specLines().size();
 		int specHeight = specCount * SPEC_ROW_HEIGHT + (specCount - 1) * SPEC_ROW_GAP + SKILL_ROW_HEIGHT;
 
-		BufferedImage image = new BufferedImage(BUILD_WIDTH, specHeight, BufferedImage.TYPE_INT_ARGB);
+		BufferedImage image = new BufferedImage(BUILD_WIDTH * SCALE, specHeight * SCALE, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2d = image.createGraphics();
 
 		applyRenderingHints(g2d);
+		g2d.scale(SCALE, SCALE);
 
 		g2d.setColor(DARK_BACKGROUND);
 		g2d.fillRect(0, 0, BUILD_WIDTH, specHeight);
@@ -99,7 +128,7 @@ public class BuildImageGeneratorService {
 	}
 
 	public BufferedImage generateEquipmentImage(ResolvedEquipment equipment) {
-		int armeW = ARME_FIXED + measureMaxTextWidth(equipment,
+		int armeW = ITEM_FIXED + measureMaxTextWidth(equipment,
 				EquipmentSlot.MAIN_HAND_1, EquipmentSlot.OFF_HAND_1, EquipmentSlot.MAIN_HAND_2, EquipmentSlot.OFF_HAND_2);
 		int armureW = ITEM_FIXED + measureMaxTextWidth(equipment,
 				EquipmentSlot.HELM, EquipmentSlot.SHOULDERS, EquipmentSlot.CHEST,
@@ -113,17 +142,18 @@ public class BuildImageGeneratorService {
 		Graphics2D gTmp = tmp.createGraphics();
 		FontMetrics fmH = gTmp.getFontMetrics(new Font(Font.SANS_SERIF, Font.BOLD, 9));
 		gTmp.dispose();
-		armeW = Math.max(armeW, fmH.stringWidth("ARME") + 2 * EQUIP_PADDING);
+		armeW = Math.max(armeW, fmH.stringWidth("ARMES") + 2 * EQUIP_PADDING);
 		armureW = Math.max(armureW, fmH.stringWidth("ARMURE") + 2 * EQUIP_PADDING);
 		accessW = Math.max(accessW, fmH.stringWidth("ACCESSOIRES") + 2 * EQUIP_PADDING);
 
 		int totalWidth = armeW + 1 + armureW + 1 + accessW;
 		int height = computeEquipmentHeight(equipment);
 
-		BufferedImage image = new BufferedImage(totalWidth, height, BufferedImage.TYPE_INT_ARGB);
+		BufferedImage image = new BufferedImage(totalWidth * SCALE, height * SCALE, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2d = image.createGraphics();
 
 		applyRenderingHints(g2d);
+		g2d.scale(SCALE, SCALE);
 
 		drawEquipmentColumn(g2d, equipment, 0, 0, height, armeW, armureW, accessW);
 
@@ -135,23 +165,23 @@ public class BuildImageGeneratorService {
 		BufferedImage tmp = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g = tmp.createGraphics();
 		FontMetrics fmPlain = g.getFontMetrics(new Font(Font.SANS_SERIF, Font.PLAIN, 8));
-		FontMetrics fmBold = g.getFontMetrics(new Font(Font.SANS_SERIF, Font.BOLD, 8));
 		g.dispose();
 
 		int max = 0;
 		Map<EquipmentSlot, ResolvedEquipmentPiece> bySlot = equipment.bySlot();
 		for (EquipmentSlot slot : slots) {
 			ResolvedEquipmentPiece piece = bySlot.get(slot);
-			if (piece == null || piece.stat() == null) continue;
-			max = Math.max(max, fmPlain.stringWidth(capitalize(piece.stat().getName())));
-			double attrAdj = piece.item() != null && piece.item().getDetails() != null
-					&& piece.item().getDetails().getAttributeAdjustment() != null
-					? piece.item().getDetails().getAttributeAdjustment() : 0.0;
-			for (ItemStatAttribute attr : piece.stat().getAttributes()) {
-				String name = capitalize(ATTR_FR.getOrDefault(attr.getAttribute(), attr.getAttribute()));
-				int value = (int) Math.round(attr.getMultiplier() * attrAdj) + (attr.getValue() != null ? attr.getValue() : 0);
-				max = Math.max(max, fmBold.stringWidth(name + " : " + value));
+			if (piece == null) continue;
+			String label = buildItemLabel(piece);
+			String statName = piece.stat() != null ? capitalize(piece.stat().getName()) : null;
+			String header = buildHeaderText(label, statName);
+			if (header != null) {
+				for (String line : wrapText(header, fmPlain, MAX_TEXT_WIDTH))
+					max = Math.max(max, fmPlain.stringWidth(line));
 			}
+			// Upgrade (sigil/rune) : icône + nom
+			if (piece.upgrade() != null && piece.upgrade().getName() != null)
+				max = Math.max(max, SIGIL_SLOT_SIZE + 4 + fmPlain.stringWidth(piece.upgrade().getName()));
 		}
 		return max;
 	}
@@ -200,7 +230,7 @@ public class BuildImageGeneratorService {
 		}) {
 			ResolvedEquipmentPiece piece = bySlot.get(slot);
 			drawEquipmentIcon(g2d, piece, accessX + EQUIP_PADDING, accessY);
-			drawStatText(g2d, piece, accessTextX, accessY);
+			drawItemHeader(g2d, piece, accessTextX, accessY);
 			accessY += rowHeight(piece) + EQUIP_ROW_GAP;
 		}
 	}
@@ -240,32 +270,39 @@ public class BuildImageGeneratorService {
 	}
 
 	private int drawWeaponRow(Graphics2D g2d, ResolvedEquipmentPiece piece, int sectionX, int y) {
-		drawItemIconPlain(g2d, piece, sectionX + EQUIP_PADDING, y);
+		int h = rowHeight(piece);
+		drawItemIconPlain(g2d, piece, sectionX + EQUIP_PADDING, y, EQUIP_ICON_SIZE);
+		int textX = sectionX + EQUIP_PADDING + EQUIP_ICON_SIZE + 6;
+		drawItemHeader(g2d, piece, textX, y);
 
-		int sigil1X = sectionX + EQUIP_PADDING + EQUIP_ICON_SIZE + EQUIP_ROW_GAP;
-		drawSigilSlot(g2d, piece != null ? piece.upgrade() : null, sigil1X, y, SIGIL_SLOT_SIZE);
+		Item sigil = piece != null ? piece.upgrade() : null;
+		if (sigil != null) {
+			int sigilY = y + h - SIGIL_SLOT_SIZE;
+			drawSigilSlot(g2d, sigil, textX, sigilY, SIGIL_SLOT_SIZE);
+			if (sigil.getName() != null) {
+				g2d.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 8));
+				g2d.setColor(new Color(200, 200, 200));
+				FontMetrics fm = g2d.getFontMetrics();
+				int nameOffsetY = (SIGIL_SLOT_SIZE - fm.getHeight()) / 2 + fm.getAscent();
+				g2d.drawString(sigil.getName(), textX + SIGIL_SLOT_SIZE + 4, sigilY + nameOffsetY);
+			}
+		}
 
-		int sigil2X = sigil1X + SIGIL_SLOT_SIZE + 2;
-		drawSigilSlot(g2d, piece != null ? piece.upgrade2() : null, sigil2X, y, SIGIL_SLOT_SIZE);
-
-		int textX = sigil2X + SIGIL_SLOT_SIZE + 6;
-		drawStatText(g2d, piece, textX, y);
-
-		return y + rowHeight(piece) + EQUIP_ROW_GAP;
+		return y + h + EQUIP_ROW_GAP;
 	}
 
-	private void drawItemIconPlain(Graphics2D g2d, ResolvedEquipmentPiece piece, int x, int y) {
+	private void drawItemIconPlain(Graphics2D g2d, ResolvedEquipmentPiece piece, int x, int y, int size) {
 		if (piece == null || piece.item() == null) {
 			g2d.setColor(new Color(50, 50, 50, 150));
-			g2d.fillRoundRect(x, y, EQUIP_ICON_SIZE, EQUIP_ICON_SIZE, 4, 4);
+			g2d.fillRoundRect(x, y, size, size, 4, 4);
 			return;
 		}
 		BufferedImage icon = piece.item().getIcon() != null ? iconFetcherService.fetchImage(piece.item().getIcon()) : null;
 		if (icon != null) {
-			g2d.drawImage(icon, x, y, EQUIP_ICON_SIZE, EQUIP_ICON_SIZE, null);
+			g2d.drawImage(icon, x, y, size, size, null);
 		} else {
 			g2d.setColor(new Color(50, 50, 50, 150));
-			g2d.fillRoundRect(x, y, EQUIP_ICON_SIZE, EQUIP_ICON_SIZE, 4, 4);
+			g2d.fillRoundRect(x, y, size, size, 4, 4);
 		}
 	}
 
@@ -281,44 +318,101 @@ public class BuildImageGeneratorService {
 	}
 
 	private int rowHeight(ResolvedEquipmentPiece piece) {
-		int numAttrs = piece != null && piece.stat() != null ? piece.stat().getAttributes().size() : 0;
-		return Math.max(EQUIP_ICON_SIZE, (1 + numAttrs) * EQUIP_ATTR_LINE_HEIGHT);
+		int headerLines = 0;
+		if (piece != null && (piece.item() != null || piece.stat() != null)) {
+			String text = buildHeaderText(buildItemLabel(piece),
+					piece.stat() != null ? capitalize(piece.stat().getName()) : null);
+			if (text != null) {
+				BufferedImage tmp = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
+				Graphics2D g = tmp.createGraphics();
+				FontMetrics fm = g.getFontMetrics(new Font(Font.SANS_SERIF, Font.PLAIN, 8));
+				g.dispose();
+				headerLines = wrapText(text, fm, MAX_TEXT_WIDTH).size();
+			}
+		}
+		boolean hasUpgrade = piece != null && piece.upgrade() != null;
+		int upgradeH = hasUpgrade ? (headerLines > 0 ? 2 : 0) + SIGIL_SLOT_SIZE : 0;
+		return Math.max(EQUIP_ICON_SIZE, headerLines * EQUIP_ATTR_LINE_HEIGHT + upgradeH);
 	}
 
-	private void drawStatText(Graphics2D g2d, ResolvedEquipmentPiece piece, int textX, int y) {
-		if (piece == null || piece.stat() == null) return;
-		int lineY = y;
-
+	private void drawItemHeader(Graphics2D g2d, ResolvedEquipmentPiece piece, int textX, int y) {
+		if (piece == null) return;
+		String label = buildItemLabel(piece);
+		String statName = piece.stat() != null ? capitalize(piece.stat().getName()) : null;
+		String text = buildHeaderText(label, statName);
+		if (text == null) return;
 		g2d.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 8));
-		g2d.setColor(new Color(160, 160, 160));
-		g2d.drawString(capitalize(piece.stat().getName()), textX, lineY + g2d.getFontMetrics().getAscent());
-		lineY += EQUIP_ATTR_LINE_HEIGHT;
-
-		double attrAdj = piece.item() != null && piece.item().getDetails() != null
-				&& piece.item().getDetails().getAttributeAdjustment() != null
-				? piece.item().getDetails().getAttributeAdjustment() : 0.0;
-
-		g2d.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 8));
 		g2d.setColor(Color.WHITE);
 		FontMetrics fm = g2d.getFontMetrics();
-		for (ItemStatAttribute attr : piece.stat().getAttributes()) {
-			String name = capitalize(ATTR_FR.getOrDefault(attr.getAttribute(), attr.getAttribute()));
-			int value = (int) Math.round(attr.getMultiplier() * attrAdj) + (attr.getValue() != null ? attr.getValue() : 0);
-			g2d.drawString(name + " : " + value, textX, lineY + fm.getAscent());
-			lineY += EQUIP_ATTR_LINE_HEIGHT;
+		List<String> lines = wrapText(text, fm, MAX_TEXT_WIDTH);
+		for (int i = 0; i < lines.size(); i++) {
+			g2d.drawString(lines.get(i), textX, y + i * EQUIP_ATTR_LINE_HEIGHT + fm.getAscent());
 		}
 	}
 
+	private List<String> wrapText(String text, FontMetrics fm, int maxWidth) {
+		if (fm.stringWidth(text) <= maxWidth) return List.of(text);
+		List<String> lines = new ArrayList<>();
+		String[] words = text.split(" ");
+		StringBuilder current = new StringBuilder();
+		for (String word : words) {
+			String candidate = current.isEmpty() ? word : current + " " + word;
+			if (fm.stringWidth(candidate) <= maxWidth) {
+				current = new StringBuilder(candidate);
+			} else {
+				if (!current.isEmpty()) lines.add(current.toString());
+				current = new StringBuilder(word);
+			}
+		}
+		if (!current.isEmpty()) lines.add(current.toString());
+		return lines.isEmpty() ? List.of(text) : lines;
+	}
+
+	private String buildHeaderText(String label, String statName) {
+		if (label != null && statName != null) return label + " · " + statName;
+		if (label != null) return label;
+		if (statName != null) return statName;
+		return null;
+	}
+
 	private int drawArmureRow(Graphics2D g2d, ResolvedEquipmentPiece piece, int sectionX, int y) {
-		drawEquipmentIcon(g2d, piece, sectionX + EQUIP_PADDING, y);
+		int h = rowHeight(piece);
+		drawItemIconPlain(g2d, piece, sectionX + EQUIP_PADDING, y, EQUIP_ICON_SIZE);
 		int textX = sectionX + EQUIP_PADDING + EQUIP_ICON_SIZE + 6;
-		drawStatText(g2d, piece, textX, y);
-		return y + rowHeight(piece) + EQUIP_ROW_GAP;
+		drawItemHeader(g2d, piece, textX, y);
+
+		Item rune = piece != null ? piece.upgrade() : null;
+		if (rune != null) {
+			int runeY = y + h - SIGIL_SLOT_SIZE;
+			drawSigilSlot(g2d, rune, textX, runeY, SIGIL_SLOT_SIZE);
+			if (rune.getName() != null) {
+				g2d.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 8));
+				g2d.setColor(new Color(200, 200, 200));
+				FontMetrics fm = g2d.getFontMetrics();
+				int nameOffsetY = (SIGIL_SLOT_SIZE - fm.getHeight()) / 2 + fm.getAscent();
+				g2d.drawString(rune.getName(), textX + SIGIL_SLOT_SIZE + 4, runeY + nameOffsetY);
+			}
+		}
+
+		return y + h + EQUIP_ROW_GAP;
 	}
 
 	private String capitalize(String text) {
 		if (text == null || text.isEmpty()) return text;
 		return Character.toUpperCase(text.charAt(0)) + text.substring(1);
+	}
+
+	private String buildItemLabel(ResolvedEquipmentPiece piece) {
+		if (piece == null) return null;
+		if (piece.item() != null && TypeOfItem.WEAPON.equals(piece.item().getType())
+				&& piece.item().getDetails() != null && piece.item().getDetails().getType() != null) {
+			return capitalize(WEAPON_TYPE_FR.getOrDefault(piece.item().getDetails().getType(),
+					piece.item().getDetails().getType()));
+		}
+		if (EquipmentSlot.RELIC.equals(piece.slot()) && piece.item() != null && piece.item().getName() != null) {
+			return piece.item().getName();
+		}
+		return SLOT_FR.getOrDefault(piece.slot(), piece.slot().name());
 	}
 
 	private int drawSectionHeader(Graphics2D g2d, String title, int x, int y, int width) {
