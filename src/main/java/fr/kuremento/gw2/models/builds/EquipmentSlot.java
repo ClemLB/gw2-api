@@ -1,0 +1,8 @@
+package fr.kuremento.gw2.models.builds;
+
+public enum EquipmentSlot {
+	HELM, SHOULDERS, CHEST, GLOVES, LEGGINGS, BOOTS,
+	MAIN_HAND_1, OFF_HAND_1, MAIN_HAND_2, OFF_HAND_2,
+	AMULET, RING_1, RING_2, ACCESSORY_1, ACCESSORY_2,
+	BACK, RELIC
+}

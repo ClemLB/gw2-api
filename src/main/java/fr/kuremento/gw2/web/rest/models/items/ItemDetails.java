@@ -96,7 +96,7 @@ public class ItemDetails {
 	List<InfusionSlot> infusionSlots = new ArrayList<>();
 
 	@JsonProperty("attribute_adjustment")
-	Integer attributeAdjustment;
+	Double attributeAdjustment;
 
 	@JsonProperty("infix_upgrade")
 	InfixUpgrade infixUpgrade;

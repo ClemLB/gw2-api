@@ -3,6 +3,7 @@ package fr.kuremento.gw2.config;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.kuremento.gw2.web.rest.models.itemstats.ItemStat;
 import fr.kuremento.gw2.web.rest.models.professions.Profession;
 import fr.kuremento.gw2.web.rest.models.skills.Skill;
 import fr.kuremento.gw2.web.rest.models.specializations.Specialization;
@@ -52,5 +53,12 @@ public class ReferentialConfig {
 		List<Profession> professions = objectMapper.readValue(resource.getInputStream(), new TypeReference<>() {});
 		log.info("Référentiel professions chargé : {} éléments", professions.size());
 		return professions.stream().collect(Collectors.toMap(Profession::getId, Function.identity()));
+	}
+
+	@Bean
+	public Map<Integer, ItemStat> itemStatsReferential(@Value("classpath:data/referential/itemstats.json") Resource resource) throws IOException {
+		List<ItemStat> itemStats = objectMapper.readValue(resource.getInputStream(), new TypeReference<>() {});
+		log.info("Référentiel itemstats chargé : {} éléments", itemStats.size());
+		return itemStats.stream().collect(Collectors.toMap(ItemStat::getId, Function.identity()));
 	}
 }

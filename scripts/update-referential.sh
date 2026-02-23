@@ -96,4 +96,7 @@ echo ""
 download_simple "professions" "$OUTPUT_DIR/professions.json"
 echo ""
 
+download_paginated "itemstats" "$OUTPUT_DIR/itemstats.json"
+echo ""
+
 echo "=== Référentiel mis à jour avec succès ==="
