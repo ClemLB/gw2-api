@@ -16,10 +16,8 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
 
 @Slf4j
 @Service
@@ -110,6 +108,7 @@ public class BuildImageGeneratorService {
 	private static final int SPEC_ICON_OFFSET_X = 59;
 
 	private static final Color DARK_BACKGROUND = new Color(30, 30, 30);
+	private static final int BACKGROUND_OPACITE = 100;
 
 	private final IconFetcherService iconFetcherService;
 
@@ -199,7 +198,7 @@ public class BuildImageGeneratorService {
 				int drawW = (int) Math.ceil(bg.getWidth() * s);
 				int drawH = (int) Math.ceil(bg.getHeight() * s);
 				g2d.drawImage(bg, 0, (totalHeight - drawH) / 2, drawW, drawH, null);
-				g2d.setColor(new Color(0, 0, 0, 150));
+				g2d.setColor(new Color(0, 0, 0, BACKGROUND_OPACITE));
 				g2d.fillRect(0, 0, totalWidth, totalHeight);
 			}
 		} else {
@@ -234,6 +233,8 @@ public class BuildImageGeneratorService {
 			// Upgrade (sigil/rune) : icône + nom
 			if (piece.upgrade() != null && piece.upgrade().getName() != null)
 				max = Math.max(max, SIGIL_SLOT_SIZE + 4 + fmPlain.stringWidth(piece.upgrade().getName()));
+			if (piece.upgrade2() != null && piece.upgrade2().getName() != null)
+				max = Math.max(max, SIGIL_SLOT_SIZE + 4 + fmPlain.stringWidth(piece.upgrade2().getName()));
 		}
 		return max;
 	}
@@ -383,20 +384,31 @@ public class BuildImageGeneratorService {
 
 	private int drawWeaponRow(Graphics2D g2d, ResolvedEquipmentPiece piece, int sectionX, int y) {
 		int h = rowHeight(piece);
-		drawItemIconPlain(g2d, piece, sectionX + EQUIP_PADDING, y, EQUIP_ICON_SIZE);
 		int textX = sectionX + EQUIP_PADDING + EQUIP_ICON_SIZE + 6;
+
+		Item sigil1 = piece != null ? piece.upgrade() : null;
+		Item sigil2 = piece != null ? piece.upgrade2() : null;
+		int sigilCount = (sigil1 != null ? 1 : 0) + (sigil2 != null ? 1 : 0);
+
+		// Pour 2 sigils : l'icône s'aligne avec le bloc sigils (2*18+2=38=EQUIP_ICON_SIZE)
+		// Pour 0 ou 1 sigil : l'icône reste en haut
+		int iconY = (sigilCount == 2) ? y + h - EQUIP_ICON_SIZE : y;
+		drawItemIconPlain(g2d, piece, sectionX + EQUIP_PADDING, iconY, EQUIP_ICON_SIZE);
 		drawItemHeader(g2d, piece, textX, y);
 
-		Item sigil = piece != null ? piece.upgrade() : null;
-		if (sigil != null) {
-			int sigilY = y + h - SIGIL_SLOT_SIZE;
-			drawSigilSlot(g2d, sigil, textX, sigilY, SIGIL_SLOT_SIZE);
-			if (sigil.getName() != null) {
-				g2d.setFont(new Font(Font.SANS_SERIF, Font.ITALIC, 8));
-				g2d.setColor(new Color(210, 170, 100));
-				FontMetrics fm = g2d.getFontMetrics();
-				int nameOffsetY = (SIGIL_SLOT_SIZE - fm.getHeight()) / 2 + fm.getAscent();
-				g2d.drawString(sigil.getName(), textX + SIGIL_SLOT_SIZE + 4, sigilY + nameOffsetY);
+		if (sigilCount > 0) {
+			int sigilY = (sigilCount == 2) ? iconY : y + h - SIGIL_SLOT_SIZE;
+			for (Item sigil : new Item[]{sigil1, sigil2}) {
+				if (sigil == null) continue;
+				drawSigilSlot(g2d, sigil, textX, sigilY, SIGIL_SLOT_SIZE);
+				if (sigil.getName() != null) {
+					g2d.setFont(new Font(Font.SANS_SERIF, Font.ITALIC, 8));
+					g2d.setColor(new Color(210, 170, 100));
+					FontMetrics fm = g2d.getFontMetrics();
+					int nameOffsetY = (SIGIL_SLOT_SIZE - fm.getHeight()) / 2 + fm.getAscent();
+					g2d.drawString(sigil.getName(), textX + SIGIL_SLOT_SIZE + 4, sigilY + nameOffsetY);
+				}
+				sigilY += SIGIL_SLOT_SIZE + 2;
 			}
 		}
 
@@ -442,8 +454,14 @@ public class BuildImageGeneratorService {
 				headerLines = wrapText(text, fm, MAX_TEXT_WIDTH).size();
 			}
 		}
-		boolean hasUpgrade = piece != null && piece.upgrade() != null;
-		int upgradeH = hasUpgrade ? (headerLines > 0 ? 2 : 0) + SIGIL_SLOT_SIZE : 0;
+		int sigilCount = (piece != null && piece.upgrade() != null ? 1 : 0)
+				+ (piece != null && piece.upgrade2() != null ? 1 : 0);
+		// 2 sigils empilés = 18+2+18 = 38 = exactement EQUIP_ICON_SIZE → alignement parfait icône/sigils
+		int upgradeH = sigilCount == 2
+				? (headerLines > 0 ? 4 : 0) + EQUIP_ICON_SIZE
+				: sigilCount == 1
+						? (headerLines > 0 ? 2 : 0) + SIGIL_SLOT_SIZE
+						: 0;
 		return Math.max(EQUIP_ICON_SIZE, headerLines * EQUIP_ATTR_LINE_HEIGHT + upgradeH);
 	}
 
@@ -534,20 +552,6 @@ public class BuildImageGeneratorService {
 			}
 		}
 		return result;
-	}
-
-	private int computeFooterHeight(ResolvedEquipment equipment, int totalWidth) {
-		Map<String, ItemStat> stats = collectUniqueStats(equipment);
-		if (stats.isEmpty()) return 0;
-		BufferedImage tmp = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
-		Graphics2D g = tmp.createGraphics();
-		FontMetrics fm = g.getFontMetrics(new Font(Font.SANS_SERIF, Font.PLAIN, 8));
-		g.dispose();
-		int lines = 0;
-		for (ItemStat stat : stats.values()) {
-			lines += wrapText(buildStatSummary(stat), fm, totalWidth - 2 * EQUIP_PADDING).size();
-		}
-		return EQUIP_PADDING + lines * EQUIP_ATTR_LINE_HEIGHT + EQUIP_PADDING;
 	}
 
 	private String buildStatSummary(ItemStat stat) {
