@@ -4,7 +4,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 output/
-src/main/java/fr/kuremento/gw2/ui
+src/main/**/fr/kuremento/gw2/ui
 
 ### STS ###
 .apt_generated
