@@ -28,6 +28,6 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Build the project
-        run: mvn clean install -DskipTests
+        run: mvn clean install -DskipTests -Djava.awt.headless=false
       - name: Test the project
         run: mvn org.jacoco:jacoco-maven-plugin:prepare-agent install
