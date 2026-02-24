@@ -30,4 +30,4 @@ jobs:
       - name: Build the project
         run: mvn clean install -DskipTests -Djava.awt.headless=false
       - name: Test the project
-        run: mvn org.jacoco:jacoco-maven-plugin:prepare-agent install
+        run: mvn org.jacoco:jacoco-maven-plugin:prepare-agent install -Djava.awt.headless=false
