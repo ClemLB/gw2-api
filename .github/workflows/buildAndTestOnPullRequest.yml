@@ -27,9 +27,9 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Build the project
-        run: mvn clean install -DskipTests -Djava.awt.headless=false
+        run: mvn clean install -DskipTests
       - name: Test the project
-        run: mvn org.jacoco:jacoco-maven-plugin:prepare-agent install -Djava.awt.headless=false
+        run: mvn org.jacoco:jacoco-maven-plugin:prepare-agent install
       - if: always()
         name: Update commit status to SUCCESS
         uses: ouzi-dev/commit-status-updater@v2
