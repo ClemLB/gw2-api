@@ -146,6 +146,14 @@ public class BuildImageGeneratorService {
 	}
 
 	public BufferedImage generateEquipmentImage(ResolvedEquipment equipment) {
+		return doGenerateEquipmentImage(equipment, null);
+	}
+
+	public BufferedImage generateEquipmentImage(ResolvedEquipment equipment, int eliteSpecId) {
+		return doGenerateEquipmentImage(equipment, eliteSpecId);
+	}
+
+	private BufferedImage doGenerateEquipmentImage(ResolvedEquipment equipment, Integer eliteSpecId) {
 		int leftW = ITEM_FIXED + measureMaxTextWidth(equipment,
 				EquipmentSlot.HELM, EquipmentSlot.SHOULDERS, EquipmentSlot.CHEST,
 				EquipmentSlot.GLOVES, EquipmentSlot.LEGGINGS, EquipmentSlot.BOOTS);
@@ -159,7 +167,7 @@ public class BuildImageGeneratorService {
 				measureMaxTextWidth(equipment, EquipmentSlot.MAIN_HAND_1, EquipmentSlot.OFF_HAND_1),
 				measureMaxTextWidth(equipment, EquipmentSlot.MAIN_HAND_2, EquipmentSlot.OFF_HAND_2));
 		int armeGridW = 2 * (ITEM_FIXED + armeSetTextW) + CELL_GAP;
-		int rightW = Math.max(accessGridW, Math.max(ITEM_FIXED + measureMaxTextWidth(equipment, EquipmentSlot.RELIC), armeGridW));
+		int rightW = Math.max(accessGridW, armeGridW);
 
 		// Largeur minimale pour que les en-têtes de section tiennent
 		BufferedImage tmp = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
@@ -168,13 +176,11 @@ public class BuildImageGeneratorService {
 		gTmp.dispose();
 		leftW = Math.max(leftW, fmH.stringWidth("ARMURE") + 2 * EQUIP_PADDING);
 		rightW = Math.max(rightW, fmH.stringWidth("ACCESSOIRES") + 2 * EQUIP_PADDING);
-		rightW = Math.max(rightW, fmH.stringWidth("RELIQUE") + 2 * EQUIP_PADDING);
 		rightW = Math.max(rightW, fmH.stringWidth("ARMES") + 2 * EQUIP_PADDING);
 
 		int totalWidth = leftW + 1 + rightW;
-		int bodyHeight = computeEquipmentHeight(equipment);
-		int footerHeight = computeFooterHeight(equipment, totalWidth);
-		int totalHeight = bodyHeight + footerHeight;
+		int bodyHeight = computeEquipmentHeight(equipment, rightW);
+		int totalHeight = bodyHeight;
 
 		BufferedImage image = new BufferedImage(totalWidth * SCALE, totalHeight * SCALE, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2d = image.createGraphics();
@@ -182,10 +188,26 @@ public class BuildImageGeneratorService {
 		applyRenderingHints(g2d);
 		g2d.scale(SCALE, SCALE);
 
-		drawEquipmentColumn(g2d, equipment, 0, 0, bodyHeight, leftW, rightW);
-		if (footerHeight > 0) {
-			drawFooter(g2d, equipment, bodyHeight, totalWidth);
+		// Fond : image de spécialisation d'élite si fournie, sinon fond sombre uni
+		if (eliteSpecId != null) {
+			BufferedImage bg = loadClasspathImage("data/specializations/backgrounds/" + eliteSpecId + ".png");
+			if (bg != null) {
+				bg = trimTransparent(bg);
+				double scaleX = (double) totalWidth / bg.getWidth();
+				double scaleY = (double) totalHeight / bg.getHeight();
+				double s = Math.max(scaleX, scaleY);
+				int drawW = (int) Math.ceil(bg.getWidth() * s);
+				int drawH = (int) Math.ceil(bg.getHeight() * s);
+				g2d.drawImage(bg, 0, (totalHeight - drawH) / 2, drawW, drawH, null);
+				g2d.setColor(new Color(0, 0, 0, 150));
+				g2d.fillRect(0, 0, totalWidth, totalHeight);
+			}
+		} else {
+			g2d.setColor(DARK_BACKGROUND);
+			g2d.fillRect(0, 0, totalWidth, totalHeight);
 		}
+
+		drawEquipmentColumn(g2d, equipment, 0, 0, bodyHeight, leftW, rightW);
 
 		g2d.dispose();
 		return image;
@@ -237,7 +259,7 @@ public class BuildImageGeneratorService {
 			armureY = drawArmureRow(g2d, bySlot.get(slot), x, armureY);
 		}
 
-		// --- Colonne droite : ACCESSOIRES / RELIQUE / ARMES empilés ---
+		// --- Colonne droite : ACCESSOIRES / ARMES / (RELIQUE | ATTRIBUTS) ---
 		int rightY = y + EQUIP_PADDING;
 
 		// ACCESSOIRES — grille 3×2 avec icône + texte par cellule
@@ -258,11 +280,6 @@ public class BuildImageGeneratorService {
 		}
 		rightY += 2 * EQUIP_ICON_SIZE + CELL_GAP + EQUIP_ROW_GAP;
 
-		// RELIQUE
-		rightY = drawSectionHeader(g2d, "RELIQUE", rightX + EQUIP_PADDING, rightY, rightW - 2 * EQUIP_PADDING);
-		drawRelicRow(g2d, bySlot.get(EquipmentSlot.RELIC), rightX, rightY);
-		rightY += rowHeight(bySlot.get(EquipmentSlot.RELIC)) + EQUIP_ROW_GAP;
-
 		// ARMES — set 1 (gauche) et set 2 (droite) côte à côte
 		rightY = drawSectionHeader(g2d, "ARMES", rightX + EQUIP_PADDING, rightY, rightW - 2 * EQUIP_PADDING);
 		int setW = (rightW - CELL_GAP) / 2;
@@ -276,9 +293,58 @@ public class BuildImageGeneratorService {
 		set2Y = drawWeaponRow(g2d, bySlot.get(EquipmentSlot.MAIN_HAND_2), set2X, set2Y);
 		set1Y = drawWeaponRow(g2d, bySlot.get(EquipmentSlot.OFF_HAND_1), rightX, set1Y);
 		set2Y = drawWeaponRow(g2d, bySlot.get(EquipmentSlot.OFF_HAND_2), set2X, set2Y);
+		rightY = Math.max(set1Y, set2Y);
+
+		// Section basse : RELIQUE (moitié gauche) | ATTRIBUTS (moitié droite)
+		// La séparation est alignée avec celle des sets d'armes
+		int separatorX = rightX + setW + CELL_GAP / 2;
+		int attrSectionX = separatorX + 1;
+		int attrContentW = rightX + rightW - attrSectionX - 2 * EQUIP_PADDING;
+		int relicSectionW = separatorX - rightX;
+		int headerH = SECTION_HEADER_HEIGHT + SECTION_CONTENT_GAP;
+
+		// Pré-calcul des hauteurs de contenu pour le centrage vertical
+		Map<String, ItemStat> statsMap = collectUniqueStats(equipment);
+		BufferedImage tmpImg = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
+		Graphics2D gTmp2 = tmpImg.createGraphics();
+		FontMetrics fmTmp = gTmp2.getFontMetrics(new Font(Font.SANS_SERIF, Font.PLAIN, 8));
+		gTmp2.dispose();
+		int attrLineCount = 0;
+		for (ItemStat stat : statsMap.values()) {
+			attrLineCount += wrapText(buildStatSummary(stat), fmTmp, attrContentW).size();
+		}
+		int relicContentH = rowHeight(bySlot.get(EquipmentSlot.RELIC));
+		int attrContentH = attrLineCount * EQUIP_ATTR_LINE_HEIGHT;
+		int bottomH = Math.max(headerH + relicContentH, statsMap.isEmpty() ? 0 : attrContentH);
+
+		// RELIQUE (moitié gauche) — contenu centré verticalement
+		int relicBodyY = drawSectionHeader(g2d, "RELIQUE", rightX + EQUIP_PADDING, rightY, relicSectionW - 2 * EQUIP_PADDING);
+		int relicOffsetY = Math.max(0, (bottomH - headerH - relicContentH) / 2);
+		drawRelicRow(g2d, bySlot.get(EquipmentSlot.RELIC), rightX, relicBodyY + relicOffsetY);
+
+		// ATTRIBUTS (moitié droite) — encadré autour du texte, contenu italique aligné en bas
+		if (!statsMap.isEmpty()) {
+			int attrBodyY = y + height - EQUIP_PADDING - attrContentH;
+			g2d.setFont(new Font(Font.SANS_SERIF, Font.ITALIC, 7));
+			g2d.setColor(new Color(180, 180, 180));
+			FontMetrics fmAttr = g2d.getFontMetrics();
+			// Encadré autour du bloc texte
+			int boxPad = 3;
+			g2d.setColor(new Color(80, 80, 80));
+			g2d.drawRoundRect(attrSectionX + EQUIP_PADDING - boxPad, attrBodyY - boxPad,
+					attrContentW + 2 * boxPad, attrContentH + 2 * boxPad, 4, 4);
+			g2d.setFont(new Font(Font.SANS_SERIF, Font.ITALIC, 7));
+			g2d.setColor(new Color(180, 180, 180));
+			for (ItemStat stat : statsMap.values()) {
+				for (String line : wrapText(buildStatSummary(stat), fmAttr, attrContentW)) {
+					g2d.drawString(line, attrSectionX + EQUIP_PADDING, attrBodyY + fmAttr.getAscent());
+					attrBodyY += EQUIP_ATTR_LINE_HEIGHT;
+				}
+			}
+		}
 	}
 
-	private int computeEquipmentHeight(ResolvedEquipment equipment) {
+	private int computeEquipmentHeight(ResolvedEquipment equipment, int rightW) {
 		int headerH = SECTION_HEADER_HEIGHT + SECTION_CONTENT_GAP;
 		Map<EquipmentSlot, ResolvedEquipmentPiece> bySlot = equipment.bySlot();
 
@@ -291,13 +357,26 @@ public class BuildImageGeneratorService {
 		}
 		int leftH = EQUIP_PADDING + headerH + armureContentH;
 
-		// Colonne droite : ACCESSOIRES + RELIQUE + ARMES empilés
+		// Colonne droite : ACCESSOIRES + ARMES + (RELIQUE | ATTRIBUTS) côte à côte
 		int accessContentH = 2 * EQUIP_ICON_SIZE + CELL_GAP + EQUIP_ROW_GAP;
-		int relicContentH = rowHeight(bySlot.get(EquipmentSlot.RELIC)) + EQUIP_ROW_GAP;
 		// 2 sets côte à côte : hauteur = un seul set (les deux sont symétriques)
 		int armeContentH = rowHeight(bySlot.get(EquipmentSlot.MAIN_HAND_1)) + EQUIP_ROW_GAP
 				+ rowHeight(bySlot.get(EquipmentSlot.OFF_HAND_1)) + EQUIP_ROW_GAP;
-		int rightH = EQUIP_PADDING + headerH + accessContentH + headerH + relicContentH + headerH + armeContentH;
+		// Section basse : max(hauteur RELIQUE, hauteur ATTRIBUTS)
+		int attrContentW = rightW - rightW / 2 - 2 * EQUIP_PADDING;
+		BufferedImage tmp = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g = tmp.createGraphics();
+		FontMetrics fm = g.getFontMetrics(new Font(Font.SANS_SERIF, Font.PLAIN, 8));
+		g.dispose();
+		int attrLines = 0;
+		for (ItemStat stat : collectUniqueStats(equipment).values()) {
+			attrLines += wrapText(buildStatSummary(stat), fm, attrContentW).size();
+		}
+		int attrH = attrLines > 0 ? attrLines * EQUIP_ATTR_LINE_HEIGHT : 0;
+		int relicH = headerH + rowHeight(bySlot.get(EquipmentSlot.RELIC)) + EQUIP_ROW_GAP;
+		int bottomH = Math.max(relicH, attrH);
+
+		int rightH = EQUIP_PADDING + headerH + accessContentH + headerH + armeContentH + bottomH;
 
 		return Math.max(leftH, rightH) + EQUIP_PADDING;
 	}

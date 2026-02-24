@@ -2,10 +2,7 @@ package fr.kuremento.gw2;
 
 import fr.kuremento.gw2.client.Gw2Client;
 import fr.kuremento.gw2.exceptions.TooManyArgumentsException;
-import fr.kuremento.gw2.models.builds.AscendedLightArmorStat;
-import fr.kuremento.gw2.models.builds.Equipment;
-import fr.kuremento.gw2.models.builds.EquipmentPiece;
-import fr.kuremento.gw2.models.builds.EquipmentSlot;
+import fr.kuremento.gw2.models.builds.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -45,13 +42,17 @@ public class Application {
                                                new EquipmentPiece(EquipmentSlot.MAIN_HAND_1, 87109, AscendedLightArmorStat.SINISTER.getStatId(), 24612),
                                                new EquipmentPiece(EquipmentSlot.OFF_HAND_1, 81957, AscendedLightArmorStat.SINISTER.getStatId(), 24560),
                                                new EquipmentPiece(EquipmentSlot.OFF_HAND_2, 86098, AscendedLightArmorStat.SINISTER.getStatId(), 24560)));
-        save(gw2Client.builds().generateBuildImage("[&DQcBHRgdQjsjDwAAZQEAAIMBAAC2AQAA5RoAAAAAAAAAAAAAAAAAAAAAAAA=]"), "Archétype");
-        save(gw2Client.builds().generateEquipmentImage(equipments), "Équipement");
+        // var buildImages = gw2Client.builds().generateBuildImages("[&DQcBHRgdQjsjDwAAZQEAAIMBAAC2AQAA5RoAAAAAAAAAAAAAAAAAAAAAAAA=]", equipments);
+        var buildImages = gw2Client.builds().generateBuildImages("eNrT4WVnlJWQdbJW5mdgSGVkYGgG4m1A_FSKAQMwCTAwf93NMJ-BYVcCAyPzdxiTibmWnVGbBcRkZv4CE2VhroKJsjLXwZgCDB87GfkZZ85kBKriYpxSAhLnZfxiD6L5GFckg2huxqQUkDwPI98iEM3G7BoCEldJYGBnVnUAMT_EM3AyBwVAmQA3viNl");
+        save(buildImages.archetype(), "Archétype");
+        save(buildImages.equipment(), "Équipement");
+        log.info("ID encodé pour ce build : {}", buildImages.code());
+
     }
 
     private static void save(BufferedImage image, String title) {
         var outputDir = new File("output");
-        if(!outputDir.exists()) {
+        if (!outputDir.exists()) {
             try {
                 Files.createDirectories(outputDir.toPath());
             } catch (IOException e) {
