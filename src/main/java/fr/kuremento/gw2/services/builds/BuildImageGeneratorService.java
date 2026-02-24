@@ -550,24 +550,6 @@ public class BuildImageGeneratorService {
 		return EQUIP_PADDING + lines * EQUIP_ATTR_LINE_HEIGHT + EQUIP_PADDING;
 	}
 
-	private void drawFooter(Graphics2D g2d, ResolvedEquipment equipment, int y, int width) {
-		g2d.setColor(new Color(20, 20, 25, 220));
-		g2d.fillRect(0, y, width, computeFooterHeight(equipment, width));
-		g2d.setColor(new Color(60, 60, 60));
-		g2d.drawLine(EQUIP_PADDING, y, width - EQUIP_PADDING, y);
-
-		g2d.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 8));
-		g2d.setColor(new Color(180, 180, 180));
-		FontMetrics fm = g2d.getFontMetrics();
-		int lineY = y + EQUIP_PADDING;
-		for (ItemStat stat : collectUniqueStats(equipment).values()) {
-			for (String line : wrapText(buildStatSummary(stat), fm, width - 2 * EQUIP_PADDING)) {
-				g2d.drawString(line, EQUIP_PADDING, lineY + fm.getAscent());
-				lineY += EQUIP_ATTR_LINE_HEIGHT;
-			}
-		}
-	}
-
 	private String buildStatSummary(ItemStat stat) {
 		StringBuilder sb = new StringBuilder(capitalize(stat.getName()));
 		if (stat.getAttributes() != null && !stat.getAttributes().isEmpty()) {
@@ -609,33 +591,6 @@ public class BuildImageGeneratorService {
 		g2d.setColor(new Color(80, 80, 80));
 		g2d.drawLine(x, lineY, x + width, lineY);
 		return lineY + SECTION_CONTENT_GAP;
-	}
-
-	private void drawEquipmentIcon(Graphics2D g2d, ResolvedEquipmentPiece piece, int x, int y) {
-		if (piece == null || piece.item() == null) {
-			g2d.setColor(new Color(50, 50, 50, 150));
-			g2d.fillRoundRect(x, y, EQUIP_ICON_SIZE, EQUIP_ICON_SIZE, 4, 4);
-			return;
-		}
-
-		BufferedImage icon = piece.item().getIcon() != null ? iconFetcherService.fetchImage(piece.item().getIcon()) : null;
-		if (icon != null) {
-			g2d.drawImage(icon, x, y, EQUIP_ICON_SIZE, EQUIP_ICON_SIZE, null);
-		} else {
-			g2d.setColor(new Color(50, 50, 50, 150));
-			g2d.fillRoundRect(x, y, EQUIP_ICON_SIZE, EQUIP_ICON_SIZE, 4, 4);
-		}
-
-		// Overlay upgrade (rune/cachet) en bas-droite
-		Item upgrade = piece.upgrade();
-		if (upgrade != null && upgrade.getIcon() != null) {
-			BufferedImage upgradeIcon = iconFetcherService.fetchImage(upgrade.getIcon());
-			if (upgradeIcon != null) {
-				int overlayX = x + EQUIP_ICON_SIZE - UPGRADE_OVERLAY_SIZE;
-				int overlayY = y + EQUIP_ICON_SIZE - UPGRADE_OVERLAY_SIZE;
-				g2d.drawImage(upgradeIcon, overlayX, overlayY, UPGRADE_OVERLAY_SIZE, UPGRADE_OVERLAY_SIZE, null);
-			}
-		}
 	}
 
 	private void drawSpecLine(Graphics2D g2d, ResolvedSpecLine specLine, int y) {
@@ -890,7 +845,7 @@ public class BuildImageGeneratorService {
 
 	private BufferedImage loadClasspathImage(String path) {
 		try {
-			ClassPathResource resource = new ClassPathResource(path);
+			ClassPathResource resource = new ClassPathResource(path, getClass().getClassLoader());
 			return ImageIO.read(resource.getInputStream());
 		} catch (IOException e) {
 			log.warn("Impossible de charger l'image depuis le classpath : {}", path, e);
