@@ -19,7 +19,7 @@ import java.util.zip.Inflater;
 /**
  * Encode et décode un code composite regroupant l'archétype (chat code GW2) et l'équipement.
  *
- * Format v2 (actuel) : base64url(deflate([buildLen:1] + [buildBytes] + [equipBytes]))
+ * Format : base64url(deflate([buildLen:1] + [buildBytes] + [equipBytes]))
  *   Section équipement (binaire little-endian, version 0x02) :
  *     [version : 1 octet = 0x02]
  *     [nombre de pièces : 1 octet]
@@ -31,14 +31,11 @@ import java.util.zip.Inflater;
  *       [upgradeId : 3 octets LE] (si flag bit1)
  *       [upgrade2Id: 3 octets LE] (si flag bit2)
  *       [infusionCount : 1 octet] + [infusionIds : count × 3 octets] (si flag bit3)
- *
- * Format v1 (rétrocompatibilité) : base64url(buildBytes).base64url(equipBytes_v1)
  */
 @Service
 public class FullBuildCodecService {
 
-	private static final byte EQUIP_VERSION_V1 = 0x01;
-	private static final byte EQUIP_VERSION_V2 = 0x02;
+	private static final byte EQUIP_VERSION = 0x02;
 
 	private static final int FLAG_STAT_ID     = 0x01;
 	private static final int FLAG_UPGRADE_ID  = 0x02;
@@ -52,7 +49,7 @@ public class FullBuildCodecService {
 
 	public String encode(String chatCode, Equipment equipment) {
 		byte[] buildBytes = decodeChatCode(chatCode);
-		byte[] equipBytes = encodeEquipmentV2(equipment);
+		byte[] equipBytes = encodeEquipment(equipment);
 
 		ByteArrayOutputStream payload = new ByteArrayOutputStream();
 		payload.write(buildBytes.length);
@@ -63,47 +60,26 @@ public class FullBuildCodecService {
 	}
 
 	public FullBuildCode decode(String code) {
-		if (code.contains(".")) {
-			return decodeV1(code);
-		}
-		return decodeV2(code);
-	}
-
-	// --- Décodage v1 (rétrocompatibilité) ---
-
-	private FullBuildCode decodeV1(String code) {
-		String[] parts = code.split("\\.");
-		if (parts.length != 2) {
-			throw new TechnicalException("Format de code v1 invalide");
-		}
-		byte[] buildBytes = DECODER.decode(parts[0]);
-		byte[] equipBytes = DECODER.decode(parts[1]);
-		return new FullBuildCode(encodeChatCode(buildBytes), decodeEquipmentV1(equipBytes));
-	}
-
-	// --- Décodage v2 ---
-
-	private FullBuildCode decodeV2(String code) {
 		byte[] payload = inflate(DECODER.decode(code));
 		int buildLength = Byte.toUnsignedInt(payload[0]);
 		byte[] buildBytes = Arrays.copyOfRange(payload, 1, 1 + buildLength);
 		byte[] equipBytes = Arrays.copyOfRange(payload, 1 + buildLength, payload.length);
-		return new FullBuildCode(encodeChatCode(buildBytes), decodeEquipmentV2(equipBytes));
+		return new FullBuildCode(encodeChatCode(buildBytes), decodeEquipment(equipBytes));
 	}
 
-	// --- Encodage équipement v2 (avec flags de présence) ---
+	// --- Encodage équipement (avec flags de présence) ---
 
-	private byte[] encodeEquipmentV2(Equipment equipment) {
+	private byte[] encodeEquipment(Equipment equipment) {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		out.write(EQUIP_VERSION_V2);
+		out.write(EQUIP_VERSION);
 		out.write(equipment.pieces().size());
 		for (EquipmentPiece piece : equipment.pieces()) {
 			List<Integer> infusions = piece.infusionIds() != null ? piece.infusionIds() : List.of();
 			int flags = 0;
-			if (piece.statId() != null)    flags |= FLAG_STAT_ID;
-			if (piece.upgradeId() != null) flags |= FLAG_UPGRADE_ID;
+			if (piece.statId() != null)     flags |= FLAG_STAT_ID;
+			if (piece.upgradeId() != null)  flags |= FLAG_UPGRADE_ID;
 			if (piece.upgrade2Id() != null) flags |= FLAG_UPGRADE2_ID;
-			if (!infusions.isEmpty())       flags |= FLAG_INFUSIONS;
+			if (!infusions.isEmpty())        flags |= FLAG_INFUSIONS;
 
 			out.write(piece.slot().ordinal());
 			out.write(flags);
@@ -119,11 +95,11 @@ public class FullBuildCodecService {
 		return out.toByteArray();
 	}
 
-	// --- Décodage équipement v2 ---
+	// --- Décodage équipement ---
 
-	private Equipment decodeEquipmentV2(byte[] data) {
+	private Equipment decodeEquipment(byte[] data) {
 		int i = 0;
-		if (data[i++] != EQUIP_VERSION_V2) {
+		if (data[i++] != EQUIP_VERSION) {
 			throw new TechnicalException("Version équipement non supportée : " + data[0]);
 		}
 		int count = Byte.toUnsignedInt(data[i++]);
@@ -146,33 +122,6 @@ public class FullBuildCodecService {
 				infusions = inf;
 			}
 			pieces.add(new EquipmentPiece(slot, itemId, statId, upgradeId, upgrade2Id, infusions));
-		}
-		return new Equipment(pieces);
-	}
-
-	// --- Décodage équipement v1 ---
-
-	private Equipment decodeEquipmentV1(byte[] data) {
-		int i = 0;
-		if (data[i++] != EQUIP_VERSION_V1) {
-			throw new TechnicalException("Version équipement v1 invalide");
-		}
-		int count = Byte.toUnsignedInt(data[i++]);
-		List<EquipmentPiece> pieces = new ArrayList<>(count);
-		for (int p = 0; p < count; p++) {
-			EquipmentSlot slot = EquipmentSlot.values()[Byte.toUnsignedInt(data[i++])];
-			int itemId    = readUint24(data, i); i += 3;
-			int statId    = readUint24(data, i); i += 3;
-			int upgradeId = readUint24(data, i); i += 3;
-			int upgrade2Id = readUint24(data, i); i += 3;
-			int infCount  = Byte.toUnsignedInt(data[i++]);
-			List<Integer> infusions = new ArrayList<>(infCount);
-			for (int n = 0; n < infCount; n++) { infusions.add(readUint24(data, i)); i += 3; }
-			pieces.add(new EquipmentPiece(slot, itemId,
-					statId != 0 ? statId : null,
-					upgradeId != 0 ? upgradeId : null,
-					upgrade2Id != 0 ? upgrade2Id : null,
-					infusions));
 		}
 		return new Equipment(pieces);
 	}
