@@ -65,6 +65,7 @@ public class BuildImageGeneratorService {
 			Map.entry("Torch", "Torche"),
 			Map.entry("Trident", "Trident"),
 			Map.entry("Warhorn", "Cor de guerre"),
+			Map.entry("Harpoon", "Lance"),
 			Map.entry("Spear", "Lance"),
 			Map.entry("HarpoonGun", "Harpon")
 	);
@@ -558,10 +559,10 @@ public class BuildImageGeneratorService {
 		StringBuilder sb = new StringBuilder(capitalize(stat.getName()));
 		if (stat.getAttributes() != null && !stat.getAttributes().isEmpty()) {
 			sb.append(" — ");
-			List<String> attrNames = new ArrayList<>();
-			for (ItemStatAttribute attr : stat.getAttributes()) {
-				attrNames.add(ATTR_FR.getOrDefault(attr.getAttribute(), attr.getAttribute()));
-			}
+			List<String> attrNames = stat.getAttributes().stream()
+					.sorted(Comparator.comparingDouble((ItemStatAttribute a) -> a.getMultiplier() != null ? a.getMultiplier() : 0).reversed())
+					.map(attr -> ATTR_FR.getOrDefault(attr.getAttribute(), attr.getAttribute()))
+					.toList();
 			sb.append(String.join(", ", attrNames));
 		}
 		return sb.toString();
