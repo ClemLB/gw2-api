@@ -217,6 +217,7 @@ public class BuildImageGeneratorService {
 		BufferedImage tmp = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g = tmp.createGraphics();
 		FontMetrics fmPlain = g.getFontMetrics(new Font(Font.SANS_SERIF, Font.PLAIN, 8));
+		FontMetrics fmBold = g.getFontMetrics(new Font(Font.SANS_SERIF, Font.BOLD, 8));
 		g.dispose();
 
 		int max = 0;
@@ -226,10 +227,19 @@ public class BuildImageGeneratorService {
 			if (piece == null) continue;
 			String label = buildItemLabel(piece);
 			String statName = piece.stat() != null ? capitalize(piece.stat().getName()) : null;
-			String header = buildHeaderText(label, statName);
-			if (header != null) {
-				for (String line : wrapText(header, fmPlain, MAX_TEXT_WIDTH))
-					max = Math.max(max, fmPlain.stringWidth(line));
+			if (label != null && statName != null) {
+				int labelSepW = fmPlain.stringWidth(label + " · ");
+				int statW = fmBold.stringWidth(statName);
+				if (labelSepW + statW <= MAX_TEXT_WIDTH) {
+					max = Math.max(max, labelSepW + statW);
+				} else {
+					max = Math.max(max, fmPlain.stringWidth(label));
+					max = Math.max(max, statW);
+				}
+			} else if (label != null) {
+				max = Math.max(max, fmPlain.stringWidth(label));
+			} else if (statName != null) {
+				max = Math.max(max, fmBold.stringWidth(statName));
 			}
 			// Upgrade (sigil/rune) : icône + nom
 			if (piece.upgrade() != null && piece.upgrade().getName() != null)
@@ -327,19 +337,29 @@ public class BuildImageGeneratorService {
 		// ATTRIBUTS (moitié droite) — encadré autour du texte, contenu italique aligné en bas
 		if (!statsMap.isEmpty()) {
 			int attrBodyY = y + height - EQUIP_PADDING - attrContentH;
-			g2d.setFont(new Font(Font.SANS_SERIF, Font.ITALIC, 7));
-			g2d.setColor(new Color(180, 180, 180));
-			FontMetrics fmAttr = g2d.getFontMetrics();
+			Font italicFont = new Font(Font.SANS_SERIF, Font.ITALIC, 7);
+			Font boldItalicFont = new Font(Font.SANS_SERIF, Font.BOLD | Font.ITALIC, 7);
+			FontMetrics fmAttr = g2d.getFontMetrics(italicFont);
+			FontMetrics fmBoldAttr = g2d.getFontMetrics(boldItalicFont);
 			// Encadré autour du bloc texte
 			int boxPad = 3;
 			g2d.setColor(new Color(80, 80, 80));
 			g2d.drawRoundRect(attrSectionX + EQUIP_PADDING - boxPad, attrBodyY - boxPad,
 					attrContentW + 2 * boxPad, attrContentH + 2 * boxPad, 4, 4);
-			g2d.setFont(new Font(Font.SANS_SERIF, Font.ITALIC, 7));
 			g2d.setColor(new Color(180, 180, 180));
 			for (ItemStat stat : statsMap.values()) {
 				for (String line : wrapText(buildStatSummary(stat), fmAttr, attrContentW)) {
-					g2d.drawString(line, attrSectionX + EQUIP_PADDING, attrBodyY + fmAttr.getAscent());
+					String statPart = capitalize(stat.getName());
+					if (line.startsWith(statPart)) {
+						String rest = line.substring(statPart.length());
+						g2d.setFont(boldItalicFont);
+						g2d.drawString(statPart, attrSectionX + EQUIP_PADDING, attrBodyY + fmAttr.getAscent());
+						g2d.setFont(italicFont);
+						g2d.drawString(rest, attrSectionX + EQUIP_PADDING + fmBoldAttr.stringWidth(statPart), attrBodyY + fmAttr.getAscent());
+					} else {
+						g2d.setFont(italicFont);
+						g2d.drawString(line, attrSectionX + EQUIP_PADDING, attrBodyY + fmAttr.getAscent());
+					}
 					attrBodyY += EQUIP_ATTR_LINE_HEIGHT;
 				}
 			}
@@ -445,15 +465,9 @@ public class BuildImageGeneratorService {
 	private int rowHeight(ResolvedEquipmentPiece piece) {
 		int headerLines = 0;
 		if (piece != null && (piece.item() != null || piece.stat() != null)) {
-			String text = buildHeaderText(buildItemLabel(piece),
-					piece.stat() != null ? capitalize(piece.stat().getName()) : null);
-			if (text != null) {
-				BufferedImage tmp = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
-				Graphics2D g = tmp.createGraphics();
-				FontMetrics fm = g.getFontMetrics(new Font(Font.SANS_SERIF, Font.PLAIN, 8));
-				g.dispose();
-				headerLines = wrapText(text, fm, MAX_TEXT_WIDTH).size();
-			}
+			String label = buildItemLabel(piece);
+			String statName = piece.stat() != null ? capitalize(piece.stat().getName()) : null;
+			headerLines = countHeaderLines(label, statName);
 		}
 		int sigilCount = (piece != null && piece.upgrade() != null ? 1 : 0)
 				+ (piece != null && piece.upgrade2() != null ? 1 : 0);
@@ -470,14 +484,34 @@ public class BuildImageGeneratorService {
 		if (piece == null) return;
 		String label = buildItemLabel(piece);
 		String statName = piece.stat() != null ? capitalize(piece.stat().getName()) : null;
-		String text = buildHeaderText(label, statName);
-		if (text == null) return;
-		g2d.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 8));
+		if (label == null && statName == null) return;
+		Font plainFont = new Font(Font.SANS_SERIF, Font.PLAIN, 8);
+		Font boldFont = new Font(Font.SANS_SERIF, Font.BOLD, 8);
 		g2d.setColor(Color.WHITE);
-		FontMetrics fm = g2d.getFontMetrics();
-		List<String> lines = wrapText(text, fm, MAX_TEXT_WIDTH);
-		for (int i = 0; i < lines.size(); i++) {
-			g2d.drawString(lines.get(i), textX, y + i * EQUIP_ATTR_LINE_HEIGHT + fm.getAscent());
+		FontMetrics fmPlain = g2d.getFontMetrics(plainFont);
+		FontMetrics fmBold = g2d.getFontMetrics(boldFont);
+		int ascent = fmPlain.getAscent();
+		if (label != null && statName != null) {
+			String separator = " · ";
+			int labelSepW = fmPlain.stringWidth(label + separator);
+			int statW = fmBold.stringWidth(statName);
+			if (labelSepW + statW <= MAX_TEXT_WIDTH) {
+				g2d.setFont(plainFont);
+				g2d.drawString(label + separator, textX, y + ascent);
+				g2d.setFont(boldFont);
+				g2d.drawString(statName, textX + labelSepW, y + ascent);
+			} else {
+				g2d.setFont(plainFont);
+				g2d.drawString(label, textX, y + ascent);
+				g2d.setFont(boldFont);
+				g2d.drawString(statName, textX, y + EQUIP_ATTR_LINE_HEIGHT + ascent);
+			}
+		} else if (label != null) {
+			g2d.setFont(plainFont);
+			g2d.drawString(label, textX, y + ascent);
+		} else {
+			g2d.setFont(boldFont);
+			g2d.drawString(statName, textX, y + ascent);
 		}
 	}
 
@@ -499,11 +533,15 @@ public class BuildImageGeneratorService {
 		return lines.isEmpty() ? List.of(text) : lines;
 	}
 
-	private String buildHeaderText(String label, String statName) {
-		if (label != null && statName != null) return label + " · " + statName;
-		if (label != null) return label;
-		if (statName != null) return statName;
-		return null;
+	private int countHeaderLines(String label, String statName) {
+		if (label == null && statName == null) return 0;
+		if (label == null || statName == null) return 1;
+		BufferedImage tmp = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g = tmp.createGraphics();
+		int labelSepW = g.getFontMetrics(new Font(Font.SANS_SERIF, Font.PLAIN, 8)).stringWidth(label + " · ");
+		int statW = g.getFontMetrics(new Font(Font.SANS_SERIF, Font.BOLD, 8)).stringWidth(statName);
+		g.dispose();
+		return labelSepW + statW <= MAX_TEXT_WIDTH ? 1 : 2;
 	}
 
 	private int drawArmureRow(Graphics2D g2d, ResolvedEquipmentPiece piece, int sectionX, int y) {
@@ -534,13 +572,8 @@ public class BuildImageGeneratorService {
 		int textX = sectionX + EQUIP_PADDING + EQUIP_ICON_SIZE + 6;
 		String label = buildItemLabel(piece);
 		String statName = piece.stat() != null ? capitalize(piece.stat().getName()) : null;
-		String text = buildHeaderText(label, statName);
-		if (text == null) return;
-		BufferedImage tmp = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
-		Graphics2D gTmp = tmp.createGraphics();
-		FontMetrics fm = gTmp.getFontMetrics(new Font(Font.SANS_SERIF, Font.PLAIN, 8));
-		gTmp.dispose();
-		int lineCount = wrapText(text, fm, MAX_TEXT_WIDTH).size();
+		if (label == null && statName == null) return;
+		int lineCount = countHeaderLines(label, statName);
 		int offsetY = Math.max(0, (EQUIP_ICON_SIZE - lineCount * EQUIP_ATTR_LINE_HEIGHT) / 2);
 		drawItemHeader(g2d, piece, textX, y + offsetY);
 	}
