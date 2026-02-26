@@ -93,6 +93,7 @@ public class BuildImageGeneratorService {
 			Map.entry("ConditionDamage", "Dégâts par altération"),
 			Map.entry("Toughness", "Robustesse"),
 			Map.entry("Vitality", "Vitalité"),
+			Map.entry("Healing", "Guérison"),
 			Map.entry("HealingPower", "Guérison"),
 			Map.entry("BoonDuration", "Concentration"),
 			Map.entry("ConditionDuration", "Expertise"),
