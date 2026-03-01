@@ -41,15 +41,18 @@ class DailyRaidBountiesServiceTest {
 	}
 
 	@Test
-	@DisplayName("Check cycle repeats every 12 calendar days across February/March boundary in non-leap year")
+	@DisplayName("Check leap year and non-leap year consistency on March 1st")
 	void test3() {
-		// Feb 17 2026 (non-leap): dayIndex 47, 47%12=11 → Kela
-		DailyRaidBounties feb17 = service.getDailyBounties(LocalDate.of(2026, 2, 17));
-		assertEquals("Kela, sénéchal des vagues", feb17.boss2());
+		// March 1st leap year (2024): dayIndex=60, no adjustment
+		DailyRaidBounties leapYear = service.getDailyBounties(LocalDate.of(2024, 3, 1));
 
-		// March 1 2026 (non-leap): dayIndex 59, 59%12=11 → Kela (12 calendar days later)
-		DailyRaidBounties mar1 = service.getDailyBounties(LocalDate.of(2026, 3, 1));
-		assertEquals("Kela, sénéchal des vagues", mar1.boss2());
+		// March 1st non-leap year (2025): dayIndex=59, adjusted to 60
+		DailyRaidBounties nonLeapYear = service.getDailyBounties(LocalDate.of(2025, 3, 1));
+
+		assertEquals(leapYear.boss1(), nonLeapYear.boss1());
+		assertEquals(leapYear.boss2(), nonLeapYear.boss2());
+		assertEquals(leapYear.boss3(), nonLeapYear.boss3());
+		assertEquals(leapYear.boss4(), nonLeapYear.boss4());
 	}
 
 	@Test
@@ -75,14 +78,14 @@ class DailyRaidBountiesServiceTest {
 	}
 
 	@Test
-	@DisplayName("Check February 28 to March 1 transition in non-leap year advances by one step")
+	@DisplayName("Check February 28 to March 1 transition in non-leap year skips February 29 equivalent")
 	void test6() {
-		// Feb 28 non-leap (2025): dayIndex 58
+		// Feb 28 non-leap (2025): dayIndex=58, pas d'ajustement (58 < 59)
 		DailyRaidBounties feb28 = service.getDailyBounties(LocalDate.of(2025, 2, 28));
-		// Mar 1 non-leap (2025): dayIndex 59 (pas de saut, avance d'un cran)
+		// Mar 1 non-leap (2025): dayIndex=59, ajusté à 60 (le 29 fév. est sauté)
 		DailyRaidBounties mar1 = service.getDailyBounties(LocalDate.of(2025, 3, 1));
 
-		// Les boss doivent être différents (indices consécutifs)
+		// L'index passe de 58 à 60 (saut de 2, le 59 = 29 fév. est absent) → boss différents
 		assertNotEquals(feb28.boss2(), mar1.boss2());
 		assertNotEquals(feb28.boss3(), mar1.boss3());
 	}
