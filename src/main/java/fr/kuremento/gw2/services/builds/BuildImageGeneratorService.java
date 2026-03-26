@@ -219,6 +219,7 @@ public class BuildImageGeneratorService {
 		Graphics2D g = tmp.createGraphics();
 		FontMetrics fmPlain = g.getFontMetrics(new Font(Font.SANS_SERIF, Font.PLAIN, 8));
 		FontMetrics fmBold = g.getFontMetrics(new Font(Font.SANS_SERIF, Font.BOLD, 8));
+		FontMetrics fmItalic = g.getFontMetrics(new Font(Font.SANS_SERIF, Font.ITALIC, 8));
 		g.dispose();
 
 		int max = 0;
@@ -242,11 +243,18 @@ public class BuildImageGeneratorService {
 			} else if (statName != null) {
 				max = Math.max(max, fmBold.stringWidth(statName));
 			}
-			// Upgrade (sigil/rune) : icône + nom
-			if (piece.upgrade() != null && piece.upgrade().getName() != null)
-				max = Math.max(max, SIGIL_SLOT_SIZE + 4 + fmPlain.stringWidth(piece.upgrade().getName()));
-			if (piece.upgrade2() != null && piece.upgrade2().getName() != null)
-				max = Math.max(max, SIGIL_SLOT_SIZE + 4 + fmPlain.stringWidth(piece.upgrade2().getName()));
+			// Upgrade (sigil/rune) : icône + nom, nom limité à MAX_RUNE_NAME_WIDTH par ligne
+			int maxRuneNameW = MAX_TEXT_WIDTH - SIGIL_SLOT_SIZE - 4;
+			if (piece.upgrade() != null && piece.upgrade().getName() != null) {
+				int lineW = wrapText(piece.upgrade().getName(), fmItalic, maxRuneNameW)
+						.stream().mapToInt(fmItalic::stringWidth).max().orElse(0);
+				max = Math.max(max, SIGIL_SLOT_SIZE + 4 + lineW);
+			}
+			if (piece.upgrade2() != null && piece.upgrade2().getName() != null) {
+				int lineW = wrapText(piece.upgrade2().getName(), fmItalic, maxRuneNameW)
+						.stream().mapToInt(fmItalic::stringWidth).max().orElse(0);
+				max = Math.max(max, SIGIL_SLOT_SIZE + 4 + lineW);
+			}
 		}
 		return max;
 	}
@@ -463,6 +471,15 @@ public class BuildImageGeneratorService {
 		}
 	}
 
+	private int runeNameLineCount(Item rune) {
+		if (rune == null || rune.getName() == null) return 0;
+		BufferedImage tmp = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g = tmp.createGraphics();
+		FontMetrics fm = g.getFontMetrics(new Font(Font.SANS_SERIF, Font.ITALIC, 8));
+		g.dispose();
+		return wrapText(rune.getName(), fm, MAX_TEXT_WIDTH - SIGIL_SLOT_SIZE - 4).size();
+	}
+
 	private int rowHeight(ResolvedEquipmentPiece piece) {
 		int headerLines = 0;
 		if (piece != null && (piece.item() != null || piece.stat() != null)) {
@@ -472,11 +489,14 @@ public class BuildImageGeneratorService {
 		}
 		int sigilCount = (piece != null && piece.upgrade() != null ? 1 : 0)
 				+ (piece != null && piece.upgrade2() != null ? 1 : 0);
+		int runeExtraLines = piece != null
+				? Math.max(runeNameLineCount(piece.upgrade()) - 1, runeNameLineCount(piece.upgrade2()) - 1)
+				: 0;
 		// 2 sigils empilés = 18+2+18 = 38 = exactement EQUIP_ICON_SIZE → alignement parfait icône/sigils
 		int upgradeH = sigilCount == 2
 				? (headerLines > 0 ? 4 : 0) + EQUIP_ICON_SIZE
 				: sigilCount == 1
-						? (headerLines > 0 ? 2 : 0) + SIGIL_SLOT_SIZE
+						? (headerLines > 0 ? 2 : 0) + SIGIL_SLOT_SIZE + runeExtraLines * EQUIP_ATTR_LINE_HEIGHT
 						: 0;
 		return Math.max(EQUIP_ICON_SIZE, headerLines * EQUIP_ATTR_LINE_HEIGHT + upgradeH);
 	}
@@ -553,14 +573,22 @@ public class BuildImageGeneratorService {
 
 		Item rune = piece != null ? piece.upgrade() : null;
 		if (rune != null) {
-			int runeY = y + h - SIGIL_SLOT_SIZE;
+			g2d.setFont(new Font(Font.SANS_SERIF, Font.ITALIC, 8));
+			FontMetrics fm = g2d.getFontMetrics();
+			List<String> runeLines = rune.getName() != null
+					? wrapText(rune.getName(), fm, MAX_TEXT_WIDTH - SIGIL_SLOT_SIZE - 4)
+					: List.of();
+			int runeBlockH = SIGIL_SLOT_SIZE + (runeLines.size() > 1 ? (runeLines.size() - 1) * EQUIP_ATTR_LINE_HEIGHT : 0);
+			int runeY = y + h - runeBlockH;
 			drawSigilSlot(g2d, rune, textX, runeY, SIGIL_SLOT_SIZE);
-			if (rune.getName() != null) {
-				g2d.setFont(new Font(Font.SANS_SERIF, Font.ITALIC, 8));
-				g2d.setColor(new Color(210, 170, 100));
-				FontMetrics fm = g2d.getFontMetrics();
+			g2d.setColor(new Color(210, 170, 100));
+			if (runeLines.size() == 1) {
 				int nameOffsetY = (SIGIL_SLOT_SIZE - fm.getHeight()) / 2 + fm.getAscent();
-				g2d.drawString(rune.getName(), textX + SIGIL_SLOT_SIZE + 4, runeY + nameOffsetY);
+				g2d.drawString(runeLines.get(0), textX + SIGIL_SLOT_SIZE + 4, runeY + nameOffsetY);
+			} else {
+				for (int i = 0; i < runeLines.size(); i++) {
+					g2d.drawString(runeLines.get(i), textX + SIGIL_SLOT_SIZE + 4, runeY + i * fm.getHeight() + fm.getAscent());
+				}
 			}
 		}
 
