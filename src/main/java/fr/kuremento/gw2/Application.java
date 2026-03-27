@@ -18,7 +18,7 @@ import java.io.File;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class Application implements ApplicationRunner {
 
-    private static final String CODE = "eNrT4WWVsVWWtpLlYWRgMAZiBXEGhggGBgZbMQYMwMTPwHxxN8NCBoZHKoyMzJdhTCbm8zAmM_MFGJOF-RKMycp8DsZkY39WDmKqJzCoJDJwsLdPZYTzuBinlDB-ZGLgZkxKAYnyMPItAtG8jF_sQTQf44pkEM3POHMmiBZgcO5jBAAjqSbm";
+    private static final String CODE = "eNoz4WUT1JSSNrA_LnRc6LDQUqEJDIeFyoRKhGYCIQMaYA5jSGcwY2Bg4mdgXunDGMzKwJXIwMicCGMyMWfBmMzMPDAmC_M-byiTldnVF8pkY2aIAjHDlBjZmdvDQMwVMoxcjFNKQExuxqQUEM3DyLcIRPMyfrFnLGFi4GNckQyi-RlnzgTRAgwm7YwA-IMe7Q";
 
     BuildTemplateService buildTemplateService;
 

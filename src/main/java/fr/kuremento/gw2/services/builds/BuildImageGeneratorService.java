@@ -427,7 +427,7 @@ public class BuildImageGeneratorService {
 		drawItemHeader(g2d, piece, textX, y);
 
 		if (sigilCount > 0) {
-			int sigilY = (sigilCount == 2) ? iconY : y + h - SIGIL_SLOT_SIZE;
+			int sigilY = (sigilCount == 2) ? iconY : y + EQUIP_ICON_SIZE - SIGIL_SLOT_SIZE;
 			for (Item sigil : new Item[]{sigil1, sigil2}) {
 				if (sigil == null) continue;
 				drawSigilSlot(g2d, sigil, textX, sigilY, SIGIL_SLOT_SIZE);
@@ -578,8 +578,7 @@ public class BuildImageGeneratorService {
 			List<String> runeLines = rune.getName() != null
 					? wrapText(rune.getName(), fm, MAX_TEXT_WIDTH - SIGIL_SLOT_SIZE - 4)
 					: List.of();
-			int runeBlockH = SIGIL_SLOT_SIZE + (runeLines.size() > 1 ? (runeLines.size() - 1) * EQUIP_ATTR_LINE_HEIGHT : 0);
-			int runeY = y + h - runeBlockH;
+			int runeY = y + EQUIP_ICON_SIZE - SIGIL_SLOT_SIZE;
 			drawSigilSlot(g2d, rune, textX, runeY, SIGIL_SLOT_SIZE);
 			g2d.setColor(new Color(210, 170, 100));
 			if (runeLines.size() == 1) {
