@@ -65,7 +65,9 @@ public class FractalsService {
     }
 
     private int getRotation() {
-        LocalDate currentRotation = LocalDate.of(LocalDate.now().getYear(), 1, 1);
-        return (Math.toIntExact(ChronoUnit.DAYS.between(currentRotation, LocalDate.now())) + 1) % 15;
+        var today = LocalDate.now();
+        LocalDate currentRotation = LocalDate.of(today.getYear(), 1, 1);
+        int decalage = today.isLeapYear() || today.isBefore(LocalDate.of(today.getYear(), 3, 1)) ? 0 : 1;
+        return (Math.toIntExact(ChronoUnit.DAYS.between(currentRotation, today)) + decalage) % 15;
     }
 }
