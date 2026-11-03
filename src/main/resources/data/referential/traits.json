@@ -1454,6 +1454,17 @@
     ],
     "traited_facts": [
       {
+        "text": "Apply Buff/Condition",
+        "type": "Buff",
+        "icon": "https://render.guildwars2.com/file/3D3A1C2D6D791C05179AB871902D28782C65C244/415959.png",
+        "duration": 1,
+        "status": "Stabilité",
+        "description": "Immunisé contre les altérations Renversement, Repoussement, Attraction, Projection, Étourdissement, Stupeur, Flottaison, Noyade, Peur ou Incitation.",
+        "apply_count": 1,
+        "requires_trait": 2344,
+        "overrides": 0
+      },
+      {
         "text": "Temps de recharge",
         "type": "Time",
         "icon": "https://render.guildwars2.com/file/AAB7C5387A08367C2F023F19FEE70E1556AD4375/1770202.png",
@@ -1586,7 +1597,7 @@
           "text": "Apply Buff/Condition",
           "icon": "https://render.guildwars2.com/file/DC27E04D9F9CE5627D953752B5F334C7A304B7F5/103352.png",
           "status": "Signe de la terre",
-          "description": "<c=@abilitytype>Signe passif :</c> robustesse améliorée.<br><c=@abilitytype>Signe actif :</c> inflige Immobilisation et Saignement à votre ennemi."
+          "description": "<c=@abilitytype>Signe passif :</c> réduit les dégâts de frappe subis.<br><c=@abilitytype>Signe actif :</c> inflige Immobilisation et Saignement à votre ennemi."
         }
       },
       {
@@ -1601,7 +1612,7 @@
           "text": "Apply Buff/Condition",
           "icon": "https://render.guildwars2.com/file/DC27E04D9F9CE5627D953752B5F334C7A304B7F5/103352.png",
           "status": "Signe de la terre",
-          "description": "<c=@abilitytype>Signe passif :</c> robustesse améliorée.<br><c=@abilitytype>Signe actif :</c> inflige Immobilisation et Saignement à votre ennemi."
+          "description": "<c=@abilitytype>Signe passif :</c> réduit les dégâts de frappe subis.<br><c=@abilitytype>Signe actif :</c> inflige Immobilisation et Saignement à votre ennemi."
         }
       },
       {
@@ -1899,6 +1910,12 @@
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
         "percent": 10
+      },
+      {
+        "text": "Augmentation des dégâts",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
+        "percent": 7
       }
     ],
     "specialization": 31,
@@ -2273,6 +2290,13 @@
         "text": "Guérison",
         "type": "AttributeAdjust",
         "icon": "https://render.guildwars2.com/file/D4347C52157B040943051D7E09DEAD7AF63D4378/156662.png",
+        "value": 1042,
+        "target": "Healing"
+      },
+      {
+        "text": "Guérison",
+        "type": "AttributeAdjust",
+        "icon": "https://render.guildwars2.com/file/D4347C52157B040943051D7E09DEAD7AF63D4378/156662.png",
         "value": 1302,
         "target": "Healing"
       },
@@ -2423,7 +2447,7 @@
         "text": "Augmentation des dégâts",
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
-        "percent": 10
+        "percent": 7
       },
       {
         "text": "Augmentation des dégâts",
@@ -2808,6 +2832,12 @@
         "status": "Résistance",
         "description": "Les altérations n'infligeant pas de dégâts que vous subissez sont inefficaces. La durée est cumulable.",
         "apply_count": 1
+      },
+      {
+        "text": "Augmentation de la vitesse de déplacement",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png",
+        "percent": 25
       }
     ],
     "specialization": 47,
@@ -3362,64 +3392,18 @@
     "id": 507,
     "tier": 1,
     "order": 2,
-    "name": "Distributeur de bombes en auto-défense",
-    "description": "Vous lâchez une bombe fumigène lorsque vous êtes neutralisé.<br><c=@reminder>Les effets suivants neutralisent la cible : Étourdissement, Stupeur, Repoussement, Attraction, Renversement, Noyade, Flottaison, Projection, Incitation ou Peur.</c>",
+    "name": "Appareil de sape",
+    "description": "Vous infligez Faiblesse aux ennemis quand vous les neutralisez ou leur infligez Immobilisation.<br><c=@reminder>Les effets suivants neutralisent la cible : Étourdissement, Stupeur, Repoussement, Attraction, Renversement, Noyade, Flottaison, Projection, Incitation ou Peur.</c>",
     "slot": "Major",
-    "skills": [
+    "facts": [
       {
-        "name": "Bombe fumigène",
-        "facts": [
-          {
-            "text": "Recharge",
-            "type": "Recharge",
-            "icon": "https://render.guildwars2.com/file/D767B963D120F077C3B163A05DC05A7317D7DB70/156651.png",
-            "value": 20
-          },
-          {
-            "text": "Apply Buff/Condition",
-            "type": "Buff",
-            "icon": "https://render.guildwars2.com/file/09770136BB76FD0DBE1CC4267DEED54774CB20F6/102837.png",
-            "duration": 3,
-            "status": "Aveugle",
-            "description": "L'attaque suivante rate. L'intensité est cumulable.",
-            "apply_count": 1
-          },
-          {
-            "text": "Durée",
-            "type": "Time",
-            "icon": "https://render.guildwars2.com/file/7B2193ACCF77E56C13E608191B082D68AA0FAA71/156659.png",
-            "duration": 6
-          },
-          {
-            "text": "Intervalle",
-            "type": "Time",
-            "icon": "https://render.guildwars2.com/file/B75E91EB22E0DFCC1D08030204055946506D56F6/1770206.png",
-            "duration": 2
-          },
-          {
-            "text": "Rayon",
-            "type": "Distance",
-            "icon": "https://render.guildwars2.com/file/B0CD8077991E4FB1622D2930337ED7F9B54211D5/156665.png",
-            "distance": 240
-          },
-          {
-            "text": "Pulsations",
-            "type": "Number",
-            "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png",
-            "value": 3
-          },
-          {
-            "text": "Combo Field",
-            "type": "ComboField",
-            "icon": "https://render.guildwars2.com/file/59E0DB6A699810641C959926ADFEF73E08CC255B/156655.png",
-            "field_type": "Smoke"
-          }
-        ],
-        "description": "Vous posez une bombe à retardement qui produit un nuage de fumée et aveugle les ennemis à proximité.",
-        "icon": "https://render.guildwars2.com/file/02A02091B1EBDB782719EB6AE56F01E6372C500D/103091.png",
-        "flags": [],
-        "id": 13551,
-        "chat_link": "[&Bu80AAA=]"
+        "text": "Apply Buff/Condition",
+        "type": "Buff",
+        "icon": "https://render.guildwars2.com/file/6CB0E64AF9AA292E332A38C1770CE577E2CDE0E8/102853.png",
+        "duration": 3,
+        "status": "Faiblesse",
+        "description": "Régénération d'endurance réduite de 50%. 50% des coups sont des effleurements (50% des dégâts). Durée cumulable.",
+        "apply_count": 1
       }
     ],
     "specialization": 47,
@@ -3960,6 +3944,15 @@
             "type": "Number",
             "icon": "https://render.guildwars2.com/file/BBE8191A494B0352259C10EADFDACCE177E6DA5B/1770208.png",
             "value": 5
+          },
+          {
+            "text": "Apply Buff/Condition",
+            "type": "Buff",
+            "icon": "https://render.guildwars2.com/file/F69996772B9E18FD18AD0AABAB25D7E3FC42F261/102835.png",
+            "duration": 4,
+            "status": "Régénération",
+            "description": "Vous regagnez de la santé à chaque seconde. La durée est cumulable.",
+            "apply_count": 1
           }
         ],
         "description": "Vous dissipez une altération infligée aux alliés à proximité.",
@@ -4333,7 +4326,7 @@
         "type": "Buff",
         "icon": "https://render.guildwars2.com/file/F12B07B5466A51AB2BFD2C0CB8F3994D3F9E610C/103652.png",
         "duration": 3,
-        "status": "Vertu de résolution",
+        "status": "Vertu de détermination",
         "description": "Régénération de santé.",
         "apply_count": 1
       },
@@ -5408,7 +5401,7 @@
         "type": "Buff",
         "icon": "https://render.guildwars2.com/file/F12B07B5466A51AB2BFD2C0CB8F3994D3F9E610C/103652.png",
         "duration": 3,
-        "status": "Vertu de résolution",
+        "status": "Vertu de détermination",
         "description": "Régénération de santé.",
         "apply_count": 1
       },
@@ -5542,6 +5535,12 @@
         "text": "Dégâts bonus par avantage",
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png",
+        "percent": 0.5
+      },
+      {
+        "text": "Dégâts bonus par avantage",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png",
         "percent": 1
       },
       {
@@ -5570,7 +5569,7 @@
         "prefix": {
           "text": "Apply Buff/Condition",
           "icon": "https://render.guildwars2.com/file/F12B07B5466A51AB2BFD2C0CB8F3994D3F9E610C/103652.png",
-          "status": "Vertu de résolution",
+          "status": "Vertu de détermination",
           "description": "<c=@abilitytype>Vertu :</c> régénère la santé.</c><br><c=@abilitytype>Activation :</c> vous soignez vos alliés à proximité ainsi que vous-même."
         }
       },
@@ -5689,6 +5688,18 @@
     "description": "Vous infligez des dégâts de frappe supplémentaires lorsque vous bénéficiez d'Égide. Vous infligez des dégâts de frappe supplémentaires lorsque votre santé est au-dessus d'un certain seuil.",
     "slot": "Major",
     "facts": [
+      {
+        "text": "Augmentation des dégâts avec Égide",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
+        "percent": 5
+      },
+      {
+        "text": "Augmentation des dégâts au-dessus du seuil de santé",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
+        "percent": 5
+      },
       {
         "text": "Augmentation des dégâts avec Égide",
         "type": "Percent",
@@ -5838,7 +5849,7 @@
         "text": "Augmentation des dégâts",
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
-        "percent": 7
+        "percent": 5
       }
     ],
     "specialization": 42,
@@ -6401,31 +6412,25 @@
     "id": 669,
     "tier": 2,
     "order": 2,
-    "name": "Puissance chaotique",
-    "description": "Vous obtenez des Dégâts par altération. Lorsque vous maniez un bâton, vous gagnez des Dégâts par altération supplémentaires. Les compétences de bâton et de trident se rechargent plus vite.",
+    "name": "Interruption chaotique",
+    "description": "Lorsque vous interrompez un ennemi, une compétence d'arme équipée aléatoire est rechargée.<br><c=@reminder>Affecte uniquement les compétences d'armes en cours de recharge.</c>",
     "slot": "Major",
     "facts": [
       {
+        "text": "Recharge",
+        "type": "Recharge",
+        "icon": "https://render.guildwars2.com/file/D767B963D120F077C3B163A05DC05A7317D7DB70/156651.png",
+        "value": 1
+      },
+      {
         "text": "Réduction du temps de recharge",
-        "type": "Percent",
+        "type": "Time",
         "icon": "https://render.guildwars2.com/file/AAB7C5387A08367C2F023F19FEE70E1556AD4375/1770202.png",
-        "percent": 20
-      },
-      {
-        "type": "AttributeAdjust",
-        "icon": "https://render.guildwars2.com/file/0120CB042BFC2EA6A45BC3DB45155FECDDDE1910/2229318.png",
-        "value": 120,
-        "target": "ConditionDamage"
-      },
-      {
-        "type": "AttributeAdjust",
-        "icon": "https://render.guildwars2.com/file/0120CB042BFC2EA6A45BC3DB45155FECDDDE1910/2229318.png",
-        "value": 120,
-        "target": "ConditionDamage"
+        "duration": 5
       }
     ],
     "specialization": 45,
-    "icon": "https://render.guildwars2.com/file/4BAB6E9C6C672B740742CA1BCE8013C95F1829B6/1012467.png"
+    "icon": "https://render.guildwars2.com/file/0214AD1DC21171D73D24D25CD1EC71D14296F2F5/1012468.png"
   },
   {
     "id": 670,
@@ -6448,7 +6453,7 @@
             "text": "Recharge",
             "type": "Recharge",
             "icon": "https://render.guildwars2.com/file/D767B963D120F077C3B163A05DC05A7317D7DB70/156651.png",
-            "value": 35
+            "value": 28
           },
           {
             "text": "Dégât",
@@ -6512,12 +6517,6 @@
             "apply_count": 1
           },
           {
-            "text": "Stupeur",
-            "type": "Time",
-            "icon": "https://render.guildwars2.com/file/9AE125E930C92FEA0DD99E7EBAEDE4CF5EC556B6/433474.png",
-            "duration": 1
-          },
-          {
             "text": "Rayon",
             "type": "Distance",
             "icon": "https://render.guildwars2.com/file/B0CD8077991E4FB1622D2930337ED7F9B54211D5/156665.png",
@@ -6536,7 +6535,7 @@
             "field_type": "Ethereal"
           }
         ],
-        "description": "Crée une tempête magique dans la zone ciblée qui inflige des altérations aléatoires aux ennemis et confère des avantages aléatoires aux alliés. Le premier coup porté par la tempête inflige Étourdissement aux ennemis.",
+        "description": "Crée une tempête magique dans la zone ciblée qui inflige des altérations aléatoires aux ennemis et confère des avantages aléatoires aux alliés.",
         "icon": "https://render.guildwars2.com/file/B741282BD5EE93C9FC43AE417878953D50BB3974/103156.png",
         "flags": [],
         "id": 13733,
@@ -6550,25 +6549,44 @@
     "id": 671,
     "tier": 3,
     "order": 0,
-    "name": "Interruption chaotique",
-    "description": "Lorsque vous interrompez un ennemi, une compétence d'arme équipée aléatoire est rechargée.<br><c=@reminder>Affecte uniquement les compétences d'armes en cours de recharge.</c>",
+    "name": "Création du chaos",
+    "description": "Lorsque vous vous conférez Aura du chaos, si vous bénéficiez déjà de cet effet, vous détonnez votre Aura du chaos pour vous conférer des avantages et infliger des altérations aux ennemis.",
     "slot": "Major",
-    "facts": [
+    "skills": [
       {
-        "text": "Recharge",
-        "type": "Recharge",
-        "icon": "https://render.guildwars2.com/file/D767B963D120F077C3B163A05DC05A7317D7DB70/156651.png",
-        "value": 1
-      },
-      {
-        "text": "Réduction du temps de recharge",
-        "type": "Time",
-        "icon": "https://render.guildwars2.com/file/AAB7C5387A08367C2F023F19FEE70E1556AD4375/1770202.png",
-        "duration": 5
+        "name": "Détonation du chaos",
+        "facts": [
+          {
+            "text": "Dégât",
+            "type": "Damage",
+            "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
+            "hit_count": 1,
+            "dmg_multiplier": 1
+          },
+          {
+            "text": "Nombre de cibles",
+            "type": "Number",
+            "icon": "https://render.guildwars2.com/file/BBE8191A494B0352259C10EADFDACCE177E6DA5B/1770208.png",
+            "value": 5
+          },
+          {
+            "type": "BuffArray",
+            "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png"
+          },
+          {
+            "type": "BuffArray",
+            "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png"
+          }
+        ],
+        "description": "Vous ordonnez à votre aura du chaos de grandir et d'exploser, ce qui vous confère des avantages en infligeant des altérations aux ennemis.",
+        "icon": "https://render.guildwars2.com/file/72E5ACDEAE7571B67F96F9BDA8A271CCCF08957B/3256361.png",
+        "flags": [],
+        "id": 80210,
+        "chat_link": "[&BlI5AQA=]"
       }
     ],
     "specialization": 45,
-    "icon": "https://render.guildwars2.com/file/0214AD1DC21171D73D24D25CD1EC71D14296F2F5/1012468.png"
+    "icon": "https://render.guildwars2.com/file/4BAB6E9C6C672B740742CA1BCE8013C95F1829B6/1012467.png"
   },
   {
     "id": 673,
@@ -6674,16 +6692,16 @@
     "tier": 3,
     "order": 1,
     "name": "Compréhension prismatique",
-    "description": "La durée de Furtivité est augmentée par les compétences d'envoûteur. Vous bénéficiez d'avantages aléatoires quand vous bénéficiez de Furtivité.",
+    "description": "La durée de Furtivité est augmentée pour toutes les compétences d'envoûteur. La compétence de brisure 4 confère Furtivité. Vous bénéficiez de Régénération quand vous recevez Furtivité, et vous gagnez Protection et Résolution quand vous quittez la Furtivité.",
     "slot": "Major",
     "facts": [
       {
         "text": "Apply Buff/Condition",
         "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/DFB4D1B50AE4D6A275B349E15B179261EE3EB0AF/102854.png",
+        "icon": "https://render.guildwars2.com/file/D104A6B9344A2E2096424A3C300E46BC2926E4D7/2440718.png",
         "duration": 3,
-        "status": "Égide",
-        "description": "Bloque la prochaine attaque. La durée est cumulable.",
+        "status": "Résolution",
+        "description": "Dégâts par altération subis réduits de 33%. La durée est cumulable.",
         "apply_count": 1
       },
       {
@@ -6699,40 +6717,25 @@
         "text": "Apply Buff/Condition",
         "type": "Buff",
         "icon": "https://render.guildwars2.com/file/F69996772B9E18FD18AD0AABAB25D7E3FC42F261/102835.png",
-        "duration": 3,
+        "duration": 6,
         "status": "Régénération",
         "description": "Vous regagnez de la santé à chaque seconde. La durée est cumulable.",
         "apply_count": 1
-      },
-      {
-        "text": "Apply Buff/Condition",
-        "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/2FA9DF9D6BC17839BBEA14723F1C53D645DDB5E1/102852.png",
-        "duration": 5,
-        "status": "Pouvoir",
-        "description": "Les dégâts infligés sont augmentés. Intensité cumulable.",
-        "apply_count": 1
-      },
-      {
-        "text": "Apply Buff/Condition",
-        "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/20CFC14967E67F7A3FD4A4B8722B4CF5B8565E11/102836.png",
-        "duration": 3,
-        "status": "Rapidité",
-        "description": "Vitesse de déplacement augmentée de 33%. La durée est cumulable.",
-        "apply_count": 1
-      },
-      {
-        "text": "Intervalle",
-        "type": "Time",
-        "icon": "https://render.guildwars2.com/file/B75E91EB22E0DFCC1D08030204055946506D56F6/1770206.png",
-        "duration": 1
       },
       {
         "text": "Durée augmentée",
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/7B2193ACCF77E56C13E608191B082D68AA0FAA71/156659.png",
         "percent": 50
+      },
+      {
+        "text": "Apply Buff/Condition",
+        "type": "Buff",
+        "icon": "https://render.guildwars2.com/file/3BD4670638470439F3325B444FAF7D5FA620CCE5/62777.png",
+        "duration": 3,
+        "status": "Furtivité",
+        "description": "Vous êtes actuellement invisible. L'effet prend fin si vous infligez des dégâts.",
+        "apply_count": 1
       }
     ],
     "specialization": 45,
@@ -6878,14 +6881,26 @@
     "tier": 3,
     "order": 0,
     "name": "Expression sournoise",
-    "description": "Vos illusions et vous-même infligez des dégâts de frappe supplémentaires aux ennemis ne bénéficiant d'aucun avantage. Neutraliser un ennemi dissipe tous les avantages dont il bénéficie.<br><c=@reminder>Les altérations neutralisantes sont entre autres : Étourdissement, Stupeur, Repoussement, Attraction, Renversement, Noyade, Flottaison, Projection, Incitation et Peur.</c>",
+    "description": "Vos illusions et vous-même infligez des dégâts de frappe supplémentaires. Ces dégâts sont encore plus élevés face aux ennemis ne bénéficiant d'aucun avantage. Neutraliser un ennemi dissipe tous les avantages dont il bénéficie.<br><c=@reminder>Les effets suivants neutralisent la cible : Étourdissement, Stupeur, Repoussement, Attraction, Renversement, Noyade, Flottaison, Projection, Incitation et Peur.</c>",
     "slot": "Major",
     "facts": [
+      {
+        "text": "Augmentation des dégâts sur les ennemis sans avantage",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
+        "percent": 15
+      },
       {
         "text": "Augmentation des dégâts",
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
-        "percent": 15
+        "percent": 10
+      },
+      {
+        "text": "Augmentation des dégâts",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
+        "percent": 7
       },
       {
         "text": "Avantages supprimés",
@@ -7076,7 +7091,7 @@
     "tier": 2,
     "order": 0,
     "name": "Éclatant",
-    "description": "Infliger Stupeur ou Étourdissement à un ennemi lui confère aussi Vulnérabilité.",
+    "description": "Inflige Vulnérabilité aux ennemis que vous neutralisez.<br><c=@reminder>Les effets suivants neutralisent la cible : Étourdissement, Stupeur, Repoussement, Attraction, Renversement, Noyade, Flottaison, Projection, Incitation ou Peur.</c>",
     "slot": "Minor",
     "facts": [
       {
@@ -7097,7 +7112,7 @@
     "tier": 1,
     "order": 2,
     "name": "Discipline du duelliste",
-    "description": "Vos attaques au pistolet et celles de vos illusions ont une chance d'infliger Saignement. Interrompre un ennemi recharge vos compétences de pistolet.<br><c=@reminder>Cette aptitude ne réduit le temps de recharge des ennemis possédant une barre de défiance qu'une seule fois par intervalle.</c>",
+    "description": "Interrompre un ennemi recharge vos compétences de pistolet.<br><c=@reminder>Cette aptitude ne réduit le temps de recharge qu'une seule fois par intervalle pour les ennemis possédant une barre de défiance.</c>",
     "slot": "Major",
     "facts": [
       {
@@ -7105,30 +7120,6 @@
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/AAB7C5387A08367C2F023F19FEE70E1556AD4375/1770202.png",
         "percent": 25
-      },
-      {
-        "text": "Chance d'infliger Saignement",
-        "type": "Percent",
-        "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png",
-        "percent": 100
-      },
-      {
-        "text": "Apply Buff/Condition",
-        "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/79FF0046A5F9ADA3B4C4EC19ADB4CB124D5F0021/102848.png",
-        "duration": 3,
-        "status": "Saignement",
-        "description": "Inflige des dégâts à chaque seconde. Intensité cumulable.",
-        "apply_count": 1
-      },
-      {
-        "text": "Apply Buff/Condition",
-        "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/79FF0046A5F9ADA3B4C4EC19ADB4CB124D5F0021/102848.png",
-        "duration": 2,
-        "status": "Saignement",
-        "description": "Inflige des dégâts à chaque seconde. Intensité cumulable.",
-        "apply_count": 1
       },
       {
         "text": "Intervalle",
@@ -8836,7 +8827,7 @@
     "tier": 3,
     "order": 0,
     "name": "Linceul affaiblissant",
-    "description": "Vous lancez Intoxication mineure lorsque vous utilisez le linceul. Vos coups critiques infligent Faiblesse.",
+    "description": "Vous affaiblissez les ennemis à proximité lorsque vous utilisez le linceul. Vos coups critiques infligent Faiblesse.",
     "slot": "Major",
     "facts": [
       {
@@ -8857,7 +8848,7 @@
     ],
     "skills": [
       {
-        "name": "Intoxication inférieure",
+        "name": "Linceul affaiblissant",
         "facts": [
           {
             "text": "Dégât",
@@ -8907,10 +8898,16 @@
             "text": "Ne peut pas infliger de coups critiques.",
             "type": "NoData",
             "icon": "https://render.guildwars2.com/file/63015872E20761F5E76F803A90666FBE4E262BC9/536051.png"
+          },
+          {
+            "text": "Avantages convertis en altérations",
+            "type": "Number",
+            "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png",
+            "value": 1
           }
         ],
         "description": "Inflige Faiblesse et Saignement aux ennemis à proximité.",
-        "icon": "https://render.guildwars2.com/file/3566470D2DCB5A01CE4E1D2EF09503B07108B9BD/103010.png",
+        "icon": "https://render.guildwars2.com/file/A0F1F39CA0A102D63CBBC95CAB7FEB0B99AE9ED6/1012552.png",
         "flags": [],
         "id": 13907,
         "chat_link": "[&BlM2AAA=]"
@@ -9108,6 +9105,12 @@
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png",
         "percent": 1
+      },
+      {
+        "text": "Seuil de Santé",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/B0CD8077991E4FB1622D2930337ED7F9B54211D5/156665.png",
+        "percent": 50
       }
     ],
     "specialization": 53,
@@ -9392,15 +9395,24 @@
     "id": 860,
     "tier": 2,
     "order": 1,
-    "name": "Sombre défiance",
-    "description": "Lorsque vous êtes neutralisé, vous obtenez Protection. Les Dégâts par altération subis sont réduits tant que vous bénéficiez de Protection.<br><c=@reminder>Les altérations neutralisantes sont entre autres : Étourdissement, Stupeur, Repoussement, Attraction, Renversement, Noyade, Flottaison, Peur, Incitation ou Projection.</c>",
+    "name": "Sombre défense",
+    "description": "Protection réduit les dégâts par altération subis. Vous recevez <c=@abilitytype>Carapace</c> et Protection quand vous utilisez une compétence de soins.",
     "slot": "Major",
     "facts": [
       {
         "text": "Recharge",
         "type": "Recharge",
         "icon": "https://render.guildwars2.com/file/D767B963D120F077C3B163A05DC05A7317D7DB70/156651.png",
-        "value": 20
+        "value": 5
+      },
+      {
+        "text": "Apply Buff/Condition",
+        "type": "Buff",
+        "icon": "https://render.guildwars2.com/file/DC38F4623BFE773E681E37A0EAE11A364D52AACE/1012567.png",
+        "duration": 10,
+        "status": "Carapace de la mort",
+        "description": "La Robustesse est augmentée par charge.",
+        "apply_count": 10
       },
       {
         "text": "Apply Buff/Condition",
@@ -9664,6 +9676,12 @@
         "text": "Augmentation des dégâts critiques",
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/0658D833944E69E62E08EB18A0B5407F722125BC/2229320.png",
+        "percent": 10
+      },
+      {
+        "text": "Augmentation des dégâts critiques",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/0658D833944E69E62E08EB18A0B5407F722125BC/2229320.png",
         "percent": 15
       },
       {
@@ -9764,7 +9782,7 @@
             "text": "Recharge",
             "type": "Recharge",
             "icon": "https://render.guildwars2.com/file/D767B963D120F077C3B163A05DC05A7317D7DB70/156651.png",
-            "value": 20
+            "value": 16
           },
           {
             "text": "Dégâts – Trois avantages",
@@ -9930,7 +9948,7 @@
             "text": "Avantages supplémentaires supprimés",
             "type": "Number",
             "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png",
-            "value": 1
+            "value": 2
           },
           {
             "text": "Seuil de Santé",
@@ -10134,20 +10152,32 @@
     "tier": 1,
     "order": 0,
     "name": "Talisman maléfique",
-    "description": "Vous infligez des dégâts de frappe supplémentaires aux ennemis ne bénéficiant d'aucun avantage. Les compétences de focus et de hache se rechargent plus vite.",
+    "description": "Vos dégâts de frappe infligés sont augmentés. Ces dégâts sont encore plus élevés face aux ennemis ne bénéficiant d'aucun avantage.",
     "slot": "Major",
     "facts": [
       {
-        "text": "Réduction du temps de recharge",
+        "text": "Augmentation des dégâts sur les cibles sans avantage",
         "type": "Percent",
-        "icon": "https://render.guildwars2.com/file/AAB7C5387A08367C2F023F19FEE70E1556AD4375/1770202.png",
-        "percent": 20
+        "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
+        "percent": 5
       },
       {
         "text": "Augmentation des dégâts",
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
-        "percent": 10
+        "percent": 3
+      },
+      {
+        "text": "Augmentation des dégâts sur les cibles sans avantage",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
+        "percent": 12
+      },
+      {
+        "text": "Augmentation des dégâts",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
+        "percent": 7
       }
     ],
     "specialization": 53,
@@ -10299,6 +10329,7 @@
         "value": 1
       },
       {
+        "type": "BuffArray",
         "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png"
       }
     ],
@@ -10724,6 +10755,12 @@
         "text": "Augmentation des dégâts",
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
+        "percent": 10
+      },
+      {
+        "text": "Augmentation des dégâts",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
         "percent": 15
       }
     ],
@@ -11088,6 +11125,15 @@
       {
         "name": "Signe de pierre mineur",
         "facts": [
+          {
+            "text": "Apply Buff/Condition",
+            "type": "Buff",
+            "icon": "https://render.guildwars2.com/file/0419F0A9D9494B4273F31FA1E92A551AA67246B8/102886.png",
+            "duration": 3,
+            "status": "Signe de pierre",
+            "description": "Les attaques subies n'infligent aucun dégât.",
+            "apply_count": 1
+          },
           {
             "text": "Apply Buff/Condition",
             "type": "Buff",
@@ -11561,13 +11607,13 @@
             "text": "Recharge",
             "type": "Recharge",
             "icon": "https://render.guildwars2.com/file/D767B963D120F077C3B163A05DC05A7317D7DB70/156651.png",
-            "value": 15
+            "value": 10
           },
           {
             "text": "Apply Buff/Condition",
             "type": "Buff",
             "icon": "https://render.guildwars2.com/file/0D6B235E679346723414607E61DE052576097545/104025.png",
-            "duration": 5,
+            "duration": 8,
             "status": "\"Attaque !\" mineur",
             "description": "Concentration sur une cible pour augmenter les dégâts.",
             "apply_count": 1
@@ -11611,7 +11657,7 @@
             "text": "Apply Buff/Condition",
             "type": "PrefixedBuff",
             "icon": "https://render.guildwars2.com/file/0D6B235E679346723414607E61DE052576097545/104025.png",
-            "duration": 5,
+            "duration": 8,
             "status": "\"Attaque !\" mineur",
             "description": "Concentration sur une cible pour augmenter les dégâts.",
             "apply_count": 1,
@@ -11667,7 +11713,7 @@
         "text": "Augmentation des dégâts",
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
-        "percent": 15
+        "percent": 10
       },
       {
         "text": "Augmentation des dégâts",
@@ -12596,19 +12642,6 @@
         "apply_count": 1
       }
     ],
-    "traited_facts": [
-      {
-        "text": "Apply Buff/Condition",
-        "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/E04392C3D8ED985125973AEB99D8460C483263F9/103458.png",
-        "duration": 1,
-        "status": "Super vitesse",
-        "description": "La vitesse de déplacement est considérablement accrue. Durée maximum : 10s",
-        "apply_count": 1,
-        "requires_trait": 2118,
-        "overrides": 1
-      }
-    ],
     "specialization": 20,
     "icon": "https://render.guildwars2.com/file/75543C6D39236CF562B56A95A6B3A8066CB53360/1012760.png"
   },
@@ -12813,7 +12846,7 @@
     "tier": 3,
     "order": 2,
     "name": "Ombre lacérante",
-    "description": "Vous volez des avantages aux ennemis que vous touchez lors d'<c=@abilitytype>attaques furtives</c>. Frapper un ennemi sans avantage avec une attaque furtive inflige Peur aux ennemis à proximité.",
+    "description": "Vous volez des avantages aux ennemis que vous touchez lors d'<c=@abilitytype>attaques furtives</c>. Frapper un ennemi sans avantage avec une attaque furtive brise sa Barrière à la place.",
     "slot": "Major",
     "facts": [
       {
@@ -12823,25 +12856,9 @@
         "value": 2
       },
       {
-        "text": "Apply Buff/Condition",
-        "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/30307A6E766D74B6EB09EDA12A4A2DE50E4D76F4/102869.png",
-        "duration": 1,
-        "status": "Peur",
-        "description": "Retraite involontaire. Incapable d'agir. La durée est cumulable.",
-        "apply_count": 1
-      },
-      {
-        "text": "Rayon",
-        "type": "Distance",
-        "icon": "https://render.guildwars2.com/file/B0CD8077991E4FB1622D2930337ED7F9B54211D5/156665.png",
-        "distance": 180
-      },
-      {
-        "text": "Nombre de cibles maximum pour Peur",
-        "type": "Number",
-        "icon": "https://render.guildwars2.com/file/BBE8191A494B0352259C10EADFDACCE177E6DA5B/1770208.png",
-        "value": 5
+        "text": "Bris de barrière",
+        "type": "NoData",
+        "icon": "https://render.guildwars2.com/file/FC9D41631677D8A9A9AE437E1B01357F60B595F9/1824230.png"
       }
     ],
     "traited_facts": [
@@ -12967,7 +12984,7 @@
     "tier": 3,
     "order": 1,
     "name": "Improvisation",
-    "description": "Vous pouvez utiliser vos compétences volées deux fois. Le temps de recharge de toutes vos compétences utilitaires équipées est réduit lorsque vous volez.<br><c=@reminder>L'effet de temps de recharge ne s'active que si tous les emplacements utilitaires sont remplis et si au moins une de vos compétences utilitaires est en cours de recharge. N'a pas d'effet sur les compétences de séquence inactives.</c>",
+    "description": "Vous pouvez utiliser vos compétences volées deux fois. Le temps de recharge de toutes vos compétences utilitaires équipées est réduit lorsque vous volez. Si vous avez équipé la spécialisation d'élite Spectre, vous gagnez davantage de force de l'ombre quand vous utilisez Siphon sur un ennemi.<br><c=@reminder>L'effet de temps de recharge ne s'active que si tous les emplacements utilitaires sont remplis et si au moins une de vos compétences utilitaires est en cours de recharge. N'a pas d'effet sur les compétences de séquence inactives.</c>",
     "slot": "Major",
     "facts": [
       {
@@ -12989,6 +13006,15 @@
         "percent": 25
       }
     ],
+    "traited_facts": [
+      {
+        "text": "Gain de linceul bonus par Siphon",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/B0CD8077991E4FB1622D2930337ED7F9B54211D5/156665.png",
+        "percent": 100,
+        "requires_trait": 2184
+      }
+    ],
     "specialization": 28,
     "icon": "https://render.guildwars2.com/file/B5A5D6B7FEA7CE96C56675D0FE1C40AD15E5B013/1012745.png"
   },
@@ -12997,7 +13023,7 @@
     "tier": 2,
     "order": 0,
     "name": "Rétablissement de l'équilibre",
-    "description": "Vous infligez Vulnérabilité lorsque vous utilisez Larcin. Vous bénéficiez de Pouvoir lorsque vous touchez un ennemi avec une attaque furtive.",
+    "description": "Vous infligez Vulnérabilité lorsque vous utilisez Larcin. Vous infligez des altérations lorsque vous touchez un ennemi avec une attaque furtive.",
     "slot": "Major",
     "facts": [
       {
@@ -13021,20 +13047,20 @@
       {
         "text": "Apply Buff/Condition",
         "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/2FA9DF9D6BC17839BBEA14723F1C53D645DDB5E1/102852.png",
-        "duration": 10,
-        "status": "Pouvoir",
-        "description": "Les dégâts infligés sont augmentés. Intensité cumulable.",
-        "apply_count": 5
+        "icon": "https://render.guildwars2.com/file/070325E519C178D502A8160523766070D30C0C19/102838.png",
+        "duration": 5,
+        "status": "Infirmité",
+        "description": "Vitesse de déplacement réduite de 50%. La durée est cumulable.",
+        "apply_count": 1
       },
       {
         "text": "Apply Buff/Condition",
         "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/2FA9DF9D6BC17839BBEA14723F1C53D645DDB5E1/102852.png",
-        "duration": 8,
-        "status": "Pouvoir",
-        "description": "Les dégâts infligés sont augmentés. Intensité cumulable.",
-        "apply_count": 5
+        "icon": "https://render.guildwars2.com/file/09770136BB76FD0DBE1CC4267DEED54774CB20F6/102837.png",
+        "duration": 5,
+        "status": "Aveugle",
+        "description": "L'attaque suivante rate. L'intensité est cumulable.",
+        "apply_count": 1
       }
     ],
     "specialization": 28,
@@ -13857,7 +13883,7 @@
     "tier": 2,
     "order": 0,
     "name": "Poison du Lotus",
-    "description": "Inflige Faiblesse aux cibles lorsque vous les empoisonnez.",
+    "description": "Vous gagnez Pouvoir et infligez Faiblesse aux cibles lorsque vous les empoisonnez.",
     "slot": "Minor",
     "facts": [
       {
@@ -13874,6 +13900,15 @@
         "status": "Faiblesse",
         "description": "Régénération d'endurance réduite de 50%. 50% des coups sont des effleurements (50% des dégâts). Durée cumulable.",
         "apply_count": 1
+      },
+      {
+        "text": "Apply Buff/Condition",
+        "type": "Buff",
+        "icon": "https://render.guildwars2.com/file/2FA9DF9D6BC17839BBEA14723F1C53D645DDB5E1/102852.png",
+        "duration": 10,
+        "status": "Pouvoir",
+        "description": "Les dégâts infligés sont augmentés. Intensité cumulable.",
+        "apply_count": 3
       }
     ],
     "specialization": 28,
@@ -14091,7 +14126,7 @@
     "tier": 2,
     "order": 1,
     "name": "Frappe panique",
-    "description": "Immobiliser un ennemi lui inflige Empoisonnement. Frapper un ennemi en dessous d'un certain seuil de santé l'immobilise.",
+    "description": "Immobiliser un ennemi lui inflige Empoisonnement. Frapper un ennemi victime d'un nombre d'altérations uniques égal ou supérieur au seuil lui inflige Immobilisation.",
     "slot": "Major",
     "facts": [
       {
@@ -14099,12 +14134,6 @@
         "type": "Recharge",
         "icon": "https://render.guildwars2.com/file/D767B963D120F077C3B163A05DC05A7317D7DB70/156651.png",
         "value": 20
-      },
-      {
-        "text": "Seuil de Santé",
-        "type": "Percent",
-        "icon": "https://render.guildwars2.com/file/B0CD8077991E4FB1622D2930337ED7F9B54211D5/156665.png",
-        "percent": 50
       },
       {
         "text": "Apply Buff/Condition",
@@ -14141,6 +14170,12 @@
         "status": "Empoisonné",
         "description": "Inflige des dégâts à chaque seconde et réduit l'efficacité de guérison de 33%. Intensité cumulable.",
         "apply_count": 1
+      },
+      {
+        "text": "Seuil d'altération",
+        "type": "Number",
+        "icon": "https://render.guildwars2.com/file/B0CD8077991E4FB1622D2930337ED7F9B54211D5/156665.png",
+        "value": 3
       }
     ],
     "traited_facts": [
@@ -14153,7 +14188,7 @@
         "description": "Inflige des dégâts à chaque seconde et réduit l'efficacité de guérison de 33%. Intensité cumulable.",
         "apply_count": 2,
         "requires_trait": 1291,
-        "overrides": 4
+        "overrides": 3
       },
       {
         "text": "Apply Buff/Condition",
@@ -14164,7 +14199,7 @@
         "description": "Inflige des dégâts à chaque seconde et réduit l'efficacité de guérison de 33%. Intensité cumulable.",
         "apply_count": 2,
         "requires_trait": 1291,
-        "overrides": 5
+        "overrides": 4
       }
     ],
     "specialization": 28,
@@ -14351,12 +14386,6 @@
     "description": "Vos attaques de pistolet et de fusil-harpon perforent la cible et infligent davantage de dégâts de frappe.",
     "slot": "Major",
     "facts": [
-      {
-        "text": "Recharge",
-        "type": "Recharge",
-        "icon": "https://render.guildwars2.com/file/D767B963D120F077C3B163A05DC05A7317D7DB70/156651.png",
-        "value": 8
-      },
       {
         "text": "Perfore",
         "type": "NoData",
@@ -15144,6 +15173,16 @@
       }
     ],
     "traited_facts": [
+      {
+        "text": "Apply Buff/Condition",
+        "type": "Buff",
+        "icon": "https://render.guildwars2.com/file/32A8CA56381F242642D7193B24284F922D23A2E3/1012796.png",
+        "duration": 15,
+        "status": "Santé surrénale",
+        "description": "Regagne de la santé en utilisant de l'adrénaline.",
+        "apply_count": 1,
+        "requires_trait": 2373
+      },
       {
         "text": "Apply Buff/Condition",
         "type": "Buff",
@@ -16148,7 +16187,7 @@
         "text": "Augmentation des dégâts",
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
-        "percent": 10
+        "percent": 5
       },
       {
         "text": "Augmentation des dégâts",
@@ -16411,7 +16450,7 @@
         "text": "Apply Buff/Condition",
         "type": "Buff",
         "icon": "https://render.guildwars2.com/file/D4AB6401A6D6917C3D4F230764452BCCE1035B0D/1012835.png",
-        "duration": 3,
+        "duration": 2,
         "status": "Célérité",
         "description": "Les compétences et les actions sont plus rapides.",
         "apply_count": 1,
@@ -16426,6 +16465,26 @@
         "description": "Immunisé contre les altérations Renversement, Repoussement, Attraction, Projection, Étourdissement, Stupeur, Flottaison, Noyade, Peur ou Incitation.",
         "apply_count": 1,
         "requires_trait": 1667
+      },
+      {
+        "text": "Apply Buff/Condition",
+        "type": "Buff",
+        "icon": "https://render.guildwars2.com/file/CD77D1FAB7B270223538A8F8ECDA1CFB044D65F4/102834.png",
+        "duration": 4,
+        "status": "Protection",
+        "description": "Dégâts de frappe subis réduits de 33%. La durée est cumulable.",
+        "apply_count": 1,
+        "requires_trait": 1474
+      },
+      {
+        "text": "Apply Buff/Condition",
+        "type": "Buff",
+        "icon": "https://render.guildwars2.com/file/CD77D1FAB7B270223538A8F8ECDA1CFB044D65F4/102834.png",
+        "duration": 3,
+        "status": "Protection",
+        "description": "Dégâts de frappe subis réduits de 33%. La durée est cumulable.",
+        "apply_count": 1,
+        "requires_trait": 1474
       }
     ],
     "specialization": 11,
@@ -16704,6 +16763,12 @@
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
         "percent": 10
+      },
+      {
+        "text": "Augmentation des dégâts",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
+        "percent": 7
       },
       {
         "text": "Durée augmentée",
@@ -17013,6 +17078,13 @@
         "value": 1,
         "requires_trait": 2226,
         "overrides": 0
+      },
+      {
+        "text": "Altérations dissipées par des chants",
+        "type": "Number",
+        "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png",
+        "value": 1,
+        "requires_trait": 2373
       }
     ],
     "specialization": 22,
@@ -17026,6 +17098,12 @@
     "description": "Les compétences de <c=@abilitytype>déchaînement</c> infligent plus de dégâts, confèrent Rapidité et restaurent une partie de votre adrénaline à chaque utilisation.",
     "slot": "Major",
     "facts": [
+      {
+        "text": "Augmentation des dégâts",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
+        "percent": 15
+      },
       {
         "text": "Augmentation des dégâts",
         "type": "Percent",
@@ -17055,7 +17133,7 @@
         "icon": "https://render.guildwars2.com/file/B0CD8077991E4FB1622D2930337ED7F9B54211D5/156665.png",
         "percent": 20,
         "requires_trait": 2226,
-        "overrides": 1
+        "overrides": 2
       }
     ],
     "specialization": 51,
@@ -17230,7 +17308,7 @@
     "tier": 3,
     "order": 2,
     "name": "Cœur de pierre",
-    "description": "Vous ne pouvez pas subir de coup critique pendant un certain temps en entrant en affinité avec la terre et en la quittant.<br><c=@reminder>La durée restante de l'effet est perdue en quittant cette affinité.</c>",
+    "description": "Vous subissez moins de dégâts de frappe pendant un certain temps en entrant en affinité avec la terre et en la quittant.<br><c=@reminder>La durée restante de l'effet est perdue en quittant cette affinité.</c>",
     "slot": "Major",
     "facts": [
       {
@@ -17239,7 +17317,7 @@
         "icon": "https://render.guildwars2.com/file/22F1BDACFBEBC8FF2BF77B22B3E535D2BA03D140/1012302.png",
         "duration": 0,
         "status": "Cœur de pierre",
-        "description": "Vous ne pouvez pas subir de coup critique.",
+        "description": "Les dégâts de frappe que vous subissez sont réduits.",
         "apply_count": 1
       },
       {
@@ -17289,7 +17367,7 @@
         "text": "Puissance convertie en dégâts de Brûlure",
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png",
-        "percent": 10
+        "percent": 8.25
       },
       {
         "text": "Puissance convertie en dégâts de Brûlure",
@@ -18077,6 +18155,15 @@
             "text": "Explosion",
             "type": "NoData",
             "icon": "https://render.guildwars2.com/file/450630987A0566D4A7A491EDA4DCDF57D9396854/1770203.png"
+          },
+          {
+            "text": "Apply Buff/Condition",
+            "type": "Buff",
+            "icon": "https://render.guildwars2.com/file/3A394C1A0A3257EB27A44842DDEEF0DF000E1241/102850.png",
+            "duration": 8,
+            "status": "Vulnérabilité",
+            "description": "Les dégâts et Dégâts par altération sont augmentés. Intensité cumulable.",
+            "apply_count": 6
           }
         ],
         "description": "Explose à l'approche d'ennemis.",
@@ -18112,6 +18199,15 @@
             "type": "Number",
             "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png",
             "value": 1
+          },
+          {
+            "text": "Apply Buff/Condition",
+            "type": "Buff",
+            "icon": "https://render.guildwars2.com/file/F69996772B9E18FD18AD0AABAB25D7E3FC42F261/102835.png",
+            "duration": 3,
+            "status": "Régénération",
+            "description": "Vous regagnez de la santé à chaque seconde. La durée est cumulable.",
+            "apply_count": 1
           }
         ],
         "description": "Laisse tomber un paquet de pansements qui procure une simple guérison.",
@@ -19585,7 +19681,7 @@
         "text": "Augmentation des dégâts",
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
-        "percent": 12.5
+        "percent": 10
       }
     ],
     "specialization": 22,
@@ -19995,7 +20091,7 @@
         "text": "Apply Buff/Condition",
         "type": "Buff",
         "icon": "https://render.guildwars2.com/file/10BABF2708CA3575730AC662A2E72EC292565B08/598887.png",
-        "duration": 4,
+        "duration": 3,
         "status": "Tourment",
         "description": "Inflige des dégâts à chaque seconde. Inflige des dégâts supplémentaires aux ennemis qui ne bougent pas. L'intensité est cumulable.",
         "apply_count": 1
@@ -21119,7 +21215,7 @@
     "tier": 3,
     "order": 1,
     "name": "Connaissance de la pierre",
-    "description": "Rituel du Grand Nain affecte aussi les Dégâts par altération. Lorsque vous êtes frappé et que vous êtes en dessous d'un certain seuil de santé, vous lancez Rituel du Grand Nain. Vous obtenez de la Puissance en fonction de votre Robustesse.",
+    "description": "Rituel du Grand Nain réduit davantage les dégâts. Lorsque votre santé tombe en dessous d'un certain seuil, vous lancez Rituel du Grand Nain. Vous obtenez de la Puissance en fonction de votre Robustesse.",
     "slot": "Major",
     "facts": [
       {
@@ -21135,7 +21231,7 @@
         "percent": 50
       },
       {
-        "text": "Dégâts par altération réduits",
+        "text": "Dégâts réduits",
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
         "percent": 50
@@ -24429,7 +24525,7 @@
             "text": "Apply Buff/Condition",
             "type": "Buff",
             "icon": "https://render.guildwars2.com/file/79FF0046A5F9ADA3B4C4EC19ADB4CB124D5F0021/102848.png",
-            "duration": 8,
+            "duration": 4,
             "status": "Saignement",
             "description": "Inflige des dégâts à chaque seconde. Intensité cumulable.",
             "apply_count": 2
@@ -24447,7 +24543,7 @@
             "text": "Apply Buff/Condition",
             "type": "Buff",
             "icon": "https://render.guildwars2.com/file/10BABF2708CA3575730AC662A2E72EC292565B08/598887.png",
-            "duration": 6,
+            "duration": 4,
             "status": "Tourment",
             "description": "Inflige des dégâts à chaque seconde. Inflige des dégâts supplémentaires aux ennemis qui ne bougent pas. L'intensité est cumulable.",
             "apply_count": 1
@@ -24572,6 +24668,12 @@
     "description": "Vous infligez des dégâts de frappe supplémentaires aux ennemis victimes d'Infirmité. L'effet passif de Justice inflige Infirmité aux ennemis.",
     "slot": "Major",
     "facts": [
+      {
+        "text": "Augmentation des dégâts",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
+        "percent": 10
+      },
       {
         "text": "Augmentation des dégâts",
         "type": "Percent",
@@ -24781,6 +24883,12 @@
         "text": "Augmentation des dégâts",
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
+        "percent": 20
+      },
+      {
+        "text": "Augmentation des dégâts",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
         "percent": 33
       }
     ],
@@ -24982,7 +25090,7 @@
         ]
       },
       {
-        "name": "Ailes de résolution",
+        "name": "Ailes de détermination",
         "facts": [
           {
             "text": "Range",
@@ -25001,7 +25109,7 @@
             "type": "Buff",
             "icon": "https://render.guildwars2.com/file/A054A5300BF26FBAA601611BDA07B6001830FF92/1012864.png",
             "duration": 0,
-            "status": "Vertu de résolution",
+            "status": "Vertu de détermination",
             "description": "Régénération de santé.",
             "apply_count": 1
           },
@@ -25010,13 +25118,6 @@
             "type": "AttributeAdjust",
             "icon": "https://render.guildwars2.com/file/D4347C52157B040943051D7E09DEAD7AF63D4378/156662.png",
             "value": 3890,
-            "target": "Healing"
-          },
-          {
-            "text": "Guérison",
-            "type": "AttributeAdjust",
-            "icon": "https://render.guildwars2.com/file/D4347C52157B040943051D7E09DEAD7AF63D4378/156662.png",
-            "value": 2968,
             "target": "Healing"
           },
           {
@@ -25525,6 +25626,12 @@
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
         "percent": 3
+      },
+      {
+        "text": "Dégâts par avantage",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
+        "percent": 5
       }
     ],
     "specialization": 43,
@@ -25622,6 +25729,12 @@
         "icon": "https://render.guildwars2.com/file/0120CB042BFC2EA6A45BC3DB45155FECDDDE1910/2229318.png",
         "value": 250,
         "target": "BoonDuration"
+      },
+      {
+        "type": "AttributeAdjust",
+        "icon": "https://render.guildwars2.com/file/4977CD5BAF0A7B6412DCC775C3909F7D4EFE4C65/2229319.png",
+        "value": 100,
+        "target": "ConditionDuration"
       },
       {
         "type": "AttributeAdjust",
@@ -26078,9 +26191,15 @@
     "tier": 2,
     "order": 0,
     "name": "Frissons de terreur",
-    "description": "Peur inflige également Givre.",
+    "description": "Peur inflige également Givre. Givre dure plus longtemps.",
     "slot": "Minor",
     "facts": [
+      {
+        "text": "Durée augmentée",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/7B2193ACCF77E56C13E608191B082D68AA0FAA71/156659.png",
+        "percent": 20
+      },
       {
         "text": "Apply Buff/Condition",
         "type": "Buff",
@@ -26114,6 +26233,12 @@
     "description": "Vous infligez des dégâts de frappe supplémentaires lorsque vous êtes au-dessus du seuil de santé.",
     "slot": "Major",
     "facts": [
+      {
+        "text": "Augmentation des dégâts",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
+        "percent": 7
+      },
       {
         "text": "Augmentation des dégâts",
         "type": "Percent",
@@ -26492,7 +26617,7 @@
         "text": "Pour cent",
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/B0CD8077991E4FB1622D2930337ED7F9B54211D5/156665.png",
-        "percent": 115
+        "percent": 105
       },
       {
         "text": "Pour cent",
@@ -26904,7 +27029,7 @@
     "tier": 3,
     "order": 0,
     "name": "Fortification du chasseur",
-    "description": "Vous vous soignez et dissipez des altérations quand vous bloquez des attaques.",
+    "description": "Vous vous soignez et dissipez des altérations quand vous bloquez ou esquivez des attaques. <c=@reminder>Les activations après blocage et après esquive ont un temps de recharge séparé.</c>",
     "slot": "Major",
     "facts": [
       {
@@ -26945,7 +27070,7 @@
     "tier": 1,
     "order": 2,
     "name": "Dévastation expansive",
-    "description": "Vous effectuez une attaque quand vous atterrissez avec Ailes de résolution. La vitesse de déplacement augmente.",
+    "description": "Vous effectuez une attaque quand vous atterrissez avec Ailes de détermination. La vitesse de déplacement augmente.",
     "slot": "Major",
     "facts": [
       {
@@ -27506,7 +27631,7 @@
     "tier": 2,
     "order": 0,
     "name": "Flux du temps",
-    "description": "Vous bénéficiez d'Alacrité pour chaque clone brisé. Vos probabilités de coup critique et celles de vos clones sont augmentées lorsque vous bénéficiez d'Alacrité.",
+    "description": "Vous bénéficiez d'Alacrité pour chaque clone brisé. Vos probabilités de coup critique et celles de vos illusions sont augmentées lorsque vous bénéficiez d'Alacrité.",
     "slot": "Minor",
     "facts": [
       {
@@ -27561,7 +27686,7 @@
         "text": "Augmentation des dégâts",
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
-        "percent": 15
+        "percent": 10
       },
       {
         "text": "Apply Buff/Condition",
@@ -27626,7 +27751,7 @@
     "tier": 3,
     "order": 0,
     "name": "Derniers rituels",
-    "description": "Tant que vous n'êtes pas à terre, les alliés à proximité sont immunisés contre Saignement quand ils sont à terre. Vous bénéficiez de Guérison supplémentaire en fonction de vos points de santé.",
+    "description": "Tant que vous n'êtes pas à terre, les alliés à proximité ne se vident pas de leur sang quand ils sont à terre. Vous bénéficiez de Guérison supplémentaire en fonction de vos points de santé.",
     "slot": "Minor",
     "facts": [
       {
@@ -27706,7 +27831,7 @@
     "tier": 3,
     "order": 0,
     "name": "Avantage corrompu",
-    "description": "Vous obtenez de la force vitale lorsque vous vous conférez un avantage ou en dissipez un sur un ennemi. Si vous revêtez Linceul de faucheur, vous gagnez de la santé à la place.",
+    "description": "Vous obtenez de la force vitale et de la santé lorsque vous vous conférez un avantage ou en dissipez un sur un ennemi.",
     "slot": "Major",
     "facts": [
       {
@@ -27763,41 +27888,14 @@
     "tier": 1,
     "order": 2,
     "name": "Lune de sang",
-    "description": "Vous infligez Stupeur aux ennemis quand vous devenez un Avatar céleste. Vous infligez Saignement aux ennemis auxquels vous infligez Immobilisation ou que vous neutralisez.",
+    "description": "Vous infligez Saignement aux ennemis auxquels vous infligez Immobilisation ou que vous neutralisez.",
     "slot": "Major",
     "facts": [
-      {
-        "text": "Recharge",
-        "type": "Recharge",
-        "icon": "https://render.guildwars2.com/file/D767B963D120F077C3B163A05DC05A7317D7DB70/156651.png",
-        "value": 8
-      },
-      {
-        "text": "Apply Buff/Condition",
-        "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/9AE125E930C92FEA0DD99E7EBAEDE4CF5EC556B6/433474.png",
-        "duration": 1,
-        "status": "Stupeur",
-        "description": "Incapable d'activer des compétences.",
-        "apply_count": 1
-      },
-      {
-        "text": "Rayon",
-        "type": "Distance",
-        "icon": "https://render.guildwars2.com/file/B0CD8077991E4FB1622D2930337ED7F9B54211D5/156665.png",
-        "distance": 300
-      },
-      {
-        "text": "Nombre de cibles",
-        "type": "Number",
-        "icon": "https://render.guildwars2.com/file/BBE8191A494B0352259C10EADFDACCE177E6DA5B/1770208.png",
-        "value": 5
-      },
       {
         "text": "Apply Buff/Condition",
         "type": "Buff",
         "icon": "https://render.guildwars2.com/file/79FF0046A5F9ADA3B4C4EC19ADB4CB124D5F0021/102848.png",
-        "duration": 5,
+        "duration": 4,
         "status": "Saignement",
         "description": "Inflige des dégâts à chaque seconde. Intensité cumulable.",
         "apply_count": 2
@@ -27810,19 +27908,6 @@
         "status": "Saignement",
         "description": "Inflige des dégâts à chaque seconde. Intensité cumulable.",
         "apply_count": 1
-      }
-    ],
-    "traited_facts": [
-      {
-        "text": "Apply Buff/Condition",
-        "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/9AE125E930C92FEA0DD99E7EBAEDE4CF5EC556B6/433474.png",
-        "duration": 2,
-        "status": "Stupeur",
-        "description": "Incapable d'activer des compétences.",
-        "apply_count": 1,
-        "requires_trait": 1070,
-        "overrides": 1
       }
     ],
     "specialization": 5,
@@ -27875,7 +27960,7 @@
     "tier": 3,
     "order": 1,
     "name": "Ferveur corruptrice",
-    "description": "Vous obtenez <c=@abilitytype>Carapace</c> lorsque vous infligez une altération à un ennemi. Vous bénéficiez d'une Protection par pulsations à partir d'un certain seuil de <c=@abilitytype>Carapace</c>.",
+    "description": "Vous obtenez <c=@abilitytype>Carapace</c> lorsque vous infligez une altération à un ennemi. Vous bénéficiez d'une réduction des dégâts reçus à partir d'un certain seuil de <c=@abilitytype>Carapace</c>.",
     "slot": "Major",
     "facts": [
       {
@@ -27894,19 +27979,16 @@
         "value": 25
       },
       {
-        "text": "Intervalle",
-        "type": "Time",
-        "icon": "https://render.guildwars2.com/file/B75E91EB22E0DFCC1D08030204055946506D56F6/1770206.png",
-        "duration": 3
+        "text": "Dégâts réduits",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
+        "percent": 33
       },
       {
-        "text": "Apply Buff/Condition",
-        "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/CD77D1FAB7B270223538A8F8ECDA1CFB044D65F4/102834.png",
-        "duration": 3,
-        "status": "Protection",
-        "description": "Dégâts de frappe subis réduits de 33%. La durée est cumulable.",
-        "apply_count": 1
+        "text": "Dégâts réduits",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
+        "percent": 15
       }
     ],
     "specialization": 2,
@@ -28863,6 +28945,12 @@
         "text": "Augmentation des dégâts",
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
+        "percent": 15
+      },
+      {
+        "text": "Augmentation des dégâts",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
         "percent": 10
       },
       {
@@ -29505,7 +29593,7 @@
         "text": "Augmentation des soins conférés",
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/D4347C52157B040943051D7E09DEAD7AF63D4378/156662.png",
-        "percent": 15
+        "percent": 10
       },
       {
         "text": "Augmentation des soins conférés",
@@ -29524,6 +29612,12 @@
         "type": "Time",
         "icon": "https://render.guildwars2.com/file/B75E91EB22E0DFCC1D08030204055946506D56F6/1770206.png",
         "duration": 3
+      },
+      {
+        "text": "Augmentation des soins conférés",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/D4347C52157B040943051D7E09DEAD7AF63D4378/156662.png",
+        "percent": 15
       }
     ],
     "specialization": 5,
@@ -29755,22 +29849,46 @@
     "id": 2001,
     "tier": 2,
     "order": 1,
-    "name": "Gravure verdoyante",
-    "description": "Les <c=@abilitytype>glyphes</c> confèrent Protection aux alliés à proximité.",
+    "name": "Bénédiction de la terre",
+    "description": "Vous conférez des avantages aux alliés dans le rayon de vos compétences d'<c=@abilitytype>avatar céleste</c>.",
     "slot": "Major",
     "facts": [
       {
         "text": "Apply Buff/Condition",
         "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/CD77D1FAB7B270223538A8F8ECDA1CFB044D65F4/102834.png",
-        "duration": 4,
-        "status": "Protection",
-        "description": "Dégâts de frappe subis réduits de 33%. La durée est cumulable.",
+        "icon": "https://render.guildwars2.com/file/4FDAC2113B500104121753EF7E026E45C141E94D/1938787.png",
+        "duration": 1,
+        "status": "Alacrité",
+        "description": "Les compétences se rechargent plus vite.",
         "apply_count": 1
+      },
+      {
+        "text": "Apply Buff/Condition",
+        "type": "Buff",
+        "icon": "https://render.guildwars2.com/file/2FA9DF9D6BC17839BBEA14723F1C53D645DDB5E1/102852.png",
+        "duration": 4,
+        "status": "Pouvoir",
+        "description": "Les dégâts infligés sont augmentés. Intensité cumulable.",
+        "apply_count": 1
+      },
+      {
+        "text": "Apply Buff/Condition",
+        "type": "Buff",
+        "icon": "https://render.guildwars2.com/file/2FA9DF9D6BC17839BBEA14723F1C53D645DDB5E1/102852.png",
+        "duration": 6,
+        "status": "Pouvoir",
+        "description": "Les dégâts infligés sont augmentés. Intensité cumulable.",
+        "apply_count": 2
+      },
+      {
+        "text": "Nombre de cibles alliées",
+        "type": "Number",
+        "icon": "https://render.guildwars2.com/file/BBE8191A494B0352259C10EADFDACCE177E6DA5B/1770208.png",
+        "value": 5
       }
     ],
     "specialization": 5,
-    "icon": "https://render.guildwars2.com/file/0BCB5CC47934D9A526600EC87E1966CEDED13514/1128534.png"
+    "icon": "https://render.guildwars2.com/file/D1E507697A2FFD0AC9F6D5CA74C403D69A4E0E4E/1128536.png"
   },
   {
     "id": 2002,
@@ -29947,7 +30065,7 @@
     "tier": 2,
     "order": 0,
     "name": "Période dangereuse",
-    "description": "Quand vous infligez Lenteur, les dégâts de coup critique que vous et vos clones infligez sont augmentés pendant un certain temps.",
+    "description": "Quand vous infligez Lenteur, les dégâts de coup critique que vous et vos illusions infligez sont augmentés pendant un certain temps.",
     "slot": "Major",
     "facts": [
       {
@@ -29958,6 +30076,12 @@
         "status": "Lent",
         "description": "Les compétences et les actions sont plus lentes.",
         "apply_count": 1
+      },
+      {
+        "text": "Augmentation des dégâts critiques",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/0658D833944E69E62E08EB18A0B5407F722125BC/2229320.png",
+        "percent": 5
       },
       {
         "text": "Augmentation des dégâts critiques",
@@ -30022,7 +30146,7 @@
         "text": "Conversion de caractéristiques",
         "type": "BuffConversion",
         "icon": "https://render.guildwars2.com/file/0658D833944E69E62E08EB18A0B5407F722125BC/2229320.png",
-        "percent": 15,
+        "percent": 12,
         "source": "Power",
         "target": "ConditionDamage"
       }
@@ -30181,26 +30305,35 @@
     "id": 2016,
     "tier": 1,
     "order": 1,
-    "name": "Synergie cultivée",
-    "description": "Vous soignez les alliés à proximité et votre familier lorsque vous utilisez une compétence de soins.",
+    "name": "Gravure verdoyante",
+    "description": "Les <c=@abilitytype>glyphes</c> soignent les alliés à proximité. Tant que vous revêtez la forme de l'Avatar céleste, vous conférez Protection à la place.",
     "slot": "Major",
     "facts": [
       {
         "text": "Guérison",
         "type": "AttributeAdjust",
         "icon": "https://render.guildwars2.com/file/D4347C52157B040943051D7E09DEAD7AF63D4378/156662.png",
-        "value": 1000,
+        "value": 810,
         "target": "Healing"
       },
       {
-        "text": "Nombre de cibles alliées",
+        "text": "Apply Buff/Condition",
+        "type": "Buff",
+        "icon": "https://render.guildwars2.com/file/CD77D1FAB7B270223538A8F8ECDA1CFB044D65F4/102834.png",
+        "duration": 4,
+        "status": "Protection",
+        "description": "Dégâts de frappe subis réduits de 33%. La durée est cumulable.",
+        "apply_count": 1
+      },
+      {
+        "text": "Nombre de cibles",
         "type": "Number",
         "icon": "https://render.guildwars2.com/file/BBE8191A494B0352259C10EADFDACCE177E6DA5B/1770208.png",
         "value": 5
       }
     ],
     "specialization": 5,
-    "icon": "https://render.guildwars2.com/file/9DAD4D2E74CDD1C5196848BCBE63BC12CE534B68/1128531.png"
+    "icon": "https://render.guildwars2.com/file/0BCB5CC47934D9A526600EC87E1966CEDED13514/1128534.png"
   },
   {
     "id": 2017,
@@ -30215,6 +30348,12 @@
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
         "percent": 10
+      },
+      {
+        "text": "Augmentation des dégâts",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
+        "percent": 7
       },
       {
         "text": "Augmentation de la vitesse de déplacement",
@@ -30326,7 +30465,7 @@
     "tier": 3,
     "order": 0,
     "name": "Mépris glacial",
-    "description": "Givre dure plus longtemps et les ennemis qui en sont victimes subissent des dégâts de frappe supplémentaires lorsque vous les attaquez.",
+    "description": "Les ennemis qui sont victimes de Givre subissent des dégâts de frappe supplémentaires lorsque vous les attaquez et ils vous en infligent moins.",
     "slot": "Minor",
     "facts": [
       {
@@ -30342,10 +30481,10 @@
         "percent": 15
       },
       {
-        "text": "Durée augmentée",
+        "text": "Dégâts réduits",
         "type": "Percent",
-        "icon": "https://render.guildwars2.com/file/7B2193ACCF77E56C13E608191B082D68AA0FAA71/156659.png",
-        "percent": 20
+        "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
+        "percent": 10
       }
     ],
     "specialization": 34,
@@ -31877,8 +32016,16 @@
     "tier": 2,
     "order": 0,
     "name": "Détermination du chasseur",
-    "description": "Activer votre compétence d'élite dissipe Étourdissement.",
+    "description": "Le fait d'utiliser votre compétence d'élite dissipe l'Étourdissement et vous confère de l'endurance.",
     "slot": "Major",
+    "facts": [
+      {
+        "text": "Endurance gagnée",
+        "type": "Number",
+        "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png",
+        "value": 100
+      }
+    ],
     "specialization": 27,
     "icon": "https://render.guildwars2.com/file/2F6996644F9FF470FE49B4FB1C04B4E0C4A07FF2/1012393.png"
   },
@@ -32062,14 +32209,14 @@
       {
         "type": "AttributeAdjust",
         "icon": "https://render.guildwars2.com/file/D6CAECEA0FD5FADE04DD6970384ADC5DE309C506/2229322.png",
-        "value": 150,
+        "value": 300,
         "target": "Power"
       },
       {
         "type": "AttributeAdjust",
-        "icon": "https://render.guildwars2.com/file/D6CAECEA0FD5FADE04DD6970384ADC5DE309C506/2229322.png",
-        "value": 300,
-        "target": "Power"
+        "icon": "https://render.guildwars2.com/file/0120CB042BFC2EA6A45BC3DB45155FECDDDE1910/2229318.png",
+        "value": 150,
+        "target": "ConditionDamage"
       },
       {
         "type": "AttributeAdjust",
@@ -32493,7 +32640,7 @@
     "tier": 2,
     "order": 2,
     "name": "Équilibre naturel",
-    "description": "Vous infligez plus de dégâts et augmentez votre Durée d'avantage pendant un court laps de temps lorsque vous vous transformez en avatar céleste ou mettez fin à cette transformation.",
+    "description": "Vous infligez plus de dégâts par altération et vous augmentez votre durée d'altération pendant un court laps de temps lorsque vous vous transformez en avatar céleste ou mettez fin à cette transformation.",
     "slot": "Major",
     "facts": [
       {
@@ -32522,36 +32669,16 @@
     "id": 2057,
     "tier": 3,
     "order": 0,
-    "name": "Bénédiction de la terre",
-    "description": "Vous conférez des avantages aux alliés dans le rayon de vos compétences d'<c=@abilitytype>avatar céleste</c>.",
+    "name": "Synergie cultivée",
+    "description": "Quand vous utilisez une compétence de soins, vous dispensez des soins autour de votre familier et vous créez un champ d'eau qui lui est attaché. Quand vous exécutez un coup de grâce explosif dans un champ d'eau, vous plantez une graine de vie inférieure à cet emplacement.",
     "slot": "Major",
     "facts": [
       {
-        "text": "Apply Buff/Condition",
-        "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/4FDAC2113B500104121753EF7E026E45C141E94D/1938787.png",
-        "duration": 1,
-        "status": "Alacrité",
-        "description": "Les compétences se rechargent plus vite.",
-        "apply_count": 1
-      },
-      {
-        "text": "Apply Buff/Condition",
-        "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/2FA9DF9D6BC17839BBEA14723F1C53D645DDB5E1/102852.png",
-        "duration": 4,
-        "status": "Pouvoir",
-        "description": "Les dégâts infligés sont augmentés. Intensité cumulable.",
-        "apply_count": 2
-      },
-      {
-        "text": "Apply Buff/Condition",
-        "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/2FA9DF9D6BC17839BBEA14723F1C53D645DDB5E1/102852.png",
-        "duration": 6,
-        "status": "Pouvoir",
-        "description": "Les dégâts infligés sont augmentés. Intensité cumulable.",
-        "apply_count": 2
+        "text": "Guérison",
+        "type": "AttributeAdjust",
+        "icon": "https://render.guildwars2.com/file/D4347C52157B040943051D7E09DEAD7AF63D4378/156662.png",
+        "value": 1000,
+        "target": "Healing"
       },
       {
         "text": "Nombre de cibles alliées",
@@ -32560,8 +32687,54 @@
         "value": 5
       }
     ],
+    "skills": [
+      {
+        "name": "Graine de vie inférieure",
+        "facts": [
+          {
+            "text": "Guérison",
+            "type": "AttributeAdjust",
+            "icon": "https://render.guildwars2.com/file/D4347C52157B040943051D7E09DEAD7AF63D4378/156662.png",
+            "value": 216,
+            "target": "Healing"
+          },
+          {
+            "text": "Altérations dissipées",
+            "type": "Number",
+            "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png",
+            "value": 2
+          },
+          {
+            "text": "Nombre de cibles",
+            "type": "Number",
+            "icon": "https://render.guildwars2.com/file/BBE8191A494B0352259C10EADFDACCE177E6DA5B/1770208.png",
+            "value": 5
+          },
+          {
+            "text": "Rayon",
+            "type": "Distance",
+            "icon": "https://render.guildwars2.com/file/B0CD8077991E4FB1622D2930337ED7F9B54211D5/156665.png",
+            "distance": 240
+          },
+          {
+            "text": "Apply Buff/Condition",
+            "type": "Buff",
+            "icon": "https://render.guildwars2.com/file/09770136BB76FD0DBE1CC4267DEED54774CB20F6/102837.png",
+            "duration": 4,
+            "status": "Aveugle",
+            "description": "L'attaque suivante rate. L'intensité est cumulable.",
+            "apply_count": 1
+          }
+        ],
+        "description": "Avatar céleste. Vous invoquez une graine qui soigne les alliés à proximité et dissipe leurs altérations quand elle éclot.",
+        "icon": "https://render.guildwars2.com/file/761706674AF9092C98D059AB03BD747BFC7DF506/1128623.png",
+        "flags": [],
+        "id": 31776,
+        "chat_link": "[&BiB8AAA=]"
+      }
+    ],
     "specialization": 5,
-    "icon": "https://render.guildwars2.com/file/D1E507697A2FFD0AC9F6D5CA74C403D69A4E0E4E/1128536.png"
+    "icon": "https://render.guildwars2.com/file/9DAD4D2E74CDD1C5196848BCBE63BC12CE534B68/1128531.png"
   },
   {
     "id": 2058,
@@ -32597,6 +32770,12 @@
         "type": "Time",
         "icon": "https://render.guildwars2.com/file/AAB7C5387A08367C2F023F19FEE70E1556AD4375/1770202.png",
         "duration": 1
+      },
+      {
+        "text": "Nombre de charges maximum",
+        "type": "Number",
+        "icon": "https://render.guildwars2.com/file/B4490FB81AA1E7C06F1B22056AE09A0F54CBE2C4/1770201.png",
+        "value": 5
       }
     ],
     "specialization": 5,
@@ -32750,23 +32929,66 @@
     "tier": 2,
     "order": 1,
     "name": "Vengeance rapide",
-    "description": "Vous bénéficiez de Rapidité quand vous utilisez une <c=@abilitytype>attaque double.</c> Vous infligez des dégâts de frappe supplémentaires aux ennemis lorsque vous êtes sous l'effet de Rapidité ou de Super vitesse.",
+    "description": "Les <c=@abilitytype>attaques doubles</c> vous confèrent davantage de bonus selon leurs éléments.",
     "slot": "Major",
     "facts": [
       {
         "text": "Apply Buff/Condition",
-        "type": "Buff",
+        "type": "PrefixedBuff",
+        "icon": "https://render.guildwars2.com/file/2FA9DF9D6BC17839BBEA14723F1C53D645DDB5E1/102852.png",
+        "duration": 8,
+        "status": "Pouvoir",
+        "description": "Les dégâts infligés sont augmentés. Intensité cumulable.",
+        "apply_count": 2,
+        "prefix": {
+          "text": "Apply Buff/Condition",
+          "icon": "https://render.guildwars2.com/file/1C91E9C799469ACC6EAF1ACD4B0AD8ACAB0C69A2/103035.png",
+          "status": "Affinité avec le feu",
+          "description": "Lance des sorts de feu."
+        }
+      },
+      {
+        "text": "Apply Buff/Condition",
+        "type": "PrefixedBuff",
+        "icon": "https://render.guildwars2.com/file/517FE8900C72EAADBB54676E324D45D31706C277/102865.png",
+        "duration": 0,
+        "description": "Dissipe une altération.",
+        "apply_count": 1,
+        "prefix": {
+          "text": "Apply Buff/Condition",
+          "icon": "https://render.guildwars2.com/file/737E1B9F7855B9F5D3DE1C990CD42118EF3D1C92/102820.png",
+          "status": "Affinité avec l'eau",
+          "description": "Lance des sorts d'eau."
+        }
+      },
+      {
+        "text": "Apply Buff/Condition",
+        "type": "PrefixedBuff",
         "icon": "https://render.guildwars2.com/file/20CFC14967E67F7A3FD4A4B8722B4CF5B8565E11/102836.png",
         "duration": 4,
         "status": "Rapidité",
         "description": "Vitesse de déplacement augmentée de 33%. La durée est cumulable.",
-        "apply_count": 1
+        "apply_count": 1,
+        "prefix": {
+          "text": "Apply Buff/Condition",
+          "icon": "https://render.guildwars2.com/file/4857F59020DE3B0950B9C91F3D234A1C1932984A/103048.png",
+          "status": "Affinité avec l'air",
+          "description": "Lance des sorts d'air."
+        }
       },
       {
-        "text": "Augmentation des dégâts",
-        "type": "Percent",
-        "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
-        "percent": 10
+        "text": "Apply Buff/Condition",
+        "type": "PrefixedBuff",
+        "icon": "https://render.guildwars2.com/file/4B8056D9BD080DC8E74AE6A57B2B383A2D4265C9/102870.png",
+        "duration": 0,
+        "description": "",
+        "apply_count": 1,
+        "prefix": {
+          "text": "Apply Buff/Condition",
+          "icon": "https://render.guildwars2.com/file/4B8056D9BD080DC8E74AE6A57B2B383A2D4265C9/102870.png",
+          "status": "Affinité avec la terre",
+          "description": "Lance des sorts de terre."
+        }
       }
     ],
     "specialization": 56,
@@ -33065,6 +33287,12 @@
         "text": "Augmentation des dégâts par altération",
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
+        "percent": 5
+      },
+      {
+        "text": "Augmentation des dégâts par altération",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
         "percent": 10
       }
     ],
@@ -33190,18 +33418,9 @@
     "tier": 1,
     "order": 0,
     "name": "Critique incessante",
-    "description": "Les compétences de hache ont une chance d'infliger Saignement. Symbole de vengeance inflige désormais Stupeur dès sa frappe initiale.",
+    "description": "Les compétences de hache ont une chance d'infliger Saignement.",
     "slot": "Major",
     "facts": [
-      {
-        "text": "Apply Buff/Condition",
-        "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/9AE125E930C92FEA0DD99E7EBAEDE4CF5EC556B6/433474.png",
-        "duration": 1,
-        "status": "Stupeur",
-        "description": "Incapable d'activer des compétences.",
-        "apply_count": 1
-      },
       {
         "text": "Chance lors d'un coup",
         "type": "Percent",
@@ -33221,7 +33440,7 @@
         "text": "Apply Buff/Condition",
         "type": "Buff",
         "icon": "https://render.guildwars2.com/file/79FF0046A5F9ADA3B4C4EC19ADB4CB124D5F0021/102848.png",
-        "duration": 1,
+        "duration": 3,
         "status": "Saignement",
         "description": "Inflige des dégâts à chaque seconde. Intensité cumulable.",
         "apply_count": 1
@@ -33262,7 +33481,7 @@
     "tier": 2,
     "order": 0,
     "name": "Rafraîchissement élémentaire",
-    "description": "Vous recevez une barrière lorsque vous utilisez des compétences d'attaque double.",
+    "description": "Vous bénéficiez de Vitalité. Vous vous conférez Barrière lorsque vous utilisez des compétences d'attaque double.",
     "slot": "Minor",
     "facts": [
       {
@@ -33278,6 +33497,12 @@
         "icon": "https://render.guildwars2.com/file/357922487919E8E84B914EAC13D5796DDDC42D14/1770209.png",
         "value": 260,
         "target": "Healing"
+      },
+      {
+        "type": "AttributeAdjust",
+        "icon": "https://render.guildwars2.com/file/CAE8B4C43FF9D203FA55016700420A0454DFFE02/2229325.png",
+        "value": 180,
+        "target": "Vitality"
       }
     ],
     "specialization": 56,
@@ -33781,14 +34006,14 @@
         ]
       },
       {
-        "name": "Grimoire de résolution",
+        "name": "Grimoire de détermination",
         "facts": [
           {
             "text": "Apply Buff/Condition",
             "type": "Buff",
             "icon": "https://render.guildwars2.com/file/E206770FD62BB63B71F56209F34BF99392BADF9E/1770478.png",
             "duration": 0,
-            "status": "Grimoire de résolution",
+            "status": "Grimoire de détermination",
             "description": "Régénération de santé.",
             "apply_count": 1
           }
@@ -33916,24 +34141,9 @@
     "tier": 3,
     "order": 1,
     "name": "Foulée tissée",
-    "description": "Vous bénéficiez de Rapidité quand vous subissez des altérations de déplacement. Lorsque vous obtenez Super Vitesse ou Rapidité, vous gagnez également Régénération et dissipez une altération. L'efficacité de Rapidité est augmentée.</c>",
+    "description": "Vous recevez Régénération et dissipez une altération quand vous vous conférez Rapidité ou Super vitesse.",
     "slot": "Major",
     "facts": [
-      {
-        "text": "Recharge",
-        "type": "Recharge",
-        "icon": "https://render.guildwars2.com/file/D767B963D120F077C3B163A05DC05A7317D7DB70/156651.png",
-        "value": 3
-      },
-      {
-        "text": "Apply Buff/Condition",
-        "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/20CFC14967E67F7A3FD4A4B8722B4CF5B8565E11/102836.png",
-        "duration": 3,
-        "status": "Rapidité",
-        "description": "Vitesse de déplacement augmentée de 33%. La durée est cumulable.",
-        "apply_count": 1
-      },
       {
         "text": "Apply Buff/Condition",
         "type": "Buff",
@@ -33942,39 +34152,6 @@
         "status": "Régénération",
         "description": "Vous regagnez de la santé à chaque seconde. La durée est cumulable.",
         "apply_count": 1
-      },
-      {
-        "text": "Apply Buff/Condition",
-        "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/397A613651BFCA2832B6469CE34735580A2C120E/102844.png",
-        "duration": 0,
-        "status": "Immobile",
-        "description": "Incapable de bouger. La durée est cumulable.",
-        "apply_count": 1
-      },
-      {
-        "text": "Apply Buff/Condition",
-        "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/070325E519C178D502A8160523766070D30C0C19/102838.png",
-        "duration": 0,
-        "status": "Infirmité",
-        "description": "Vitesse de déplacement réduite de 50%. La durée est cumulable.",
-        "apply_count": 1
-      },
-      {
-        "text": "Apply Buff/Condition",
-        "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/28C4EC547A3516AF0242E826772DA43A5EAC3DF3/102839.png",
-        "duration": 0,
-        "status": "Givré",
-        "description": "Vitesse de déplacement réduite de 66%. Temps de recharge de la compétence augmenté de 66%. La durée est cumulable.",
-        "apply_count": 1
-      },
-      {
-        "text": "Efficacité augmentée",
-        "type": "Percent",
-        "icon": "https://render.guildwars2.com/file/B0CD8077991E4FB1622D2930337ED7F9B54211D5/156665.png",
-        "percent": 20
       },
       {
         "text": "Altérations dissipées",
@@ -34042,14 +34219,26 @@
     "tier": 2,
     "order": 1,
     "name": "Transperce-cœur",
-    "description": "Les effets de Saignement que vous infligez causent plus de dégâts.",
+    "description": "Les dégâts de Saignement que vous infligez sont augmentés. Vous infligez des dégâts de frappe supplémentaires aux ennemis victimes de Saignement.",
     "slot": "Major",
     "facts": [
       {
-        "text": "Augmentation des dégâts",
+        "text": "Bonus de dégâts de Saignement",
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
         "percent": 25
+      },
+      {
+        "text": "Bonus de dégâts de frappe",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
+        "percent": 15
+      },
+      {
+        "text": "Bonus de dégâts de frappe",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
+        "percent": 10
       }
     ],
     "specialization": 63,
@@ -34104,15 +34293,9 @@
     "tier": 3,
     "order": 0,
     "name": "Légitimité",
-    "description": "Ferveur de Kalla vous soigne à hauteur d'un pourcentage des dégâts que vous infligez. Chaque charge de Ferveur de Kalla vous affectant augmente le nombre de projectiles envoyés par Bombardement de citadelle sur la Tyrie.",
+    "description": "Ferveur de Kalla vous soigne à hauteur d'un pourcentage des dégâts que vous infligez. Bombardement de citadelle inflige Stupeur aux ennemis la première fois qu'il les frappe.",
     "slot": "Major",
     "facts": [
-      {
-        "text": "Projectiles multipliés par ferveur de Kalla",
-        "type": "Number",
-        "icon": "https://render.guildwars2.com/file/B4490FB81AA1E7C06F1B22056AE09A0F54CBE2C4/1770201.png",
-        "value": 1
-      },
       {
         "text": "Dégâts convertis en guérison avec Ferveur de Kalla",
         "type": "Percent",
@@ -34124,6 +34307,12 @@
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png",
         "percent": 2
+      },
+      {
+        "text": "Stupeur",
+        "type": "Time",
+        "icon": "https://render.guildwars2.com/file/9AE125E930C92FEA0DD99E7EBAEDE4CF5EC556B6/433474.png",
+        "duration": 2
       }
     ],
     "specialization": 63,
@@ -34150,13 +34339,13 @@
         "percent": 10
       },
       {
-        "text": "Dégâts critiques convertis en guérison",
+        "text": "Dégâts convertis en guérison",
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png",
         "percent": 4
       },
       {
-        "text": "Dégâts critiques convertis en guérison",
+        "text": "Dégâts convertis en guérison",
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png",
         "percent": 7
@@ -34657,13 +34846,13 @@
         "text": "Augmentation des dégâts critiques",
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/0658D833944E69E62E08EB18A0B5407F722125BC/2229320.png",
-        "percent": 7.5
+        "percent": 5
       },
       {
         "text": "Augmentation des dégâts critiques sans avantage",
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/0658D833944E69E62E08EB18A0B5407F722125BC/2229320.png",
-        "percent": 15
+        "percent": 10
       },
       {
         "text": "Augmentation des dégâts critiques",
@@ -34686,67 +34875,32 @@
     "tier": 2,
     "order": 2,
     "name": "Tous pour un",
-    "description": "Lorsque vous utilisez des capacités de <c=@abilitytype>Renégat légendaire</c>, vous conférez Protection aux alliés à proximité du membre de la troupe invoqué. Vous infligez plus de dégâts de frappe lorsque vous utilisez une compétence de <c=@abilitytype>Renégat légendaire</c>.",
+    "description": "Quand vous activez <c=@abilitytype>Rassemblement</c>, vous gagnez de l'énergie et réduisez le temps de recharge de la compétence améliorée.",
     "slot": "Major",
     "facts": [
       {
-        "text": "Apply Buff/Condition",
-        "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/CD77D1FAB7B270223538A8F8ECDA1CFB044D65F4/102834.png",
-        "duration": 4,
-        "status": "Protection",
-        "description": "Dégâts de frappe subis réduits de 33%. La durée est cumulable.",
-        "apply_count": 1
-      },
-      {
-        "text": "Apply Buff/Condition",
-        "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/CD77D1FAB7B270223538A8F8ECDA1CFB044D65F4/102834.png",
-        "duration": 3,
-        "status": "Protection",
-        "description": "Dégâts de frappe subis réduits de 33%. La durée est cumulable.",
-        "apply_count": 1
-      },
-      {
-        "text": "Apply Buff/Condition",
-        "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/CD77D1FAB7B270223538A8F8ECDA1CFB044D65F4/102834.png",
-        "duration": 2,
-        "status": "Protection",
-        "description": "Dégâts de frappe subis réduits de 33%. La durée est cumulable.",
-        "apply_count": 1
-      },
-      {
-        "text": "Apply Buff/Condition",
-        "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/9398D8F8E764A23596E17EDAA35B99961D62F061/1769993.png",
-        "duration": 8,
-        "status": "Tous pour un",
-        "description": "Vous infligez des dégâts de frappe supplémentaires.",
-        "apply_count": 1
-      },
-      {
-        "text": "Nombre de cibles alliées",
+        "text": "Gain d'énergie",
         "type": "Number",
-        "icon": "https://render.guildwars2.com/file/BBE8191A494B0352259C10EADFDACCE177E6DA5B/1770208.png",
+        "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png",
+        "value": 10
+      },
+      {
+        "text": "Gain d'énergie",
+        "type": "Number",
+        "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png",
         "value": 5
       },
       {
-        "text": "Rayon",
-        "type": "Distance",
-        "icon": "https://render.guildwars2.com/file/B0CD8077991E4FB1622D2930337ED7F9B54211D5/156665.png",
-        "distance": 360
+        "text": "Réduction du temps de recharge",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/AAB7C5387A08367C2F023F19FEE70E1556AD4375/1770202.png",
+        "percent": 50
       },
       {
-        "text": "Durée maximale",
-        "type": "Time",
-        "icon": "https://render.guildwars2.com/file/7B2193ACCF77E56C13E608191B082D68AA0FAA71/156659.png",
-        "duration": 20
-      },
-      {
-        "text": "Uniquement en combat",
-        "type": "NoData",
-        "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png"
+        "text": "Réduction du temps de recharge",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/AAB7C5387A08367C2F023F19FEE70E1556AD4375/1770202.png",
+        "percent": 33
       }
     ],
     "specialization": 63,
@@ -34985,31 +35139,18 @@
     "id": 2115,
     "tier": 1,
     "order": 2,
-    "name": "Courage de maître",
-    "description": "Votre Vitalité est augmentée quand vous maniez une épée. Vous bénéficiez d'un bonus de Vitalité basé sur une partie de votre Puissance et vos Dégâts par altération.",
+    "name": "Prouesse de Tissesort",
+    "description": "Vous obtenez Résistance lorsque vous passez en affinité avec un élément unique.",
     "slot": "Major",
     "facts": [
       {
-        "text": "Conversion de caractéristiques",
-        "type": "BuffConversion",
-        "icon": "https://render.guildwars2.com/file/CAE8B4C43FF9D203FA55016700420A0454DFFE02/2229325.png",
-        "percent": 5,
-        "source": "Power",
-        "target": "Vitality"
-      },
-      {
-        "text": "Conversion de caractéristiques",
-        "type": "BuffConversion",
-        "icon": "https://render.guildwars2.com/file/CAE8B4C43FF9D203FA55016700420A0454DFFE02/2229325.png",
-        "percent": 5,
-        "source": "ConditionDamage",
-        "target": "Vitality"
-      },
-      {
-        "type": "AttributeAdjust",
-        "icon": "https://render.guildwars2.com/file/CAE8B4C43FF9D203FA55016700420A0454DFFE02/2229325.png",
-        "value": 120,
-        "target": "Vitality"
+        "text": "Apply Buff/Condition",
+        "type": "Buff",
+        "icon": "https://render.guildwars2.com/file/50BAC1B8E10CFAB9E749A5D910D4A9DCF29EBB7C/961398.png",
+        "duration": 2,
+        "status": "Résistance",
+        "description": "Les altérations n'infligeant pas de dégâts que vous subissez sont inefficaces. La durée est cumulable.",
+        "apply_count": 1
       }
     ],
     "specialization": 56,
@@ -35064,7 +35205,7 @@
         "prefix": {
           "text": "Apply Buff/Condition",
           "icon": "https://render.guildwars2.com/file/E206770FD62BB63B71F56209F34BF99392BADF9E/1770478.png",
-          "status": "Grimoire de résolution",
+          "status": "Grimoire de détermination",
           "description": "<c=@abilitytype>Vertu :</c> régénère de la santé.<br><c=@abilitytype>Activation :</c> fait apparaître un ouvrage enchanté qui relate les épreuves qu'a traversées le peuple de Vabbi."
         }
       },
@@ -35079,7 +35220,7 @@
         "prefix": {
           "text": "Apply Buff/Condition",
           "icon": "https://render.guildwars2.com/file/E206770FD62BB63B71F56209F34BF99392BADF9E/1770478.png",
-          "status": "Grimoire de résolution",
+          "status": "Grimoire de détermination",
           "description": "<c=@abilitytype>Vertu :</c> régénère de la santé.<br><c=@abilitytype>Activation :</c> fait apparaître un ouvrage enchanté qui relate les épreuves qu'a traversées le peuple de Vabbi."
         }
       },
@@ -35094,7 +35235,7 @@
         "prefix": {
           "text": "Apply Buff/Condition",
           "icon": "https://render.guildwars2.com/file/E206770FD62BB63B71F56209F34BF99392BADF9E/1770478.png",
-          "status": "Grimoire de résolution",
+          "status": "Grimoire de détermination",
           "description": "<c=@abilitytype>Vertu :</c> régénère de la santé.<br><c=@abilitytype>Activation :</c> fait apparaître un ouvrage enchanté qui relate les épreuves qu'a traversées le peuple de Vabbi."
         }
       },
@@ -35170,25 +35311,16 @@
     "tier": 2,
     "order": 0,
     "name": "Lunette silencieuse",
-    "description": "Vous obtenez Précision. Vous obtenez de la Précision supplémentaire lorsque vous maniez un fusil. Vous passez en mode furtif quand vous faites une roulade d'esquive avec un fusil équipé.",
+    "description": "Votre Précision augmente. Quand vous esquivez, vous accédez à votre attaque furtive si votre malice est au-dessus du seuil.",
     "slot": "Major",
     "facts": [
       {
         "text": "Apply Buff/Condition",
         "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/3BD4670638470439F3325B444FAF7D5FA620CCE5/62777.png",
+        "icon": "https://render.guildwars2.com/file/ABB5251DABC70891651CCE057803923F1EDD6A09/3790489.png",
         "duration": 3,
-        "status": "Furtivité",
-        "description": "Vous êtes actuellement invisible. L'effet prend fin si vous infligez des dégâts.",
-        "apply_count": 1
-      },
-      {
-        "text": "Apply Buff/Condition",
-        "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/3BD4670638470439F3325B444FAF7D5FA620CCE5/62777.png",
-        "duration": 1,
-        "status": "Furtivité",
-        "description": "Vous êtes actuellement invisible. L'effet prend fin si vous infligez des dégâts.",
+        "status": "Lunette silencieuse",
+        "description": "Vous pouvez utiliser votre attaque furtive même quand vous n'avez pas Furtivité.",
         "apply_count": 1
       },
       {
@@ -35198,11 +35330,10 @@
         "target": "Precision"
       },
       {
-        "text": "Précision supplémentaire",
-        "type": "AttributeAdjust",
-        "icon": "https://render.guildwars2.com/file/C2CEA567E0C43C199C782809544721AA12A6DF0A/2229323.png",
-        "value": 120,
-        "target": "Precision"
+        "text": "Seuil de malice",
+        "type": "Number",
+        "icon": "https://render.guildwars2.com/file/5E50F7555EC3E9D7373B35C5FC73F24E74573459/1983628.png",
+        "value": 3
       }
     ],
     "specialization": 58,
@@ -35306,7 +35437,7 @@
     "id": 2121,
     "tier": 2,
     "order": 0,
-    "name": "Sauge de sable",
+    "name": "Sage de sable",
     "description": "Vous obtenez Concentration et de l'Expertise lorsque vous avez une ombre active.",
     "slot": "Minor",
     "facts": [
@@ -35735,7 +35866,7 @@
     "tier": 3,
     "order": 0,
     "name": "Éléments de rage",
-    "description": "Vous obtenez un bonus à tous les dégâts que vous infligez pendant un certain temps lorsque vous êtes en affinité avec un seul élément. Vous obtenez un bonus de Précision basé sur un pourcentage de votre Vitalité.",
+    "description": "Vous obtenez un bonus à tous les dégâts que vous infligez pendant un certain temps lorsque vous êtes en affinité avec un seul élément. Vous gagnez accès à Effilochement.",
     "slot": "Major",
     "facts": [
       {
@@ -35746,14 +35877,99 @@
         "status": "Éléments de rage",
         "description": "Les dégâts que vous infligez sont augmentés.",
         "apply_count": 1
-      },
+      }
+    ],
+    "skills": [
       {
-        "text": "Conversion de caractéristiques",
-        "type": "BuffConversion",
-        "icon": "https://render.guildwars2.com/file/C2CEA567E0C43C199C782809544721AA12A6DF0A/2229323.png",
-        "percent": 13,
-        "source": "Vitality",
-        "target": "Precision"
+        "name": "Effilochement",
+        "facts": [
+          {
+            "text": "Recharge",
+            "type": "Recharge",
+            "icon": "https://render.guildwars2.com/file/D767B963D120F077C3B163A05DC05A7317D7DB70/156651.png",
+            "value": 25
+          },
+          {
+            "text": "Apply Buff/Condition",
+            "type": "Buff",
+            "icon": "https://render.guildwars2.com/file/A3E26A4A4FF0C974B4AAACA6B310060CFBC2D007/1770330.png",
+            "duration": 5,
+            "status": "Effilochement",
+            "description": "Vous entrez en affinité complète avec les éléments et perdez temporairement vos attaques doubles.",
+            "apply_count": 1
+          },
+          {
+            "text": "Apply Buff/Condition",
+            "type": "PrefixedBuff",
+            "icon": "https://render.guildwars2.com/file/2FA9DF9D6BC17839BBEA14723F1C53D645DDB5E1/102852.png",
+            "duration": 5,
+            "status": "Pouvoir",
+            "description": "Les dégâts infligés sont augmentés. Intensité cumulable.",
+            "apply_count": 5,
+            "prefix": {
+              "text": "Apply Buff/Condition",
+              "icon": "https://render.guildwars2.com/file/1C91E9C799469ACC6EAF1ACD4B0AD8ACAB0C69A2/103035.png",
+              "status": "Affinité avec le feu",
+              "description": "Lance des sorts de feu."
+            }
+          },
+          {
+            "text": "Apply Buff/Condition",
+            "type": "PrefixedBuff",
+            "icon": "https://render.guildwars2.com/file/58E92EBAF0DB4DA7C4AC04D9B22BCA5ECF0100DE/102843.png",
+            "duration": 5,
+            "status": "Vigueur",
+            "description": "Régénération d'endurance augmentée de 50%. La durée est cumulable.",
+            "apply_count": 1,
+            "prefix": {
+              "text": "Apply Buff/Condition",
+              "icon": "https://render.guildwars2.com/file/737E1B9F7855B9F5D3DE1C990CD42118EF3D1C92/102820.png",
+              "status": "Affinité avec l'eau",
+              "description": "Lance des sorts d'eau."
+            }
+          },
+          {
+            "text": "Apply Buff/Condition",
+            "type": "PrefixedBuff",
+            "icon": "https://render.guildwars2.com/file/96D90DF84CAFE008233DD1C2606A12C1A0E68048/102842.png",
+            "duration": 5,
+            "status": "Fureur",
+            "description": "Chances de coup critique augmentées ; durée cumulable.",
+            "apply_count": 1,
+            "prefix": {
+              "text": "Apply Buff/Condition",
+              "icon": "https://render.guildwars2.com/file/4857F59020DE3B0950B9C91F3D234A1C1932984A/103048.png",
+              "status": "Affinité avec l'air",
+              "description": "Lance des sorts d'air."
+            }
+          },
+          {
+            "text": "Apply Buff/Condition",
+            "type": "PrefixedBuff",
+            "icon": "https://render.guildwars2.com/file/CD77D1FAB7B270223538A8F8ECDA1CFB044D65F4/102834.png",
+            "duration": 5,
+            "status": "Protection",
+            "description": "Dégâts de frappe subis réduits de 33%. La durée est cumulable.",
+            "apply_count": 1,
+            "prefix": {
+              "text": "Apply Buff/Condition",
+              "icon": "https://render.guildwars2.com/file/4B8056D9BD080DC8E74AE6A57B2B383A2D4265C9/102870.png",
+              "status": "Affinité avec la terre",
+              "description": "Lance des sorts de terre."
+            }
+          },
+          {
+            "text": "Réduction du temps de recharge",
+            "type": "Percent",
+            "icon": "https://render.guildwars2.com/file/AAB7C5387A08367C2F023F19FEE70E1556AD4375/1770202.png",
+            "percent": 100
+          }
+        ],
+        "description": "Posture. Pendant un certain temps, vous renoncez à votre formation de Tissesort et choisissez d'entrer à la place en affinité complète avec les éléments. Vous confère des avantages en fonction de votre affinité principale et réduit les temps de recharge de toutes les affinités.",
+        "icon": "https://render.guildwars2.com/file/A3E26A4A4FF0C974B4AAACA6B310060CFBC2D007/1770330.png",
+        "flags": [],
+        "id": 80231,
+        "chat_link": "[&Bmc5AQA=]"
       }
     ],
     "specialization": 56,
@@ -35764,17 +35980,72 @@
     "tier": 2,
     "order": 0,
     "name": "Renversement audacieux",
-    "description": "Vous obtenez Résistance lorsque vous utilisez une compétence de Guérison.",
+    "description": "Vos compétences d'<c=@abilitytype>ordre de la citadelle</c> sont améliorées.",
     "slot": "Major",
     "facts": [
       {
         "text": "Apply Buff/Condition",
-        "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/50BAC1B8E10CFAB9E749A5D910D4A9DCF29EBB7C/961398.png",
-        "duration": 3,
-        "status": "Résistance",
-        "description": "Les altérations n'infligeant pas de dégâts que vous subissez sont inefficaces. La durée est cumulable.",
-        "apply_count": 1
+        "type": "PrefixedBuff",
+        "icon": "https://render.guildwars2.com/file/20CFC14967E67F7A3FD4A4B8722B4CF5B8565E11/102836.png",
+        "duration": 6,
+        "status": "Rapidité",
+        "description": "Vitesse de déplacement augmentée de 33%. La durée est cumulable.",
+        "apply_count": 1,
+        "prefix": {
+          "text": "Apply Buff/Condition",
+          "icon": "https://render.guildwars2.com/file/A0C51CE345E94C7DA7300B2505920FC145730BBD/1770594.png",
+          "status": "Ordre héroïque",
+          "description": "<c=@abilitytype>Ordre de la citadelle.</c> Vous réinitialisez la durée de votre ferveur de Kalla et conférez Pouvoir aux alliés proches à chaque charge."
+        }
+      },
+      {
+        "text": "Apply Buff/Condition",
+        "type": "PrefixedBuff",
+        "icon": "https://render.guildwars2.com/file/3A394C1A0A3257EB27A44842DDEEF0DF000E1241/102850.png",
+        "duration": 6,
+        "status": "Vulnérabilité",
+        "description": "Les dégâts et Dégâts par altération sont augmentés. Intensité cumulable.",
+        "apply_count": 2,
+        "prefix": {
+          "text": "Apply Buff/Condition",
+          "icon": "https://render.guildwars2.com/file/A7C2C720C5ABE5AAB00EF0EA0318DA3B38FC981E/1770593.png",
+          "status": "Bombardement de citadelle",
+          "description": "<c=@abilitytype>Ordre de la citadelle.</c> Vous ouvrez un portail à travers les brumes du temps, ce qui déclenche une tornade de tirs d'artillerie des légions unies."
+        }
+      },
+      {
+        "text": "Apply Buff/Condition",
+        "type": "PrefixedBuff",
+        "icon": "https://render.guildwars2.com/file/CD77D1FAB7B270223538A8F8ECDA1CFB044D65F4/102834.png",
+        "duration": 1,
+        "status": "Protection",
+        "description": "Dégâts de frappe subis réduits de 33%. La durée est cumulable.",
+        "apply_count": 4,
+        "prefix": {
+          "text": "Apply Buff/Condition",
+          "icon": "https://render.guildwars2.com/file/C930ACAF03D97B6047DC0A0110CA1DCEE3BD715A/1770595.png",
+          "status": "Ordres d'en haut",
+          "description": "<c=@abilitytype>Ordre de la citadelle.</c> Des ordres arrivent d'en-haut, ce qui réinitialise vos capacités ainsi que celles de vos alliés proches."
+        }
+      }
+    ],
+    "traited_facts": [
+      {
+        "text": "Apply Buff/Condition",
+        "type": "PrefixedBuff",
+        "icon": "https://render.guildwars2.com/file/CD77D1FAB7B270223538A8F8ECDA1CFB044D65F4/102834.png",
+        "duration": 1,
+        "status": "Protection",
+        "description": "Dégâts de frappe subis réduits de 33%. La durée est cumulable.",
+        "apply_count": 6,
+        "requires_trait": 2182,
+        "prefix": {
+          "text": "Apply Buff/Condition",
+          "icon": "https://render.guildwars2.com/file/C930ACAF03D97B6047DC0A0110CA1DCEE3BD715A/1770595.png",
+          "status": "Ordres d'en haut",
+          "description": "<c=@abilitytype>Ordre de la citadelle.</c> Des ordres arrivent d'en-haut, ce qui réinitialise vos capacités ainsi que celles de vos alliés proches."
+        },
+        "overrides": 2
       }
     ],
     "specialization": 63,
@@ -36023,29 +36294,25 @@
     "id": 2138,
     "tier": 3,
     "order": 2,
-    "name": "Frappes revigorantes",
-    "description": "Vous bénéficiez de Vigueur quand vous utilisez une <c=@abilitytype>attaque double</c>. Les roulades d'esquive vous procurent une barrière.",
+    "name": "État de flux",
+    "description": "Vos compétences d'affinité et d'<c=@abilitytype>attaque double</c> ont un temps de recharge raccourci.<br><c=@reminder>Cette réduction du temps de recharge d'affinité n'a pas d'effet tant que Tissage personnel est activé.</c>",
     "slot": "Major",
     "facts": [
       {
-        "text": "Apply Buff/Condition",
-        "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/58E92EBAF0DB4DA7C4AC04D9B22BCA5ECF0100DE/102843.png",
-        "duration": 3,
-        "status": "Vigueur",
-        "description": "Régénération d'endurance augmentée de 50%. La durée est cumulable.",
-        "apply_count": 1
+        "text": "Réduction du temps de recharge des attaques doubles",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/AAB7C5387A08367C2F023F19FEE70E1556AD4375/1770202.png",
+        "percent": 20
       },
       {
-        "text": "Barrière",
-        "type": "AttributeAdjust",
-        "icon": "https://render.guildwars2.com/file/357922487919E8E84B914EAC13D5796DDDC42D14/1770209.png",
-        "value": 894,
-        "target": "Healing"
+        "text": "Temps de recharge d'affinité réduit",
+        "type": "Time",
+        "icon": "https://render.guildwars2.com/file/AAB7C5387A08367C2F023F19FEE70E1556AD4375/1770202.png",
+        "duration": 1
       }
     ],
     "specialization": 56,
-    "icon": "https://render.guildwars2.com/file/28BEBF776AF9FDBEF0BDF8B715265AE724E40878/1769923.png"
+    "icon": "https://render.guildwars2.com/file/78DA4AC17D4EBDA04BBBD325A024C346F59ED150/1769918.png"
   },
   {
     "id": 2140,
@@ -36255,7 +36522,7 @@
             "text": "Malice requise pour furtivité",
             "type": "Number",
             "icon": "https://render.guildwars2.com/file/5E50F7555EC3E9D7373B35C5FC73F24E74573459/1983628.png",
-            "value": 5
+            "value": 3
           },
           {
             "text": "Apply Buff/Condition",
@@ -36308,7 +36575,7 @@
             "type": "Damage",
             "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
             "hit_count": 1,
-            "dmg_multiplier": 1.25
+            "dmg_multiplier": 1
           }
         ],
         "description": "Vous conférez Célérité aux alliés à proximité et infligez Lenteur à votre cible marquée. Confère furtivité si vous avez atteint ou dépassé le seuil de malice.",
@@ -36332,7 +36599,7 @@
             "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
             "requires_trait": 2136,
             "hit_count": 1,
-            "dmg_multiplier": 1.5625,
+            "dmg_multiplier": 1.25,
             "overrides": 9
           }
         ]
@@ -36469,7 +36736,7 @@
             "text": "Apply Buff/Condition",
             "type": "Buff",
             "icon": "https://render.guildwars2.com/file/10BABF2708CA3575730AC662A2E72EC292565B08/598887.png",
-            "duration": 6,
+            "duration": 4,
             "status": "Tourment",
             "description": "Inflige des dégâts à chaque seconde. Inflige des dégâts supplémentaires aux ennemis qui ne bougent pas. L'intensité est cumulable.",
             "apply_count": 1
@@ -36481,7 +36748,7 @@
             "value": 480
           }
         ],
-        "description": "Embuscade. Vous lancez des haches fantasmagoriques cherchant la cible la plus proche après une courte période.",
+        "description": "Embuscade. Vous lancez des haches fantasmagoriques cherchant la cible la plus proche après quelques instants.",
         "icon": "https://render.guildwars2.com/file/38ED6AA595AEF00C0F704D0565DB7DD24B623850/1770513.png",
         "flags": [],
         "id": 44321,
@@ -37346,7 +37613,7 @@
         "text": "Augmentation des dégâts",
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
-        "percent": 10
+        "percent": 15
       },
       {
         "text": "Augmentation des dégâts",
@@ -37659,7 +37926,40 @@
     "tier": 1,
     "order": 1,
     "name": "Poursuite élémentaire",
-    "description": "Vous bénéficiez de Super vitesse quand vous infligez des altérations de déplacement aux ennemis.",
+    "description": "Les effets de Rapidité sur vous sont augmentés. Vous recevez Rapidité lorsque vous neutralisez un ennemi.<br><c=@reminder>Les effets suivants neutralisent la cible : Étourdissement, Stupeur, Repoussement, Attraction, Renversement, Noyade, Flottaison, Projection, Incitation et Peur.</c>",
+    "slot": "Major",
+    "facts": [
+      {
+        "text": "Recharge",
+        "type": "Recharge",
+        "icon": "https://render.guildwars2.com/file/D767B963D120F077C3B163A05DC05A7317D7DB70/156651.png",
+        "value": 0.25
+      },
+      {
+        "text": "Apply Buff/Condition",
+        "type": "Buff",
+        "icon": "https://render.guildwars2.com/file/20CFC14967E67F7A3FD4A4B8722B4CF5B8565E11/102836.png",
+        "duration": 4,
+        "status": "Rapidité",
+        "description": "Vitesse de déplacement augmentée de 33%. La durée est cumulable.",
+        "apply_count": 1
+      },
+      {
+        "text": "Efficacité augmentée",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/B0CD8077991E4FB1622D2930337ED7F9B54211D5/156665.png",
+        "percent": 20
+      }
+    ],
+    "specialization": 56,
+    "icon": "https://render.guildwars2.com/file/194D097708234E783C04C790E2C362290054B9C1/1769916.png"
+  },
+  {
+    "id": 2166,
+    "tier": 1,
+    "order": 0,
+    "name": "Allure de cendres",
+    "description": "Vous gagnez Pouvoir, Résistance et Ferveur de Kalla lorsque vous utilisez une compétence de soins.",
     "slot": "Major",
     "facts": [
       {
@@ -37671,82 +37971,28 @@
       {
         "text": "Apply Buff/Condition",
         "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/E04392C3D8ED985125973AEB99D8460C483263F9/103458.png",
-        "duration": 3,
-        "status": "Super vitesse",
-        "description": "La vitesse de déplacement est considérablement accrue. Durée maximum : 10s",
-        "apply_count": 1
-      },
-      {
-        "text": "Apply Buff/Condition",
-        "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/397A613651BFCA2832B6469CE34735580A2C120E/102844.png",
-        "duration": 0,
-        "status": "Immobile",
-        "description": "Incapable de bouger. La durée est cumulable.",
-        "apply_count": 1
-      },
-      {
-        "text": "Apply Buff/Condition",
-        "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/28C4EC547A3516AF0242E826772DA43A5EAC3DF3/102839.png",
-        "duration": 0,
-        "status": "Givré",
-        "description": "Vitesse de déplacement réduite de 66%. Temps de recharge de la compétence augmenté de 66%. La durée est cumulable.",
-        "apply_count": 1
-      },
-      {
-        "text": "Apply Buff/Condition",
-        "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/070325E519C178D502A8160523766070D30C0C19/102838.png",
-        "duration": 0,
-        "status": "Infirmité",
-        "description": "Vitesse de déplacement réduite de 50%. La durée est cumulable.",
-        "apply_count": 1
-      }
-    ],
-    "specialization": 56,
-    "icon": "https://render.guildwars2.com/file/194D097708234E783C04C790E2C362290054B9C1/1769916.png"
-  },
-  {
-    "id": 2166,
-    "tier": 1,
-    "order": 0,
-    "name": "Allure de cendres",
-    "description": "Neutraliser un ennemi lui inflige Infirmité, ce qui le rend vulnérable et vous inspire avec la ferveur de Kalla.",
-    "slot": "Major",
-    "facts": [
-      {
-        "text": "Recharge",
-        "type": "Recharge",
-        "icon": "https://render.guildwars2.com/file/D767B963D120F077C3B163A05DC05A7317D7DB70/156651.png",
-        "value": 3
-      },
-      {
-        "text": "Apply Buff/Condition",
-        "type": "Buff",
         "icon": "https://render.guildwars2.com/file/4DDE151C71EDB6120E3454036C4C3504EADB02D8/1770161.png",
         "duration": 8,
         "status": "Ferveur de Kalla",
         "description": "La légende de Kalla vous inspire, ce qui accroît tous les dégâts que vous infligez. L'intensité est cumulable.",
-        "apply_count": 1
+        "apply_count": 3
       },
       {
         "text": "Apply Buff/Condition",
         "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/3A394C1A0A3257EB27A44842DDEEF0DF000E1241/102850.png",
+        "icon": "https://render.guildwars2.com/file/2FA9DF9D6BC17839BBEA14723F1C53D645DDB5E1/102852.png",
         "duration": 6,
-        "status": "Vulnérabilité",
-        "description": "Les dégâts et Dégâts par altération sont augmentés. Intensité cumulable.",
+        "status": "Pouvoir",
+        "description": "Les dégâts infligés sont augmentés. Intensité cumulable.",
         "apply_count": 5
       },
       {
         "text": "Apply Buff/Condition",
         "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/070325E519C178D502A8160523766070D30C0C19/102838.png",
-        "duration": 3,
-        "status": "Infirmité",
-        "description": "Vitesse de déplacement réduite de 50%. La durée est cumulable.",
+        "icon": "https://render.guildwars2.com/file/50BAC1B8E10CFAB9E749A5D910D4A9DCF29EBB7C/961398.png",
+        "duration": 6,
+        "status": "Résistance",
+        "description": "Les altérations n'infligeant pas de dégâts que vous subissez sont inefficaces. La durée est cumulable.",
         "apply_count": 1
       }
     ],
@@ -37758,7 +38004,7 @@
         "duration": 12,
         "status": "Ferveur de Kalla améliorée",
         "description": "La légende de Kalla vous inspire, ce qui accroît tous les dégâts que vous infligez. L'intensité est cumulable.",
-        "apply_count": 1,
+        "apply_count": 3,
         "requires_trait": 2100,
         "overrides": 1
       }
@@ -37910,7 +38156,7 @@
             "icon": "https://render.guildwars2.com/file/FD3E5345025CBBB73C3F04E1997EDCBDD09C08F3/1770329.png",
             "duration": 5,
             "status": "Résonance de pierre",
-            "description": "Vous bénéficiez d'un bouclier à intervalles réguliers.",
+            "description": "Vous recevez régulièrement Barrière. Les effets de Protection sur vous sont plus efficaces.",
             "apply_count": 1
           },
           {
@@ -37924,7 +38170,7 @@
             "text": "Barrière",
             "type": "AttributeAdjust",
             "icon": "https://render.guildwars2.com/file/357922487919E8E84B914EAC13D5796DDDC42D14/1770209.png",
-            "value": 535,
+            "value": 794,
             "target": "Healing"
           },
           {
@@ -37938,6 +38184,15 @@
             "type": "Time",
             "icon": "https://render.guildwars2.com/file/B75E91EB22E0DFCC1D08030204055946506D56F6/1770206.png",
             "duration": 1
+          },
+          {
+            "text": "Apply Buff/Condition",
+            "type": "Buff",
+            "icon": "https://render.guildwars2.com/file/CD77D1FAB7B270223538A8F8ECDA1CFB044D65F4/102834.png",
+            "duration": 3,
+            "status": "Protection",
+            "description": "Dégâts de frappe subis réduits de 33%. La durée est cumulable.",
+            "apply_count": 1
           }
         ],
         "description": "Posture. Vous entrez dans une posture de terre, vous faisant bénéficier d'une barrière à intervalles réguliers tant que vous conservez cette posture.",
@@ -37998,7 +38253,7 @@
             "value": 1
           }
         ],
-        "description": "Une cible est marquée ; vos attaques nécessitant de l'initiative génèrent des charges de malice en cas de coup réussi ou infligent un coup critique à la cible marquée. Vous perdez de la malice quand la marque s'interrompt ou si vous relancez la compétence sur une nouvelle cible.\nVous ne pouvez obtenir de la malice qu'une fois par utilisation de compétence.",
+        "description": "Une cible est marquée ; vos attaques nécessitant de l'initiative génèrent des charges de malice en cas de coup réussi ou infligent un coup critique à la cible marquée. Vous effectuez une Foulée de l'ombre vers votre cible si vous maniez une dague, une épée, une lance ou un bâton en main principale. Vous perdez de la malice quand la marque s'interrompt ou si vous relancez la compétence sur une nouvelle cible.\nVous ne pouvez obtenir de la malice qu'une fois par utilisation de compétence.",
         "icon": "https://render.guildwars2.com/file/3ECEA70D0DCDAF65E0069263D005507ADBF95A62/1770609.png",
         "flags": [],
         "id": 43390,
@@ -38339,6 +38594,12 @@
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/C2CEA567E0C43C199C782809544721AA12A6DF0A/2229323.png",
         "percent": 15
+      },
+      {
+        "text": "Augmentation de chance de coup critique",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/C2CEA567E0C43C199C782809544721AA12A6DF0A/2229323.png",
+        "percent": 20
       }
     ],
     "specialization": 56,
@@ -38444,6 +38705,15 @@
         "text": "Apply Buff/Condition",
         "type": "Buff",
         "icon": "https://render.guildwars2.com/file/B47BF5803FED2718D7474EAF9617629AD068EE10/102849.png",
+        "duration": 2,
+        "status": "En feu",
+        "description": "Inflige des dégâts à chaque seconde. Intensité cumulable.",
+        "apply_count": 1
+      },
+      {
+        "text": "Apply Buff/Condition",
+        "type": "Buff",
+        "icon": "https://render.guildwars2.com/file/B47BF5803FED2718D7474EAF9617629AD068EE10/102849.png",
         "duration": 3,
         "status": "En feu",
         "description": "Inflige des dégâts à chaque seconde. Intensité cumulable.",
@@ -38457,22 +38727,20 @@
     "id": 2180,
     "tier": 2,
     "order": 0,
-    "name": "Prouesse de Tissesort",
-    "description": "Vos Dégâts par altération et votre Durée d'altération sont augmentés pendant un certain temps quand vous entrez en affinité avec un élément différent.",
+    "name": "Courage de maître",
+    "description": "Vous bénéficiez de Barrière lorsque vous esquivez.",
     "slot": "Major",
     "facts": [
       {
-        "text": "Apply Buff/Condition",
-        "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/78DA4AC17D4EBDA04BBBD325A024C346F59ED150/1769918.png",
-        "duration": 8,
-        "status": "Prouesse de Tissesort",
-        "description": "Les dégâts et la durée des altérations sont augmentés.",
-        "apply_count": 1
+        "text": "Barrière",
+        "type": "AttributeAdjust",
+        "icon": "https://render.guildwars2.com/file/357922487919E8E84B914EAC13D5796DDDC42D14/1770209.png",
+        "value": 894,
+        "target": "Healing"
       }
     ],
     "specialization": 56,
-    "icon": "https://render.guildwars2.com/file/78DA4AC17D4EBDA04BBBD325A024C346F59ED150/1769918.png"
+    "icon": "https://render.guildwars2.com/file/28BEBF776AF9FDBEF0BDF8B715265AE724E40878/1769923.png"
   },
   {
     "id": 2181,
@@ -38579,6 +38847,16 @@
             "apply_count": 3,
             "requires_trait": 2100,
             "overrides": 4
+          },
+          {
+            "text": "Apply Buff/Condition",
+            "type": "Buff",
+            "icon": "https://render.guildwars2.com/file/20CFC14967E67F7A3FD4A4B8722B4CF5B8565E11/102836.png",
+            "duration": 6,
+            "status": "Rapidité",
+            "description": "Vitesse de déplacement augmentée de 33%. La durée est cumulable.",
+            "apply_count": 1,
+            "requires_trait": 2133
           }
         ]
       },
@@ -38743,6 +39021,16 @@
             "apply_count": 6,
             "requires_trait": 2182,
             "overrides": 6
+          },
+          {
+            "text": "Apply Buff/Condition",
+            "type": "Buff",
+            "icon": "https://render.guildwars2.com/file/CD77D1FAB7B270223538A8F8ECDA1CFB044D65F4/102834.png",
+            "duration": 1,
+            "status": "Protection",
+            "description": "Dégâts de frappe subis réduits de 33%. La durée est cumulable.",
+            "apply_count": 4,
+            "requires_trait": 2133
           }
         ]
       }
@@ -38755,7 +39043,7 @@
     "tier": 3,
     "order": 2,
     "name": "Rebelle vertueux",
-    "description": "L'effet \"Ferveur de Kalla\" augmente les soins que vous dispensez aux alliés. L'effet \"Ordres d'en haut\" dure plus longtemps et affecte une zone plus large.",
+    "description": "L'effet \"Ferveur de Kalla\" augmente les soins que vous dispensez aux alliés. L'effet \"Ordres d'en haut\" dure plus longtemps, soigne les alliés et affecte une zone plus large.",
     "slot": "Major",
     "facts": [
       {
@@ -38775,6 +39063,20 @@
         "type": "Number",
         "icon": "https://render.guildwars2.com/file/B0CD8077991E4FB1622D2930337ED7F9B54211D5/156665.png",
         "value": 120
+      },
+      {
+        "text": "Guérison",
+        "type": "AttributeAdjust",
+        "icon": "https://render.guildwars2.com/file/D4347C52157B040943051D7E09DEAD7AF63D4378/156662.png",
+        "value": 490,
+        "target": "Healing"
+      },
+      {
+        "text": "Guérison",
+        "type": "AttributeAdjust",
+        "icon": "https://render.guildwars2.com/file/D4347C52157B040943051D7E09DEAD7AF63D4378/156662.png",
+        "value": 714,
+        "target": "Healing"
       }
     ],
     "specialization": 63,
@@ -39051,7 +39353,7 @@
         "text": "Augmentation des dégâts critiques",
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/0658D833944E69E62E08EB18A0B5407F722125BC/2229320.png",
-        "percent": 12.5
+        "percent": 10
       },
       {
         "text": "Augmentation des dégâts critiques",
@@ -39122,6 +39424,12 @@
         "icon": "https://render.guildwars2.com/file/D6CAECEA0FD5FADE04DD6970384ADC5DE309C506/2229322.png",
         "value": 120,
         "target": "Power"
+      },
+      {
+        "text": "Augmentation des dégâts",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
+        "percent": 200
       }
     ],
     "specialization": 65,
@@ -39256,56 +39564,24 @@
     "tier": 3,
     "order": 1,
     "name": "Hâte meurtrière",
-    "description": "Lorsque Linceul de l'augure est actif, vous bénéficiez d'une aura qui confère des avantages à vous et à vos alliés proches à chaque intervalle de pulsation.",
+    "description": "Vous conférez des avantages aux alliés à proximité lorsque vous revêtez le Linceul du présage et quand vous utilisez Barrage noir.",
     "slot": "Major",
     "facts": [
       {
-        "text": "Intervalle",
-        "type": "Time",
-        "icon": "https://render.guildwars2.com/file/B75E91EB22E0DFCC1D08030204055946506D56F6/1770206.png",
-        "duration": 3
-      }
-    ],
-    "skills": [
+        "type": "BuffArray",
+        "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png"
+      },
       {
-        "name": "Hâte meurtrière",
-        "facts": [
-          {
-            "text": "Rayon",
-            "type": "Distance",
-            "icon": "https://render.guildwars2.com/file/B0CD8077991E4FB1622D2930337ED7F9B54211D5/156665.png",
-            "distance": 360
-          },
-          {
-            "text": "Nombre de cibles",
-            "type": "Number",
-            "icon": "https://render.guildwars2.com/file/BBE8191A494B0352259C10EADFDACCE177E6DA5B/1770208.png",
-            "value": 5
-          },
-          {
-            "text": "Apply Buff/Condition",
-            "type": "Buff",
-            "icon": "https://render.guildwars2.com/file/D4AB6401A6D6917C3D4F230764452BCCE1035B0D/1012835.png",
-            "duration": 3,
-            "status": "Célérité",
-            "description": "Les compétences et les actions sont plus rapides.",
-            "apply_count": 1
-          },
-          {
-            "text": "Apply Buff/Condition",
-            "type": "Buff",
-            "icon": "https://render.guildwars2.com/file/96D90DF84CAFE008233DD1C2606A12C1A0E68048/102842.png",
-            "duration": 3,
-            "status": "Fureur",
-            "description": "Chances de coup critique augmentées ; durée cumulable.",
-            "apply_count": 1
-          }
-        ],
-        "description": "Confère des avantages à vos alliés à proximité ainsi qu'à vous-même.",
-        "icon": "https://render.guildwars2.com/file/9875EAC10F3A93F8EF4BC40204806C6172E14494/2141735.png",
-        "flags": [],
-        "id": 62671,
-        "chat_link": "[&Bs/0AAA=]"
+        "text": "Rayon",
+        "type": "Distance",
+        "icon": "https://render.guildwars2.com/file/B0CD8077991E4FB1622D2930337ED7F9B54211D5/156665.png",
+        "distance": 360
+      },
+      {
+        "text": "Nombre de cibles",
+        "type": "Number",
+        "icon": "https://render.guildwars2.com/file/BBE8191A494B0352259C10EADFDACCE177E6DA5B/1770208.png",
+        "value": 5
       }
     ],
     "specialization": 64,
@@ -39550,7 +39826,7 @@
         "text": "Augmentation des dégâts par altération",
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
-        "percent": 2
+        "percent": 1
       },
       {
         "text": "Augmentation des dégâts",
@@ -39579,7 +39855,7 @@
     "tier": 1,
     "order": 2,
     "name": "Esprit irrégulier",
-    "description": "Les attaques à l'<c=@abilitytype>épée</c> infligent Saignement lors d'un coup critique. Un pourcentage de vos dégâts par altération vous soigne.",
+    "description": "Les attaques de <c=@abilitytype>lame</c> infligent Saignement lors d'un coup critique. Un pourcentage de vos dégâts par altération vous soigne.",
     "slot": "Major",
     "facts": [
       {
@@ -39606,68 +39882,116 @@
     "tier": 3,
     "order": 2,
     "name": "Fin imminente",
-    "description": "Vos dégâts par altération sont augmentés. Lorsque Linceul de l'augure est actif, vous bénéficiez d'une aura qui inflige Tourment et Affaiblissement aux ennemis à proximité à chaque intervalle de pulsation.",
+    "description": "Désespoir réduit davantage votre santé et s'accumule plus rapidement lorsque vous revêtez le linceul. Vos compétences de linceul sont améliorées.",
     "slot": "Major",
     "facts": [
       {
-        "type": "AttributeAdjust",
-        "icon": "https://render.guildwars2.com/file/0120CB042BFC2EA6A45BC3DB45155FECDDDE1910/2229318.png",
-        "value": 240,
-        "target": "ConditionDamage"
+        "text": "Apply Buff/Condition",
+        "type": "Buff",
+        "icon": "https://render.guildwars2.com/file/6B797B70EF545937F677BCD463BD23DC749B0801/2479350.png",
+        "duration": 25,
+        "status": "Désespoir",
+        "description": "Réduit votre santé maximale. Intensité cumulable.",
+        "apply_count": 4
       },
       {
-        "type": "AttributeAdjust",
-        "icon": "https://render.guildwars2.com/file/0120CB042BFC2EA6A45BC3DB45155FECDDDE1910/2229318.png",
-        "value": 240,
-        "target": "ConditionDamage"
+        "text": "Apply Buff/Condition",
+        "type": "Buff",
+        "icon": "https://render.guildwars2.com/file/6B797B70EF545937F677BCD463BD23DC749B0801/2479350.png",
+        "duration": 25,
+        "status": "Désespoir",
+        "description": "Réduit votre santé maximale. Intensité cumulable.",
+        "apply_count": 3
       },
       {
-        "text": "Intervalle",
-        "type": "Time",
-        "icon": "https://render.guildwars2.com/file/B75E91EB22E0DFCC1D08030204055946506D56F6/1770206.png",
-        "duration": 3
-      }
-    ],
-    "skills": [
+        "text": "Apply Buff/Condition",
+        "type": "PrefixedBuff",
+        "icon": "https://render.guildwars2.com/file/3A394C1A0A3257EB27A44842DDEEF0DF000E1241/102850.png",
+        "duration": 6,
+        "status": "Vulnérabilité",
+        "description": "Les dégâts et Dégâts par altération sont augmentés. Intensité cumulable.",
+        "apply_count": 2,
+        "prefix": {
+          "text": "Apply Buff/Condition",
+          "icon": "https://render.guildwars2.com/file/03AB6A0BA611767DA8A30A0D0E68CE580760EA34/2479402.png",
+          "status": "Éclairs corrompus",
+          "description": "Vous tirez des éclairs rapides d'énergie obscure, qui explosent à l'impact, en infligeant Tourment aux ennemis dans la zone."
+        }
+      },
       {
-        "name": "Ruine proche",
-        "facts": [
-          {
-            "text": "Apply Buff/Condition",
-            "type": "Buff",
-            "icon": "https://render.guildwars2.com/file/10BABF2708CA3575730AC662A2E72EC292565B08/598887.png",
-            "duration": 5,
-            "status": "Tourment",
-            "description": "Inflige des dégâts à chaque seconde. Inflige des dégâts supplémentaires aux ennemis qui ne bougent pas. L'intensité est cumulable.",
-            "apply_count": 3
-          },
-          {
-            "text": "Apply Buff/Condition",
-            "type": "Buff",
-            "icon": "https://render.guildwars2.com/file/6CB0E64AF9AA292E332A38C1770CE577E2CDE0E8/102853.png",
-            "duration": 2,
-            "status": "Faiblesse",
-            "description": "Régénération d'endurance réduite de 50%. 50% des coups sont des effleurements (50% des dégâts). Durée cumulable.",
-            "apply_count": 1
-          },
-          {
-            "text": "Rayon",
-            "type": "Distance",
-            "icon": "https://render.guildwars2.com/file/B0CD8077991E4FB1622D2930337ED7F9B54211D5/156665.png",
-            "distance": 180
-          },
-          {
-            "text": "Nombre de cibles",
-            "type": "Number",
-            "icon": "https://render.guildwars2.com/file/BBE8191A494B0352259C10EADFDACCE177E6DA5B/1770208.png",
-            "value": 5
-          }
-        ],
-        "description": "Inflige Tourment et Faiblesse aux ennemis à proximité.",
-        "icon": "https://render.guildwars2.com/file/1D55D34FB4EE20B1962E315245E40CA5E1042D0E/62248.png",
-        "flags": [],
-        "id": 62558,
-        "chat_link": "[&Bl70AAA=]"
+        "text": "Apply Buff/Condition",
+        "type": "PrefixedBuff",
+        "icon": "https://render.guildwars2.com/file/B4490FB81AA1E7C06F1B22056AE09A0F54CBE2C4/1770201.png",
+        "duration": 0,
+        "status": "Projectiles supplémentaires",
+        "description": "2",
+        "apply_count": 1,
+        "prefix": {
+          "text": "Apply Buff/Condition",
+          "icon": "https://render.guildwars2.com/file/3EBE1078EC053BA76F057D2F0758692F0C0D6CD3/2479393.png",
+          "status": "Barrage noir",
+          "description": "Vous tirez six éclairs d'énergie de tourment, qui se déploient en transperçant tous les ennemis sur leur trajectoire."
+        }
+      },
+      {
+        "text": "Apply Buff/Condition",
+        "type": "PrefixedBuff",
+        "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png",
+        "duration": 0,
+        "status": "Avantages convertis en altérations",
+        "description": "2",
+        "apply_count": 1,
+        "prefix": {
+          "text": "Apply Buff/Condition",
+          "icon": "https://render.guildwars2.com/file/F4A01998B419F5A3B2EA7010107ED64AAE119369/2479392.png",
+          "status": "Coupure dévorante",
+          "description": "Vous canalisez de l'énergie pervertie pour vous propulser sur votre cible, infligeant des dégâts aux ennemis à proximité de votre point d'impact.<br><br><br><br>Si vous êtes au-dessus ou à la limite du seuil de Vice lorsque vous activez cette compétence, vous consommez cette quantité de Vice pour doubler les dégâts et infliger Tourment aux ennemis touchés."
+        }
+      },
+      {
+        "text": "Apply Buff/Condition",
+        "type": "PrefixedBuff",
+        "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png",
+        "duration": 0,
+        "status": "Avantages convertis en altérations",
+        "description": "1",
+        "apply_count": 1,
+        "prefix": {
+          "text": "Apply Buff/Condition",
+          "icon": "https://render.guildwars2.com/file/F4A01998B419F5A3B2EA7010107ED64AAE119369/2479392.png",
+          "status": "Coupure dévorante",
+          "description": "Vous canalisez de l'énergie pervertie pour vous propulser sur votre cible, infligeant des dégâts aux ennemis à proximité de votre point d'impact.<br><br><br><br>Si vous êtes au-dessus ou à la limite du seuil de Vice lorsque vous activez cette compétence, vous consommez cette quantité de Vice pour doubler les dégâts et infliger Tourment aux ennemis touchés."
+        }
+      },
+      {
+        "text": "Apply Buff/Condition",
+        "type": "PrefixedBuff",
+        "icon": "https://render.guildwars2.com/file/30307A6E766D74B6EB09EDA12A4A2DE50E4D76F4/102869.png",
+        "duration": 1,
+        "status": "Peur",
+        "description": "Retraite involontaire. Incapable d'agir. La durée est cumulable.",
+        "apply_count": 1,
+        "prefix": {
+          "text": "Apply Buff/Condition",
+          "icon": "https://render.guildwars2.com/file/E338A042D7F5EDB705F5A5E033F330D3C25774C5/2479406.png",
+          "status": "Arc vorace",
+          "description": "Vous bondissez vers votre destination, en esquivant en l'air. Vous infligez Stupeur aux ennemis à proximité de votre point d'impact.<br><br>Si vous êtes au-dessus ou à la limite du seuil de Vice lorsque vous activez cette compétence, vous consommez cette quantité de Vice pour doubler les dégâts et infliger Tourment aux ennemis touchés."
+        }
+      },
+      {
+        "text": "Apply Buff/Condition",
+        "type": "PrefixedBuff",
+        "icon": "https://render.guildwars2.com/file/B0CD8077991E4FB1622D2930337ED7F9B54211D5/156665.png",
+        "duration": 0,
+        "status": "Rayon",
+        "description": "300",
+        "apply_count": 1,
+        "prefix": {
+          "text": "Apply Buff/Condition",
+          "icon": "https://render.guildwars2.com/file/71A90FD69C7E5F319B1E26F1A72CC7D65E93A84A/2479405.png",
+          "status": "Puisage vital",
+          "description": "Vous vrillez l'âme des ennemis à proximité, les suspendant dans les airs pendant que vous siphonnez leur force vitale. Vous gagnez de la force vitale pour chaque cible touchée."
+        }
       }
     ],
     "specialization": 64,
@@ -39861,7 +40185,7 @@
         "text": "Augmentation des dégâts",
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
-        "percent": 10
+        "percent": 5
       },
       {
         "text": "Augmentation des dégâts",
@@ -39892,6 +40216,14 @@
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/AAB7C5387A08367C2F023F19FEE70E1556AD4375/1770202.png",
         "percent": 20
+      },
+      {
+        "text": "Conversion de caractéristiques",
+        "type": "BuffConversion",
+        "icon": "https://render.guildwars2.com/file/4977CD5BAF0A7B6412DCC775C3909F7D4EFE4C65/2229319.png",
+        "percent": 10,
+        "source": "Vitality",
+        "target": "ConditionDuration"
       },
       {
         "text": "Conversion de caractéristiques",
@@ -39970,7 +40302,7 @@
     "tier": 3,
     "order": 0,
     "name": "Riposte psychique",
-    "description": "Les attaques que vous bloquez ou esquivez accumulent des <c=@abilitytype>lames</c>. Le fait d'esquiver accumule une lame et fait que votre prochaine compétence de chantelame ne peut être bloquée.",
+    "description": "Les attaques que vous bloquez ou esquivez accumulent des <c=@abilitytype>lames</c>. Le fait d'esquiver accumule une lame.",
     "slot": "Major",
     "facts": [
       {
@@ -40602,26 +40934,35 @@
     "tier": 3,
     "order": 0,
     "name": "Cascade de corruption",
-    "description": "Votre Puissance est augmentée. Lorsque Linceul de l'augure est actif, vous bénéficiez d'une aura qui inflige des dégâts et Infirmité aux ennemis à proximité à chaque intervalle de pulsation.",
+    "description": "Vous recevez des charges de Cascade de corruption quand vous consommez du Désespoir. Quand vous atteignez le seuil de charges, vous émettez une explosion d'énergie nécrotique et vous augmentez vos dégâts pendant un certain temps. <c=@reminder>Vous ne pouvez gagner de charges qu'en combat, et vous les perdez quand vous n'êtes plus en combat.</c>",
     "slot": "Major",
     "facts": [
       {
-        "type": "AttributeAdjust",
-        "icon": "https://render.guildwars2.com/file/D6CAECEA0FD5FADE04DD6970384ADC5DE309C506/2229322.png",
-        "value": 240,
-        "target": "Power"
+        "text": "Uniquement en combat",
+        "type": "NoData",
+        "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png"
       },
       {
-        "type": "AttributeAdjust",
-        "icon": "https://render.guildwars2.com/file/D6CAECEA0FD5FADE04DD6970384ADC5DE309C506/2229322.png",
-        "value": 240,
-        "target": "Power"
+        "text": "Apply Buff/Condition",
+        "type": "Buff",
+        "icon": "https://render.guildwars2.com/file/B90C69BABF665046A728E537AAA8E61FA7EBA5A0/3790488.png",
+        "duration": 0,
+        "status": "Cascade de corruption",
+        "apply_count": 1
       },
       {
-        "text": "Intervalle",
-        "type": "Time",
-        "icon": "https://render.guildwars2.com/file/B75E91EB22E0DFCC1D08030204055946506D56F6/1770206.png",
-        "duration": 3
+        "text": "Apply Buff/Condition",
+        "type": "Buff",
+        "icon": "https://render.guildwars2.com/file/03291423C8D1BE039F100726B40BC218F021EFEF/3790487.png",
+        "duration": 10,
+        "status": "Fusion",
+        "apply_count": 1
+      },
+      {
+        "text": "Nombre de charges maximum",
+        "type": "Number",
+        "icon": "https://render.guildwars2.com/file/B4490FB81AA1E7C06F1B22056AE09A0F54CBE2C4/1770201.png",
+        "value": 20
       }
     ],
     "skills": [
@@ -40632,14 +40973,14 @@
             "text": "Rayon",
             "type": "Distance",
             "icon": "https://render.guildwars2.com/file/B0CD8077991E4FB1622D2930337ED7F9B54211D5/156665.png",
-            "distance": 180
+            "distance": 240
           },
           {
             "text": "Dégât",
             "type": "Damage",
             "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
             "hit_count": 1,
-            "dmg_multiplier": 1.5
+            "dmg_multiplier": 4.5
           },
           {
             "text": "Nombre de cibles",
@@ -40650,14 +40991,14 @@
           {
             "text": "Apply Buff/Condition",
             "type": "Buff",
-            "icon": "https://render.guildwars2.com/file/070325E519C178D502A8160523766070D30C0C19/102838.png",
-            "duration": 3,
-            "status": "Infirmité",
-            "description": "Vitesse de déplacement réduite de 50%. La durée est cumulable.",
-            "apply_count": 1
+            "icon": "https://render.guildwars2.com/file/10BABF2708CA3575730AC662A2E72EC292565B08/598887.png",
+            "duration": 6,
+            "status": "Tourment",
+            "description": "Inflige des dégâts à chaque seconde. Inflige des dégâts supplémentaires aux ennemis qui ne bougent pas. L'intensité est cumulable.",
+            "apply_count": 6
           }
         ],
-        "description": "Vous infligez des dégâts et Infirmité aux ennemis à proximité.",
+        "description": "Vous infligez des dégâts et Tourment aux ennemis à proximité.",
         "icon": "https://render.guildwars2.com/file/9875EAC10F3A93F8EF4BC40204806C6172E14494/2141735.png",
         "flags": [],
         "id": 62660,
@@ -40810,20 +41151,27 @@
   {
     "id": 2225,
     "tier": 1,
-    "order": 2,
+    "order": 0,
     "name": "Épée invisible",
-    "description": "Vous frappez tous les ennemis à proximité lorsque vous changez d'arme.<br><c=@reminder>Ne s'active pas hors combat, sauf si un ennemi est à portée.</c>",
+    "description": "Vous frappez les ennemis à proximité et augmentez votre taux de flux quand vous équipez votre pistolame.",
     "slot": "Major",
+    "facts": [
+      {
+        "text": "Recharge",
+        "type": "Recharge",
+        "icon": "https://render.guildwars2.com/file/D767B963D120F077C3B163A05DC05A7317D7DB70/156651.png",
+        "value": 4
+      },
+      {
+        "text": "Uniquement en combat",
+        "type": "NoData",
+        "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png"
+      }
+    ],
     "skills": [
       {
         "name": "Épée invisible",
         "facts": [
-          {
-            "text": "Recharge",
-            "type": "Recharge",
-            "icon": "https://render.guildwars2.com/file/D767B963D120F077C3B163A05DC05A7317D7DB70/156651.png",
-            "value": 4
-          },
           {
             "text": "Dégât",
             "type": "Damage",
@@ -41362,12 +41710,6 @@
       },
       {
         "type": "AttributeAdjust",
-        "icon": "https://render.guildwars2.com/file/D6CAECEA0FD5FADE04DD6970384ADC5DE309C506/2229322.png",
-        "value": 120,
-        "target": "Power"
-      },
-      {
-        "type": "AttributeAdjust",
         "icon": "https://render.guildwars2.com/file/9B986DEADC035E58C364A1423975F5F538FC2202/2229321.png",
         "value": 240,
         "target": "Healing"
@@ -41394,7 +41736,7 @@
         "apply_count": 1
       },
       {
-        "text": "Réduction des dégâts par charge.",
+        "text": "Réduction des dégâts par charge",
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
         "percent": 2
@@ -41681,7 +42023,7 @@
         "text": "Apply Buff/Condition",
         "type": "Buff",
         "icon": "https://render.guildwars2.com/file/D4AB6401A6D6917C3D4F230764452BCCE1035B0D/1012835.png",
-        "duration": 3,
+        "duration": 2,
         "status": "Célérité",
         "description": "Les compétences et les actions sont plus rapides.",
         "apply_count": 1
@@ -41850,7 +42192,7 @@
         "text": "Apply Buff/Condition",
         "type": "Buff",
         "icon": "https://render.guildwars2.com/file/D4AB6401A6D6917C3D4F230764452BCCE1035B0D/1012835.png",
-        "duration": 5,
+        "duration": 3,
         "status": "Célérité",
         "description": "Les compétences et les actions sont plus rapides.",
         "apply_count": 1,
@@ -41861,7 +42203,7 @@
         "text": "Apply Buff/Condition",
         "type": "PrefixedBuff",
         "icon": "https://render.guildwars2.com/file/2FA9DF9D6BC17839BBEA14723F1C53D645DDB5E1/102852.png",
-        "duration": 20,
+        "duration": 15,
         "status": "Pouvoir",
         "description": "Les dégâts infligés sont augmentés. Intensité cumulable.",
         "apply_count": 8,
@@ -41895,7 +42237,7 @@
         "text": "Apply Buff/Condition",
         "type": "PrefixedBuff",
         "icon": "https://render.guildwars2.com/file/58E92EBAF0DB4DA7C4AC04D9B22BCA5ECF0100DE/102843.png",
-        "duration": 10,
+        "duration": 8,
         "status": "Vigueur",
         "description": "Régénération d'endurance augmentée de 50%. La durée est cumulable.",
         "apply_count": 1,
@@ -41929,7 +42271,7 @@
         "text": "Apply Buff/Condition",
         "type": "PrefixedBuff",
         "icon": "https://render.guildwars2.com/file/96D90DF84CAFE008233DD1C2606A12C1A0E68048/102842.png",
-        "duration": 10,
+        "duration": 8,
         "status": "Fureur",
         "description": "Chances de coup critique augmentées ; durée cumulable.",
         "apply_count": 1,
@@ -41980,7 +42322,7 @@
         "text": "Apply Buff/Condition",
         "type": "PrefixedBuff",
         "icon": "https://render.guildwars2.com/file/DFB4D1B50AE4D6A275B349E15B179261EE3EB0AF/102854.png",
-        "duration": 6,
+        "duration": 5,
         "status": "Égide",
         "description": "Bloque la prochaine attaque. La durée est cumulable.",
         "apply_count": 1,
@@ -42054,22 +42396,16 @@
   {
     "id": 2237,
     "tier": 1,
-    "order": 0,
+    "order": 2,
     "name": "Flux de la rivière",
-    "description": "Soins reçus augmentés. Votre taux de flux augmente lorsque vous vous soignez.<br><c=@reminder>Les effets de régénération ne déclenchent pas cette augmentation de taux de flux.</c>",
+    "description": "Vous chargez votre pistolame de munitions qui viennent en aide à vos alliés pour changer les propriétés de l'arme. Vous conférez des avantages aux alliés à proximité et gagnez un flux positif quand vous équipez votre pistolame.",
     "slot": "Major",
     "facts": [
       {
         "text": "Recharge",
         "type": "Recharge",
         "icon": "https://render.guildwars2.com/file/D767B963D120F077C3B163A05DC05A7317D7DB70/156651.png",
-        "value": 5
-      },
-      {
-        "text": "Augmentation des soins reçus",
-        "type": "Percent",
-        "icon": "https://render.guildwars2.com/file/D4347C52157B040943051D7E09DEAD7AF63D4378/156662.png",
-        "percent": 10
+        "value": 4
       },
       {
         "text": "Apply Buff/Condition",
@@ -42078,6 +42414,26 @@
         "duration": 5,
         "status": "Flux positif",
         "description": "Vous gagnez du flux à chaque seconde.",
+        "apply_count": 2
+      },
+      {
+        "text": "Uniquement en combat",
+        "type": "NoData",
+        "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png"
+      },
+      {
+        "text": "Rayon",
+        "type": "Distance",
+        "icon": "https://render.guildwars2.com/file/B0CD8077991E4FB1622D2930337ED7F9B54211D5/156665.png",
+        "distance": 300
+      },
+      {
+        "text": "Apply Buff/Condition",
+        "type": "Buff",
+        "icon": "https://render.guildwars2.com/file/2FA9DF9D6BC17839BBEA14723F1C53D645DDB5E1/102852.png",
+        "duration": 8,
+        "status": "Pouvoir",
+        "description": "Les dégâts infligés sont augmentés. Intensité cumulable.",
         "apply_count": 2
       }
     ],
@@ -42298,7 +42654,7 @@
     "tier": 3,
     "order": 2,
     "name": "Dragon hardi",
-    "description": "Taillade de dragon a un niveau de charge maximum réduit et consomme davantage de flux par charge, mais ses dégâts par charge sont augmentés. Vous conférez des avantages aux alliés à proximité lorsque vous utilisez Taillade de dragon.",
+    "description": "Taillade de dragon a un niveau de charge maximum réduit et consomme davantage de flux par charge, mais son efficacité par charge est augmentée. Vous conférez des avantages aux alliés à proximité lorsque vous utilisez Taillade de dragon.",
     "slot": "Major",
     "facts": [
       {
@@ -42545,12 +42901,6 @@
         "percent": 50
       },
       {
-        "text": "Durée augmentée",
-        "type": "Percent",
-        "icon": "https://render.guildwars2.com/file/7B2193ACCF77E56C13E608191B082D68AA0FAA71/156659.png",
-        "percent": 100
-      },
-      {
         "text": "Augmentation du temps de recharge de la sphère",
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/AAB7C5387A08367C2F023F19FEE70E1556AD4375/1770202.png",
@@ -42601,21 +42951,27 @@
     "tier": 2,
     "order": 0,
     "name": "Montagne inébranlable",
-    "description": "Vous recevez une Barrière lorsque vous convertissez du flux en charges si vous êtes sous le seuil de charges.",
+    "description": "Vous conférez Barrière aux alliés à proximité lorsque vous convertissez une certaine quantité de flux en charges.",
     "slot": "Major",
     "facts": [
       {
         "text": "Barrière",
         "type": "AttributeAdjust",
         "icon": "https://render.guildwars2.com/file/357922487919E8E84B914EAC13D5796DDDC42D14/1770209.png",
-        "value": 800,
+        "value": 496,
         "target": "Healing"
       },
       {
-        "text": "Seuil de charges",
+        "text": "Flux dépensé",
         "type": "Number",
-        "icon": "https://render.guildwars2.com/file/B4490FB81AA1E7C06F1B22056AE09A0F54CBE2C4/1770201.png",
-        "value": 4
+        "icon": "https://render.guildwars2.com/file/E1E7C4D3A6E62F3D5C9F627CE8175BFB0C614CBE/156652.png",
+        "value": 10
+      },
+      {
+        "text": "Nombre de cibles",
+        "type": "Number",
+        "icon": "https://render.guildwars2.com/file/BBE8191A494B0352259C10EADFDACCE177E6DA5B/1770208.png",
+        "value": 5
       }
     ],
     "specialization": 68,
@@ -42745,7 +43101,7 @@
             "type": "Damage",
             "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
             "hit_count": 1,
-            "dmg_multiplier": 4.2
+            "dmg_multiplier": 3.3
           },
           {
             "text": "Apply Buff/Condition",
@@ -42919,6 +43275,19 @@
         "icon": "https://render.guildwars2.com/file/D4347C52157B040943051D7E09DEAD7AF63D4378/156662.png",
         "duration": 0,
         "status": "Augmentation de Guérison et de barrières",
+        "description": "200%",
+        "apply_count": 0,
+        "prefix": {
+          "text": "Apply Buff/Condition",
+          "icon": "https://render.guildwars2.com/file/42D514BF15A3F84ECECBACC7E05F95CAE03EBF6D/2491539.png"
+        }
+      },
+      {
+        "text": "Apply Buff/Condition",
+        "type": "PrefixedBuff",
+        "icon": "https://render.guildwars2.com/file/D4347C52157B040943051D7E09DEAD7AF63D4378/156662.png",
+        "duration": 0,
+        "status": "Augmentation de Guérison et de barrières",
         "description": "100%",
         "apply_count": 0,
         "prefix": {
@@ -42934,23 +43303,23 @@
     "id": 2260,
     "tier": 1,
     "order": 1,
-    "name": "Rapidité du vent",
-    "description": "Les compétences de déplacement confèrent Rapidité et une augmentation du taux de flux.",
+    "name": "Tranchant aérien",
+    "description": "Vous chargez votre pistolame de munitions qui infligent des altérations de dégâts pour changer les propriétés de l'arme. Vous infligez Brûlure aux ennemis à proximité et gagnez un flux positif quand vous équipez votre pistolame.",
     "slot": "Major",
     "facts": [
       {
         "text": "Recharge",
         "type": "Recharge",
         "icon": "https://render.guildwars2.com/file/D767B963D120F077C3B163A05DC05A7317D7DB70/156651.png",
-        "value": 5
+        "value": 4
       },
       {
         "text": "Apply Buff/Condition",
         "type": "Buff",
-        "icon": "https://render.guildwars2.com/file/20CFC14967E67F7A3FD4A4B8722B4CF5B8565E11/102836.png",
-        "duration": 5,
-        "status": "Rapidité",
-        "description": "Vitesse de déplacement augmentée de 33%. La durée est cumulable.",
+        "icon": "https://render.guildwars2.com/file/B47BF5803FED2718D7474EAF9617629AD068EE10/102849.png",
+        "duration": 3,
+        "status": "En feu",
+        "description": "Inflige des dégâts à chaque seconde. Intensité cumulable.",
         "apply_count": 1
       },
       {
@@ -42961,6 +43330,11 @@
         "status": "Flux positif",
         "description": "Vous gagnez du flux à chaque seconde.",
         "apply_count": 2
+      },
+      {
+        "text": "Uniquement en combat",
+        "type": "NoData",
+        "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png"
       }
     ],
     "specialization": 68,
@@ -42971,7 +43345,7 @@
     "tier": 3,
     "order": 0,
     "name": "Dragon immortel",
-    "description": "Taillade de dragon vous soigne en fonction d'un pourcentage des dégâts infligés. Vous bénéficiez de Protection chaque fois que vous convertissez du flux en charges.",
+    "description": "Taillade de dragon vous soigne en fonction d'un pourcentage des dégâts infligés. Vous conférez Protection aux alliés chaque fois que vous convertissez une certaine quantité de flux en charges.",
     "slot": "Major",
     "facts": [
       {
@@ -42988,6 +43362,24 @@
         "status": "Protection",
         "description": "Dégâts de frappe subis réduits de 33%. La durée est cumulable.",
         "apply_count": 1
+      },
+      {
+        "text": "Nombre de cibles alliées",
+        "type": "Number",
+        "icon": "https://render.guildwars2.com/file/BBE8191A494B0352259C10EADFDACCE177E6DA5B/1770208.png",
+        "value": 5
+      },
+      {
+        "text": "Flux dépensé",
+        "type": "Number",
+        "icon": "https://render.guildwars2.com/file/E1E7C4D3A6E62F3D5C9F627CE8175BFB0C614CBE/156652.png",
+        "value": 10
+      },
+      {
+        "text": "Rayon",
+        "type": "Distance",
+        "icon": "https://render.guildwars2.com/file/B0CD8077991E4FB1622D2930337ED7F9B54211D5/156665.png",
+        "distance": 300
       }
     ],
     "specialization": 68,
@@ -43892,7 +44284,7 @@
         "text": "Dégâts infligés ajustés",
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
-        "percent": 20
+        "percent": 10
       },
       {
         "text": "Dégâts infligés ajustés",
@@ -43910,7 +44302,7 @@
         "text": "Dégâts reçus ajustés",
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
-        "percent": 15
+        "percent": 10
       },
       {
         "text": "Dégâts reçus ajustés",
@@ -45285,7 +45677,7 @@
             "text": "Apply Buff/Condition",
             "type": "Buff",
             "icon": "https://render.guildwars2.com/file/B47BF5803FED2718D7474EAF9617629AD068EE10/102849.png",
-            "duration": 3,
+            "duration": 6,
             "status": "En feu",
             "description": "Inflige des dégâts à chaque seconde. Intensité cumulable.",
             "apply_count": 3
@@ -45825,7 +46217,7 @@
         "text": "Augmentation des dégâts",
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
-        "percent": 15
+        "percent": 10
       }
     ],
     "specialization": 72,
@@ -45836,7 +46228,7 @@
     "tier": 2,
     "order": 1,
     "name": "Férocité du feu",
-    "description": "Vous bénéficiez d'une augmentation des dégâts de frappe pour chaque munition utilisée.",
+    "description": "Vous bénéficiez d'une augmentation des dégâts de frappe et des dégâts par altération pour chaque munition utilisée.",
     "slot": "Major",
     "facts": [
       {
@@ -45997,7 +46389,7 @@
             "text": "Guérison",
             "type": "AttributeAdjust",
             "icon": "https://render.guildwars2.com/file/D4347C52157B040943051D7E09DEAD7AF63D4378/156662.png",
-            "value": 1673,
+            "value": 809,
             "target": "Healing"
           },
           {
@@ -46036,6 +46428,7 @@
     "slot": "Major",
     "facts": [
       {
+        "type": "BuffArray",
         "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png"
       },
       {
@@ -46343,7 +46736,7 @@
         "text": "Portée",
         "type": "Number",
         "icon": "https://render.guildwars2.com/file/0AAB34BEB1C9F4A25EC612DDBEACF3E20B2810FA/156666.png",
-        "value": 240,
+        "value": 360,
         "requires_trait": 2393
       }
     ],
@@ -46986,6 +47379,12 @@
       },
       {
         "text": "Les dégâts sont augmentés par charge",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
+        "percent": 3
+      },
+      {
+        "text": "Les dégâts sont augmentés par charge.",
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
         "percent": 2
@@ -47651,7 +48050,7 @@
         "text": "Gain d'énergie",
         "type": "Number",
         "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png",
-        "value": 10
+        "value": 5
       },
       {
         "text": "Guérison",
@@ -47815,6 +48214,7 @@
         "icon": "https://render.guildwars2.com/file/BE5F0405E79D13C89F0D9EF13B1B11479D0C3805/3679993.png",
         "duration": 10,
         "status": "Hurlevent",
+        "description": "Votre prochaine frappe crée une rafale de vent autour de la cible.",
         "apply_count": 1
       }
     ],
@@ -47958,13 +48358,31 @@
     "tier": 1,
     "order": 0,
     "name": "Lien énigmatique",
-    "description": "Vous accédez à Potentiel de libération, à Sagesse cosmique et à la posture de l'entité légendaire. Les effets de Potentiel de libération et Sagesse cosmique dépendent de la légende que vous utilisez actuellement. Vous gagnez de l'affinité en utilisant des compétences de légende, ce qui augmente l'efficacité de Potentiel de libération.",
+    "description": "Vous accédez à Potentiel de libération, à Sagesse cosmique et à la posture de l'entité légendaire. Les effets de Potentiel de libération et Sagesse cosmique dépendent de la légende que vous utilisez actuellement. Vous gagnez de l'affinité en utilisant des compétences de légende, ce qui augmente l'efficacité de Potentiel de libération. Vous gagnez davantage d'affinité quand vous utilisez des compétences de légende au-dessus du seuil et quand vous canalisez une compétence avec un coût d'entretien.",
     "slot": "Minor",
     "facts": [
       {
         "text": "Uniquement en combat",
         "type": "NoData",
         "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png"
+      },
+      {
+        "text": "Seuil d'énergie",
+        "type": "Number",
+        "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png",
+        "value": 25
+      },
+      {
+        "text": "Seuil d'énergie",
+        "type": "Number",
+        "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png",
+        "value": 35
+      },
+      {
+        "text": "Affinité supplémentaire",
+        "type": "Number",
+        "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png",
+        "value": 1
       }
     ],
     "skills": [
@@ -47982,7 +48400,7 @@
             "type": "Damage",
             "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
             "hit_count": 3,
-            "dmg_multiplier": 1.3
+            "dmg_multiplier": 0.6
           },
           {
             "text": "Apply Buff/Condition",
@@ -48180,7 +48598,7 @@
             "text": "Apply Buff/Condition",
             "type": "Buff",
             "icon": "https://render.guildwars2.com/file/10BABF2708CA3575730AC662A2E72EC292565B08/598887.png",
-            "duration": 6,
+            "duration": 3,
             "status": "Tourment",
             "description": "Inflige des dégâts à chaque seconde. Inflige des dégâts supplémentaires aux ennemis qui ne bougent pas. L'intensité est cumulable.",
             "apply_count": 2
@@ -48285,6 +48703,18 @@
             "target": "Healing"
           },
           {
+            "text": "Augmentation de barrière par affinité",
+            "type": "Percent",
+            "icon": "https://render.guildwars2.com/file/357922487919E8E84B914EAC13D5796DDDC42D14/1770209.png",
+            "percent": 10
+          },
+          {
+            "text": "Augmentation des dégâts par affinité",
+            "type": "Percent",
+            "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
+            "percent": 10
+          },
+          {
             "text": "Combo Finisher",
             "type": "ComboFinisher",
             "icon": "https://render.guildwars2.com/file/A513F3653D33FBA4220D2D307799F8A327A36A3B/156656.png",
@@ -48292,7 +48722,7 @@
             "finisher_type": "Leap"
           }
         ],
-        "description": "Vous bondissez sur la zone ciblée en esquivant les attaques et infligez des dégâts aux ennemis sur l'emplacement ciblé. Vous recevez une barrière si vous avez frappé au moins un ennemi. Chaque point d'affinité augmente les dégâts infligés et la barrière conférée par cette compétence.",
+        "description": "Vous bondissez sur la zone ciblée et infligez des dégâts aux ennemis sur l'emplacement ciblé. Vous recevez une barrière si vous avez frappé au moins un ennemi. Chaque point d'affinité augmente les dégâts infligés et la barrière conférée par cette compétence.",
         "icon": "https://render.guildwars2.com/file/35BD2F7D624203D7A0B3E5C2EE6A650ABF301323/3713172.png",
         "flags": [],
         "id": 78895,
@@ -48762,7 +49192,7 @@
             "type": "Damage",
             "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
             "hit_count": 3,
-            "dmg_multiplier": 0.5
+            "dmg_multiplier": 0.8
           }
         ],
         "description": "Des flèches conjurées frappent votre cible.",
@@ -49132,6 +49562,12 @@
         "text": "Réduction du temps de recharge",
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/AAB7C5387A08367C2F023F19FEE70E1556AD4375/1770202.png",
+        "percent": 15
+      },
+      {
+        "text": "Réduction du temps de recharge",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/AAB7C5387A08367C2F023F19FEE70E1556AD4375/1770202.png",
         "percent": 30
       },
       {
@@ -49139,12 +49575,6 @@
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/AAB7C5387A08367C2F023F19FEE70E1556AD4375/1770202.png",
         "percent": 40
-      },
-      {
-        "text": "Augmentation de durée",
-        "type": "Time",
-        "icon": "https://render.guildwars2.com/file/7B2193ACCF77E56C13E608191B082D68AA0FAA71/156659.png",
-        "duration": 5
       },
       {
         "text": "Augmentation de durée",
@@ -49173,7 +49603,7 @@
         "text": "Apply Buff/Condition",
         "type": "PrefixedBuff",
         "icon": "https://render.guildwars2.com/file/D4AB6401A6D6917C3D4F230764452BCCE1035B0D/1012835.png",
-        "duration": 4,
+        "duration": 2,
         "status": "Célérité",
         "description": "Les compétences et les actions sont plus rapides.",
         "apply_count": 1,
@@ -49188,7 +49618,7 @@
         "text": "Apply Buff/Condition",
         "type": "PrefixedBuff",
         "icon": "https://render.guildwars2.com/file/2FA9DF9D6BC17839BBEA14723F1C53D645DDB5E1/102852.png",
-        "duration": 4,
+        "duration": 2,
         "status": "Pouvoir",
         "description": "Les dégâts infligés sont augmentés. Intensité cumulable.",
         "apply_count": 1,
@@ -49233,7 +49663,7 @@
         "text": "Apply Buff/Condition",
         "type": "PrefixedBuff",
         "icon": "https://render.guildwars2.com/file/D4AB6401A6D6917C3D4F230764452BCCE1035B0D/1012835.png",
-        "duration": 4,
+        "duration": 2,
         "status": "Célérité",
         "description": "Les compétences et les actions sont plus rapides.",
         "apply_count": 1,
@@ -49248,7 +49678,7 @@
         "text": "Apply Buff/Condition",
         "type": "PrefixedBuff",
         "icon": "https://render.guildwars2.com/file/96D90DF84CAFE008233DD1C2606A12C1A0E68048/102842.png",
-        "duration": 4,
+        "duration": 2,
         "status": "Fureur",
         "description": "Chances de coup critique augmentées ; durée cumulable.",
         "apply_count": 1,
@@ -50112,7 +50542,7 @@
         "text": "Apply Buff/Condition",
         "type": "Buff",
         "icon": "https://render.guildwars2.com/file/4FDAC2113B500104121753EF7E026E45C141E94D/1938787.png",
-        "duration": 6,
+        "duration": 5,
         "status": "Alacrité",
         "description": "Les compétences se rechargent plus vite.",
         "apply_count": 1
@@ -50134,6 +50564,15 @@
         "status": "Pouvoir",
         "description": "Les dégâts infligés sont augmentés. Intensité cumulable.",
         "apply_count": 3
+      },
+      {
+        "text": "Apply Buff/Condition",
+        "type": "Buff",
+        "icon": "https://render.guildwars2.com/file/2FA9DF9D6BC17839BBEA14723F1C53D645DDB5E1/102852.png",
+        "duration": 6,
+        "status": "Pouvoir",
+        "description": "Les dégâts infligés sont augmentés. Intensité cumulable.",
+        "apply_count": 1
       },
       {
         "text": "Apply Buff/Condition",
@@ -50170,6 +50609,21 @@
         "type": "PrefixedBuff",
         "icon": "https://render.guildwars2.com/file/3D3A1C2D6D791C05179AB871902D28782C65C244/415959.png",
         "duration": 4,
+        "status": "Stabilité",
+        "description": "Immunisé contre les altérations Renversement, Repoussement, Attraction, Projection, Étourdissement, Stupeur, Flottaison, Noyade, Peur ou Incitation.",
+        "apply_count": 2,
+        "prefix": {
+          "text": "Apply Buff/Condition",
+          "icon": "https://render.guildwars2.com/file/5B565BA46C111902EE65AB4592590442A5A6E754/3680135.png",
+          "status": "Protocole défensif : épines",
+          "description": "<c=@abilitytype>Transformation.</c> Vous générez des pointes protectrices qui infligent des dégâts aux ennemis à proximité. Pendant un court instant, les pointes réagissent quand vous recevez une attaque, infligeant à nouveau des dégâts aux ennemis à proximité."
+        }
+      },
+      {
+        "text": "Apply Buff/Condition",
+        "type": "PrefixedBuff",
+        "icon": "https://render.guildwars2.com/file/3D3A1C2D6D791C05179AB871902D28782C65C244/415959.png",
+        "duration": 2,
         "status": "Stabilité",
         "description": "Immunisé contre les altérations Renversement, Repoussement, Attraction, Projection, Étourdissement, Stupeur, Flottaison, Noyade, Peur ou Incitation.",
         "apply_count": 2,
@@ -50276,7 +50730,7 @@
     "tier": 3,
     "order": 2,
     "name": "Maître d'armes",
-    "description": "Le fait d'utiliser une compétence de <c=@abilitytype>vertu</c> recharge les compétences d'arme rayonnante. Justice recharge le marteau, Résolution recharge le bâton, et Courage recharge l'épée et le bouclier.",
+    "description": "Le fait d'utiliser une compétence de <c=@abilitytype>vertu</c> recharge les compétences d'arme rayonnante. Justice recharge le marteau, Détermination recharge le bâton, et Courage recharge l'épée et le bouclier.",
     "slot": "Major",
     "facts": [
       {
@@ -50308,6 +50762,13 @@
         "type": "AttributeAdjust",
         "icon": "https://render.guildwars2.com/file/357922487919E8E84B914EAC13D5796DDDC42D14/1770209.png",
         "value": 1295,
+        "target": "Healing"
+      },
+      {
+        "text": "Barrière",
+        "type": "AttributeAdjust",
+        "icon": "https://render.guildwars2.com/file/357922487919E8E84B914EAC13D5796DDDC42D14/1770209.png",
+        "value": 623,
         "target": "Healing"
       },
       {
@@ -50685,6 +51146,7 @@
             "dmg_multiplier": 1.3
           },
           {
+            "type": "BuffArray",
             "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png"
           },
           {
@@ -50762,6 +51224,7 @@
             "value": 25
           },
           {
+            "type": "BuffArray",
             "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png"
           },
           {
@@ -50802,7 +51265,7 @@
     "tier": 2,
     "order": 0,
     "name": "Chance de la canaille",
-    "description": "Vous recevez Chance de la canaille chaque fois que vous utilisez un artefact. Chance de la canaille vous permet d'utiliser les compétences Double tranchant en cours de recharge sans qu'elles risquent de rater.",
+    "description": "Vous recevez Chance de la canaille chaque fois que vous utilisez Escamotage skritt. Chance de la canaille vous permet d'utiliser les compétences Double tranchant en cours de recharge sans qu'elles risquent de rater.",
     "slot": "Major",
     "facts": [
       {
@@ -50921,7 +51384,7 @@
             "type": "Damage",
             "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
             "hit_count": 1,
-            "dmg_multiplier": 1.2
+            "dmg_multiplier": 0.8
           },
           {
             "text": "Apply Buff/Condition",
@@ -50967,7 +51430,7 @@
             "type": "Damage",
             "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
             "hit_count": 1,
-            "dmg_multiplier": 3
+            "dmg_multiplier": 2.5
           }
         ],
         "description": "Artefact offensif. Vous vous déchaînez avec votre guitare, infligeant des dégâts et des altérations aux ennemis autour de vous, puis vous fracassez la guitare par terre, infligeant des dégâts et Étourdissement aux ennemis dans la zone.\n\nPendant un court instant après avoir utilisé cette compétence, votre première compétence d'arme est remplacée par votre attaque furtive, même quand vous ne bénéficiez pas de Furtivité.",
@@ -50993,7 +51456,7 @@
             "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
             "requires_trait": 2431,
             "hit_count": 1,
-            "dmg_multiplier": 1.4,
+            "dmg_multiplier": 0.96,
             "overrides": 1
           },
           {
@@ -51021,7 +51484,7 @@
             "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
             "requires_trait": 2431,
             "hit_count": 1,
-            "dmg_multiplier": 3.6,
+            "dmg_multiplier": 3,
             "overrides": 8
           }
         ]
@@ -51220,7 +51683,7 @@
             "text": "Apply Buff/Condition",
             "type": "PrefixedBuff",
             "icon": "https://render.guildwars2.com/file/B47BF5803FED2718D7474EAF9617629AD068EE10/102849.png",
-            "duration": 3,
+            "duration": 1,
             "status": "En feu",
             "description": "Inflige des dégâts à chaque seconde. Intensité cumulable.",
             "apply_count": 1,
@@ -51308,7 +51771,7 @@
             "text": "Apply Buff/Condition",
             "type": "Buff",
             "icon": "https://render.guildwars2.com/file/B47BF5803FED2718D7474EAF9617629AD068EE10/102849.png",
-            "duration": 3,
+            "duration": 2,
             "status": "En feu",
             "description": "Inflige des dégâts à chaque seconde. Intensité cumulable.",
             "apply_count": 1,
@@ -51579,7 +52042,7 @@
             "type": "Damage",
             "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
             "hit_count": 8,
-            "dmg_multiplier": 0.4
+            "dmg_multiplier": 0.35
           },
           {
             "text": "Rayon",
@@ -51626,7 +52089,7 @@
             "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
             "requires_trait": 2431,
             "hit_count": 8,
-            "dmg_multiplier": 0.48,
+            "dmg_multiplier": 0.42,
             "overrides": 2
           },
           {
@@ -51659,7 +52122,7 @@
             "type": "Damage",
             "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
             "hit_count": 1,
-            "dmg_multiplier": 2.5
+            "dmg_multiplier": 2
           },
           {
             "text": "Rayon",
@@ -51766,7 +52229,7 @@
             "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
             "requires_trait": 2431,
             "hit_count": 1,
-            "dmg_multiplier": 3,
+            "dmg_multiplier": 2.4,
             "overrides": 1
           },
           {
@@ -52048,7 +52511,7 @@
         "text": "Apply Buff/Condition",
         "type": "Buff",
         "icon": "https://render.guildwars2.com/file/D4AB6401A6D6917C3D4F230764452BCCE1035B0D/1012835.png",
-        "duration": 3,
+        "duration": 4,
         "status": "Célérité",
         "description": "Les compétences et les actions sont plus rapides.",
         "apply_count": 1
@@ -52503,6 +52966,21 @@
         "text": "Apply Buff/Condition",
         "type": "PrefixedBuff",
         "icon": "https://render.guildwars2.com/file/3D3A1C2D6D791C05179AB871902D28782C65C244/415959.png",
+        "duration": 3,
+        "status": "Stabilité",
+        "description": "Immunisé contre les altérations Renversement, Repoussement, Attraction, Projection, Étourdissement, Stupeur, Flottaison, Noyade, Peur ou Incitation.",
+        "apply_count": 2,
+        "prefix": {
+          "text": "Apply Buff/Condition",
+          "icon": "https://render.guildwars2.com/file/A3DE41C7F223D46269FCC406AEFCDF01ABCF4BE1/3680124.png",
+          "status": "Courage du crapaud",
+          "description": "<c=@abilitytype>Méditation.</c> Vous bloquez les attaques ennemies, puis vous frappez les ennemis à proximité à l'aide de rochers acérés. Vous conférez Protection aux alliés à proximité si cette compétence prend fin avec succès. Si votre élément de spécialité est la terre, cette compétence dissipe l'étourdissement et confère Résistance aux alliés."
+        }
+      },
+      {
+        "text": "Apply Buff/Condition",
+        "type": "PrefixedBuff",
+        "icon": "https://render.guildwars2.com/file/3D3A1C2D6D791C05179AB871902D28782C65C244/415959.png",
         "duration": 5,
         "status": "Stabilité",
         "description": "Immunisé contre les altérations Renversement, Repoussement, Attraction, Projection, Étourdissement, Stupeur, Flottaison, Noyade, Peur ou Incitation.",
@@ -52512,6 +52990,21 @@
           "icon": "https://render.guildwars2.com/file/A3DE41C7F223D46269FCC406AEFCDF01ABCF4BE1/3680124.png",
           "status": "Courage du crapaud",
           "description": "<c=@abilitytype>Méditation.</c> Vous bloquez les attaques ennemies, puis vous frappez les ennemis à proximité à l'aide de rochers acérés. Vous conférez Protection aux alliés à proximité si cette compétence prend fin avec succès. Si votre élément de spécialité est la terre, cette compétence dissipe l'étourdissement et confère Résistance aux alliés."
+        }
+      },
+      {
+        "text": "Apply Buff/Condition",
+        "type": "PrefixedBuff",
+        "icon": "https://render.guildwars2.com/file/50BAC1B8E10CFAB9E749A5D910D4A9DCF29EBB7C/961398.png",
+        "duration": 3,
+        "status": "Résistance",
+        "description": "Les altérations n'infligeant pas de dégâts que vous subissez sont inefficaces. La durée est cumulable.",
+        "apply_count": 1,
+        "prefix": {
+          "text": "Apply Buff/Condition",
+          "icon": "https://render.guildwars2.com/file/D401E6E2BE0349A03F37E02AE850CF3419D438C3/3680111.png",
+          "status": "Procession élémentaire",
+          "description": "<c=@abilitytype>Méditation.</c> Vous invoquez les quatre familiers pour exploiter leurs compétences surpuissantes."
         }
       },
       {
@@ -53172,7 +53665,7 @@
             "type": "Damage",
             "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
             "hit_count": 1,
-            "dmg_multiplier": 1.2
+            "dmg_multiplier": 0.8
           },
           {
             "text": "Apply Buff/Condition",
@@ -53218,7 +53711,7 @@
             "type": "Damage",
             "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
             "hit_count": 1,
-            "dmg_multiplier": 3
+            "dmg_multiplier": 2.5
           }
         ],
         "description": "Artefact offensif. Vous vous déchaînez avec votre guitare, infligeant des dégâts et des altérations aux ennemis autour de vous, puis vous fracassez la guitare par terre, infligeant des dégâts et Étourdissement aux ennemis dans la zone.\n\nPendant un court instant après avoir utilisé cette compétence, votre première compétence d'arme est remplacée par votre attaque furtive, même quand vous ne bénéficiez pas de Furtivité.",
@@ -53244,7 +53737,7 @@
             "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
             "requires_trait": 2431,
             "hit_count": 1,
-            "dmg_multiplier": 1.4,
+            "dmg_multiplier": 0.96,
             "overrides": 1
           },
           {
@@ -53272,7 +53765,7 @@
             "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
             "requires_trait": 2431,
             "hit_count": 1,
-            "dmg_multiplier": 3.6,
+            "dmg_multiplier": 3,
             "overrides": 8
           }
         ]
@@ -53471,7 +53964,7 @@
             "text": "Apply Buff/Condition",
             "type": "PrefixedBuff",
             "icon": "https://render.guildwars2.com/file/B47BF5803FED2718D7474EAF9617629AD068EE10/102849.png",
-            "duration": 3,
+            "duration": 1,
             "status": "En feu",
             "description": "Inflige des dégâts à chaque seconde. Intensité cumulable.",
             "apply_count": 1,
@@ -53559,7 +54052,7 @@
             "text": "Apply Buff/Condition",
             "type": "Buff",
             "icon": "https://render.guildwars2.com/file/B47BF5803FED2718D7474EAF9617629AD068EE10/102849.png",
-            "duration": 3,
+            "duration": 2,
             "status": "En feu",
             "description": "Inflige des dégâts à chaque seconde. Intensité cumulable.",
             "apply_count": 1,
@@ -53830,7 +54323,7 @@
             "type": "Damage",
             "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
             "hit_count": 8,
-            "dmg_multiplier": 0.4
+            "dmg_multiplier": 0.35
           },
           {
             "text": "Rayon",
@@ -53877,7 +54370,7 @@
             "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
             "requires_trait": 2431,
             "hit_count": 8,
-            "dmg_multiplier": 0.48,
+            "dmg_multiplier": 0.42,
             "overrides": 2
           },
           {
@@ -53910,7 +54403,7 @@
             "type": "Damage",
             "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
             "hit_count": 1,
-            "dmg_multiplier": 2.5
+            "dmg_multiplier": 2
           },
           {
             "text": "Rayon",
@@ -54017,7 +54510,7 @@
             "icon": "https://render.guildwars2.com/file/61AA4919C4A7990903241B680A69530121E994C7/156657.png",
             "requires_trait": 2431,
             "hit_count": 1,
-            "dmg_multiplier": 3,
+            "dmg_multiplier": 2.4,
             "overrides": 1
           },
           {
@@ -54270,6 +54763,12 @@
         "type": "Number",
         "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png",
         "value": 2
+      },
+      {
+        "text": "Altérations dissipées",
+        "type": "Number",
+        "icon": "https://render.guildwars2.com/file/9352ED3244417304995F26CB01AE76BB7E547052/156661.png",
+        "value": 1
       }
     ],
     "specialization": 74,
@@ -54405,6 +54904,12 @@
         "type": "Percent",
         "icon": "https://render.guildwars2.com/file/AAB7C5387A08367C2F023F19FEE70E1556AD4375/1770202.png",
         "percent": 20
+      },
+      {
+        "text": "Recharge de compétence surpuissante",
+        "type": "Percent",
+        "icon": "https://render.guildwars2.com/file/AAB7C5387A08367C2F023F19FEE70E1556AD4375/1770202.png",
+        "percent": 33
       }
     ],
     "specialization": 80,
@@ -54483,21 +54988,6 @@
       {
         "text": "Apply Buff/Condition",
         "type": "PrefixedBuff",
-        "icon": "https://render.guildwars2.com/file/D104A6B9344A2E2096424A3C300E46BC2926E4D7/2440718.png",
-        "duration": 5,
-        "status": "Résolution",
-        "description": "Dégâts par altération subis réduits de 33%. La durée est cumulable.",
-        "apply_count": 1,
-        "prefix": {
-          "text": "Apply Buff/Condition",
-          "icon": "https://render.guildwars2.com/file/03C66FA8A89697A0C4D309484172080E3A1141EF/961410.png",
-          "status": "Posture du Nain légendaire",
-          "description": "Vous invoquez le pouvoir du roi Jalis Martelfer."
-        }
-      },
-      {
-        "text": "Apply Buff/Condition",
-        "type": "PrefixedBuff",
         "icon": "https://render.guildwars2.com/file/CD77D1FAB7B270223538A8F8ECDA1CFB044D65F4/102834.png",
         "duration": 5,
         "status": "Protection",
@@ -54530,6 +55020,90 @@
         "type": "Buff",
         "icon": "https://render.guildwars2.com/file/2FA9DF9D6BC17839BBEA14723F1C53D645DDB5E1/102852.png",
         "duration": 10,
+        "status": "Pouvoir",
+        "description": "Les dégâts infligés sont augmentés. Intensité cumulable.",
+        "apply_count": 5
+      },
+      {
+        "text": "Apply Buff/Condition",
+        "type": "PrefixedBuff",
+        "icon": "https://render.guildwars2.com/file/96D90DF84CAFE008233DD1C2606A12C1A0E68048/102842.png",
+        "duration": 6,
+        "status": "Fureur",
+        "description": "Chances de coup critique augmentées ; durée cumulable.",
+        "apply_count": 1,
+        "prefix": {
+          "text": "Apply Buff/Condition",
+          "icon": "https://render.guildwars2.com/file/67CDD35F6BC3072E0837715A5E0A90646529BAA2/1030005.png",
+          "status": "Posture de l'assassin légendaire",
+          "description": "Vous invoquez le pouvoir de Shiro Tagachi."
+        }
+      },
+      {
+        "text": "Apply Buff/Condition",
+        "type": "PrefixedBuff",
+        "icon": "https://render.guildwars2.com/file/50BAC1B8E10CFAB9E749A5D910D4A9DCF29EBB7C/961398.png",
+        "duration": 3,
+        "status": "Résistance",
+        "description": "Les altérations n'infligeant pas de dégâts que vous subissez sont inefficaces. La durée est cumulable.",
+        "apply_count": 1,
+        "prefix": {
+          "text": "Apply Buff/Condition",
+          "icon": "https://render.guildwars2.com/file/1A1407F7D34E5ED41B59A25F39EBF728CC926423/961413.png",
+          "status": "Posture du démon légendaire",
+          "description": "Invoque le pouvoir du démon légendaire Mallyx l'Impitoyable."
+        }
+      },
+      {
+        "text": "Apply Buff/Condition",
+        "type": "PrefixedBuff",
+        "icon": "https://render.guildwars2.com/file/D104A6B9344A2E2096424A3C300E46BC2926E4D7/2440718.png",
+        "duration": 3,
+        "status": "Résolution",
+        "description": "Dégâts par altération subis réduits de 33%. La durée est cumulable.",
+        "apply_count": 1,
+        "prefix": {
+          "text": "Apply Buff/Condition",
+          "icon": "https://render.guildwars2.com/file/03C66FA8A89697A0C4D309484172080E3A1141EF/961410.png",
+          "status": "Posture du Nain légendaire",
+          "description": "Vous invoquez le pouvoir du roi Jalis Martelfer."
+        }
+      },
+      {
+        "text": "Apply Buff/Condition",
+        "type": "PrefixedBuff",
+        "icon": "https://render.guildwars2.com/file/CD77D1FAB7B270223538A8F8ECDA1CFB044D65F4/102834.png",
+        "duration": 3,
+        "status": "Protection",
+        "description": "Dégâts de frappe subis réduits de 33%. La durée est cumulable.",
+        "apply_count": 1,
+        "prefix": {
+          "text": "Apply Buff/Condition",
+          "icon": "https://render.guildwars2.com/file/0E091B41C047DD5A1BCA6B9193C73E6B29524C5D/1983636.png",
+          "status": "Posture du Centaure légendaire",
+          "description": "Vous invoquez le pouvoir de Ventari."
+        }
+      },
+      {
+        "text": "Apply Buff/Condition",
+        "type": "PrefixedBuff",
+        "icon": "https://render.guildwars2.com/file/D4AB6401A6D6917C3D4F230764452BCCE1035B0D/1012835.png",
+        "duration": 3,
+        "status": "Célérité",
+        "description": "Les compétences et les actions sont plus rapides.",
+        "apply_count": 1,
+        "prefix": {
+          "text": "Apply Buff/Condition",
+          "icon": "https://render.guildwars2.com/file/96D1B2FC486CB655D804B9722FC13ED623964451/3680050.png",
+          "status": "Posture de l'entité légendaire",
+          "description": "Vous invoquez le pouvoir de Razah."
+        }
+      },
+      {
+        "text": "Apply Buff/Condition",
+        "type": "Buff",
+        "icon": "https://render.guildwars2.com/file/2FA9DF9D6BC17839BBEA14723F1C53D645DDB5E1/102852.png",
+        "duration": 6,
         "status": "Pouvoir",
         "description": "Les dégâts infligés sont augmentés. Intensité cumulable.",
         "apply_count": 5

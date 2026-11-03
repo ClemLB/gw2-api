@@ -29,7 +29,7 @@ public class FractalsService {
     }
 
     public List<DailyFractal> cms() {
-        int[] cmIds = {23, 8, 9, 20, 21, 22};
+        int[] cmIds = {24, 23, 8, 9, 20, 21, 22};
         return this.getFractals(cmIds);
     }
 
@@ -37,7 +37,7 @@ public class FractalsService {
         List<DailyFractal> fractals = new ArrayList<>(3);
         for (int numFractal : fractalsNumber) {
             Fractal fractal = jsonFractal.fractals()[numFractal];
-            int[] instaNumbers = jsonInstabilities.instabilities().get(String.valueOf(fractal.level()))[this.getRotation()];
+            int[] instaNumbers = jsonInstabilities.instabilities().get(String.valueOf(fractal.level()))[this.getDayIndex()];
             List<String> instabilities = Arrays.stream(instaNumbers).mapToObj(i -> jsonInstabilities.instability_details()[i].name().get("fr")).toList();
             fractals.add(new DailyFractal(fractal.level(), FractalEnum.getFractalFromLevel(fractal.level()).getName(), instabilities));
         }
@@ -65,9 +65,16 @@ public class FractalsService {
     }
 
     private int getRotation() {
+        return this.getDayIndex() % 15;
+    }
+
+    /**
+     * Index du jour sur une année bissextile (0-365) : le 29 février est sauté lors des années non bissextiles.
+     */
+    private int getDayIndex() {
         var today = LocalDate.now();
-        LocalDate currentRotation = LocalDate.of(today.getYear(), 1, 1);
+        LocalDate firstDay = LocalDate.of(today.getYear(), 1, 1);
         int decalage = today.isLeapYear() || today.isBefore(LocalDate.of(today.getYear(), 3, 1)) ? 0 : 1;
-        return (Math.toIntExact(ChronoUnit.DAYS.between(currentRotation, today)) + decalage) % 15;
+        return Math.toIntExact(ChronoUnit.DAYS.between(firstDay, today)) + decalage;
     }
 }
